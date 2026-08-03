@@ -1,0 +1,1121 @@
+
+  <div class="flex min-h-screen">
+    <!-- FLOATING SHOW-MENU (desktop saat sidebar disembunyikan) -->
+    <button id="nav-show" aria-label="Tampilkan menu"><i class="fas fa-bars"></i></button>
+    <!-- MOBILE TOPBAR -->
+    <header class="topbar">
+      <button id="menu-toggle" class="hamburger" aria-label="Buka menu"><i class="fas fa-bars"></i></button>
+      <div class="sidebar-logo" style="width:30px;height:30px;border-radius:9px;font-size:.75rem;">SSP</div>
+      <span class="font-display text-[15px]">Storyboard Studio Pro</span>
+    </header>
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-logo">SSP</div>
+        <div class="flex-1 min-w-0">
+          <div class="font-display text-white text-[15px] leading-tight">Storyboard Studio Pro</div>
+          <div class="text-[11px]" style="color:#7c8bab;">AI Storyboard Photo Studio</div>
+        </div>
+        <button id="nav-hide" class="nav-toggle-btn" aria-label="Sembunyikan menu"><i class="fas fa-angles-left"></i></button>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section" data-i18n="menu.review">Review Generator</div>
+        <button data-tab="product-review" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-box-open"></i></span><span><span data-i18n="nav.product-review">Review Produk</span><small>Foto review produk afiliasi</small></span></button>
+        <button data-tab="skincare-review" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-pump-soap"></i></span><span><span data-i18n="nav.skincare-review">Review Skincare</span><small>Scene review skincare</small></span></button>
+        <button data-tab="fashion" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-shirt"></i></span><span><span data-i18n="nav.fashion">Review Fashion</span><small>OOTD & fashion story</small></span></button>
+        <button data-tab="unboxing" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-boxes-packing"></i></span><span><span data-i18n="nav.unboxing">Unboxing Scene</span><small>Story buka paket produk</small></span></button>
+        <button data-tab="product-ads" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-bullhorn"></i></span><span><span data-i18n="nav.product-ads">Story Iklan</span><small>Storyboard iklan brand</small></span></button>
+        <button data-tab="food-review" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-utensils"></i></span><span><span data-i18n="nav.food-review">Review Makanan</span><small>Food review ala selebgram</small></span></button>
+        <button data-tab="tutorial" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-list-ol"></i></span><span><span data-i18n="nav.tutorial">Tutorial Pakai</span><small>Story cara pakai produk</small></span></button>
+        <button data-tab="daily" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-calendar-day"></i></span><span><span data-i18n="nav.daily">Day in My Life</span><small>Vlog harian + produk</small></span></button>
+        <button data-tab="testi" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-comment-dots"></i></span><span><span data-i18n="nav.testi">Testimoni</span><small>Story masalah → solusi</small></span></button>
+        <button data-tab="grwm" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-wand-magic-sparkles"></i></span><span><span data-i18n="nav.grwm">GRWM</span><small>Get ready with me story</small></span></button>
+      </nav>
+      <div id="user-badge" class="px-4 py-3 hidden" style="border-top:1px solid rgba(255,255,255,.06);">
+        <div class="flex items-center justify-between gap-2 text-[12px]" style="color:#a5b4fc;">
+          <span class="truncate"><i class="fas fa-user-check mr-1"></i><span id="user-name"></span></span>
+          <button id="logout-btn" class="shrink-0 px-2 py-1 rounded-lg" style="color:#fca5a5;border:1px solid rgba(252,165,165,.3);" title="Keluar"><i class="fas fa-right-from-bracket mr-1"></i>Keluar</button>
+        </div>
+      </div>
+      <div class="px-4 py-3 text-[11px]" style="border-top:1px solid rgba(255,255,255,.06);color:#5b6b86;">Storyboard Studio Pro v1</div>
+    </aside>
+
+    <!-- MAIN -->
+    <main id="main-area" class="flex-grow pt-14 lg:pt-0 min-w-0">
+      <div id="content-product-review" class="main-content-panel">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Review Produk</h1>
+            <p class="text-gray-500 mt-2">Solusi AI untuk konten review produk afiliasi Anda.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Gambar Produk</h2></div>
+                <div id="review-image-upload-area">
+                  <label for="review-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-image text-4xl mb-2"></i>
+                    <span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="review-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="review-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Produk</h2></div>
+                  <button id="review-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="review-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Deskripsikan produk Anda... atau gunakan AI Generate"></textarea>
+                <p class="text-xs text-gray-400 mt-2">Tip: deskripsi detail menghasilkan review yang lebih berkualitas.</p>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <div id="review-model-image-upload-area">
+                  <label for="review-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                  </label>
+                  <input type="file" id="review-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="review-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="review-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="review-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema Foto <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih konsep tempat & mood untuk seluruh scene. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="review-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Minimalis modern, background putih bersih, pencahayaan soft, produk jadi fokus utama, aesthetic simple dan clean" class="theme-chip"><i class="fas fa-minimize"></i>Minimalis</button>
+                  <button type="button" data-theme="Studio profesional dengan lighting sempurna, seamless backdrop solid, produk tajam dan detail, commercial product photography" class="theme-chip"><i class="fas fa-camera"></i>Studio Pro</button>
+                  <button type="button" data-theme="Flat lay top-down view, komposisi rapi tertata, negative space seimbang, produk di tengah, aesthetic feed Instagram" class="theme-chip"><i class="fas fa-th"></i>Flat Lay</button>
+                  <button type="button" data-theme="Dark & moody, lighting dramatis, shadow bermain, produk highlight dari kegelapan, mysterious dan premium" class="theme-chip"><i class="fas fa-moon"></i>Dark Moody</button>
+                  <button type="button" data-theme="Bright & airy, cahaya terang alami, background putih, fresh dan clean, produk terlihat jelas" class="theme-chip"><i class="fas fa-sun"></i>Bright Airy</button>
+                  <button type="button" data-theme="Setting natural nuansa alam, cahaya alami hangat, suasana relax, produk menyatu dengan lingkungan" class="theme-chip"><i class="fas fa-leaf"></i>Natural</button>
+                  <button type="button" data-theme="Suasana rumah nyaman, warm lighting, meja kayu hangat, produk dalam konteks penggunaan sehari-hari" class="theme-chip"><i class="fas fa-home"></i>Cozy Home</button>
+                  <button type="button" data-theme="Outdoor alam terbuka, background natural, energetic dan fresh, produk tampak dinamis" class="theme-chip"><i class="fas fa-mountain"></i>Outdoor</button>
+                  <button type="button" data-theme="Beach summer vibes, pasir putih laut biru, tropical dan refreshing, produk dengan mood liburan" class="theme-chip"><i class="fas fa-umbrella-beach"></i>Beach</button>
+                  <button type="button" data-theme="Coffee shop aesthetic, wooden table, warm lighting, cozy hipster vibes, produk dalam suasana kafe" class="theme-chip"><i class="fas fa-mug-hot"></i>Coffee Shop</button>
+                  <button type="button" data-theme="Urban street modern, industrial vibe kota, energik dan trendy, produk dengan latar perkotaan" class="theme-chip"><i class="fas fa-city"></i>Urban</button>
+                  <button type="button" data-theme="Luxury premium, nuansa mewah elegan, aksen gold/silver, sophisticated, produk terkesan high-end" class="theme-chip"><i class="fas fa-gem"></i>Luxury</button>
+                  <button type="button" data-theme="Corporate profesional, clean lines, business aesthetic, formal dan trustworthy, produk terkesan kredibel" class="theme-chip"><i class="fas fa-briefcase"></i>Corporate</button>
+                  <button type="button" data-theme="Elegant classic, styling sophisticated, timeless, presentasi high-end, produk jadi pusat perhatian" class="theme-chip"><i class="fas fa-crown"></i>Elegant</button>
+                  <button type="button" data-theme="Bokeh dreamy, depth of field shallow, background blur lembut, produk tajam di fokus, romantic mood" class="theme-chip"><i class="fas fa-heart"></i>Bokeh</button>
+                  <button type="button" data-theme="Golden hour, warm sunset lighting, golden tones, cinematic dan dreamy, produk bermandi cahaya hangat" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Hour</button>
+                  <button type="button" data-theme="Neon cyberpunk, warna neon vibrant, futuristic, modern dan eye-catching, produk terkesan techy" class="theme-chip"><i class="fas fa-bolt"></i>Neon</button>
+                  <button type="button" data-theme="Monochrome hitam putih, kontras tinggi, timeless dan artistic, fokus bentuk dan tekstur produk" class="theme-chip"><i class="fas fa-adjust"></i>Monochrome</button>
+                  <button type="button" data-theme="Vintage retro, filter klasik warm tones, nostalgic, produk dengan sentuhan jadul yang aesthetic" class="theme-chip"><i class="fas fa-clock-rotate-left"></i>Vintage</button>
+                  <button type="button" data-theme="Rustic farmhouse, tekstur kayu, earthy tones, authentic dan homey, produk dengan nuansa hangat alami" class="theme-chip"><i class="fas fa-warehouse"></i>Rustic</button>
+                  <button type="button" data-theme="Fresh & clean, warna pastel cerah, cheerful dan refreshing, produk terlihat menyegarkan" class="theme-chip"><i class="fas fa-wand-magic-sparkles"></i>Fresh</button>
+                  <button type="button" data-theme="Pastel lembut, warna soft kawaii aesthetic, cute dan manis, produk dengan mood gemas" class="theme-chip"><i class="fas fa-candy-cane"></i>Pastel</button>
+                  <button type="button" data-theme="Vibrant colorful, warna bold berani, energetic dan eye-popping, produk mencolok dan ceria" class="theme-chip"><i class="fas fa-palette"></i>Colorful</button>
+                  <button type="button" data-theme="Earth tone natural, warna tanah brown beige green, organic dan calming, produk terkesan ramah lingkungan" class="theme-chip"><i class="fas fa-seedling"></i>Earth Tone</button>
+                  <button type="button" data-theme="Spring fresh, nuansa bunga warna cerah, cheerful, produk dengan mood segar bersemi" class="theme-chip"><i class="fas fa-fan"></i>Spring</button>
+                  <button type="button" data-theme="Summer bright, sunshine tropical, energetic dan fun, produk dengan vibe musim panas" class="theme-chip"><i class="fas fa-sun"></i>Summer</button>
+                  <button type="button" data-theme="Autumn warm, warna fall leaves orange brown, cozy, produk dengan nuansa hangat gugur" class="theme-chip"><i class="fas fa-tree"></i>Autumn</button>
+                  <button type="button" data-theme="Winter, nuansa dingin white & blue, cozy serene, produk dengan mood musim dingin" class="theme-chip"><i class="fas fa-snowflake"></i>Winter</button>
+                  <button type="button" data-theme="Romantic, rose petals soft pink lighting, intimate dan dreamy, produk untuk momen spesial" class="theme-chip"><i class="fas fa-heart-circle-plus"></i>Romantic</button>
+                  <button type="button" data-theme="Christmas holiday, dekorasi Natal red & green, warm cozy festive, produk untuk campaign akhir tahun" class="theme-chip"><i class="fas fa-gifts"></i>Christmas</button>
+                </div>
+                <div id="review-custom-theme-container" class="hidden">
+                  <textarea id="review-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis tema sendiri: minimalis & bersih, nuansa alam tropis, futuristik neon..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="review-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="review-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="review-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Scene Review</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Review</h2>
+                <button id="review-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="review-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+      <div id="content-skincare-review" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Review Skincare</h1>
+            <p class="text-gray-500 mt-2">Buat scene review skincare profesional untuk konten Anda.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Produk Skincare</h2></div>
+                <div id="skincare-image-upload-area">
+                  <label for="skincare-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-image text-4xl mb-2"></i><span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="skincare-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="skincare-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Skincare</h2></div>
+                  <button id="skincare-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="skincare-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Deskripsikan skincare Anda (kandungan, manfaat, tekstur)... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <div id="skincare-model-image-upload-area">
+                  <label for="skincare-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                  </label>
+                  <input type="file" id="skincare-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="skincare-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="skincare-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="skincare-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema Foto <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih konsep tempat & mood untuk seluruh scene. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="skincare-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Clean beauty minimalis, background putih bersih, pencahayaan soft, botol skincare jadi fokus, aesthetic clean dan fresh" class="theme-chip"><i class="fas fa-wand-magic-sparkles"></i>Clean Beauty</button>
+                  <button type="button" data-theme="Studio profesional lighting sempurna, seamless backdrop solid, tekstur produk skincare tajam dan detail, commercial beauty photography" class="theme-chip"><i class="fas fa-camera"></i>Studio Pro</button>
+                  <button type="button" data-theme="Flat lay top-down, produk skincare tertata rapi dengan props natural, negative space seimbang, aesthetic feed Instagram" class="theme-chip"><i class="fas fa-th"></i>Flat Lay</button>
+                  <button type="button" data-theme="Nuansa glowing dewy, cahaya lembut berkilau, kesan kulit sehat bercahaya, fresh dan hydrating" class="theme-chip"><i class="fas fa-droplet"></i>Glowing Dewy</button>
+                  <button type="button" data-theme="Bright & airy, cahaya terang alami, background putih, fresh clean, produk skincare terlihat jelas" class="theme-chip"><i class="fas fa-sun"></i>Bright Airy</button>
+                  <button type="button" data-theme="Pastel lembut feminine, warna soft gentle, aesthetic manis, mood skincare yang menenangkan" class="theme-chip"><i class="fas fa-candy-cane"></i>Soft Pastel</button>
+                  <button type="button" data-theme="Botanical natural, daun dan bunga segar, bahan alami organic, kesan skincare herbal" class="theme-chip"><i class="fas fa-leaf"></i>Botanical</button>
+                  <button type="button" data-theme="Suasana spa wellness, handuk lembut batu zen, relaxing self-care, calming dan menenangkan" class="theme-chip"><i class="fas fa-spa"></i>Spa Wellness</button>
+                  <button type="button" data-theme="Tetesan air dan splash, hydration segar, kesan menyegarkan dan melembapkan" class="theme-chip"><i class="fas fa-hand-holding-droplet"></i>Fresh Water</button>
+                  <button type="button" data-theme="Tanaman hijau herbal, natural eco-friendly, kesan skincare bahan alami" class="theme-chip"><i class="fas fa-seedling"></i>Green Herbal</button>
+                  <button type="button" data-theme="Nuansa pagi cerah, cahaya jendela lembut, fresh morning skincare routine" class="theme-chip"><i class="fas fa-mug-saucer"></i>Morning Fresh</button>
+                  <button type="button" data-theme="Luxury premium aksen gold, elegant mewah, sophisticated, skincare high-end" class="theme-chip"><i class="fas fa-gem"></i>Luxury Gold</button>
+                  <button type="button" data-theme="Clinical dermatologist, putih bersih steril, ilmiah dan terpercaya, kesan skincare medis" class="theme-chip"><i class="fas fa-flask"></i>Clinical Derma</button>
+                  <button type="button" data-theme="K-beauty aesthetic, clean cute, glass skin Korean vibes, glowing halus" class="theme-chip"><i class="fas fa-heart"></i>K-Beauty</button>
+                  <button type="button" data-theme="Permukaan marmer elegant, high-end beauty, sophisticated dan mewah" class="theme-chip"><i class="fas fa-chess-board"></i>Marble</button>
+                  <button type="button" data-theme="Dark & moody luxe, lighting dramatis, produk skincare highlight dari kegelapan, premium mysterious" class="theme-chip"><i class="fas fa-moon"></i>Dark Luxe</button>
+                  <button type="button" data-theme="Bokeh dreamy, depth of field shallow, background blur lembut, produk skincare tajam, romantic mood" class="theme-chip"><i class="fas fa-star"></i>Bokeh</button>
+                  <button type="button" data-theme="Golden hour, warm sunset glow, golden tones, cinematic dan dreamy, skincare bermandi cahaya hangat" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Hour</button>
+                  <button type="button" data-theme="Aesthetic minimalist, clean lines negative space, modern sophisticated, skincare tampil elegan" class="theme-chip"><i class="fas fa-shapes"></i>Aesthetic</button>
+                  <button type="button" data-theme="Nuansa rose pink lembut, feminine romantic, soft dan manis" class="theme-chip"><i class="fas fa-fan"></i>Rose Pink</button>
+                  <button type="button" data-theme="Biru laut cooling, kesan hydrating dan menyegarkan, calm dan fresh" class="theme-chip"><i class="fas fa-water"></i>Ocean Blue</button>
+                  <button type="button" data-theme="Earth tone natural, warna tanah organic calming, skincare ramah lingkungan" class="theme-chip"><i class="fas fa-mound"></i>Earth Tone</button>
+                  <button type="button" data-theme="Fresh green segar, hijau natural, clean dan menyegarkan" class="theme-chip"><i class="fas fa-spa"></i>Fresh Green</button>
+                  <button type="button" data-theme="Meja rias vanity, rak skincare tertata, daily beauty routine, personal dan aesthetic" class="theme-chip"><i class="fas fa-couch"></i>Vanity Table</button>
+                  <button type="button" data-theme="Kamar mandi modern bersih, clean tiles, konteks skincare routine sehari-hari" class="theme-chip"><i class="fas fa-bath"></i>Bathroom</button>
+                  <button type="button" data-theme="Suasana rumah nyaman warm lighting, konteks penggunaan skincare sehari-hari, intimate dan personal" class="theme-chip"><i class="fas fa-home"></i>Cozy Home</button>
+                  <button type="button" data-theme="Kain silk lembut, tekstur halus mewah, kesan skincare yang smooth dan premium" class="theme-chip"><i class="fas fa-ribbon"></i>Silk Smooth</button>
+                </div>
+                <div id="skincare-custom-theme-container" class="hidden">
+                  <textarea id="skincare-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis tema sendiri: clean beauty, glowing skin, aesthetic pastel..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="skincare-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="skincare-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="skincare-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Scene Skincare</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Review</h2>
+                <button id="skincare-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="skincare-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+      <div id="content-product-ads" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Story Iklan</h1>
+            <p class="text-gray-500 mt-2">Solusi AI untuk konten promosi & storyboard iklan brand Anda.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Gambar Produk</h2></div>
+                <div id="ads-image-upload-area">
+                  <label for="ads-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-image text-4xl mb-2"></i><span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="ads-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="ads-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Produk</h2></div>
+                  <button id="ads-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="ads-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Deskripsikan produk & pesan iklan Anda... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <div id="ads-model-image-upload-area">
+                  <label for="ads-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                  </label>
+                  <input type="file" id="ads-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="ads-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="ads-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="ads-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema / Setting <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih konsep tempat & mood untuk seluruh scene iklan. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="ads-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Urban modern, latar kota dinamis, energik dan trendy, iklan bergaya kekinian" class="theme-chip"><i class="fas fa-city"></i>Urban Modern</button>
+                  <button type="button" data-theme="Luxury dark, nuansa mewah gelap dramatis, elegant premium, iklan high-end sophisticated" class="theme-chip"><i class="fas fa-gem"></i>Luxury Dark</button>
+                  <button type="button" data-theme="Cinematic film look, lighting dramatis wide shot, mood movie, iklan sinematik menggugah" class="theme-chip"><i class="fas fa-clapperboard"></i>Cinematic</button>
+                  <button type="button" data-theme="Studio komersial profesional, seamless backdrop, lighting sempurna, produk jadi hero iklan" class="theme-chip"><i class="fas fa-camera"></i>Studio Pro</button>
+                  <button type="button" data-theme="Lifestyle sehari-hari, suasana natural relatable, orang memakai produk, iklan yang membumi" class="theme-chip"><i class="fas fa-people-group"></i>Lifestyle</button>
+                  <button type="button" data-theme="Cerah ceria outdoor, cahaya matahari energetic, fun dan fresh, iklan positif menyenangkan" class="theme-chip"><i class="fas fa-sun"></i>Cerah Outdoor</button>
+                  <button type="button" data-theme="Minimalis clean, background netral, cahaya soft, iklan simpel elegan fokus pesan" class="theme-chip"><i class="fas fa-minimize"></i>Minimalis</button>
+                  <button type="button" data-theme="Bright & airy, cahaya terang alami, background putih, fresh clean, produk terlihat jelas" class="theme-chip"><i class="fas fa-cloud"></i>Bright Airy</button>
+                  <button type="button" data-theme="Neon night, lampu neon kota malam, futuristic bold, iklan eye-catching dan modern" class="theme-chip"><i class="fas fa-bolt"></i>Neon Night</button>
+                  <button type="button" data-theme="Bokeh dreamy, depth of field shallow, background blur, produk tajam, iklan romantic elegan" class="theme-chip"><i class="fas fa-star"></i>Bokeh</button>
+                  <button type="button" data-theme="Golden hour, warm sunset glow, golden tones, cinematic dan dreamy, iklan bermandi cahaya hangat" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Hour</button>
+                  <button type="button" data-theme="Corporate profesional, clean lines business, formal trustworthy, iklan kredibel terpercaya" class="theme-chip"><i class="fas fa-briefcase"></i>Corporate</button>
+                  <button type="button" data-theme="Rooftop kota senja, skyline urban chic, elegan dengan pemandangan kota, iklan aspiratif" class="theme-chip"><i class="fas fa-building"></i>Rooftop</button>
+                  <button type="button" data-theme="Coffee shop aesthetic, wooden warm lighting, cozy hipster, iklan bergaya santai kekinian" class="theme-chip"><i class="fas fa-mug-hot"></i>Coffee Shop</button>
+                  <button type="button" data-theme="Beach summer, pasir putih laut biru, tropical fun, iklan vibe liburan menyegarkan" class="theme-chip"><i class="fas fa-umbrella-beach"></i>Beach</button>
+                  <button type="button" data-theme="Dark moody, lighting dramatis mysterious, edgy dan bold, iklan penuh karakter" class="theme-chip"><i class="fas fa-moon"></i>Dark Moody</button>
+                  <button type="button" data-theme="Pastel lembut, warna soft feminine, cute dan manis, iklan aesthetic gemas" class="theme-chip"><i class="fas fa-candy-cane"></i>Pastel</button>
+                  <button type="button" data-theme="Vibrant colorful, warna bold berani, energetic eye-popping, iklan ceria mencolok" class="theme-chip"><i class="fas fa-palette"></i>Colorful</button>
+                  <button type="button" data-theme="Retro vintage, filter klasik warm tones, nostalgic, iklan bergaya jadul aesthetic" class="theme-chip"><i class="fas fa-clock-rotate-left"></i>Vintage</button>
+                  <button type="button" data-theme="Nature outdoor, alam terbuka hijau, natural segar, iklan eco dan menyehatkan" class="theme-chip"><i class="fas fa-leaf"></i>Nature</button>
+                  <button type="button" data-theme="Tech futuristic, nuansa biru digital modern, canggih dan inovatif, iklan produk teknologi" class="theme-chip"><i class="fas fa-microchip"></i>Tech</button>
+                  <button type="button" data-theme="Home cozy, interior rumah hangat, intimate dan relatable, iklan produk rumah tangga" class="theme-chip"><i class="fas fa-house"></i>Home Cozy</button>
+                  <button type="button" data-theme="Fitness energetic, suasana gym dinamis, sporty dan kuat, iklan produk aktif dan sehat" class="theme-chip"><i class="fas fa-dumbbell"></i>Fitness</button>
+                  <button type="button" data-theme="Festive celebration, dekorasi meriah warna-warni, joyful, iklan momen perayaan" class="theme-chip"><i class="fas fa-champagne-glasses"></i>Festive</button>
+                  <button type="button" data-theme="Monochrome hitam putih, kontras tinggi artistic, timeless dan bold, iklan elegan dramatis" class="theme-chip"><i class="fas fa-adjust"></i>Monochrome</button>
+                </div>
+                <div id="ads-custom-theme-container" class="hidden">
+                  <textarea id="ads-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis tema sendiri: urban modern, luxury dark, cerah ceria outdoor..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="ads-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="ads-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="ads-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Story Iklan</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Story Iklan</h2>
+                <button id="ads-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="ads-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+      <div id="content-fashion" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Review Fashion / OOTD</h1>
+            <p class="text-gray-500 mt-2">Storyboard review baju & aksesoris dengan model konsisten.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Produk Fashion</h2></div>
+                <div id="fashion-image-upload-area">
+                  <label for="fashion-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-shirt text-4xl mb-2"></i><span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="fashion-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="fashion-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Fashion</h2></div>
+                  <button id="fashion-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="fashion-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Jelaskan item fashion (jenis, bahan, gaya, ukuran)... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <div id="fashion-model-image-upload-area">
+                  <label for="fashion-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                  </label>
+                  <input type="file" id="fashion-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="fashion-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="fashion-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="fashion-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema Foto <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih konsep tempat & gaya untuk seluruh scene OOTD. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="fashion-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Street style urban, latar kota modern, candid OOTD, energik dan trendy, gaya kasual keren" class="theme-chip"><i class="fas fa-city"></i>Street Style</button>
+                  <button type="button" data-theme="Studio fashion minimalis, seamless backdrop solid, lighting profesional, outfit jadi fokus, clean editorial" class="theme-chip"><i class="fas fa-camera"></i>Studio Pro</button>
+                  <button type="button" data-theme="High fashion editorial, pose dramatis, komposisi majalah, artistic dan bold, vogue vibes" class="theme-chip"><i class="fas fa-newspaper"></i>Editorial</button>
+                  <button type="button" data-theme="Runway catwalk, panggung fashion show, spotlight dramatis, elegan dan percaya diri" class="theme-chip"><i class="fas fa-shoe-prints"></i>Runway</button>
+                  <button type="button" data-theme="Minimalis modern, background netral bersih, cahaya soft, outfit clean dan aesthetic simple" class="theme-chip"><i class="fas fa-minimize"></i>Minimalis</button>
+                  <button type="button" data-theme="Korean fashion aesthetic, soft clean look, gaya minimalis chic, ulzzang OOTD vibes" class="theme-chip"><i class="fas fa-heart"></i>Korean</button>
+                  <button type="button" data-theme="Y2K retro 2000an, warna bold playful, gaya nostalgic trendy, funky dan eye-catching" class="theme-chip"><i class="fas fa-compact-disc"></i>Y2K</button>
+                  <button type="button" data-theme="Streetwear hypebeast, urban gritty, sneaker culture, gaya bold dan effortless cool" class="theme-chip"><i class="fas fa-spray-can"></i>Streetwear</button>
+                  <button type="button" data-theme="Casual daily wear, suasana santai natural, effortless dan nyaman, gaya sehari-hari" class="theme-chip"><i class="fas fa-mug-hot"></i>Casual</button>
+                  <button type="button" data-theme="Office formal chic, business look elegan, rapi dan profesional, gaya kantoran modern" class="theme-chip"><i class="fas fa-briefcase"></i>Office</button>
+                  <button type="button" data-theme="Bohemian earthy, gaya free spirit, motif natural, warm dan artsy, boho OOTD" class="theme-chip"><i class="fas fa-feather"></i>Bohemian</button>
+                  <button type="button" data-theme="Vintage retro, filter klasik warm tones, gaya jadul aesthetic, nostalgic dan timeless" class="theme-chip"><i class="fas fa-clock-rotate-left"></i>Vintage</button>
+                  <button type="button" data-theme="Aesthetic pastel lembut, warna soft feminine, dreamy dan manis, gaya cute" class="theme-chip"><i class="fas fa-candy-cane"></i>Pastel</button>
+                  <button type="button" data-theme="Monochrome hitam putih, kontras tinggi, timeless dan artistic, fokus siluet dan gaya" class="theme-chip"><i class="fas fa-adjust"></i>Monochrome</button>
+                  <button type="button" data-theme="Denim on denim, gaya kasual American, effortless dan cool, timeless streetwear" class="theme-chip"><i class="fas fa-shirt"></i>Denim</button>
+                  <button type="button" data-theme="Luxury high-end, nuansa mewah elegan, gaya sophisticated, outfit branded premium" class="theme-chip"><i class="fas fa-gem"></i>Luxury</button>
+                  <button type="button" data-theme="Rooftop kota senja, latar skyline, urban chic, gaya elegan dengan pemandangan kota" class="theme-chip"><i class="fas fa-building"></i>Rooftop</button>
+                  <button type="button" data-theme="Cafe aesthetic, wooden interior warm lighting, gaya kasual chic, cozy OOTD" class="theme-chip"><i class="fas fa-mug-saucer"></i>Cafe</button>
+                  <button type="button" data-theme="Garden natural outdoor, tanaman hijau bunga, fresh dan feminine, gaya natural" class="theme-chip"><i class="fas fa-leaf"></i>Garden</button>
+                  <button type="button" data-theme="Beach summer, pasir putih laut biru, gaya tropical breezy, OOTD liburan" class="theme-chip"><i class="fas fa-umbrella-beach"></i>Beach</button>
+                  <button type="button" data-theme="Night city neon, lampu kota malam, vibe futuristic keren, gaya bold malam hari" class="theme-chip"><i class="fas fa-bolt"></i>Night City</button>
+                  <button type="button" data-theme="Golden hour, warm sunset glow, golden tones, cinematic dan dreamy, OOTD bermandi cahaya hangat" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Hour</button>
+                  <button type="button" data-theme="Bright & airy, cahaya terang alami, background terang, fresh clean, outfit terlihat jelas" class="theme-chip"><i class="fas fa-sun"></i>Bright Airy</button>
+                  <button type="button" data-theme="Dark & moody, lighting dramatis, mysterious dan edgy, gaya bold penuh karakter" class="theme-chip"><i class="fas fa-moon"></i>Dark Moody</button>
+                  <button type="button" data-theme="Mirror selfie aesthetic, cermin full body, casual OOTD, gaya effortless relatable" class="theme-chip"><i class="fas fa-mobile-screen"></i>Mirror Selfie</button>
+                  <button type="button" data-theme="Autumn cozy, warna fall leaves orange brown, layering hangat, gaya musim gugur" class="theme-chip"><i class="fas fa-tree"></i>Autumn</button>
+                </div>
+                <div id="fashion-custom-theme-container" class="hidden">
+                  <textarea id="fashion-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis tema sendiri: street style urban, aesthetic pastel, studio minimalis..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="fashion-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="fashion-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="fashion-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Story Fashion</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Fashion Story</h2>
+                <button id="fashion-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="fashion-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <div id="content-unboxing" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Unboxing Scene</h1>
+            <p class="text-gray-500 mt-2">Storyboard buka paket produk — hook kuat untuk konten afiliasi.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Gambar Produk</h2></div>
+                <div id="unboxing-image-upload-area">
+                  <label for="unboxing-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-box-open text-4xl mb-2"></i><span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="unboxing-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="unboxing-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Produk</h2></div>
+                  <button id="unboxing-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="unboxing-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Deskripsikan produk & isi paketnya... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <div id="unboxing-model-image-upload-area">
+                  <label for="unboxing-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                  </label>
+                  <input type="file" id="unboxing-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="unboxing-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="unboxing-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="unboxing-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema Foto <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih konsep tempat & mood untuk seluruh scene unboxing. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="unboxing-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Meja kayu hangat, warm lighting cozy, kemasan dan produk di atas meja, suasana intim unboxing sehari-hari" class="theme-chip"><i class="fas fa-table"></i>Meja Kayu</button>
+                  <button type="button" data-theme="Studio bersih profesional, seamless backdrop solid, lighting sempurna, fokus kemasan dan produk" class="theme-chip"><i class="fas fa-camera"></i>Studio Pro</button>
+                  <button type="button" data-theme="Minimalis putih bersih, background clean, cahaya soft, unboxing rapi dan aesthetic" class="theme-chip"><i class="fas fa-minimize"></i>Minimalis</button>
+                  <button type="button" data-theme="Desk setup modern, meja kerja rapi dengan gadget dan aksesori, konteks unboxing tech" class="theme-chip"><i class="fas fa-desktop"></i>Desk Setup</button>
+                  <button type="button" data-theme="Permukaan marmer elegant, high-end premium, unboxing terlihat mewah" class="theme-chip"><i class="fas fa-chess-board"></i>Marble</button>
+                  <button type="button" data-theme="Suasana rumah nyaman, warm lighting, unboxing santai di ruang tamu, intimate dan personal" class="theme-chip"><i class="fas fa-home"></i>Cozy Home</button>
+                  <button type="button" data-theme="Dark & moody, lighting dramatis, produk muncul dari kegelapan, reveal mysterious dan premium" class="theme-chip"><i class="fas fa-moon"></i>Dark Reveal</button>
+                  <button type="button" data-theme="Bright & airy, cahaya terang alami, background putih, fresh clean, kemasan terlihat jelas" class="theme-chip"><i class="fas fa-sun"></i>Bright Airy</button>
+                  <button type="button" data-theme="Kemasan kraft natural, eco-friendly, earthy tone, unboxing ramah lingkungan" class="theme-chip"><i class="fas fa-box-open"></i>Kraft Natural</button>
+                  <button type="button" data-theme="Nuansa gift wrapping, pita dan dekorasi, festive, unboxing kado spesial" class="theme-chip"><i class="fas fa-gift"></i>Gift Wrap</button>
+                  <button type="button" data-theme="Luxury premium aksen gold, elegant mewah, unboxing produk high-end" class="theme-chip"><i class="fas fa-gem"></i>Luxury Gold</button>
+                  <button type="button" data-theme="Flat lay top-down, kemasan dan isi tertata rapi, negative space seimbang, aesthetic feed Instagram" class="theme-chip"><i class="fas fa-th"></i>Flat Lay</button>
+                  <button type="button" data-theme="Coffee shop aesthetic, wooden table warm lighting, cozy hipster, unboxing santai di kafe" class="theme-chip"><i class="fas fa-mug-hot"></i>Coffee Shop</button>
+                  <button type="button" data-theme="Nuansa tech biru futuristic, lighting bersih modern, unboxing gadget terkesan canggih" class="theme-chip"><i class="fas fa-microchip"></i>Tech Blue</button>
+                  <button type="button" data-theme="Neon cyberpunk, warna neon vibrant, futuristic, unboxing eye-catching dan techy" class="theme-chip"><i class="fas fa-bolt"></i>Neon</button>
+                  <button type="button" data-theme="Bokeh dreamy, depth of field shallow, background blur lembut, produk tajam saat reveal" class="theme-chip"><i class="fas fa-star"></i>Bokeh</button>
+                  <button type="button" data-theme="Golden hour, warm sunset glow, golden tones, cinematic, unboxing bermandi cahaya hangat" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Hour</button>
+                  <button type="button" data-theme="Pastel lembut, warna soft feminine, cute dan manis, unboxing aesthetic gemas" class="theme-chip"><i class="fas fa-candy-cane"></i>Pastel</button>
+                  <button type="button" data-theme="Vibrant colorful, warna bold berani, energetic dan eye-popping, unboxing ceria" class="theme-chip"><i class="fas fa-palette"></i>Colorful</button>
+                  <button type="button" data-theme="Rustic farmhouse, tekstur kayu earthy tone, authentic dan homey, unboxing hangat alami" class="theme-chip"><i class="fas fa-warehouse"></i>Rustic</button>
+                  <button type="button" data-theme="Industrial urban, beton dan metal, gritty modern, unboxing edgy" class="theme-chip"><i class="fas fa-industry"></i>Industrial</button>
+                  <button type="button" data-theme="Christmas holiday, dekorasi Natal red & green, warm festive, unboxing hadiah akhir tahun" class="theme-chip"><i class="fas fa-gifts"></i>Christmas</button>
+                  <button type="button" data-theme="Aesthetic minimalist, clean lines negative space, modern sophisticated" class="theme-chip"><i class="fas fa-shapes"></i>Aesthetic</button>
+                  <button type="button" data-theme="Sudut tanaman hijau, natural botanical, fresh, unboxing dengan nuansa alami" class="theme-chip"><i class="fas fa-leaf"></i>Plant Corner</button>
+                  <button type="button" data-theme="Fokus tangan membuka kemasan, close-up detail, POV unboxing yang engaging" class="theme-chip"><i class="fas fa-hand"></i>Hands Reveal</button>
+                  <button type="button" data-theme="Studio dengan background warna solid bold, playful modern, unboxing pop dan eye-catching" class="theme-chip"><i class="fas fa-fill-drip"></i>Bold Color</button>
+                </div>
+                <div id="unboxing-custom-theme-container" class="hidden">
+                  <textarea id="unboxing-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis tema sendiri: meja kayu hangat, studio bersih, nuansa cozy..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="unboxing-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="unboxing-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="unboxing-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Unboxing Scene</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Unboxing Story</h2>
+                <button id="unboxing-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="unboxing-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <div id="content-food-review" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Review Makanan Profesional</h1>
+            <p class="text-gray-500 mt-2">Buat review makanan seperti TikToker & Selebgram dengan AI.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Upload Foto Makanan</h2></div>
+                <div id="food-image-upload-area">
+                  <label for="food-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-utensils text-4xl mb-2"></i><span class="font-medium">Klik untuk upload foto makanan</span>
+                    <span class="text-xs mt-2 text-gray-400">JPG, PNG, WEBP, HEIC (iPhone) — bisa lebih dari satu</span>
+                  </label>
+                  <input type="file" id="food-image-input" class="hidden" accept="image/png, image/jpeg, image/webp, image/heic, .heic" multiple>
+                </div>
+                <div id="food-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Makanan</h2></div>
+                  <button id="food-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="food-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Jelaskan makanan ini (nama, rasa, tekstur, bahan, harga)... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <div id="food-model-image-upload-area">
+                  <label for="food-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                    <span class="text-xs mt-2 text-gray-400">Reviewer akan tampil mencicipi makanan di semua scene</span>
+                  </label>
+                  <input type="file" id="food-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="food-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="food-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="food-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema / Ambience <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih konsep tempat & mood untuk seluruh scene makanan. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="food-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Rustic kayu hangat, meja kayu tua earthy tone, warm lighting, food photography homey dan menggugah" class="theme-chip"><i class="fas fa-table"></i>Rustic Kayu</button>
+                  <button type="button" data-theme="Moody low-key, background gelap dramatis, lighting samping, makanan tampil dramatic dan premium" class="theme-chip"><i class="fas fa-moon"></i>Moody Low-Key</button>
+                  <button type="button" data-theme="Cerah high-key studio, background terang bersih, lighting merata, makanan fresh dan appetizing" class="theme-chip"><i class="fas fa-sun"></i>High-Key</button>
+                  <button type="button" data-theme="Flat lay top-down, hidangan tertata rapi dengan props napkin dan cutlery, aesthetic feed Instagram" class="theme-chip"><i class="fas fa-th"></i>Flat Lay</button>
+                  <button type="button" data-theme="Cafe aesthetic, wooden interior warm lighting, cozy hipster, suasana ngopi santai" class="theme-chip"><i class="fas fa-mug-hot"></i>Cafe</button>
+                  <button type="button" data-theme="Street food vibes, suasana jajanan kaki lima autentik, energik dan lokal, food yang menggoda" class="theme-chip"><i class="fas fa-utensils"></i>Street Food</button>
+                  <button type="button" data-theme="Fine dining elegan, plating mewah restoran, sophisticated dan premium, makanan high-end" class="theme-chip"><i class="fas fa-wine-glass"></i>Fine Dining</button>
+                  <button type="button" data-theme="Home kitchen hangat, dapur rumah cozy, homemade dan intim, masakan rumahan menggugah" class="theme-chip"><i class="fas fa-kitchen-set"></i>Home Kitchen</button>
+                  <button type="button" data-theme="Marmer bersih elegant, permukaan marble putih, clean dan premium, plating aesthetic" class="theme-chip"><i class="fas fa-chess-board"></i>Marble</button>
+                  <button type="button" data-theme="Fresh ingredients, bahan segar sayur buah di sekitar, natural dan sehat, farm to table" class="theme-chip"><i class="fas fa-carrot"></i>Fresh Ingredient</button>
+                  <button type="button" data-theme="Picnic outdoor, alam terbuka rumput cerah, santai dan fun, makan di luar menyenangkan" class="theme-chip"><i class="fas fa-tree"></i>Picnic</button>
+                  <button type="button" data-theme="Steam hot dramatic, uap panas mengepul, close-up hangat menggugah, makanan panas menggoda" class="theme-chip"><i class="fas fa-fire"></i>Steamy Hot</button>
+                  <button type="button" data-theme="Bright fresh, cahaya terang alami, warna cerah segar, makanan sehat dan appetizing" class="theme-chip"><i class="fas fa-lemon"></i>Bright Fresh</button>
+                  <button type="button" data-theme="Bokeh dreamy, depth of field shallow, background blur, hidangan tajam di fokus, elegan appetizing" class="theme-chip"><i class="fas fa-star"></i>Bokeh</button>
+                  <button type="button" data-theme="Golden hour, warm sunset glow, golden tones, cinematic, makanan bermandi cahaya hangat" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Hour</button>
+                  <button type="button" data-theme="Tropical vibes, nuansa tropis daun palem cerah, fresh dan exotic, makanan bergaya summer" class="theme-chip"><i class="fas fa-umbrella-beach"></i>Tropical</button>
+                  <button type="button" data-theme="Japanese minimal, plating Jepang bersih zen, elegan dan tenang, food aesthetic minimalis" class="theme-chip"><i class="fas fa-bowl-rice"></i>Japanese</button>
+                  <button type="button" data-theme="Korean street, suasana pojangmacha vibrant, warm dan cozy, makanan Korea menggoda" class="theme-chip"><i class="fas fa-bowl-food"></i>Korean</button>
+                  <button type="button" data-theme="BBQ grill, panggangan smoky dramatis, warm api menyala, daging menggoda dan juicy" class="theme-chip"><i class="fas fa-fire-burner"></i>BBQ Grill</button>
+                  <button type="button" data-theme="Dessert sweet, nuansa pastel manis, dekorasi cute, hidangan penutup gemas dan aesthetic" class="theme-chip"><i class="fas fa-ice-cream"></i>Dessert</button>
+                  <button type="button" data-theme="Vintage retro diner, filter klasik warm tones, nostalgic, makanan bergaya jadul aesthetic" class="theme-chip"><i class="fas fa-clock-rotate-left"></i>Vintage</button>
+                  <button type="button" data-theme="Colorful vibrant, warna makanan bold berani, energetic eye-popping, hidangan ceria menggugah" class="theme-chip"><i class="fas fa-palette"></i>Colorful</button>
+                  <button type="button" data-theme="Coffee & pastry, meja kopi dengan roti pastry, warm cozy morning, breakfast aesthetic" class="theme-chip"><i class="fas fa-mug-saucer"></i>Coffee & Pastry</button>
+                  <button type="button" data-theme="Festive feast, meja hidangan meriah perayaan, warm abundant, makanan momen spesial" class="theme-chip"><i class="fas fa-champagne-glasses"></i>Festive</button>
+                  <button type="button" data-theme="Dark slate stone, alas batu slate gelap, rustic modern, plating dramatis dan premium" class="theme-chip"><i class="fas fa-mound"></i>Slate Stone</button>
+                </div>
+                <div id="food-custom-theme-container" class="hidden">
+                  <textarea id="food-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis tema sendiri: rustic kayu hangat, moody low-key, cerah high-key studio..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="food-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="food-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="food-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Review Makanan</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Review Makanan</h2>
+                <button id="food-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="food-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <div id="content-tutorial" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Tutorial Cara Pakai</h1>
+            <p class="text-gray-500 mt-2">Story langkah demi langkah: masalah → cara pakai → hasil. Cocok untuk konten edukasi affiliate.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Gambar Produk</h2></div>
+                <p class="text-sm text-gray-500 mb-3"><i class="fas fa-circle-info text-violet-400 mr-1"></i>Cocok untuk: hampir semua produk yang punya cara pakai — skincare, gadget, alat dapur, peralatan rumah, produk perawatan.</p>
+                <div id="tutorial-image-upload-area">
+                  <label for="tutorial-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-list-ol text-4xl mb-2"></i><span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="tutorial-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="tutorial-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Produk</h2></div>
+                  <button id="tutorial-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="tutorial-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Deskripsikan produk & cara pakainya... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <div id="tutorial-model-image-upload-area">
+                  <label for="tutorial-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                    <span class="text-xs mt-2 text-gray-400">Model akan memperagakan tiap langkah di semua scene</span>
+                  </label>
+                  <input type="file" id="tutorial-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="tutorial-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="tutorial-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="tutorial-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema Foto <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih konsep tempat & mood untuk seluruh langkah tutorial. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="tutorial-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Meja kayu hangat, warm lighting, langkah tutorial di atas meja, suasana homey" class="theme-chip"><i class="fas fa-table"></i>Meja Kayu</button>
+                  <button type="button" data-theme="Studio bersih profesional, seamless backdrop, lighting sempurna, fokus langkah demi langkah" class="theme-chip"><i class="fas fa-camera"></i>Studio Pro</button>
+                  <button type="button" data-theme="Minimalis putih bersih, background clean, cahaya soft, tutorial rapi mudah diikuti" class="theme-chip"><i class="fas fa-minimize"></i>Minimalis</button>
+                  <button type="button" data-theme="Clean white table, permukaan putih polos, fokus penuh ke tangan dan produk" class="theme-chip"><i class="fas fa-square"></i>Clean White</button>
+                  <button type="button" data-theme="Bright & airy, cahaya terang alami, fresh, tiap langkah terlihat jelas" class="theme-chip"><i class="fas fa-sun"></i>Bright Airy</button>
+                  <button type="button" data-theme="Kamar mandi bersih modern, keramik putih, konteks tutorial produk perawatan" class="theme-chip"><i class="fas fa-bath"></i>Kamar Mandi</button>
+                  <button type="button" data-theme="Dapur modern bersih, countertop rapi, konteks tutorial produk dapur/rumah tangga" class="theme-chip"><i class="fas fa-kitchen-set"></i>Dapur</button>
+                  <button type="button" data-theme="Meja kerja modern, desk setup rapi, konteks tutorial gadget/alat kerja" class="theme-chip"><i class="fas fa-desktop"></i>Meja Kerja</button>
+                  <button type="button" data-theme="Suasana rumah nyaman, warm lighting, tutorial santai di rumah, relatable" class="theme-chip"><i class="fas fa-home"></i>Cozy Home</button>
+                  <button type="button" data-theme="Flat lay top-down, alat dan produk tertata urut langkah, aesthetic dan informatif" class="theme-chip"><i class="fas fa-th"></i>Flat Lay Steps</button>
+                  <button type="button" data-theme="Close-up tangan memperagakan langkah, detail jelas, POV first person yang engaging" class="theme-chip"><i class="fas fa-hand"></i>Close-up Hands</button>
+                  <button type="button" data-theme="POV tangan pengguna, sudut pandang orang pertama, seperti tutorial TikTok" class="theme-chip"><i class="fas fa-hand-pointer"></i>POV Tangan</button>
+                  <button type="button" data-theme="Studio dengan nomor langkah besar, layout editorial step-by-step yang jelas" class="theme-chip"><i class="fas fa-list-ol"></i>Step Studio</button>
+                  <button type="button" data-theme="Golden hour, cahaya keemasan hangat, cinematic, tutorial terasa premium" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Hour</button>
+                  <button type="button" data-theme="Pastel lembut, warna soft, cute dan approachable, tutorial ramah pemula" class="theme-chip"><i class="fas fa-candy-cane"></i>Soft Pastel</button>
+                  <button type="button" data-theme="Dark & moody, lighting dramatis fokus ke produk, tutorial terkesan pro" class="theme-chip"><i class="fas fa-moon"></i>Dark Moody</button>
+                  <button type="button" data-theme="Permukaan marmer elegant, high-end, tutorial produk premium" class="theme-chip"><i class="fas fa-chess-board"></i>Marble</button>
+                  <button type="button" data-theme="Sudut tanaman hijau, natural botanical, fresh dan sehat" class="theme-chip"><i class="fas fa-leaf"></i>Plant Fresh</button>
+                  <button type="button" data-theme="Nuansa tech bersih modern, lighting biru lembut, tutorial gadget canggih" class="theme-chip"><i class="fas fa-microchip"></i>Tech Clean</button>
+                  <button type="button" data-theme="Spa calm, handuk lilin aromaterapi, tenang, tutorial self-care" class="theme-chip"><i class="fas fa-spa"></i>Spa Calm</button>
+                  <button type="button" data-theme="Kamar tidur estetik, soft lighting, tutorial rutinitas pribadi yang relatable" class="theme-chip"><i class="fas fa-bed"></i>Kamar Tidur</button>
+                  <button type="button" data-theme="Outdoor taman terang, cahaya alami, tutorial produk outdoor/olahraga" class="theme-chip"><i class="fas fa-tree"></i>Outdoor</button>
+                  <button type="button" data-theme="Coffee shop aesthetic, meja kayu warm, tutorial santai ala content creator" class="theme-chip"><i class="fas fa-mug-hot"></i>Coffee Shop</button>
+                  <button type="button" data-theme="Vibrant colorful, warna bold energik, tutorial ceria eye-catching" class="theme-chip"><i class="fas fa-palette"></i>Colorful</button>
+                  <button type="button" data-theme="Aesthetic minimalist, clean lines, negative space, modern sophisticated" class="theme-chip"><i class="fas fa-shapes"></i>Aesthetic</button>
+                </div>
+                <div id="tutorial-custom-theme-container" class="hidden">
+                  <textarea id="tutorial-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis tema sendiri: meja kayu hangat, studio bersih, nuansa cozy..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="tutorial-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="tutorial-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="tutorial-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Story Tutorial</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Story Tutorial</h2>
+                <button id="tutorial-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="tutorial-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <div id="content-daily" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Day in My Life</h1>
+            <p class="text-gray-500 mt-2">Story vlog harian pagi → malam dengan produk terselip natural. Soft-selling ala TikTok.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Gambar Produk</h2></div>
+                <p class="text-sm text-gray-500 mb-3"><i class="fas fa-circle-info text-violet-400 mr-1"></i>Cocok untuk: produk yang dipakai sehari-hari — tumbler, tas, gadget, skincare, outfit kasual, snack/minuman.</p>
+                <div id="daily-image-upload-area">
+                  <label for="daily-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-calendar-day text-4xl mb-2"></i><span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="daily-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="daily-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Produk</h2></div>
+                  <button id="daily-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="daily-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Deskripsikan produk & kapan dipakainya dalam sehari... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-red-400 font-semibold">(Wajib)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Day in My Life bercerita tentang orangnya — foto model wajib supaya wajah konsisten di semua scene.</p>
+                <div id="daily-model-image-upload-area">
+                  <label for="daily-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                    <span class="text-xs mt-2 text-gray-400">Model jadi tokoh utama sepanjang hari</span>
+                  </label>
+                  <input type="file" id="daily-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="daily-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="daily-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="daily-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema Foto <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih vibe keseharian untuk seluruh scene. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="daily-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Cozy morning, cahaya pagi lembut masuk jendela, suasana bangun tidur yang hangat" class="theme-chip"><i class="fas fa-mug-hot"></i>Cozy Morning</button>
+                  <button type="button" data-theme="Kamar aesthetic, dekorasi soft, lighting hangat, vibe personal dan intim" class="theme-chip"><i class="fas fa-bed"></i>Kamar Aesthetic</button>
+                  <button type="button" data-theme="Apartemen city view, modern urban, jendela besar, vibe kota metropolitan" class="theme-chip"><i class="fas fa-city"></i>Apartemen City</button>
+                  <button type="button" data-theme="Cafe hopping, interior kafe estetik, latte art, santai sore hari" class="theme-chip"><i class="fas fa-mug-saucer"></i>Café Hopping</button>
+                  <button type="button" data-theme="Campus life, suasana kampus, perpustakaan atau taman kampus, vibe mahasiswa" class="theme-chip"><i class="fas fa-graduation-cap"></i>Campus Life</button>
+                  <button type="button" data-theme="WFH desk, meja kerja di rumah, laptop dan kopi, produktif tapi nyaman" class="theme-chip"><i class="fas fa-laptop"></i>WFH Desk</button>
+                  <button type="button" data-theme="Kantor kekinian, coworking space modern, vibe profesional muda" class="theme-chip"><i class="fas fa-briefcase"></i>Kantor Modern</button>
+                  <button type="button" data-theme="City walk, jalan kaki di trotoar kota, candid street style, urban lifestyle" class="theme-chip"><i class="fas fa-person-walking"></i>City Walk</button>
+                  <button type="button" data-theme="Commute, suasana kereta atau transportasi umum, POV perjalanan harian" class="theme-chip"><i class="fas fa-train"></i>Commute</button>
+                  <button type="button" data-theme="Golden hour, cahaya sore keemasan, warm glow, momen santai sore" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Hour</button>
+                  <button type="button" data-theme="Sunset rooftop, atap gedung saat matahari terbenam, city lights mulai menyala" class="theme-chip"><i class="fas fa-building"></i>Rooftop Sunset</button>
+                  <button type="button" data-theme="Gym ringan, suasana workout santai, activewear, vibe sehat energik" class="theme-chip"><i class="fas fa-dumbbell"></i>Gym Ringan</button>
+                  <button type="button" data-theme="Taman kota hijau, jogging track, udara segar pagi, natural" class="theme-chip"><i class="fas fa-tree"></i>Taman Kota</button>
+                  <button type="button" data-theme="Grocery run, supermarket estetik, belanja santai, relatable daily errand" class="theme-chip"><i class="fas fa-cart-shopping"></i>Grocery Run</button>
+                  <button type="button" data-theme="Cooking time, dapur hangat, masak santai, homey dan wholesome" class="theme-chip"><i class="fas fa-kitchen-set"></i>Cooking Time</button>
+                  <button type="button" data-theme="Me time malam, lampu redup hangat, santai sebelum tidur, calming" class="theme-chip"><i class="fas fa-moon"></i>Me Time Malam</button>
+                  <button type="button" data-theme="Skincare night routine, meja rias lampu hangat, ritual malam self-care" class="theme-chip"><i class="fas fa-pump-soap"></i>Night Routine</button>
+                  <button type="button" data-theme="Pantai santai, angin laut, vibe liburan singkat, cerah lepas" class="theme-chip"><i class="fas fa-umbrella-beach"></i>Pantai</button>
+                  <button type="button" data-theme="Piknik di taman, tikar dan keranjang, cahaya siang lembut, cheerful" class="theme-chip"><i class="fas fa-basket-shopping"></i>Piknik</button>
+                  <button type="button" data-theme="Book and chill, sudut baca nyaman, secangkir teh, slow living" class="theme-chip"><i class="fas fa-book"></i>Book & Chill</button>
+                  <button type="button" data-theme="Riding motor/vespa, helm dan jalanan kota, vibe anak muda bebas" class="theme-chip"><i class="fas fa-motorcycle"></i>Motoran</button>
+                  <button type="button" data-theme="Rainy day, jendela berembun, hujan di luar, mood syahdu cozy" class="theme-chip"><i class="fas fa-cloud-rain"></i>Rainy Day</button>
+                  <button type="button" data-theme="Minimal vlog look, framing simple ala vlog, warna netral, clean" class="theme-chip"><i class="fas fa-video"></i>Minimal Vlog</button>
+                  <button type="button" data-theme="Warm film look, grain halus ala film analog, nostalgic warm tone" class="theme-chip"><i class="fas fa-film"></i>Warm Film</button>
+                  <button type="button" data-theme="Clean girl aesthetic, rapi effortless, slick bun dan outfit netral, fresh" class="theme-chip"><i class="fas fa-face-smile"></i>Clean Girl</button>
+                </div>
+                <div id="daily-custom-theme-container" class="hidden">
+                  <textarea id="daily-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis vibe sendiri: pagi cozy, kerja di kafe, sore di taman..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="daily-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="daily-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="daily-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Story Harian</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Day in My Life</h2>
+                <button id="daily-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="daily-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <div id="content-testi" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator Testimoni</h1>
+            <p class="text-gray-500 mt-2">Story problem → solution ala UGC: keluhan → nemu produk → pakai → hasil. Format iklan konversi.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Gambar Produk</h2></div>
+                <p class="text-sm text-gray-500 mb-3"><i class="fas fa-circle-info text-violet-400 mr-1"></i>Cocok untuk: produk pemecah masalah yang ada efek sebelum-sesudahnya — obat jerawat, pembersih, suplemen, alat bantu.</p>
+                <div id="testi-image-upload-area">
+                  <label for="testi-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-comment-dots text-4xl mb-2"></i><span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="testi-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="testi-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Produk</h2></div>
+                  <button id="testi-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="testi-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Deskripsikan produk & masalah yang dipecahkannya... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <div id="testi-model-image-upload-area">
+                  <label for="testi-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                    <span class="text-xs mt-2 text-gray-400">Model jadi orang yang bertestimoni di semua scene</span>
+                  </label>
+                  <input type="file" id="testi-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="testi-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="testi-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="testi-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema Foto <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih suasana natural untuk testimoni yang jujur & relatable. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="testi-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Kamar tidur natural apa adanya, lighting seadanya, vibe UGC jujur tanpa polesan" class="theme-chip"><i class="fas fa-bed"></i>Kamar Natural</button>
+                  <button type="button" data-theme="Ruang tamu candid, sofa rumah biasa, suasana ngobrol santai, autentik" class="theme-chip"><i class="fas fa-couch"></i>Ruang Tamu</button>
+                  <button type="button" data-theme="Selfie-cam vibe, framing kamera depan HP, jarak dekat personal, ala story IG" class="theme-chip"><i class="fas fa-camera"></i>Selfie-Cam</button>
+                  <button type="button" data-theme="No-filter look, warna natural tanpa edit berlebihan, kulit dan tekstur asli" class="theme-chip"><i class="fas fa-face-smile"></i>No-Filter</button>
+                  <button type="button" data-theme="Low-light malam jujur, lampu kamar remang, suasana curhat sebelum tidur" class="theme-chip"><i class="fas fa-moon"></i>Low-Light</button>
+                  <button type="button" data-theme="Window light, cahaya jendela alami satu arah, soft dan believable" class="theme-chip"><i class="fas fa-sun"></i>Window Light</button>
+                  <button type="button" data-theme="Meja makan rumah, suasana keluarga sehari-hari, hangat relatable" class="theme-chip"><i class="fas fa-utensils"></i>Meja Makan</button>
+                  <button type="button" data-theme="Dapur rumah biasa, konteks pemakaian produk sehari-hari yang nyata" class="theme-chip"><i class="fas fa-kitchen-set"></i>Dapur Rumah</button>
+                  <button type="button" data-theme="Teras rumah, cahaya sore, suasana santai ngobrol dengan tetangga" class="theme-chip"><i class="fas fa-home"></i>Teras Rumah</button>
+                  <button type="button" data-theme="Kost sederhana, kamar kecil rapi, relatable anak kost, jujur membumi" class="theme-chip"><i class="fas fa-door-open"></i>Kost Vibe</button>
+                  <button type="button" data-theme="Di dalam mobil, testimoni sambil parkir, framing candid ala video TikTok" class="theme-chip"><i class="fas fa-car"></i>Dalam Mobil</button>
+                  <button type="button" data-theme="Meja kantor, testimoni di sela kerja, vibe pekerja kantoran relatable" class="theme-chip"><i class="fas fa-briefcase"></i>Di Kantor</button>
+                  <button type="button" data-theme="Kafe santai, meja kayu dan kopi, testimoni sambil nongkrong" class="theme-chip"><i class="fas fa-mug-hot"></i>Kafe Santai</button>
+                  <button type="button" data-theme="Taman terbuka, cahaya alami siang, suasana jalan santai jujur" class="theme-chip"><i class="fas fa-tree"></i>Taman</button>
+                  <button type="button" data-theme="Handheld POV, kamera dipegang tangan sedikit goyang, raw dan autentik" class="theme-chip"><i class="fas fa-hand"></i>Handheld POV</button>
+                  <button type="button" data-theme="Close-up ekspresi wajah, emosi kelihatan jelas, sebelum-sesudah terasa" class="theme-chip"><i class="fas fa-user"></i>Close-up Wajah</button>
+                  <button type="button" data-theme="Vlog style, framing duduk menghadap kamera, lighting sederhana, tulus" class="theme-chip"><i class="fas fa-video"></i>Vlog Style</button>
+                  <button type="button" data-theme="Warm homey, lampu kuning hangat rumah, nyaman dan dipercaya" class="theme-chip"><i class="fas fa-fire"></i>Warm Homey</button>
+                  <button type="button" data-theme="Soft daylight, siang lembut berawan, warna kalem natural" class="theme-chip"><i class="fas fa-cloud-sun"></i>Soft Daylight</button>
+                  <button type="button" data-theme="Malam santai, lampu tidur hangat, cerita pengalaman dengan tenang" class="theme-chip"><i class="fas fa-star"></i>Malam Santai</button>
+                  <button type="button" data-theme="Kamar mandi bersih, konteks produk perawatan, hasil kelihatan nyata" class="theme-chip"><i class="fas fa-bath"></i>Kamar Mandi</button>
+                  <button type="button" data-theme="Cermin rias, refleksi hasil pemakaian, sebelum-sesudah believable" class="theme-chip"><i class="fas fa-clone"></i>Cermin Rias</button>
+                  <button type="button" data-theme="Balkon apartemen, city view sore, testimoni santai urban" class="theme-chip"><i class="fas fa-city"></i>Balkon</button>
+                  <button type="button" data-theme="Suasana pagi fresh, cahaya pagi cerah, semangat hasil positif" class="theme-chip"><i class="fas fa-mug-saucer"></i>Pagi Fresh</button>
+                  <button type="button" data-theme="Natural outdoor, halaman rumah hijau, cahaya matahari jujur" class="theme-chip"><i class="fas fa-leaf"></i>Outdoor Natural</button>
+                </div>
+                <div id="testi-custom-theme-container" class="hidden">
+                  <textarea id="testi-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis suasana sendiri: kamar apa adanya, teras sore, selfie-cam..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="testi-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="testi-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="testi-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Story Testimoni</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Story Testimoni</h2>
+                <button id="testi-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="testi-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <div id="content-grwm" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">Generator GRWM</h1>
+            <p class="text-gray-500 mt-2">Get Ready With Me: tampilan awal → tahapan makeup/skincare/outfit → final look. Tren kuat TikTok.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Unggah Gambar Produk</h2></div>
+                <p class="text-sm text-gray-500 mb-3"><i class="fas fa-circle-info text-violet-400 mr-1"></i>Cocok untuk: produk dandan — makeup, skincare, hijab, parfum, aksesori. Story selalu mulai dari tampilan polos → final look; untuk baju/outfit lebih pas pakai tab <strong>Review Fashion</strong>.</p>
+                <div id="grwm-image-upload-area">
+                  <label for="grwm-image-input" class="file-input-label rounded-xl p-8 text-center text-gray-500 flex flex-col items-center justify-center min-h-[140px]">
+                    <i class="fas fa-wand-magic-sparkles text-4xl mb-2"></i><span class="font-medium">Klik atau seret gambar ke sini</span>
+                    <span class="text-xs mt-2 text-gray-400">PNG, JPG, WEBP (bisa lebih dari satu)</span>
+                  </label>
+                  <input type="file" id="grwm-image-input" class="hidden" accept="image/png, image/jpeg, image/webp" multiple>
+                </div>
+                <div id="grwm-image-preview-container" class="hidden mt-4 grid grid-cols-3 gap-2"></div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Deskripsi Produk</h2></div>
+                  <button id="grwm-generate-desc-btn" class="btn-secondary text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1" disabled><i class="fas fa-magic"></i><span>AI Generate</span></button>
+                </div>
+                <textarea id="grwm-product-desc-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Deskripsikan produk & untuk acara apa bersiap-siapnya... atau gunakan AI Generate"></textarea>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Foto Model <span class="text-sm text-red-400 font-semibold">(Wajib)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">GRWM bercerita tentang proses bersiap orangnya — foto model wajib supaya wajah konsisten dari polos sampai final look.</p>
+                <div id="grwm-model-image-upload-area">
+                  <label for="grwm-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium">Klik untuk pilih foto model</span>
+                    <span class="text-xs mt-2 text-gray-400">Model yang sama dari awal sampai siap pergi</span>
+                  </label>
+                  <input type="file" id="grwm-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="grwm-model-image-preview-container" class="hidden mt-4 relative">
+                  <img id="grwm-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                  <button id="grwm-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800">Tema Foto <span class="text-sm text-gray-400">(Opsional)</span></h2></div>
+                <p class="text-sm text-gray-500 mb-3">Pilih vibe & occasion GRWM untuk seluruh scene. "Tidak Ada" = biar AI yang tentukan.</p>
+                <div id="grwm-theme-options" class="grid gap-2 mb-3 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
+                  <button type="button" data-theme="" class="theme-chip selected"><i class="fas fa-ban"></i>Tidak Ada</button>
+                  <button type="button" data-theme="custom" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
+                  <button type="button" data-theme="Vanity table dengan ringlight, meja rias terang, setup beauty creator profesional" class="theme-chip"><i class="fas fa-lightbulb"></i>Vanity Ringlight</button>
+                  <button type="button" data-theme="Meja rias klasik, kosmetik tertata rapi, suasana personal feminin" class="theme-chip"><i class="fas fa-brush"></i>Meja Rias</button>
+                  <button type="button" data-theme="Pinterest aesthetic, dekorasi soft neutral, framing artsy, feed-worthy" class="theme-chip"><i class="fas fa-shapes"></i>Pinterest Vibe</button>
+                  <button type="button" data-theme="Soft glam, makeup look lembut berkilau, lighting flattering hangat" class="theme-chip"><i class="fas fa-star"></i>Soft Glam</button>
+                  <button type="button" data-theme="Clean girl aesthetic, slick bun, makeup natural dewy, minimalis effortless" class="theme-chip"><i class="fas fa-face-smile"></i>Clean Girl</button>
+                  <button type="button" data-theme="Y2K retro, warna pop 2000-an, aksesori playful, vibe nostalgia fun" class="theme-chip"><i class="fas fa-compact-disc"></i>Y2K</button>
+                  <button type="button" data-theme="Night out glam, siap pesta malam, lighting dramatis, dress up total" class="theme-chip"><i class="fas fa-champagne-glasses"></i>Night Out</button>
+                  <button type="button" data-theme="Hijab style, tutorial hijab rapi elegan, warna kalem sopan" class="theme-chip"><i class="fas fa-person-dress"></i>Hijab Style</button>
+                  <button type="button" data-theme="Kamar pastel lembut, dekorasi cute, suasana gemas playful" class="theme-chip"><i class="fas fa-candy-cane"></i>Pastel Room</button>
+                  <button type="button" data-theme="Golden hour glow, cahaya sore keemasan masuk kamar, kulit glowing hangat" class="theme-chip"><i class="fas fa-cloud-sun"></i>Golden Glow</button>
+                  <button type="button" data-theme="Studio beauty profesional, backdrop bersih, lighting high-key flawless" class="theme-chip"><i class="fas fa-camera"></i>Studio Beauty</button>
+                  <button type="button" data-theme="Kamar estetik cozy, fairy lights, suasana hangat personal" class="theme-chip"><i class="fas fa-bed"></i>Kamar Estetik</button>
+                  <button type="button" data-theme="Walk-in closet, rak baju tertata, proses pilih outfit yang seru" class="theme-chip"><i class="fas fa-shirt"></i>Walk-in Closet</button>
+                  <button type="button" data-theme="Kamar hotel mewah, interior luxury, GRWM liburan atau acara spesial" class="theme-chip"><i class="fas fa-hotel"></i>Hotel Luxury</button>
+                  <button type="button" data-theme="Date night, bersiap untuk kencan, mood romantis, lighting hangat lembut" class="theme-chip"><i class="fas fa-heart"></i>Date Night</button>
+                  <button type="button" data-theme="Kondangan glam, siap ke acara pernikahan, elegan mewah berkilau" class="theme-chip"><i class="fas fa-gem"></i>Kondangan</button>
+                  <button type="button" data-theme="Office look, bersiap kerja profesional rapi, clean corporate style" class="theme-chip"><i class="fas fa-briefcase"></i>Office Look</button>
+                  <button type="button" data-theme="Campus look, outfit kuliah kasual fresh, vibe anak muda" class="theme-chip"><i class="fas fa-graduation-cap"></i>Campus Look</button>
+                  <button type="button" data-theme="Street style urban, outfit edgy kekinian, background kota" class="theme-chip"><i class="fas fa-city"></i>Street Style</button>
+                  <button type="button" data-theme="Sporty fresh, activewear, bersiap olahraga, energik sehat" class="theme-chip"><i class="fas fa-dumbbell"></i>Sporty Fresh</button>
+                  <button type="button" data-theme="Bold makeup, warna berani statement, artistic dan percaya diri" class="theme-chip"><i class="fas fa-palette"></i>Bold Makeup</button>
+                  <button type="button" data-theme="Natural no-makeup look, skincare-first, kulit sehat apa adanya" class="theme-chip"><i class="fas fa-leaf"></i>No-Makeup Look</button>
+                  <button type="button" data-theme="K-beauty glass skin, tahapan skincare Korea, glowing dewy maksimal" class="theme-chip"><i class="fas fa-face-grin-hearts"></i>K-Beauty</button>
+                  <button type="button" data-theme="Dark moody glam, lighting dramatis gelap, misterius elegan" class="theme-chip"><i class="fas fa-moon"></i>Dark Moody</button>
+                  <button type="button" data-theme="Morning fresh, GRWM pagi cerah, cahaya alami, semangat memulai hari" class="theme-chip"><i class="fas fa-sun"></i>Morning Fresh</button>
+                </div>
+                <div id="grwm-custom-theme-container" class="hidden">
+                  <textarea id="grwm-photo-theme-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Tulis vibe sendiri: vanity ringlight, GRWM kondangan, clean girl..."></textarea>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
+                <div id="grwm-ratio-selection" class="grid grid-cols-2 gap-3">
+                  <button type="button" class="ratio-btn" data-ratio="1:1"><i class="fas fa-square"></i><span>1:1 Square</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="16:9"><i class="fas fa-tv"></i><span>16:9 Landscape</span></button>
+                  <button type="button" class="ratio-btn" data-ratio="3:4"><i class="fas fa-portrait"></i><span>3:4 Portrait</span></button>
+                  <button type="button" class="ratio-btn selected" data-ratio="9:16"><i class="fas fa-mobile-screen"></i><span>9:16 Story</span></button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">6</div><h2 class="text-lg font-semibold text-gray-800">Jumlah Generate</h2></div>
+                <div id="grwm-count-selection-grid" class="count-btn-grid">
+                  <button type="button" data-count="1">1</button><button type="button" data-count="2">2</button><button type="button" data-count="3">3</button><button type="button" data-count="4" class="selected">4</button><button type="button" data-count="5">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
+                </div>
+              </div>
+              <button type="button" id="grwm-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span>Buat Story GRWM</span></button>
+            </div>
+            <div class="lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Hasil Story GRWM</h2>
+                <button id="grwm-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              </div>
+              <div id="grwm-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV -->
+
+  <div id="login-overlay">
+    <div class="login-card">
+      <div class="text-center mb-6">
+        <div class="sidebar-logo mx-auto mb-3" style="width:56px;height:56px;font-size:1.1rem;">SSP</div>
+        <h2 class="text-2xl font-extrabold text-gray-800">Storyboard Studio <span style="color:#6d28d9;">Pro</span></h2>
+        <p class="text-sm mt-1 text-gray-500">Masuk dengan email pembelianmu</p>
+      </div>
+      <input type="email" id="login-email" class="login-input" placeholder="Email pembelian..." autocomplete="email">
+      <p id="login-error" class="hidden text-sm mt-2" style="color:#dc2626;"></p>
+      <button type="button" id="login-btn" class="w-full btn-primary font-bold py-3 px-6 rounded-xl mt-4"><i class="fas fa-right-to-bracket mr-2"></i>Masuk</button>
+      <div id="login-loading" class="hidden text-center mt-3 text-sm text-gray-500"><div class="loader !w-4 !h-4 !border-2 inline-block mr-2"></div>Memeriksa akses...</div>
+      <div id="login-buy-box" class="mt-6 pt-5" style="border-top:1px solid #e5e7eb;">
+        <p class="text-sm font-semibold text-center mb-3 text-gray-700">Belum punya akses?</p>
+        <div class="space-y-2">
+          <button type="button" id="buy-lynk-btn" class="buy-btn hidden"><i class="fas fa-cart-shopping"></i>Beli di Lynk.id</button>
+          <button type="button" id="buy-mayar-btn" class="buy-btn hidden"><i class="fas fa-cart-shopping"></i>Beli di Mayar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
