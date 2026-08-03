@@ -156,6 +156,194 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   // === END DURATION ENGINE ===
 
+  // === MODEL LIBRARY ===
+  // Pustaka model AI (menu AI Influencer): prompt murni + util konversi + wrapper IndexedDB.
+  window.buildModelPrompt = function (c) {
+    c = c || {};
+    const age = { remaja: 'late-teenage', '20an': 'mid-20s', '30an': 'mid-30s', '40plus': 'mid-40s' }[c.usia] || 'mid-20s';
+    const look = { indonesia: 'Indonesian', asia: 'East Asian', barat: 'Western Caucasian' }[c.look] || 'Indonesian';
+    const person = c.gender === 'pria' ? 'man' : 'woman';
+    const veil = (c.gender !== 'pria' && c.hijab === 'hijab') ? ', wearing a neat modern hijab' : '';
+    return `Photorealistic half-body studio portrait photo of a ${age} ${look} ${person}${veil}, facing the camera with a natural friendly smile, plain light neutral studio background, soft diffused lighting, sharp focus on the face, natural skin texture, high detail, suitable as a model reference photo. No text, no watermark.`;
+  };
+  window.b64ToBlob = function (b64, mime) {
+    const bin = atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return new Blob([arr], { type: mime });
+  };
+  window.blobToB64 = function (blob) {
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(String(r.result).split(',')[1]);
+      r.onerror = rej;
+      r.readAsDataURL(blob);
+    });
+  };
+  window.modelDB = {
+    _open() {
+      return new Promise((res, rej) => {
+        const rq = indexedDB.open('ssp_models', 1);
+        rq.onupgradeneeded = () => rq.result.createObjectStore('models', { keyPath: 'id' });
+        rq.onsuccess = () => res(rq.result);
+        rq.onerror = () => rej(rq.error);
+      });
+    },
+    async put(rec) {
+      const db = await this._open();
+      return new Promise((res, rej) => {
+        const tx = db.transaction('models', 'readwrite');
+        tx.objectStore('models').put(rec);
+        tx.oncomplete = () => { document.dispatchEvent(new CustomEvent('ssp-models-changed')); res(); };
+        tx.onerror = () => rej(tx.error);
+      });
+    },
+    async list() {
+      const db = await this._open();
+      return new Promise((res, rej) => {
+        const rq = db.transaction('models', 'readonly').objectStore('models').getAll();
+        rq.onsuccess = () => res((rq.result || []).sort((a, b) => b.id.localeCompare(a.id)));
+        rq.onerror = () => rej(rq.error);
+      });
+    },
+    async remove(id) {
+      const db = await this._open();
+      return new Promise((res, rej) => {
+        const tx = db.transaction('models', 'readwrite');
+        tx.objectStore('models').delete(id);
+        tx.oncomplete = () => { document.dispatchEvent(new CustomEvent('ssp-models-changed')); res(); };
+        tx.onerror = () => rej(tx.error);
+      });
+    }
+  };
+  // === END MODEL LIBRARY ===
+
+  // === INFLUENCER STUDIO ===
+  (function initInfluencerStudio() {
+    const genBtn = document.getElementById('influencer-generate-btn');
+    if (!genBtn) return;
+    const apiKey = "";
+    const resultBox = document.getElementById('influencer-result-box');
+    const saveRow = document.getElementById('influencer-save-row');
+    const regenBtn = document.getElementById('influencer-regen-btn');
+    const nameInput = document.getElementById('influencer-save-name');
+    const saveBtn = document.getElementById('influencer-save-btn');
+    const libGrid = document.getElementById('influencer-library-grid');
+    const libCount = document.getElementById('influencer-lib-count');
+    const hijabGroup = document.getElementById('influencer-hijab-group');
+    let currentB64 = null;
+
+    function influencerPick(gridId) {
+      const grid = document.getElementById(gridId);
+      grid.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-val]'); if (!btn) return;
+        grid.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
+        btn.classList.add('selected');
+        if (gridId === 'influencer-gender-options') hijabGroup.classList.toggle('hidden', btn.dataset.val === 'pria');
+      });
+    }
+    ['influencer-gender-options', 'influencer-age-options', 'influencer-look-options', 'influencer-hijab-options'].forEach(influencerPick);
+
+    function pickedVal(gridId) { return document.querySelector(`#${gridId} .theme-chip.selected`)?.dataset.val || ''; }
+    function currentCfg() {
+      return {
+        gender: pickedVal('influencer-gender-options'),
+        usia: pickedVal('influencer-age-options'),
+        look: pickedVal('influencer-look-options'),
+        hijab: pickedVal('influencer-hijab-options')
+      };
+    }
+
+    async function generateModel() {
+      genBtn.disabled = true; regenBtn.disabled = true;
+      resultBox.innerHTML = '<div class="loader"></div>';
+      const prompt = window.buildModelPrompt(currentCfg());
+      const retries = 3; let lastError = null;
+      for (let i = 0; i < retries; i++) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
+          const payload = {
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { responseModalities: ['TEXT', 'IMAGE'], imageConfig: { aspectRatio: '3:4' } },
+            safetySettings: [
+              { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+            ]
+          };
+          const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const result = await res.json();
+          const b64 = result?.candidates?.[0]?.content?.parts?.find(x => x.inlineData)?.inlineData?.data;
+          if (!b64) throw new Error('No image data received');
+          currentB64 = b64;
+          resultBox.innerHTML = `<img src="data:image/png;base64,${b64}" class="rounded-xl max-h-[420px] w-auto mx-auto" alt="Model AI">`;
+          saveRow.classList.remove('hidden');
+          genBtn.disabled = false; regenBtn.disabled = false;
+          return;
+        } catch (err) {
+          lastError = err; console.error(`Influencer attempt ${i + 1} failed:`, err);
+          if (i < retries - 1) await new Promise(rz => setTimeout(rz, 1000 * Math.pow(2, i)));
+        }
+      }
+      if (lastError) resultBox.innerHTML = '<p class="text-sm text-red-500 p-4">Gagal membuat model — coba lagi.</p>';
+      genBtn.disabled = false; regenBtn.disabled = false;
+    }
+    genBtn.addEventListener('click', generateModel);
+    regenBtn.addEventListener('click', generateModel);
+
+    saveBtn.addEventListener('click', async () => {
+      const name = nameInput.value.trim();
+      if (!name) { alert('Kasih nama modelnya dulu ya.'); nameInput.focus(); return; }
+      if (!currentB64) return;
+      try {
+        await window.modelDB.put({
+          id: String(Date.now()),
+          name,
+          blob: window.b64ToBlob(currentB64, 'image/png'),
+          mime: 'image/png',
+          cfg: currentCfg(),
+          createdAt: new Date().toISOString()
+        });
+        nameInput.value = '';
+        renderLibrary();
+      } catch (err) {
+        console.error('modelDB put failed:', err);
+        alert('Penyimpanan browser tidak tersedia (mode private/incognito?). Model tidak tersimpan — kamu tetap bisa klik kanan foto untuk menyimpannya manual.');
+      }
+    });
+
+    async function renderLibrary() {
+      let list = [];
+      try { list = await window.modelDB.list(); }
+      catch (err) { console.error('modelDB list failed:', err); libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">Penyimpanan browser tidak tersedia di sesi ini.</p>'; return; }
+      libCount.textContent = list.length ? `${list.length} model` : '';
+      if (!list.length) { libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">Belum ada model — racik di atas lalu Simpan.</p>'; return; }
+      libGrid.innerHTML = '';
+      list.forEach(m => {
+        const objUrl = URL.createObjectURL(m.blob);
+        const card = document.createElement('div');
+        card.className = 'rounded-xl border-2 border-gray-100 overflow-hidden bg-white';
+        card.innerHTML = `<img src="${objUrl}" class="w-full aspect-[3/4] object-cover" alt="${window.escHtml(m.name)}">
+          <div class="p-2">
+            <p class="text-sm font-semibold text-gray-800 truncate">${window.escHtml(m.name)}</p>
+            <p class="text-[11px] text-gray-400">${new Date(m.createdAt).toLocaleDateString('id-ID')}</p>
+            <div class="flex gap-1 mt-2">
+              <a href="${objUrl}" download="model_${m.name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.png" class="flex-1 btn-secondary text-xs font-semibold py-1.5 rounded-lg text-center"><i class="fas fa-download pointer-events-none"></i></a>
+              <button type="button" data-del="${m.id}" class="flex-1 text-xs font-semibold py-1.5 rounded-lg" style="color:#dc2626;border:1px solid rgba(220,38,38,.3);"><i class="fas fa-trash pointer-events-none"></i></button>
+            </div>
+          </div>`;
+        card.querySelector('[data-del]').addEventListener('click', async () => {
+          if (!confirm(`Hapus model "${m.name}"?`)) return;
+          try { await window.modelDB.remove(m.id); renderLibrary(); } catch (err) { console.error(err); }
+        });
+        libGrid.appendChild(card);
+      });
+    }
+    renderLibrary();
+  })();
+  // === END INFLUENCER STUDIO ===
+
   // === FACTORY: satu tab review = satu pemanggilan createReviewTab(cfg) ===
   function createReviewTab(cfg) {
     const p = cfg.prefix;
@@ -356,6 +544,34 @@ document.addEventListener('DOMContentLoaded', () => {
         modelBase64 = null; modelMime = null; modelInput.value = '';
         modelUploadArea.classList.remove('hidden'); modelPreviewContainer.classList.add('hidden');
       });
+
+      const libBtn = document.createElement('button');
+      libBtn.type = 'button';
+      libBtn.id = `${p}-library-btn`;
+      libBtn.className = 'btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden';
+      libBtn.innerHTML = '<i class="fas fa-user-astronaut mr-1"></i>Pilih dari Pustaka Model';
+      modelPreviewContainer.insertAdjacentElement('afterend', libBtn);
+      libBtn.addEventListener('click', async () => {
+        let list = [];
+        try { list = await window.modelDB.list(); } catch (err) { console.error(err); }
+        if (!list.length) { alert('Belum ada model tersimpan — buat dulu di menu AI Influencer.'); return; }
+        showChoiceModal('Pilih model dari pustaka', list.map(m => ({
+          label: `<span class="flex items-center gap-3"><img src="${URL.createObjectURL(m.blob)}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span>`,
+          onPick: async () => {
+            modelBase64 = await window.blobToB64(m.blob);
+            modelMime = m.mime;
+            modelPreview.src = URL.createObjectURL(m.blob);
+            modelUploadArea.classList.add('hidden');
+            modelPreviewContainer.classList.remove('hidden');
+          }
+        })));
+      });
+      async function refreshLibBtn() {
+        try { libBtn.classList.toggle('hidden', !(await window.modelDB.list()).length); }
+        catch { libBtn.classList.add('hidden'); }
+      }
+      document.addEventListener('ssp-models-changed', refreshLibBtn);
+      refreshLibBtn();
     }
 
     descInput.addEventListener('input', updateBtn);

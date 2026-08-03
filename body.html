@@ -21,6 +21,8 @@
         <button id="nav-hide" class="nav-toggle-btn" aria-label="Sembunyikan menu"><i class="fas fa-angles-left"></i></button>
       </div>
       <nav class="sidebar-nav">
+        <div class="nav-section">Model Studio</div>
+        <button data-tab="influencer" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-user-astronaut"></i></span><span><span>AI Influencer</span><small>Buat & simpan model AI</small></span></button>
         <div class="nav-section" data-i18n="menu.review">Review Generator</div>
         <button data-tab="product-review" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-box-open"></i></span><span><span data-i18n="nav.product-review">Review Produk</span><small>Foto review produk afiliasi</small></span></button>
         <button data-tab="skincare-review" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-pump-soap"></i></span><span><span data-i18n="nav.skincare-review">Review Skincare</span><small>Scene review skincare</small></span></button>
@@ -1088,6 +1090,65 @@
                 <button id="grwm-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
               </div>
               <div id="grwm-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+      <div id="content-influencer" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+          <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">AI Influencer Studio</h1>
+            <p class="text-gray-500 mt-2">Racik model virtual, simpan, lalu pakai di semua fitur review.</p>
+          </header>
+          <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-1 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Racik Model</h2></div>
+                <div class="text-xs font-semibold text-gray-500 mb-1">Gender</div>
+                <div id="influencer-gender-options" class="flex flex-wrap gap-2 mb-3">
+                  <button type="button" data-val="wanita" class="theme-chip selected"><i class="fas fa-venus"></i>Wanita</button>
+                  <button type="button" data-val="pria" class="theme-chip"><i class="fas fa-mars"></i>Pria</button>
+                </div>
+                <div class="text-xs font-semibold text-gray-500 mb-1">Usia</div>
+                <div id="influencer-age-options" class="flex flex-wrap gap-2 mb-3">
+                  <button type="button" data-val="remaja" class="theme-chip">Remaja</button>
+                  <button type="button" data-val="20an" class="theme-chip selected">20-an</button>
+                  <button type="button" data-val="30an" class="theme-chip">30-an</button>
+                  <button type="button" data-val="40plus" class="theme-chip">40+</button>
+                </div>
+                <div class="text-xs font-semibold text-gray-500 mb-1">Look</div>
+                <div id="influencer-look-options" class="flex flex-wrap gap-2 mb-3">
+                  <button type="button" data-val="indonesia" class="theme-chip selected">Indonesia</button>
+                  <button type="button" data-val="asia" class="theme-chip">Asia Timur</button>
+                  <button type="button" data-val="barat" class="theme-chip">Barat</button>
+                </div>
+                <div id="influencer-hijab-group">
+                  <div class="text-xs font-semibold text-gray-500 mb-1">Hijab</div>
+                  <div id="influencer-hijab-options" class="flex flex-wrap gap-2 mb-3">
+                    <button type="button" data-val="non" class="theme-chip selected">Non-hijab</button>
+                    <button type="button" data-val="hijab" class="theme-chip">Hijab</button>
+                  </div>
+                </div>
+              </div>
+              <button type="button" id="influencer-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg"><i class="fas fa-wand-magic-sparkles mr-2"></i><span>Buat Model AI</span></button>
+            </div>
+            <div class="lg:col-span-2 space-y-6">
+              <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800">Hasil</h2></div>
+                <div id="influencer-result-box" class="rounded-xl border-2 border-dashed border-gray-200 min-h-[280px] flex items-center justify-center text-gray-400 text-sm p-4">Belum ada foto — racik lalu klik "Buat Model AI".</div>
+                <div id="influencer-save-row" class="hidden mt-4 flex flex-col sm:flex-row gap-2">
+                  <button type="button" id="influencer-regen-btn" class="btn-secondary font-semibold py-2.5 px-4 rounded-lg"><i class="fas fa-rotate-right mr-1"></i>Regenerate</button>
+                  <input type="text" id="influencer-save-name" class="flex-1 p-2.5 bg-white border-2 border-gray-200 rounded-lg focus:border-violet-500 transition" placeholder="Nama model, mis. Salsa" maxlength="40">
+                  <button type="button" id="influencer-save-btn" class="btn-primary font-semibold py-2.5 px-4 rounded-lg"><i class="fas fa-floppy-disk mr-1"></i>Simpan</button>
+                </div>
+              </div>
+              <div class="card p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800">Pustaka Model</h2></div>
+                  <span id="influencer-lib-count" class="text-xs text-gray-400"></span>
+                </div>
+                <div id="influencer-library-grid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+              </div>
             </div>
           </main>
         </div>
