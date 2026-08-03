@@ -724,20 +724,24 @@ Respond ONLY with a valid JSON array of ${count} objects, in sequential order.`,
     descUserText: 'Buatkan deskripsi item fashion untuk gambar ini.',
     descPrompt: `You are a professional fashion content creator. Analyze the fashion item in the image and write a concise, stylish description in Indonesian (jenis, bahan, potongan, kesan gaya). Keep it under 500 characters.`,
     buildSystemPrompt: ({ count, ratio, model }) => model
-      ? `You are an expert fashion stylist and content creator. Analyze the fashion item, description, and model to create a **${count}-part visual OOTD review story** (storyboard) for the aspect ratio ${ratio}.
+      ? `You are an expert fashion vlog storyboard artist. Analyze the fashion item, description, and model to create a **${count}-part OOTD JOURNEY story** (storyboard) for the aspect ratio ${ratio}. This is a NARRATIVE about one person and this outfit through a real moment of their day — NOT a product catalog of angles.
 
-**CRITICAL VISUAL RULES FOR MODEL CONSISTENCY:**
-1. The whole story happens in one consistent professional setting; every scene shares the same visual world.
-2. For ALL ${count} scenes, the model MUST be wearing/showing the fashion item. Include a full-body OOTD shot and detail shots.
-3. The model must be the EXACT SAME person in ALL ${count} scenes — identical face, body, hair, and skin tone, as if filmed in one session. Always describe the model consistently in every prompt.
+**FIRST, INVENT THE ANCHOR (then reuse it):** silently decide ONE short "anchor" = the setting-world (e.g. "cozy bedroom → city street → café, warm afternoon light, soft film grade") + the exact model description + the exact outfit description. REPEAT this anchor wording in EVERY scene prompt so all scenes look like one continuous day filmed in one session.
 
-**STRUCTURE OOTD:** Create ${count} scenes forming a sequential fashion story (Full-body OOTD → Detail Bahan/Tekstur → Pose Variasi → Styling/Mix-and-match → Final Look / CTA). Scenes must connect coherently.
-For each scene provide a short title in Indonesian and a CONCISE English prompt for an AI image generator that always includes the consistent model + outfit description.
+**CRITICAL VISUAL RULES:**
+1. The model must be the EXACT SAME person in ALL ${count} scenes — identical face, body, hair, skin tone. The fashion item stays EXACTLY as shown in the photo.
+2. Locations may progress WITH the journey (room → mirror → outside destination), but keep ONE consistent color grade, lighting mood, and photography style across all scenes.
+3. Each scene must visibly CONTINUE from the previous one (same day, same outfit state, logical next moment) — no random jumps.
+
+**STRUCTURE OOTD JOURNEY:** Create ${count} sequential scenes telling one story arc: Menemukan/memilih outfit ini → Memakai & styling di depan cermin → Berangkat/beraktivitas dengan outfit ini (lokasi sesuai karakter produk: café/street/gym/kampus) → Momen detail bahan-tekstur terasa NATURAL saat dipakai beraktivitas → Final look percaya diri / CTA. Middle scenes show the outfit LIVING in the activity, not posing in a studio.
+For each scene provide a short title in Indonesian and a CONCISE English prompt for an AI image generator that always includes the anchor (setting-world + model + outfit).
 Respond ONLY with a valid JSON array of ${count} objects, in sequential story order.`
-      : `You are an expert fashion stylist. Generate a **${count}-part visual fashion review story** (storyboard) focused on the fashion item for the aspect ratio ${ratio}. Show the item beautifully styled on a mannequin or flat-lay — no human faces. The whole story shares one consistent professional setting.
+      : `You are an expert fashion stylist storyboard artist. Generate a **${count}-part fashion item journey story** (storyboard) for the aspect ratio ${ratio}, no human faces (mannequin, flat-lay, or faceless detail shots only).
 
-**STRUCTURE:** Create ${count} scenes forming a sequential fashion story (Hero Shot → Detail Bahan → Angle Variasi → Styling Context → Final Look / CTA). Scenes must connect coherently.
-For each concept provide a short title in Indonesian and a CONCISE English prompt for the AI image generator.
+**FIRST, INVENT THE ANCHOR (then reuse it):** decide ONE setting-world (e.g. "minimal bedroom with warm window light, soft film grade") and REPEAT it in every prompt — all scenes must look like one continuous session in one place.
+
+**STRUCTURE (NARRATIVE, NOT CATALOG):** Create ${count} sequential scenes telling one arc: Item baru tiba/tergantung rapi → Di-styling bertahap (flat-lay outfit lengkap tersusun) → Detail bahan & jahitan → Padu-padan dengan aksesori → Final presentation siap dipakai / CTA. Each scene continues visually from the previous one.
+For each concept provide a short title in Indonesian and a CONCISE English prompt for the AI image generator that always includes the anchor setting.
 Respond ONLY with a valid JSON array of ${count} objects, in sequential story order.`,
     imageSuffix: (model, prompt) => model
       ? `${prompt}, high-fashion editorial photography, professional studio lighting, sharp fabric detail, 8k, photorealistic`
