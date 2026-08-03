@@ -296,15 +296,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = nameInput.value.trim();
       if (!name) { alert('Kasih nama modelnya dulu ya.'); nameInput.focus(); return; }
       if (!currentB64) return;
+      let existing = [];
+      try { existing = await window.modelDB.list(); } catch (err) {}
+      if (existing.length >= 5) { alert('Pustaka penuh (maksimal 5 model). Hapus salah satu dulu ya.'); return; }
+      const rec = { id: String(Date.now()), name, mime: 'image/png', cfg: currentCfg(), createdAt: new Date().toISOString() };
+      let cloudOk = false;
+      try { if (window.modelCloud) cloudOk = await window.modelCloud.upload(Object.assign({}, rec, { base64: currentB64 })); }
+      catch (err) { console.error('cloud upload failed:', err); }
       try {
-        await window.modelDB.put({
-          id: String(Date.now()),
-          name,
-          blob: window.b64ToBlob(currentB64, 'image/png'),
-          mime: 'image/png',
-          cfg: currentCfg(),
-          createdAt: new Date().toISOString()
-        });
+        await window.modelDB.put(Object.assign({}, rec, { blob: window.b64ToBlob(currentB64, 'image/png'), cloud: cloudOk }));
         nameInput.value = '';
         renderLibrary();
       } catch (err) {
@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let list = [];
       try { list = await window.modelDB.list(); }
       catch (err) { console.error('modelDB list failed:', err); libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">Penyimpanan browser tidak tersedia di sesi ini.</p>'; return; }
-      libCount.textContent = list.length ? `${list.length} model` : '';
+      libCount.textContent = `${list.length}/5 model`;
       if (!list.length) { libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">Belum ada model — racik di atas lalu Simpan.</p>'; return; }
       libGrid.innerHTML = '';
       list.forEach(m => {
@@ -335,12 +335,14 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>`;
         card.querySelector('[data-del]').addEventListener('click', async () => {
           if (!confirm(`Hapus model "${m.name}"?`)) return;
+          try { if (window.modelCloud) window.modelCloud.del(m.id); } catch (err) {}
           try { await window.modelDB.remove(m.id); renderLibrary(); } catch (err) { console.error(err); }
         });
         libGrid.appendChild(card);
       });
     }
     renderLibrary();
+    document.addEventListener('ssp-models-changed', renderLibrary);
   })();
   // === END INFLUENCER STUDIO ===
 
@@ -1436,6 +1438,62 @@ Respond ONLY with a valid JSON array of ${count} objects, in sequential story or
       `${LOGIN_CFG.SCRIPT_URL}?action=${action}&email=${encodeURIComponent(email)}&token=${encodeURIComponent(deviceToken)}&app_secret=${encodeURIComponent(LOGIN_CFG.APP_SECRET)}&product=${LOGIN_CFG.PRODUCT_ID}`
     ).then(r => r.json());
 
+    window.modelCloud = {
+      _q(action, extra) {
+        const email = localStorage.getItem('ssp_email') || '';
+        return `${LOGIN_CFG.SCRIPT_URL}?action=${action}&email=${encodeURIComponent(email)}&token=${encodeURIComponent(deviceToken)}&app_secret=${encodeURIComponent(LOGIN_CFG.APP_SECRET)}${extra || ''}`;
+      },
+      async list() {
+        const d = await fetch(this._q('model_list')).then(r => r.json());
+        return d.status === 'SUKSES' ? (d.models || []) : null;
+      },
+      async get(id) {
+        const d = await fetch(this._q('model_get', `&id=${encodeURIComponent(id)}`)).then(r => r.json());
+        return d.status === 'SUKSES' ? d.base64 : null;
+      },
+      async del(id) {
+        try { await fetch(this._q('model_del', `&id=${encodeURIComponent(id)}`)); } catch (e) {}
+      },
+      async upload(rec) {
+        const body = JSON.stringify({
+          ssp_action: 'model_upload',
+          app_secret: LOGIN_CFG.APP_SECRET,
+          email: localStorage.getItem('ssp_email') || '',
+          token: deviceToken,
+          id: rec.id, name: rec.name, cfg: rec.cfg, base64: rec.base64
+        });
+        const d = await fetch(LOGIN_CFG.SCRIPT_URL, { method: 'POST', body }).then(r => r.json());
+        return d.status === 'SUKSES';
+      }
+    };
+    window.syncModels = async function () {
+      if (!localStorage.getItem('ssp_email')) return;
+      try {
+        const server = await window.modelCloud.list();
+        if (!server) return;
+        const serverIds = new Set(server.map(m => String(m.id)));
+        const local = await window.modelDB.list();
+        const localIds = new Set(local.map(m => String(m.id)));
+        for (const m of local) {
+          if (m.cloud === true && !serverIds.has(String(m.id))) { await window.modelDB.remove(m.id); continue; }
+          if (m.cloud === false) {
+            try {
+              const b64 = await window.blobToB64(m.blob);
+              const ok = await window.modelCloud.upload({ id: m.id, name: m.name, cfg: m.cfg, base64: b64 });
+              if (ok) await window.modelDB.put(Object.assign({}, m, { cloud: true }));
+            } catch (e) {}
+          }
+        }
+        for (const s of server) {
+          if (!localIds.has(String(s.id))) {
+            const b64 = await window.modelCloud.get(s.id);
+            if (b64) await window.modelDB.put({ id: String(s.id), name: s.name, blob: window.b64ToBlob(b64, 'image/png'), mime: 'image/png', cfg: s.cfg, createdAt: s.createdAt, cloud: true });
+          }
+        }
+      } catch (e) { console.error('syncModels:', e); }
+      document.dispatchEvent(new CustomEvent('ssp-models-changed'));
+    };
+
     function showError(msg) {
       errEl.textContent = msg;
       errEl.classList.remove('hidden');
@@ -1453,6 +1511,7 @@ Respond ONLY with a valid JSON array of ${count} objects, in sequential story or
       badge.classList.remove('hidden');
       document.getElementById('user-name').textContent = nama;
       if (!sesInterval) sesInterval = setInterval(jagaSesi, 10000);
+      if (window.syncModels) window.syncModels();
     }
     async function jagaSesi() {
       const email = localStorage.getItem('ssp_email');
