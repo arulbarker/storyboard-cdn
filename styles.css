@@ -17,6 +17,9 @@
   body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; }
   .font-display { font-weight: 800; letter-spacing: -.02em; }
   .brand-gradient { background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-yellow) 100%); }
+  /* Mode CDN: styles.css disuntik SETELAH stylesheet Tailwind — shorthand background: di atas
+     me-reset background-clip, judul gradasi jadi balok polos. Rule 2-kelas ini menang di kedua urutan. */
+  .brand-gradient.bg-clip-text { -webkit-background-clip: text; background-clip: text; }
   .btn-primary { background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-dark)); color:#fff; transition:.2s; box-shadow:0 10px 22px -10px rgba(109,40,217,.65); }
   .btn-primary:hover { filter: brightness(1.06); }
   .btn-primary:disabled { opacity:.45; cursor:not-allowed; box-shadow:none; }
