@@ -80,6 +80,7 @@
   .theme-chip { display:flex; align-items:center; justify-content:center; gap:.35rem; padding:.5rem .6rem; border:2px solid var(--line); border-radius:.6rem; font-weight:600; font-size:.8rem; background:#fff; color:#374151; transition:all .2s; cursor:pointer; text-align:center; min-height:40px; }
   .theme-chip:hover { border-color:var(--brand-blue); background:#f5f3ff; transform:translateY(-1px); }
   .theme-chip.selected { border-color:transparent; background:linear-gradient(135deg,var(--brand-blue),var(--brand-blue-dark)); color:#fff; box-shadow:0 4px 12px -4px rgba(109,40,217,.5); }
+  .clip-divider { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .5rem .85rem; border-radius: .65rem; background: linear-gradient(90deg, rgba(109,40,217,.10), rgba(6,182,212,.08)); border: 1px solid rgba(109,40,217,.25); font-weight: 700; font-size: .85rem; color: #4c1d95; }
   .theme-chip i { pointer-events:none; }
   #review-theme-options { max-height:18rem; overflow-y:auto; }
   #review-theme-options::-webkit-scrollbar { width:8px; }

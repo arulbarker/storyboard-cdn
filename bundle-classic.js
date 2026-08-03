@@ -137,6 +137,25 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const LANG_LABEL = { id: 'Indonesian', en: 'English' };
 
+  // === DURATION ENGINE ===
+  // Mode Durasi Video: 1 foto ≈ 2 detik video. Satu klip = satu generate di platform image-to-video.
+  window.VIDEO_PLATFORMS = {
+    omni:     { label: 'Gemini Omni', perClip: 5, clipSec: 10 },
+    seedance: { label: 'Seedance',    perClip: 7, clipSec: 14 }
+  };
+  window.clipPlan = function (platformKey, durationSec) {
+    const pf = window.VIDEO_PLATFORMS[platformKey];
+    const clips = Math.max(1, Math.round(durationSec / pf.clipSec));
+    return { clips, photos: clips * pf.perClip, perClip: pf.perClip, clipSec: pf.clipSec };
+  };
+  window.durationOptions = function (platformKey, maxSec = 60) {
+    const pf = window.VIDEO_PLATFORMS[platformKey];
+    const out = [];
+    for (let s = pf.clipSec; s <= maxSec; s += pf.clipSec) out.push(s);
+    return out;
+  };
+  // === END DURATION ENGINE ===
+
   // === FACTORY: satu tab review = satu pemanggilan createReviewTab(cfg) ===
   function createReviewTab(cfg) {
     const p = cfg.prefix;
@@ -184,7 +203,15 @@ document.addEventListener('DOMContentLoaded', () => {
       videoAllBtn.type = 'button';
       videoAllBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
       videoAllBtn.innerHTML = '<i class="fas fa-film mr-1"></i>Semua Prompt Video';
-      videoAllBtn.addEventListener('click', generateAllVideoPrompts);
+      videoAllBtn.addEventListener('click', () => {
+        if (!durState.on) { generateAllVideoPrompts(); return; }
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        const n = grid.querySelectorAll('.result-card').length;
+        showChoiceModal('Prompt video bentuk apa?', [
+          { label: `<i class="fas fa-image mr-2"></i>Per Scene — ${n} prompt (1 foto = 1 generate video)`, onPick: generateAllVideoPrompts },
+          { label: `<i class="fas fa-clapperboard mr-2"></i>Per Klip — ${Math.ceil(n / plan.perClip)} prompt (${plan.perClip} foto = 1 klip ${plan.clipSec} dtk)`, onPick: generateAllClipPrompts }
+        ]);
+      });
 
       audioStyleSel = document.createElement('select');
       audioStyleSel.id = `${p}-audio-style`;
@@ -227,6 +254,71 @@ document.addEventListener('DOMContentLoaded', () => {
       countGrid.querySelectorAll('button').forEach(x => x.classList.remove('selected'));
       b.classList.add('selected'); selectedCount = parseInt(b.dataset.count, 10);
     });
+
+    // === Mode Durasi Video: toggle + platform + durasi (spec 2026-08-03-durasi-story) ===
+    const durState = { on: true, platform: 'omni', duration: 10 };
+    const modeWrap = document.createElement('div');
+    modeWrap.className = 'flex gap-2 mb-3';
+    modeWrap.innerHTML = `<button type="button" data-mode="duration" class="theme-chip selected"><i class="fas fa-film mr-1"></i>Durasi Video</button><button type="button" data-mode="count" class="theme-chip"><i class="fas fa-images mr-1"></i>Jumlah Foto</button>`;
+    const durPanel = document.createElement('div');
+    durPanel.id = `${p}-duration-panel`;
+    countGrid.parentNode.insertBefore(modeWrap, countGrid);
+    countGrid.parentNode.insertBefore(durPanel, countGrid);
+    countGrid.classList.add('hidden');
+
+    function renderDurPanel() {
+      const opts = window.durationOptions(durState.platform);
+      if (!opts.includes(durState.duration)) durState.duration = opts[0];
+      const plan = window.clipPlan(durState.platform, durState.duration);
+      durPanel.innerHTML = `
+        <div class="text-xs font-semibold text-gray-500 mb-1">Platform video</div>
+        <div class="flex flex-wrap gap-2 mb-3">${Object.entries(window.VIDEO_PLATFORMS).map(([k, v]) => `<button type="button" data-platform="${k}" class="theme-chip ${k === durState.platform ? 'selected' : ''}">${v.label} — ${v.clipSec} dtk/klip</button>`).join('')}</div>
+        <div class="text-xs font-semibold text-gray-500 mb-1">Durasi story</div>
+        <div class="flex flex-wrap gap-2 mb-3">${opts.map(s => `<button type="button" data-duration="${s}" class="theme-chip ${s === durState.duration ? 'selected' : ''}">${s} dtk</button>`).join('')}</div>
+        <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-2" data-clip-info><i class="fas fa-info-circle mr-1"></i>= ${plan.photos} foto · ${plan.clips} klip × ${plan.perClip} foto (${plan.clipSec} dtk/klip)</p>`;
+    }
+    renderDurPanel();
+    durPanel.addEventListener('click', (e) => {
+      const pb = e.target.closest('[data-platform]');
+      const db = e.target.closest('[data-duration]');
+      if (pb) durState.platform = pb.dataset.platform;
+      else if (db) durState.duration = parseInt(db.dataset.duration, 10);
+      else return;
+      renderDurPanel();
+    });
+    modeWrap.addEventListener('click', (e) => {
+      const mb = e.target.closest('[data-mode]'); if (!mb) return;
+      durState.on = mb.dataset.mode === 'duration';
+      modeWrap.querySelectorAll('[data-mode]').forEach(x => x.classList.toggle('selected', x === mb));
+      durPanel.classList.toggle('hidden', !durState.on);
+      countGrid.classList.toggle('hidden', durState.on);
+    });
+    function effectiveCount() { return durState.on ? window.clipPlan(durState.platform, durState.duration).photos : selectedCount; }
+    function retryPlaceholder(id) {
+      return `<div class="text-center p-3"><p class="text-xs text-red-500 mb-2">Scene gagal dibuat</p><button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-4 py-2 rounded-lg text-sm font-semibold"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button></div>`;
+    }
+    function showChoiceModal(title, choices) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="space-y-2" data-choices></div>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      const wrap = modal.querySelector('[data-choices]');
+      choices.forEach(c => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'w-full btn-secondary py-2.5 px-4 rounded-lg font-semibold text-sm text-left';
+        b.innerHTML = c.label;
+        b.addEventListener('click', () => { close(); c.onPick(); });
+        wrap.appendChild(b);
+      });
+      modal.querySelector('[data-close]').addEventListener('click', close);
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
 
     imageInput.addEventListener('change', (e) => { handleFiles(e.target.files); e.target.value = null; });
     function handleFiles(files) {
@@ -286,7 +378,11 @@ document.addEventListener('DOMContentLoaded', () => {
     async function analyzeAndGetPrompts() {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
       const r = ratio();
-      const systemPrompt = cfg.buildSystemPrompt({ count: selectedCount, ratio: r, model: !!modelBase64 });
+      let systemPrompt = cfg.buildSystemPrompt({ count: effectiveCount(), ratio: r, model: !!modelBase64 });
+      if (durState.on) {
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        systemPrompt += `\n\n**CLIP STRUCTURE (IMPORTANT):** These ${plan.photos} scenes will become ${plan.clips} separate video clip(s) of ${plan.clipSec} seconds each (${plan.perClip} scenes per clip, ~2 seconds per scene). Structure the story as ${plan.clips} chapter(s) of ONE continuous narrative, one chapter per clip. The LAST scene of each chapter must work as a smooth narrative AND visual bridge into the first scene of the next chapter, so separately generated clips cut together seamlessly in an editor.`;
+      }
       let theme = '';
       if (themeGrid) {
         theme = selectedTheme === 'custom'
@@ -314,7 +410,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function buildCards(prompts) {
       grid.innerHTML = '';
       const ac = aspectClass(ratio());
+      const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
       prompts.forEach((pr, i) => {
+        if (plan && i % plan.perClip === 0) {
+          const clipIdx = i / plan.perClip + 1;
+          const end = Math.min(i + plan.perClip, prompts.length);
+          const h = document.createElement('div');
+          h.className = 'clip-divider';
+          h.id = `${p}-clip-${clipIdx}`;
+          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${i + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button></span>`;
+          grid.appendChild(h);
+        }
         const card = document.createElement('div');
         card.id = `${p}-card-${i + 1}`;
         card.className = 'result-card card p-4 flex flex-col justify-between';
@@ -329,6 +435,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const out = card.querySelector(`.${p}-output-container`);
       out.innerHTML = '<div class="loader"></div>';
       card.dataset.videoPromptCache = ''; // gambar berubah → buang cache prompt video lama
+      if (durState.on) {
+        const ci = Math.ceil(parseInt(id, 10) / window.clipPlan(durState.platform, durState.duration).perClip);
+        const hd = document.getElementById(`${p}-clip-${ci}`);
+        if (hd) hd.dataset.clipPromptCache = ''; // scene berubah → prompt klip lama tidak valid
+      }
       const retries = 3; let lastError = null;
       for (let i = 0; i < retries; i++) {
         try {
@@ -368,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (i < retries - 1) await new Promise(rz => setTimeout(rz, 1000 * Math.pow(2, i)));
         }
       }
-      if (lastError) out.innerHTML = '';
+      if (lastError) out.innerHTML = durState.on ? retryPlaceholder(id) : '';
     }
 
     generateBtn.addEventListener('click', async () => {
@@ -394,10 +505,15 @@ document.addEventListener('DOMContentLoaded', () => {
       while (attempts < MAX && success === 0) {
         attempts++;
         buildCards(ideas);
-        await Promise.allSettled(ideas.map((idea, i) => generateSingle(i + 1, idea.title, idea.prompt)));
+        const chunk = durState.on ? window.clipPlan(durState.platform, durState.duration).perClip : ideas.length;
+        for (let s = 0; s < ideas.length; s += chunk) {
+          await Promise.allSettled(ideas.slice(s, s + chunk).map((idea, j) => generateSingle(s + j + 1, idea.title, idea.prompt)));
+        }
         success = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img')).length;
       }
-      grid.querySelectorAll('.result-card').forEach(c => { if (!c.querySelector('img')) c.remove(); });
+      if (!durState.on) {
+        grid.querySelectorAll('.result-card').forEach(c => { if (!c.querySelector('img')) c.remove(); });
+      }
       generateBtn.disabled = false; generateBtn.innerHTML = orig;
       if (success === 0) alert('Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.');
       else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); }
@@ -405,6 +521,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     grid.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-action]'); if (!btn) return;
+      if (btn.dataset.action === `${p}-clip-prompt`) { generateClipPrompt(parseInt(btn.dataset.clip, 10)); return; }
+      if (btn.dataset.action === `${p}-clip-download`) {
+        const k = parseInt(btn.dataset.clip, 10);
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        const all = Array.from(grid.querySelectorAll('.result-card'));
+        downloadCards(all.slice((k - 1) * plan.perClip, k * plan.perClip));
+        return;
+      }
       const id = btn.dataset.sceneId;
       const card = document.getElementById(`${p}-card-${id}`);
       const img = card?.querySelector('img');
@@ -414,12 +538,24 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (btn.dataset.action === `${p}-video` && img) generateVideoPrompt(id);
     });
 
-    downloadAllBtn.addEventListener('click', () => {
-      grid.querySelectorAll('.result-card').forEach(card => {
+    function downloadCards(cards) {
+      cards.forEach(card => {
         const img = card.querySelector('img'); if (!img) return;
         const safe = (card.dataset.title || 'scene').replace(/[^a-z0-9]/gi, '_').toLowerCase();
         window.downloadDataURINew(img.src, `${cfg.filenamePrefix}_${safe}.png`);
       });
+    }
+    downloadAllBtn.addEventListener('click', () => {
+      const all = Array.from(grid.querySelectorAll('.result-card'));
+      if (!durState.on) { downloadCards(all); return; }
+      const plan = window.clipPlan(durState.platform, durState.duration);
+      const totalClips = Math.ceil(all.length / plan.perClip);
+      const choices = [{ label: `<i class="fas fa-download mr-2"></i>Semua foto (${all.length})`, onPick: () => downloadCards(all) }];
+      for (let k = 1; k <= totalClips; k++) {
+        const cards = all.slice((k - 1) * plan.perClip, k * plan.perClip);
+        choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>Klip ${k} — Scene ${(k - 1) * plan.perClip + 1}–${(k - 1) * plan.perClip + cards.length} (${cards.length} foto)`, onPick: () => downloadCards(cards) });
+      }
+      showChoiceModal('Unduh foto yang mana?', choices);
     });
 
     function openPreview(src) {
@@ -468,6 +604,89 @@ Output ONLY the video prompt for this scene, nothing else.`;
       cache[cacheKey] = vp;
       card.dataset.videoPromptCache = JSON.stringify(cache); // simpan cache per gaya+bahasa
       return { sceneNum, total, title, vp, imageUrl: img.src };
+    }
+
+    async function requestClipPrompt(clipIdx) {
+      const plan = window.clipPlan(durState.platform, durState.duration);
+      const all = Array.from(grid.querySelectorAll('.result-card'));
+      const start = (clipIdx - 1) * plan.perClip;
+      const cards = all.slice(start, start + plan.perClip);
+      if (!cards.length) throw new Error('Klip tidak ditemukan.');
+      const failed = cards.filter(c => !c.querySelector('img'));
+      if (failed.length) throw new Error(`Ada ${failed.length} scene gagal di klip ini. Klik "Coba Lagi" pada scene yang gagal dulu supaya prompt klip utuh ${plan.perClip} scene.`);
+      const header = document.getElementById(`${p}-clip-${clipIdx}`);
+      const cacheKey = `${audioStyle}:${audioLang}`;
+      let cache = {};
+      try { cache = JSON.parse(header?.dataset.clipPromptCache || '{}'); } catch (e) { cache = {}; }
+      if (cache[cacheKey]) return { clipIdx, vp: cache[cacheKey], cards, cached: true };
+      const totalClips = Math.ceil(all.length / plan.perClip);
+      const sceneLines = cards.map((c, j) => `${j + 1}. (detik ${j * 2}–${j * 2 + 2}) "${c.dataset.title}": ${c.dataset.prompt}`).join('\n');
+      const prevBridge = clipIdx > 1 ? (all[start - 1]?.dataset.title || 'previous clip') : null;
+      const nextBridge = start + plan.perClip < all.length ? (all[start + plan.perClip]?.dataset.title || 'next clip') : null;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+      const systemPrompt = `You are an expert video prompt engineer. Write ONE image-to-video prompt for CLIP ${clipIdx} of ${totalClips} in a continuous ${cfg.subject} story video. The user will feed ${cards.length} keyframe photos IN ORDER into ONE ${plan.clipSec}-second generation (each keyframe covers ~2 seconds). The keyframes of THIS clip, in order with timing:
+${sceneLines}
+
+Write ONE cinematic English prompt describing the FULL ${plan.clipSec}-second clip as continuous motion through these keyframes:
+1. Reference the keyframes in order with explicit timing (0–2s, 2–4s, ...). Keep the subject/product identity EXACTLY as shown in the photos.
+2. ONE consistent visual style, color grade, and lighting mood across the whole clip.
+3. ${prevBridge ? `OPENING: flow on smoothly from the previous clip (which ended at "${prevBridge}").` : 'OPENING: this is the FIRST clip — start with an inviting establishing motion.'}
+4. ${nextBridge ? `ENDING: end on a camera motion that bridges into the next clip (which starts at "${nextBridge}").` : 'ENDING: this is the FINAL clip — close on a confident CTA beat.'}
+5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
+6. Any spoken words MUST be written in ${LANG_LABEL[audioLang] || 'Indonesian'}, wrapped in double quotes. Auto-extract the product name and any slogan/tagline from the product context (place the slogan on the final clip/CTA).
+7. Under 250 words, optimized for image-to-video AI (Runway, Pika, Kling, Veo, Seedance).
+Output ONLY the video prompt, nothing else.`;
+      const userText = `Clip ${clipIdx}/${totalClips}. Product/subject context: "${descInput.value.trim()}". Audio style: ${audioStyle}. Spoken language: ${LANG_LABEL[audioLang]}.`;
+      const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
+      const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
+      const vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+      if (!vp) throw new Error('Prompt kosong dari API.');
+      cache[cacheKey] = vp;
+      if (header) header.dataset.clipPromptCache = JSON.stringify(cache);
+      return { clipIdx, vp, cards };
+    }
+
+    async function generateClipPrompt(clipIdx) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Membuat Prompt Klip ${clipIdx}...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
+      modal.innerHTML = loadingHTML;
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+      async function run() {
+        modal.innerHTML = loadingHTML;
+        try {
+          const { vp, cards } = await requestClipPrompt(clipIdx);
+          const plan = window.clipPlan(durState.platform, durState.duration);
+          const thumbs = cards.map(c => `<img src="${c.querySelector('img').src}" class="h-16 rounded object-cover">`).join('');
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Prompt Video — Klip ${clipIdx} (${cards.length} foto · ${plan.clipSec} dtk)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex gap-2 mb-3 overflow-x-auto">${thumbs}</div>
+            <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
+              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">Satu prompt untuk SATU klip utuh (${cards.length} keyframe):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button></div>
+              <textarea data-prompt rows="9" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm font-mono resize-none">${window.escHtml(vp)}</textarea>
+            </div>
+            <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i><strong>Cara pakai:</strong> unggah ${cards.length} foto klip ini BERURUTAN ke platform image-to-video (${window.VIDEO_PLATFORMS[durState.platform].label}) + paste prompt ini → 1 klip ${plan.clipSec} dtk. Gabungkan semua klip berurutan di CapCut/editor → satu story utuh.</p>
+            <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">Tutup</button>
+          </div>`;
+          modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
+          const copyBtn = modal.querySelector('[data-copy]'), ta = modal.querySelector('[data-prompt]');
+          copyBtn.addEventListener('click', () => {
+            const ok = window.copyText(ta.value);
+            if (!ok) { ta.focus(); ta.select(); }
+            copyBtn.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>Tersalin!' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Tekan Ctrl+C';
+            setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 2000);
+          });
+        } catch (err) {
+          console.error('clip prompt error', err);
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt klip</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">Tutup</button></div></div>`;
+          modal.querySelector('[data-close]').addEventListener('click', close);
+          modal.querySelector('[data-retry]').addEventListener('click', run);
+        }
+      }
+      run();
     }
 
     async function generateVideoPrompt(id) {
@@ -580,12 +799,101 @@ Output ONLY the video prompt for this scene, nothing else.`;
         const title = card.dataset.title || `Scene ${i + 1}`;
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${i + 1}/${total}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${i + 1}/${total}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
+        const copyOne = block.querySelector('[data-copyone]');
+        copyOne.addEventListener('click', () => {
+          const ok = window.copyText(ta.value);
+          copyOne.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>OK' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Ctrl+C';
+          setTimeout(() => { copyOne.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 1800);
+        });
         retryBtn.addEventListener('click', () => runBlock(i, card, ta, st, retryBtn));
         progressEl.textContent = `Menyiapkan ${i + 1}/${total}...`;
         await runBlock(i, card, ta, st, retryBtn);
+      }
+      refreshAggregate();
+    }
+
+    async function generateAllClipPrompts() {
+      const plan = window.clipPlan(durState.platform, durState.duration);
+      const all = Array.from(grid.querySelectorAll('.result-card'));
+      if (!all.length) return;
+      const totalClips = Math.ceil(all.length / plan.perClip);
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Semua Prompt Klip (${totalClips} klip · ${plan.clipSec} dtk/klip)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-3" data-progress>Menyiapkan 0/${totalClips}...</p>
+        <div data-list class="space-y-3"></div>
+        <div class="flex gap-2 mt-4">
+          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>Copy Semua</button>
+          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>Unduh .txt</button>
+        </div>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+      modal.querySelector('[data-close]').addEventListener('click', close);
+      const listEl = modal.querySelector('[data-list]');
+      const progressEl = modal.querySelector('[data-progress]');
+      const copyAll = modal.querySelector('[data-copyall]'), txtBtn = modal.querySelector('[data-txt]');
+      const resultsByIdx = new Array(totalClips).fill(null);
+
+      function aggregateText() {
+        return resultsByIdx.map((r, i) => r ? `## KLIP ${i + 1}/${totalClips} (Scene ${i * plan.perClip + 1}–${Math.min((i + 1) * plan.perClip, all.length)}, ${plan.clipSec} dtk)\n${r.vp}` : null).filter(Boolean).join('\n\n');
+      }
+      function refreshAggregate() {
+        const done = resultsByIdx.filter(Boolean).length;
+        progressEl.textContent = `Selesai ${done}/${totalClips} prompt klip`;
+        copyAll.classList.toggle('hidden', done === 0);
+        txtBtn.classList.toggle('hidden', done === 0);
+      }
+      copyAll.addEventListener('click', () => {
+        const ok = window.copyText(aggregateText());
+        copyAll.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>Tersalin!' : '<i class="fas fa-download mr-1"></i>Pakai Unduh .txt';
+        setTimeout(() => { copyAll.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Semua'; }, 2200);
+      });
+      txtBtn.addEventListener('click', () => {
+        const b = new Blob([aggregateText()], { type: 'text/plain' });
+        const u = URL.createObjectURL(b);
+        window.downloadDataURINew(u, `${cfg.filenamePrefix}_clip_prompts.txt`);
+        setTimeout(() => URL.revokeObjectURL(u), 1500);
+      });
+
+      async function runBlock(i, ta, st, retryBtn) {
+        st.innerHTML = '<span class="loader !w-4 !h-4 !border-2 inline-block"></span>';
+        retryBtn.classList.add('hidden');
+        try {
+          const r = await requestClipPrompt(i + 1);
+          ta.value = r.vp;
+          resultsByIdx[i] = { vp: r.vp };
+          st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
+        } catch (err) {
+          ta.value = 'Gagal: ' + err.message;
+          resultsByIdx[i] = null;
+          st.innerHTML = '<i class="fas fa-xmark text-red-500"></i>';
+          retryBtn.classList.remove('hidden');
+        }
+        refreshAggregate();
+      }
+
+      for (let i = 0; i < totalClips; i++) {
+        const block = document.createElement('div');
+        block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Klip ${i + 1}/${totalClips} — Scene ${i * plan.perClip + 1}–${Math.min((i + 1) * plan.perClip, all.length)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        listEl.appendChild(block);
+        const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
+        const copyOne = block.querySelector('[data-copyone]');
+        copyOne.addEventListener('click', () => {
+          const ok = window.copyText(ta.value);
+          copyOne.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>OK' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Ctrl+C';
+          setTimeout(() => { copyOne.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 1800);
+        });
+        retryBtn.addEventListener('click', () => runBlock(i, ta, st, retryBtn));
+        progressEl.textContent = `Menyiapkan ${i + 1}/${totalClips}...`;
+        await runBlock(i, ta, st, retryBtn);
       }
       refreshAggregate();
     }
