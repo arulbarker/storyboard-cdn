@@ -74,6 +74,7 @@
   .ratio-btn:hover { border-color:var(--brand-blue); }
   .ratio-btn.selected { border-color:transparent; background:linear-gradient(135deg,var(--brand-blue),var(--brand-blue-dark)); color:#fff; }
   .count-btn-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:.5rem; }
+  .count-btn-grid.hidden { display:none; }
   .count-btn-grid button { padding:.5rem; border:2px solid var(--line); border-radius:.6rem; font-weight:600; min-height:44px; transition:.15s; }
   .count-btn-grid button:hover { border-color:var(--brand-blue); }
   .count-btn-grid button.selected { border-color:transparent; background:linear-gradient(135deg,var(--brand-blue),var(--brand-blue-dark)); color:#fff; }
