@@ -218,6 +218,45 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   // === END MODEL LIBRARY ===
 
+  // === UI DIALOGS ===
+  // Pengganti dialog native alert/confirm — diblokir diam-diam oleh sandbox iframe Canvas
+  // (tanpa allow-modals, confirm langsung return false tanpa tampil).
+  function buildUiDialog(pesan, buttonsHtml) {
+    const modal = document.createElement('div');
+    modal.className = 'image-preview-modal';
+    modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full" onclick="event.stopPropagation()">
+      <p class="text-sm text-gray-700 mb-5 leading-relaxed" data-msg></p>
+      <div class="flex gap-2 justify-end" data-btns></div>
+    </div>`;
+    modal.querySelector('[data-msg]').textContent = pesan;
+    modal.querySelector('[data-btns]').innerHTML = buttonsHtml;
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('show'), 10);
+    const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+    return { modal, close };
+  }
+  window.uiNotify = function (pesan) {
+    return new Promise((res) => {
+      const { modal, close } = buildUiDialog(pesan,
+        '<button type="button" data-ok class="btn-primary font-semibold py-2 px-5 rounded-lg text-sm">OK</button>');
+      const done = () => { close(); res(); };
+      modal.querySelector('[data-ok]').addEventListener('click', done);
+      modal.addEventListener('click', (e) => { if (e.target === modal) done(); });
+    });
+  };
+  window.uiConfirm = function (pesan, labelYa) {
+    return new Promise((res) => {
+      const { modal, close } = buildUiDialog(pesan,
+        '<button type="button" data-no class="btn-secondary font-semibold py-2 px-5 rounded-lg text-sm">Batal</button>' +
+        `<button type="button" data-yes class="font-semibold py-2 px-5 rounded-lg text-sm" style="background:#dc2626;color:#fff;">${labelYa || 'Hapus'}</button>`);
+      const done = (v) => { close(); res(v); };
+      modal.querySelector('[data-yes]').addEventListener('click', () => done(true));
+      modal.querySelector('[data-no]').addEventListener('click', () => done(false));
+      modal.addEventListener('click', (e) => { if (e.target === modal) done(false); });
+    });
+  };
+  // === END UI DIALOGS ===
+
   // === INFLUENCER STUDIO ===
   (function initInfluencerStudio() {
     const genBtn = document.getElementById('influencer-generate-btn');
@@ -232,6 +271,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const libCount = document.getElementById('influencer-lib-count');
     const hijabGroup = document.getElementById('influencer-hijab-group');
     let currentB64 = null;
+    let currentMime = 'image/png';
+    let currentSource = 'generate';
 
     function influencerPick(gridId) {
       const grid = document.getElementById(gridId);
@@ -276,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const result = await res.json();
           const b64 = result?.candidates?.[0]?.content?.parts?.find(x => x.inlineData)?.inlineData?.data;
           if (!b64) throw new Error('No image data received');
-          currentB64 = b64;
+          currentB64 = b64; currentMime = 'image/png'; currentSource = 'generate';
           resultBox.innerHTML = `<img src="data:image/png;base64,${b64}" class="rounded-xl max-h-[420px] w-auto mx-auto" alt="Model AI">`;
           saveRow.classList.remove('hidden');
           genBtn.disabled = false; regenBtn.disabled = false;
@@ -292,24 +333,42 @@ document.addEventListener('DOMContentLoaded', () => {
     genBtn.addEventListener('click', generateModel);
     regenBtn.addEventListener('click', generateModel);
 
+    const uploadBtn = document.getElementById('influencer-upload-btn');
+    const uploadInput = document.getElementById('influencer-upload-input');
+    uploadBtn.addEventListener('click', () => uploadInput.click());
+    uploadInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      e.target.value = null;
+      if (!file) return;
+      try {
+        const { base64, mimeType, dataUrl } = await window.compressImage(file);
+        currentB64 = base64; currentMime = mimeType; currentSource = 'upload';
+        resultBox.innerHTML = `<img src="${dataUrl}" class="rounded-xl max-h-[420px] w-auto mx-auto" alt="Foto model upload">`;
+        saveRow.classList.remove('hidden');
+      } catch (err) {
+        console.error('upload model failed:', err);
+        window.uiNotify('File tidak bisa dibaca — pastikan itu file gambar (JPG/PNG/HEIC).');
+      }
+    });
+
     saveBtn.addEventListener('click', async () => {
       const name = nameInput.value.trim();
-      if (!name) { alert('Kasih nama modelnya dulu ya.'); nameInput.focus(); return; }
+      if (!name) { window.uiNotify('Kasih nama modelnya dulu ya.'); nameInput.focus(); return; }
       if (!currentB64) return;
       let existing = [];
       try { existing = await window.modelDB.list(); } catch (err) {}
-      if (existing.length >= 5) { alert('Pustaka penuh (maksimal 5 model). Hapus salah satu dulu ya.'); return; }
-      const rec = { id: String(Date.now()), name, mime: 'image/png', cfg: currentCfg(), createdAt: new Date().toISOString() };
+      if (existing.length >= 5) { window.uiNotify('Pustaka penuh (maksimal 5 model). Hapus salah satu dulu ya.'); return; }
+      const rec = { id: String(Date.now()), name, mime: currentMime, cfg: currentSource === 'upload' ? { source: 'upload' } : currentCfg(), createdAt: new Date().toISOString() };
       let cloudOk = false;
       try { if (window.modelCloud) cloudOk = await window.modelCloud.upload(Object.assign({}, rec, { base64: currentB64 })); }
       catch (err) { console.error('cloud upload failed:', err); }
       try {
-        await window.modelDB.put(Object.assign({}, rec, { blob: window.b64ToBlob(currentB64, 'image/png'), cloud: cloudOk }));
+        await window.modelDB.put(Object.assign({}, rec, { blob: window.b64ToBlob(currentB64, currentMime), cloud: cloudOk }));
         nameInput.value = '';
         renderLibrary();
       } catch (err) {
         console.error('modelDB put failed:', err);
-        alert('Penyimpanan browser tidak tersedia (mode private/incognito?). Model tidak tersimpan — kamu tetap bisa klik kanan foto untuk menyimpannya manual.');
+        window.uiNotify('Penyimpanan browser tidak tersedia (mode private/incognito?). Model tidak tersimpan — kamu tetap bisa klik kanan foto untuk menyimpannya manual.');
       }
     });
 
@@ -333,10 +392,20 @@ document.addEventListener('DOMContentLoaded', () => {
               <button type="button" data-del="${m.id}" class="flex-1 text-xs font-semibold py-1.5 rounded-lg" style="color:#dc2626;border:1px solid rgba(220,38,38,.3);"><i class="fas fa-trash pointer-events-none"></i></button>
             </div>
           </div>`;
-        card.querySelector('[data-del]').addEventListener('click', async () => {
-          if (!confirm(`Hapus model "${m.name}"?`)) return;
-          try { if (window.modelCloud) window.modelCloud.del(m.id); } catch (err) {}
-          try { await window.modelDB.remove(m.id); renderLibrary(); } catch (err) { console.error(err); }
+        card.querySelector('[data-del]').addEventListener('click', async (e) => {
+          const delBtn = e.currentTarget;
+          if (!(await window.uiConfirm(`Hapus model "${m.name}"?`))) return;
+          delBtn.disabled = true;
+          if (m.cloud === true && window.modelCloud) {
+            const ok = await window.modelCloud.del(m.id);
+            if (!ok) {
+              delBtn.disabled = false;
+              window.uiNotify('Gagal menghapus di server — cek koneksi lalu coba lagi.');
+              return;
+            }
+          }
+          try { await window.modelDB.remove(m.id); renderLibrary(); }
+          catch (err) { console.error(err); delBtn.disabled = false; }
         });
         libGrid.appendChild(card);
       });
@@ -556,7 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
       libBtn.addEventListener('click', async () => {
         let list = [];
         try { list = await window.modelDB.list(); } catch (err) { console.error(err); }
-        if (!list.length) { alert('Belum ada model tersimpan — buat dulu di menu AI Influencer.'); return; }
+        if (!list.length) { window.uiNotify('Belum ada model tersimpan — buat dulu di menu AI Influencer.'); return; }
         showChoiceModal('Pilih model dari pustaka', list.map(m => ({
           label: `<span class="flex items-center gap-3"><img src="${URL.createObjectURL(m.blob)}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span>`,
           onPick: async () => {
@@ -702,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateBtn.addEventListener('click', async () => {
       if (!images.length) return;
-      if (cfg.requireModel && !modelBase64) { alert('Fitur ini butuh Foto Model — upload foto model dulu ya.'); return; }
+      if (cfg.requireModel && !modelBase64) { window.uiNotify('Fitur ini butuh Foto Model — upload foto model dulu ya.'); return; }
       generateBtn.disabled = true;
       const orig = generateBtn.innerHTML;
       generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menganalisa...</span>';
@@ -733,7 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.querySelectorAll('.result-card').forEach(c => { if (!c.querySelector('img')) c.remove(); });
       }
       generateBtn.disabled = false; generateBtn.innerHTML = orig;
-      if (success === 0) alert('Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.');
+      if (success === 0) window.uiNotify('Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.');
       else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); }
     });
 
@@ -1452,7 +1521,10 @@ Respond ONLY with a valid JSON array of ${count} objects, in sequential story or
         return d.status === 'SUKSES' ? d.base64 : null;
       },
       async del(id) {
-        try { await fetch(this._q('model_del', `&id=${encodeURIComponent(id)}`)); } catch (e) {}
+        try {
+          const d = await fetch(this._q('model_del', `&id=${encodeURIComponent(id)}`)).then(r => r.json());
+          return d.status === 'SUKSES';
+        } catch (e) { return false; }
       },
       async upload(rec) {
         const body = JSON.stringify({
@@ -1520,7 +1592,7 @@ Respond ONLY with a valid JSON array of ${count} objects, in sequential story or
         const d = await api('cek', email);
         if (d.status === 'INVALID') {
           clearInterval(sesInterval);
-          alert('Sesi berakhir. Akun ini login di perangkat lain.');
+          await window.uiNotify('Sesi berakhir. Akun ini login di perangkat lain.');
           clearSession();
           location.reload();
         }
