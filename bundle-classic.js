@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gaya audio + bahasa untuk prompt video (global per fitur)
     let audioStyle = 'voiceover';
     let audioLang = 'id';
-    let videoAllBtn = null, audioStyleSel = null, audioLangBtn = null;
+    let videoAllBtn = null, audioStyleSel = null, audioLangBtn = null, captionBtn = null;
     if (downloadAllBtn && downloadAllBtn.parentNode) {
       const wrap = document.createElement('div');
       wrap.className = 'flex items-center gap-2';
@@ -487,8 +487,16 @@ document.addEventListener('DOMContentLoaded', () => {
       renderLang();
       audioLangBtn.addEventListener('click', () => { audioLang = audioLang === 'id' ? 'en' : 'id'; renderLang(); });
 
+      captionBtn = document.createElement('button');
+      captionBtn.type = 'button';
+      captionBtn.id = `${p}-caption-btn`;
+      captionBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
+      captionBtn.innerHTML = '<i class="fas fa-hashtag mr-1"></i>Caption';
+      captionBtn.addEventListener('click', () => showCaptionModal());
+
       wrap.appendChild(audioStyleSel);
       wrap.appendChild(audioLangBtn);
+      wrap.appendChild(captionBtn);
       wrap.appendChild(videoAllBtn);
       wrap.appendChild(downloadAllBtn);
     }
@@ -498,6 +506,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let modelBase64 = null, modelMime = null;
 
     function ratio() { return document.querySelector(`#${p}-ratio-selection .ratio-btn.selected`)?.dataset.ratio || '16:9'; }
+    function currentTheme() {
+      if (themeGrid) return selectedTheme === 'custom' ? (themeInput ? themeInput.value.trim() : '') : selectedTheme.trim();
+      return themeInput ? themeInput.value.trim() : '';
+    }
     function aspectClass(r) { return r === '1:1' ? 'aspect-square' : r === '3:4' ? 'aspect-[3/4]' : r === '9:16' ? 'aspect-[9/16]' : 'aspect-video'; }
     function updateBtn() {
       generateBtn.disabled = images.length === 0 || !descInput.value.trim();
@@ -670,14 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const plan = window.clipPlan(durState.platform, durState.duration);
         systemPrompt += `\n\n**CLIP STRUCTURE (IMPORTANT):** These ${plan.photos} scenes will become ${plan.clips} separate video clip(s) of ${plan.clipSec} seconds each (${plan.perClip} scenes per clip, ~2 seconds per scene). Structure the story as ${plan.clips} chapter(s) of ONE continuous narrative, one chapter per clip. The LAST scene of each chapter must work as a smooth narrative AND visual bridge into the first scene of the next chapter, so separately generated clips cut together seamlessly in an editor.`;
       }
-      let theme = '';
-      if (themeGrid) {
-        theme = selectedTheme === 'custom'
-          ? (themeInput ? themeInput.value.trim() : '')
-          : selectedTheme.trim();
-      } else if (themeInput) {
-        theme = themeInput.value.trim();
-      }
+      const theme = currentTheme();
       let userQuery = `Analyze this ${cfg.subject}. Description: "${descInput.value.trim()}". Desired aspect ratio is ${r}.`;
       if (theme) userQuery += `\nPhoto Theme: "${theme}"`;
       const parts = [{ text: userQuery }];
@@ -696,6 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function buildCards(prompts) {
       grid.innerHTML = '';
+      grid.dataset.captionCache = '';
       const ac = aspectClass(ratio());
       const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
       prompts.forEach((pr, i) => {
@@ -777,6 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
       generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menganalisa...</span>';
       downloadAllBtn.classList.add('hidden');
       if (videoAllBtn) videoAllBtn.classList.add('hidden');
+      if (captionBtn) captionBtn.classList.add('hidden');
       if (audioStyleSel) audioStyleSel.classList.add('hidden');
       if (audioLangBtn) audioLangBtn.classList.add('hidden');
       grid.innerHTML = `<div class="col-span-full text-center py-10"><div class="loader inline-block"></div><p class="mt-4 text-gray-500">${cfg.analyzingMsg}</p></div>`;
@@ -803,7 +810,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       generateBtn.disabled = false; generateBtn.innerHTML = orig;
       if (success === 0) window.uiNotify('Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.');
-      else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); }
+      else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); if (captionBtn) captionBtn.classList.remove('hidden'); }
     });
 
     grid.addEventListener('click', (e) => {
@@ -932,6 +939,116 @@ Output ONLY the video prompt, nothing else.`;
       if (header) header.dataset.clipPromptCache = JSON.stringify(cache);
       return { clipIdx, vp, cards };
     }
+
+    // === CAPTION ===
+    async function requestCaption() {
+      const cards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.dataset.title);
+      if (!cards.length) throw new Error('Belum ada scene — generate story dulu.');
+      const cacheKey = audioLang;
+      let cache = {};
+      try { cache = JSON.parse(grid.dataset.captionCache || '{}'); } catch (e) { cache = {}; }
+      if (cache[cacheKey]) return { text: cache[cacheKey], cached: true };
+      const storyList = cards.map((c, i) => `${i + 1}. ${c.dataset.title || 'Scene'}`).join('\n');
+      const theme = currentTheme();
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+      const systemPrompt = `You are a social media copywriter for short-form video (TikTok, Instagram Reels, Shopee Video). Write ready-to-post captions in ${LANG_LABEL[audioLang] || 'Indonesian'} for ONE final ${cfg.subject} video assembled from the storyboard below.
+
+Output EXACTLY this structure, using these exact delimiter lines:
+
+=== SOFT-SELLING ===
+(caption: relatable opening hook + short value points + soft CTA)
+=== STORYTELLING ===
+(caption: narrative hook that follows the storyboard arc + CTA)
+=== HARD-SELLING ===
+(caption: direct benefit hook + urgency + strong CTA)
+=== HASHTAG ===
+(one line: 10-15 hashtags, mix niche hashtags from the product/category with popular general ones)
+
+Rules:
+1. Auto-extract the product name and any slogan/tagline from the product context and weave them in naturally.
+2. Each caption: hook on the first line, 2-4 short lines total, tasteful emoji allowed, ready to paste as-is.
+3. Match the mood to the photo theme if given.
+4. Output ONLY the structure above — no explanations, no extra markdown.`;
+      const userText = `Product/subject context: "${descInput.value.trim()}".${theme ? ` Photo theme/mood: "${theme}".` : ''} Storyboard of the final video, in order:\n${storyList}`;
+      const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
+      const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
+      const text = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+      if (!text) throw new Error('Caption kosong dari API.');
+      cache[cacheKey] = text;
+      grid.dataset.captionCache = JSON.stringify(cache);
+      return { text };
+    }
+
+    function parseCaptionText(text) {
+      const secs = [
+        { key: 'soft', label: 'Soft-Selling', re: /===\s*SOFT-SELLING\s*===([\s\S]*?)(?====|$)/i },
+        { key: 'story', label: 'Storytelling', re: /===\s*STORYTELLING\s*===([\s\S]*?)(?====|$)/i },
+        { key: 'hard', label: 'Hard-Selling', re: /===\s*HARD-SELLING\s*===([\s\S]*?)(?====|$)/i },
+        { key: 'hashtag', label: 'Hashtag', re: /===\s*HASHTAG\s*===([\s\S]*?)(?====|$)/i }
+      ];
+      const out = [];
+      secs.forEach(s => { const m = text.match(s.re); if (m && m[1].trim()) out.push({ key: s.key, label: s.label, body: m[1].trim() }); });
+      return out.length ? out : [{ key: 'all', label: 'Caption', body: text }];
+    }
+
+    function showCaptionModal() {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>Membuat Caption...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
+      modal.innerHTML = loadingHTML;
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+      async function run() {
+        modal.innerHTML = loadingHTML;
+        try {
+          const { text } = await requestCaption();
+          const parts = parseCaptionText(text);
+          const blocks = parts.map((s, i) => `
+            <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
+              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${window.escHtml(s.label)}</span><button data-copyone="${i}" class="text-xs bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button></div>
+              <textarea data-cap="${i}" rows="${s.key === 'hashtag' ? 3 : 5}" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm resize-none">${window.escHtml(s.body)}</textarea>
+            </div>`).join('');
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>Caption Video</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            ${blocks}
+            <div class="flex gap-2">
+              <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>Copy Semua</button>
+              <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-download mr-1"></i>Unduh .txt</button>
+            </div>
+          </div>`;
+          modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
+          modal.querySelectorAll('[data-copyone]').forEach(btn => btn.addEventListener('click', () => {
+            const ta = modal.querySelector(`[data-cap="${btn.dataset.copyone}"]`);
+            const ok = window.copyText(ta.value);
+            if (!ok) { ta.focus(); ta.select(); }
+            btn.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>Tersalin!' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Tekan Ctrl+C';
+            setTimeout(() => { btn.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 2000);
+          }));
+          const aggregate = () => parts.map(s => `# ${s.label}\n${s.body}`).join('\n\n');
+          const copyAllBtn = modal.querySelector('[data-copyall]');
+          copyAllBtn.addEventListener('click', () => {
+            const ok = window.copyText(aggregate());
+            copyAllBtn.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>Tersalin!' : '<i class="fas fa-download mr-1"></i>Pakai Unduh .txt';
+            setTimeout(() => { copyAllBtn.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Semua'; }, 2200);
+          });
+          modal.querySelector('[data-txt]').addEventListener('click', () => {
+            const b = new Blob([aggregate()], { type: 'text/plain' });
+            const u = URL.createObjectURL(b);
+            window.downloadDataURINew(u, `${cfg.filenamePrefix}_caption.txt`);
+            setTimeout(() => URL.revokeObjectURL(u), 1500);
+          });
+        } catch (err) {
+          console.error('caption error', err);
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat caption</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">Tutup</button></div></div>`;
+          modal.querySelector('[data-close]').addEventListener('click', close);
+          modal.querySelector('[data-retry]').addEventListener('click', run);
+        }
+      }
+      run();
+    }
+    // === END CAPTION ===
 
     async function generateClipPrompt(clipIdx) {
       const modal = document.createElement('div');
