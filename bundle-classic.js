@@ -133,11 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ugc_music: 'AUDIO: The on-screen presenter looks into the camera and speaks ONE short, natural review line (lip-synced) as part of a continuous testimonial script across scenes. Tone: casual, friendly, convincing. Layer an upbeat, catchy background music track underneath the voice, mixed low so the speech stays clear and out front.',
     voiceover: 'AUDIO: A professional off-screen voiceover narrator sells the product; the on-screen subject stays silent (visual talent only). The narration flows seamlessly from the previous scene into the next as one continuous script. Add subtle background music.',
     asmr: 'AUDIO: No human speech. Emphasize crisp product/ASMR sound effects relevant to the scene (food sizzle, unboxing crinkle, liquid/texture sounds) layered over soft, gentle music.',
-    cinematic: 'AUDIO: No narration or dialogue. Mood-driven cinematic background music that drives the pacing, with thin ambient sound effects only.'
+    cinematic: 'AUDIO: No narration or dialogue. Mood-driven cinematic background music that drives the pacing, with thin ambient sound effects only.',
+    timelapse: 'AUDIO: No human speech, voiceover, or dialogue at all. The footage plays as a fast time-lapse of the process; drive it with upbeat, rhythmic background music synced to the rapid progress, layered with light natural ambient and subtle whoosh SFX. Any label, name, or text appears on-screen only.'
   };
   const LANG_LABEL = { id: 'Indonesian', en: 'English' };
   // Gaya audio TANPA suara orang bicara sama sekali (musik + SFX saja)
-  const NO_SPEECH_STYLES = ['asmr', 'cinematic'];
+  const NO_SPEECH_STYLES = ['asmr', 'cinematic', 'timelapse'];
   window.audioSpeechRule = function (audioStyle, audioLang) {
     return NO_SPEECH_STYLES.includes(audioStyle)
       ? 'STRICTLY NO human speech, voiceover, dialogue, or narration of any kind — nobody talks at all. The audio is ONLY music and sound effects. Any product name, slogan, or tagline may appear ONLY as on-screen text/graphics, never spoken.'
@@ -458,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tombol "Semua Prompt Video" di samping Unduh Semua (dibuat dinamis)
     // Gaya audio + bahasa untuk prompt video (global per fitur)
-    let audioStyle = 'voiceover';
+    let audioStyle = cfg.defaultAudio || 'voiceover';
     let audioLang = 'id';
     let videoAllBtn = null, audioStyleSel = null, audioLangBtn = null, captionBtn = null;
     if (downloadAllBtn && downloadAllBtn.parentNode) {
@@ -482,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
       audioStyleSel = document.createElement('select');
       audioStyleSel.id = `${p}-audio-style`;
       audioStyleSel.className = 'btn-secondary text-sm font-semibold py-2 px-3 rounded-lg hidden';
-      audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option>';
+      audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option><option value="timelapse">⏩ Timelapse (tanpa narasi)</option>';
       audioStyleSel.value = audioStyle;
       audioStyleSel.addEventListener('change', () => { audioStyle = audioStyleSel.value; });
 
@@ -1776,7 +1777,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     function currentTheme() { return selection['gaya'] || selection['latar'] || ''; }
 
     // ---- Header output: audio + bahasa + Semua Prompt Video + Caption (salinan) ----
-    let audioStyle = 'voiceover';
+    let audioStyle = cfg.defaultAudio || 'voiceover';
     let audioLang = 'id';
     let videoAllBtn = null, audioStyleSel = null, audioLangBtn = null, captionBtn = null;
     if (downloadAllBtn && downloadAllBtn.parentNode) {
@@ -1800,7 +1801,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       audioStyleSel = document.createElement('select');
       audioStyleSel.id = `${p}-audio-style`;
       audioStyleSel.className = 'btn-secondary text-sm font-semibold py-2 px-3 rounded-lg hidden';
-      audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option>';
+      audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option><option value="timelapse">⏩ Timelapse (tanpa narasi)</option>';
       audioStyleSel.value = audioStyle;
       audioStyleSel.addEventListener('change', () => { audioStyle = audioStyleSel.value; });
 
@@ -2549,7 +2550,7 @@ Rules:
 
   createViralTab({
     prefix: 'housebuild', title: 'Generator Video Pembangunan Rumah', subtitle: 'Dari lahan kosong sampai rumah jadi — progresi konstruksi yang memuaskan.',
-    filenamePrefix: 'bangun_rumah', analyzingMsg: 'AI sedang menyusun proses pembangunan...',
+    filenamePrefix: 'bangun_rumah', analyzingMsg: 'AI sedang menyusun proses pembangunan...', defaultAudio: 'timelapse',
     subject: 'the step-by-step construction of a house on an empty plot of land, from clearing and foundation to walls, roof and the finished furnished house',
     arc: 'lahan kosong → penggalian & pondasi → struktur & dinding → atap terpasang → finishing & cat → rumah jadi lengkap dengan taman',
     chipGroups: [
@@ -2562,7 +2563,7 @@ Rules:
 
   createViralTab({
     prefix: 'landclear', title: 'Generator Video Pembersihan Lahan', subtitle: 'Before kotor → proses → after bersih rapi. Transformasi satisfying.',
-    filenamePrefix: 'bersih_lahan', analyzingMsg: 'AI sedang menyusun proses pembersihan...',
+    filenamePrefix: 'bersih_lahan', analyzingMsg: 'AI sedang menyusun proses pembersihan...', defaultAudio: 'timelapse',
     subject: 'a satisfying land/area clearing transformation, from an overgrown or dirty state through the cleaning process to a clean, tidy final result',
     arc: 'kondisi awal kotor/semak lebat → mulai proses pembersihan → setengah jalan terlihat perubahan → area hampir bersih → hasil akhir rapi & memuaskan',
     chipGroups: [
