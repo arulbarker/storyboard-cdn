@@ -1649,6 +1649,33 @@ For each scene provide a short Indonesian title (e.g. 'Scene 1: Awal') and a CON
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
 
+  window.buildCarCrashPrompt = function (cfg, sel, { count }) {
+    const ARCS = {
+      'Crash tabrakan': 'the vehicle accelerates fast → approaches the obstacle → violent impact → the body crumples and parts fly off → smoking wreck aftermath',
+      'Obstacle rintangan gila': 'the vehicle starts → clears obstacle after obstacle taking progressive damage → nearly falls apart → barely survives or breaks apart at the final obstacle',
+      'Downhill / terjun ramp': 'the vehicle at the very top → rolls down faster and faster → launches into the air off the ramp → slams and crashes on landing',
+      'vs Objek raksasa': 'a giant object approaches the vehicle → first heavy collision → dramatic soft-body destruction → the crushed remains settle',
+      'Demolition derby': 'many cars ram each other in an arena → escalating chaos and wreckage → dust and debris everywhere → one battered car remains',
+      'Balapan chaos': 'a tight race → cars clip and touch → a chain-reaction pile-up crash → a chaotic wrecked finish',
+    };
+    const action = (sel['jenis aksi'] && sel['jenis aksi'] !== '__random__') ? sel['jenis aksi'] : null;
+    const arc = (action && ARCS[action]) || 'the vehicle in motion → dramatic physics action builds up → peak crash impact → dramatic wreck aftermath';
+    const picks = Object.entries(sel)
+      .filter(([k]) => k !== 'custom')
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    return `You are an expert short-form viral video storyboard artist specializing in realistic car-crash physics/destruction videos (soft-body deformation style). Create a **${count}-scene visual CRASH/DESTRUCTION story** (storyboard) for a satisfying viral short video.
+
+**THE ACTION:** ${cfg.subject}.
+**PHYSICS ARC:** ${arc}. Spread this arc evenly across all ${count} scenes: begin before the action, show the destruction escalate step by step with realistic soft-body deformation (progressive denting, shattering glass, flying parts, motion blur, dust/sparks/smoke), and END on the dramatic crash climax or wreck aftermath — NOT a clean finished product.
+${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : ''}**SUBJECT LOCK (CRITICAL):** The exact vehicle (model + color), the arena/location, lighting style and camera treatment MUST stay perfectly consistent across ALL ${count} scenes — as if filmed in one continuous take, only the moment of the crash advances. Repeat the same detailed vehicle + setting description in every scene prompt so separately generated images look like one continuous video.
+**CONTENT SAFETY:** Focus ONLY on vehicles and physics destruction. NO people getting hurt, NO drivers/passengers in danger, NO blood or gore — clean, monetization-safe crash simulation like the game itself.
+
+**STRUCTURE:** ${count} scenes in strict chronological order of the crash sequence. Each scene = one clear moment forward. The final scene delivers the dramatic impact/aftermath payoff.
+For each scene provide a short Indonesian title (e.g. 'Scene 1: Melaju') and a CONCISE English prompt for an AI image generator that always repeats the locked vehicle + setting description.
+Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
+  };
+
   function createViralTab(cfg) {
     const p = cfg.prefix;
     const apiKey = "";
@@ -1942,7 +1969,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     async function analyzeAndGetPrompts() {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
       const r = ratio();
-      let systemPrompt = window.buildViralPrompt(cfg, cfg.custom ? { custom: document.getElementById(`${p}-custom-input`).value.trim() } : selection, { count: effectiveCount() });
+      let systemPrompt = (cfg.promptFn || window.buildViralPrompt)(cfg, cfg.custom ? { custom: document.getElementById(`${p}-custom-input`).value.trim() } : selection, { count: effectiveCount() });
       if (durState.on) {
         const plan = window.clipPlan(durState.platform, durState.duration);
         systemPrompt += `\n\n**CLIP STRUCTURE (IMPORTANT):** These ${plan.photos} scenes will become ${plan.clips} separate video clip(s) of ${plan.clipSec} seconds each (${plan.perClip} scenes per clip, ~2 seconds per scene). Structure as ${plan.clips} chapter(s) of ONE continuous process; the LAST scene of each chapter must bridge smoothly into the first scene of the next.`;
@@ -2555,6 +2582,20 @@ Rules:
     chipGroups: [
       { key: 'gaya', label: 'Gaya Video', options: ['Satisfying santai', 'Time-lapse cepat', 'Sinematik', 'POV', 'Dokumenter'] },
       { key: 'latar', label: 'Latar', options: ['Studio', 'Alam terbuka', 'Dalam ruangan', 'Pasar', 'Workshop'] },
+    ],
+  });
+
+  createViralTab({
+    prefix: 'carcrash', title: 'Generator Video Car Crash', subtitle: 'Crash, stunt & destruction fisika mobil — konten viral YouTube/Shorts.',
+    filenamePrefix: 'car_crash', analyzingMsg: 'AI sedang menyusun simulasi crash...',
+    promptFn: window.buildCarCrashPrompt,
+    subject: 'a realistic car crash/stunt simulation with soft-body physics destruction',
+    arc: 'kendaraan mulai bergerak → aksi fisika memuncak → benturan klimaks → aftermath bangkai dramatis',
+    chipGroups: [
+      { key: 'jenis aksi', label: 'Jenis Aksi', options: ['Crash tabrakan', 'Obstacle rintangan gila', 'Downhill / terjun ramp', 'vs Objek raksasa', 'Demolition derby', 'Balapan chaos'] },
+      { key: 'kendaraan', label: 'Kendaraan', options: ['Sedan', 'SUV', 'Truk', 'Bus sekolah', 'Mobil sport', 'Mobil klasik', 'Pickup', 'Mobil balap', 'Monster truck'] },
+      { key: 'arena', label: 'Arena / Lokasi', options: ['Jalan tol', 'Tebing gunung', 'Tangga raksasa', 'Jembatan runtuh', 'Arena beton', 'Gurun', 'Jalan kota', 'Pabrik'] },
+      { key: 'gaya', label: 'Gaya Kamera', options: ['Slow-motion sinematik', 'POV dashcam', 'Drone follow', 'Multi-angle replay', 'Time-lapse chaos'] },
     ],
   });
   // === END VIRAL STUDIO ===
