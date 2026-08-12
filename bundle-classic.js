@@ -824,7 +824,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     grid.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-action]'); if (!btn) return;
-      if (btn.dataset.action === `${p}-clip-prompt`) { generateClipPrompt(parseInt(btn.dataset.clip, 10)); return; }
+      if (btn.dataset.action === `${p}-clip-prompt`) {
+        const k = parseInt(btn.dataset.clip, 10);
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        const n = Math.min(plan.perClip, grid.querySelectorAll('.result-card').length - (k - 1) * plan.perClip);
+        showChoiceModal(`Prompt Klip ${k} bentuk apa?`, [
+          { label: `<i class="fas fa-image mr-2"></i>Per Scene — ${n} prompt (1 foto = 1 generate video)`, onPick: () => generateAllVideoPrompts(k) },
+          { label: `<i class="fas fa-clapperboard mr-2"></i>Per Klip — 1 prompt (${n} foto = 1 klip ${plan.clipSec} dtk)`, onPick: () => generateClipPrompt(k) }
+        ]);
+        return;
+      }
       if (btn.dataset.action === `${p}-clip-download`) {
         const k = parseInt(btn.dataset.clip, 10);
         const plan = window.clipPlan(durState.platform, durState.duration);
@@ -1167,15 +1176,23 @@ Rules:
       run();
     }
 
-    async function generateAllVideoPrompts() {
-      const cards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img'));
+    async function generateAllVideoPrompts(clipIdx) {
+      const allCards = Array.from(grid.querySelectorAll('.result-card'));
+      let pool = allCards;
+      if (clipIdx) {
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        pool = allCards.slice((clipIdx - 1) * plan.perClip, clipIdx * plan.perClip);
+      }
+      const cards = pool.filter(c => c.querySelector('img'));
       if (!cards.length) return;
       const total = cards.length;
+      const sceneNo = (card) => allCards.indexOf(card) + 1;
+      const sceneTotal = allCards.length;
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Semua Prompt Video (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `Prompt Per Scene — Klip ${clipIdx}` : 'Semua Prompt Video'} (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-3" data-progress>Menyiapkan 0/${total}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
@@ -1193,7 +1210,7 @@ Rules:
       const resultsByIdx = new Array(total).fill(null);
 
       function aggregateText() {
-        return resultsByIdx.map((r, i) => r ? `# Scene ${i + 1}/${total}: ${r.title}\n${r.vp}` : null).filter(Boolean).join('\n\n');
+        return resultsByIdx.map((r) => r ? `# Scene ${r.no}/${sceneTotal}: ${r.title}\n${r.vp}` : null).filter(Boolean).join('\n\n');
       }
       function refreshAggregate() {
         const done = resultsByIdx.filter(Boolean).length;
@@ -1209,7 +1226,7 @@ Rules:
       txtBtn.addEventListener('click', () => {
         const b = new Blob([aggregateText()], { type: 'text/plain' });
         const u = URL.createObjectURL(b);
-        window.downloadDataURINew(u, `${cfg.filenamePrefix}_video_prompts.txt`);
+        window.downloadDataURINew(u, `${cfg.filenamePrefix}${clipIdx ? `_klip${clipIdx}` : ''}_video_prompts.txt`);
         setTimeout(() => URL.revokeObjectURL(u), 1500);
       });
 
@@ -1219,7 +1236,7 @@ Rules:
         try {
           const r = await requestVideoPrompt(card); // story-aware: baca posisi scene + prev/next dari DOM
           ta.value = r.vp;
-          resultsByIdx[i] = { title: card.dataset.title || `Scene ${i + 1}`, vp: r.vp };
+          resultsByIdx[i] = { no: sceneNo(card), title: card.dataset.title || `Scene ${i + 1}`, vp: r.vp };
           st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
           ta.value = 'Gagal: ' + err.message;
@@ -1235,7 +1252,7 @@ Rules:
         const title = card.dataset.title || `Scene ${i + 1}`;
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${i + 1}/${total}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
@@ -2024,7 +2041,16 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
 
     grid.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-action]'); if (!btn) return;
-      if (btn.dataset.action === `${p}-clip-prompt`) { generateClipPrompt(parseInt(btn.dataset.clip, 10)); return; }
+      if (btn.dataset.action === `${p}-clip-prompt`) {
+        const k = parseInt(btn.dataset.clip, 10);
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        const n = Math.min(plan.perClip, grid.querySelectorAll('.result-card').length - (k - 1) * plan.perClip);
+        showChoiceModal(`Prompt Klip ${k} bentuk apa?`, [
+          { label: `<i class="fas fa-image mr-2"></i>Per Scene — ${n} prompt (1 foto = 1 generate video)`, onPick: () => generateAllVideoPrompts(k) },
+          { label: `<i class="fas fa-clapperboard mr-2"></i>Per Klip — 1 prompt (${n} foto = 1 klip ${plan.clipSec} dtk)`, onPick: () => generateClipPrompt(k) }
+        ]);
+        return;
+      }
       if (btn.dataset.action === `${p}-clip-download`) {
         const k = parseInt(btn.dataset.clip, 10);
         const plan = window.clipPlan(durState.platform, durState.duration);
@@ -2367,15 +2393,23 @@ Rules:
       run();
     }
 
-    async function generateAllVideoPrompts() {
-      const cards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img'));
+    async function generateAllVideoPrompts(clipIdx) {
+      const allCards = Array.from(grid.querySelectorAll('.result-card'));
+      let pool = allCards;
+      if (clipIdx) {
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        pool = allCards.slice((clipIdx - 1) * plan.perClip, clipIdx * plan.perClip);
+      }
+      const cards = pool.filter(c => c.querySelector('img'));
       if (!cards.length) return;
       const total = cards.length;
+      const sceneNo = (card) => allCards.indexOf(card) + 1;
+      const sceneTotal = allCards.length;
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Semua Prompt Video (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `Prompt Per Scene — Klip ${clipIdx}` : 'Semua Prompt Video'} (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-3" data-progress>Menyiapkan 0/${total}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
@@ -2393,7 +2427,7 @@ Rules:
       const resultsByIdx = new Array(total).fill(null);
 
       function aggregateText() {
-        return resultsByIdx.map((r, i) => r ? `# Scene ${i + 1}/${total}: ${r.title}\n${r.vp}` : null).filter(Boolean).join('\n\n');
+        return resultsByIdx.map((r) => r ? `# Scene ${r.no}/${sceneTotal}: ${r.title}\n${r.vp}` : null).filter(Boolean).join('\n\n');
       }
       function refreshAggregate() {
         const done = resultsByIdx.filter(Boolean).length;
@@ -2409,7 +2443,7 @@ Rules:
       txtBtn.addEventListener('click', () => {
         const b = new Blob([aggregateText()], { type: 'text/plain' });
         const u = URL.createObjectURL(b);
-        window.downloadDataURINew(u, `${cfg.filenamePrefix}_video_prompts.txt`);
+        window.downloadDataURINew(u, `${cfg.filenamePrefix}${clipIdx ? `_klip${clipIdx}` : ''}_video_prompts.txt`);
         setTimeout(() => URL.revokeObjectURL(u), 1500);
       });
 
@@ -2419,7 +2453,7 @@ Rules:
         try {
           const r = await requestVideoPrompt(card);
           ta.value = r.vp;
-          resultsByIdx[i] = { title: card.dataset.title || `Scene ${i + 1}`, vp: r.vp };
+          resultsByIdx[i] = { no: sceneNo(card), title: card.dataset.title || `Scene ${i + 1}`, vp: r.vp };
           st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
           ta.value = 'Gagal: ' + err.message;
@@ -2435,7 +2469,7 @@ Rules:
         const title = card.dataset.title || `Scene ${i + 1}`;
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${i + 1}/${total}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
