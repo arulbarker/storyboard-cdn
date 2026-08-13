@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     omni:     { label: 'Gemini Omni', perClip: 5, clipSec: 10 },
     seedance: { label: 'Seedance',    perClip: 7, clipSec: 14 }
   };
+  window.MAX_STORY_CLIPS = 20;
   window.clipPlan = function (platformKey, durationSec) {
     const pf = window.VIDEO_PLATFORMS[platformKey];
     const clips = Math.max(1, Math.round(durationSec / pf.clipSec));
@@ -457,6 +458,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadAllBtn = document.getElementById(`${p}-download-all-btn`);
     const countGrid = document.getElementById(`${p}-count-selection-grid`);
 
+    // Lanjutkan Cerita: perpanjang story +1 klip dari scene terakhir (Mode Durasi, maks window.MAX_STORY_CLIPS)
+    const continueBtn = document.createElement('button');
+    continueBtn.type = 'button';
+    continueBtn.id = `${p}-continue-btn`;
+    continueBtn.className = 'w-full btn-secondary font-bold py-3 px-6 rounded-xl mt-6 hidden items-center justify-center';
+    grid.insertAdjacentElement('afterend', continueBtn);
+    function hideContinueBtn() { continueBtn.classList.add('hidden'); continueBtn.classList.remove('flex'); }
+    function updateContinueBtn() {
+      if (!durState.on) { hideContinueBtn(); return; }
+      const n = grid.querySelectorAll('.result-card').length;
+      if (!n) { hideContinueBtn(); return; }
+      const plan = window.clipPlan(durState.platform, durState.duration);
+      const clips = Math.ceil(n / plan.perClip);
+      if (clips >= window.MAX_STORY_CLIPS) { hideContinueBtn(); return; }
+      continueBtn.innerHTML = `<i class="fas fa-forward mr-2"></i>Lanjutkan Cerita (+1 klip · ${plan.clipSec} dtk) — Klip ${clips + 1}/${window.MAX_STORY_CLIPS}`;
+      continueBtn.classList.remove('hidden');
+      continueBtn.classList.add('flex');
+    }
+    continueBtn.addEventListener('click', async () => {
+      if (!durState.on) return;
+      const all = Array.from(grid.querySelectorAll('.result-card'));
+      if (!all.length) return;
+      const plan = window.clipPlan(durState.platform, durState.duration);
+      const clips = Math.ceil(all.length / plan.perClip);
+      if (clips >= window.MAX_STORY_CLIPS) { hideContinueBtn(); return; }
+      const orig = continueBtn.innerHTML;
+      continueBtn.disabled = true;
+      continueBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Melanjutkan cerita...</span>';
+      try {
+        const lastCard = all[all.length - 1];
+        const ideas = await analyzeAndGetPrompts({
+          titles: all.map(c => c.dataset.title || 'Scene'),
+          last: { title: lastCard.dataset.title || 'Scene', prompt: lastCard.dataset.prompt || '' },
+          nextClip: clips + 1, plan
+        });
+        const batch = ideas.slice(0, plan.perClip);
+        if (!batch.length) throw new Error('Storyboard lanjutan kosong.');
+        const startAt = all.length;
+        buildCards(batch, startAt);
+        await Promise.allSettled(batch.map((idea, j) => generateSingle(startAt + j + 1, idea.title, idea.prompt)));
+      } catch (err) {
+        console.error(err);
+        window.uiNotify('Gagal melanjutkan cerita: ' + err.message);
+      } finally {
+        continueBtn.disabled = false;
+        continueBtn.innerHTML = orig;
+        updateContinueBtn();
+      }
+    });
+
     // Tombol "Semua Prompt Video" di samping Unduh Semua (dibuat dinamis)
     // Gaya audio + bahasa untuk prompt video (global per fitur)
     let audioStyle = cfg.defaultAudio || 'voiceover';
@@ -560,7 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
     durPanel.addEventListener('click', (e) => {
       const pb = e.target.closest('[data-platform]');
       const db = e.target.closest('[data-duration]');
-      if (pb) durState.platform = pb.dataset.platform;
+      if (pb) { durState.platform = pb.dataset.platform; hideContinueBtn(); }
       else if (db) durState.duration = parseInt(db.dataset.duration, 10);
       else return;
       renderDurPanel();
@@ -571,6 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modeWrap.querySelectorAll('[data-mode]').forEach(x => x.classList.toggle('selected', x === mb));
       durPanel.classList.toggle('hidden', !durState.on);
       countGrid.classList.toggle('hidden', durState.on);
+      hideContinueBtn();
     });
     function effectiveCount() { return durState.on ? window.clipPlan(durState.platform, durState.duration).photos : selectedCount; }
     function retryPlaceholder(id) {
@@ -682,13 +734,17 @@ document.addEventListener('DOMContentLoaded', () => {
       finally { descBtn.innerHTML = orig; descBtn.disabled = false; }
     });
 
-    async function analyzeAndGetPrompts() {
+    async function analyzeAndGetPrompts(continueFrom = null) {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
       const r = ratio();
-      let systemPrompt = cfg.buildSystemPrompt({ count: effectiveCount(), ratio: r, model: !!modelBase64 });
-      if (durState.on) {
+      let systemPrompt = cfg.buildSystemPrompt({ count: continueFrom ? continueFrom.plan.perClip : effectiveCount(), ratio: r, model: !!modelBase64 });
+      if (durState.on && !continueFrom) {
         const plan = window.clipPlan(durState.platform, durState.duration);
         systemPrompt += `\n\n**CLIP STRUCTURE (IMPORTANT):** These ${plan.photos} scenes will become ${plan.clips} separate video clip(s) of ${plan.clipSec} seconds each (${plan.perClip} scenes per clip, ~2 seconds per scene). Structure the story as ${plan.clips} chapter(s) of ONE continuous narrative, one chapter per clip. The LAST scene of each chapter must work as a smooth narrative AND visual bridge into the first scene of the next chapter, so separately generated clips cut together seamlessly in an editor.`;
+      }
+      if (continueFrom) {
+        const done = continueFrom.titles.length;
+        systemPrompt += `\n\n**CONTINUATION (IMPORTANT — THIS OVERRIDES ANY RULE ABOVE ABOUT STARTING AT THE VERY BEGINNING OR ENDING AT THE FINAL/CTA BEAT):** The story already exists and must NOT be restarted. Scenes so far, in order:\n${continueFrom.titles.map((t, i) => `${i + 1}. ${t}`).join('\n')}\nThe story currently ends at scene ${done}: "${continueFrom.last.title}" — its image prompt was: "${continueFrom.last.prompt}".\nNow write ONLY the NEXT ${continueFrom.plan.perClip} scenes (scene ${done + 1}–${done + continueFrom.plan.perClip}) that CONTINUE this same story seamlessly as video clip ${continueFrom.nextClip} (${continueFrom.plan.clipSec} seconds, ~2 seconds per scene). Keep the EXACT same product, person/model identity, setting, lighting and style as the existing scenes. Do NOT restart the story, do NOT repeat existing scenes, and do NOT force a closing/CTA beat; the first new scene must flow directly on from that last scene, and the last new scene should end on a natural pause that can be continued again.`;
       }
       const theme = currentTheme();
       let userQuery = `Analyze this ${cfg.subject}. Description: "${descInput.value.trim()}". Desired aspect ratio is ${r}.`;
@@ -707,23 +763,24 @@ document.addEventListener('DOMContentLoaded', () => {
       return JSON.parse(raw.substring(s, e2 + 1));
     }
 
-    function buildCards(prompts) {
-      grid.innerHTML = '';
+    function buildCards(prompts, startAt = 0) {
+      if (!startAt) grid.innerHTML = '';
       grid.dataset.captionCache = '';
       const ac = aspectClass(ratio());
       const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
       prompts.forEach((pr, i) => {
-        if (plan && i % plan.perClip === 0) {
-          const clipIdx = i / plan.perClip + 1;
-          const end = Math.min(i + plan.perClip, prompts.length);
+        const gi = startAt + i;
+        if (plan && gi % plan.perClip === 0) {
+          const clipIdx = gi / plan.perClip + 1;
+          const end = Math.min(gi + plan.perClip, startAt + prompts.length);
           const h = document.createElement('div');
           h.className = 'clip-divider';
           h.id = `${p}-clip-${clipIdx}`;
-          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${i + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button></span>`;
+          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${gi + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button></span>`;
           grid.appendChild(h);
         }
         const card = document.createElement('div');
-        card.id = `${p}-card-${i + 1}`;
+        card.id = `${p}-card-${gi + 1}`;
         card.className = 'result-card card p-4 flex flex-col justify-between';
         card.dataset.title = pr.title; card.dataset.prompt = pr.prompt;
         card.innerHTML = `<div class="mb-3"><h3 class="text-base font-semibold text-gray-800">${window.escHtml(pr.title)}</h3></div><div class="${p}-output-container ${ac} bg-gray-100 rounded-md flex items-center justify-center"><div class="loader"></div></div>`;
@@ -788,6 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!images.length) return;
       if (cfg.requireModel && !modelBase64) { window.uiNotify('Fitur ini butuh Foto Model — upload foto model dulu ya.'); return; }
       generateBtn.disabled = true;
+      hideContinueBtn();
       const orig = generateBtn.innerHTML;
       generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menganalisa...</span>';
       downloadAllBtn.classList.add('hidden');
@@ -819,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       generateBtn.disabled = false; generateBtn.innerHTML = orig;
       if (success === 0) window.uiNotify('Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.');
-      else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); if (captionBtn) captionBtn.classList.remove('hidden'); }
+      else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); if (captionBtn) captionBtn.classList.remove('hidden'); updateContinueBtn(); }
     });
 
     grid.addEventListener('click', (e) => {
@@ -1694,6 +1752,27 @@ For each scene provide a short Indonesian title (e.g. 'Scene 1: Melaju') and a C
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
 
+  window.buildDollCraftPrompt = function (cfg, sel, { count }) {
+    const picks = Object.entries(sel)
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    return `You are an expert stop-motion DIY craft storyboard artist. Create a **${count}-scene visual CRAFTING PROCESS story** (storyboard) showing ONE miniature handmade doll being built step by step, for a satisfying viral short video.
+
+**THE CRAFT:** ${cfg.subject}.
+${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : ''}
+**DOLL DESIGN SHEET (DO THIS FIRST):** Before writing any scene, invent ONE fixed doll design from the user choices and write it as one reusable description: skin pipe-cleaner color, yarn hair color + style, cute anime-style face with big eyes, every clothing piece with its exact color (each piece handmade from pipe cleaners), and accessories. Also fix ONE desk description: wooden craft desk, the visible tools and materials, warm cozy lighting, soft-focus room decor behind. You will reuse BOTH descriptions in every scene.
+
+**SUBJECT LOCK (CRITICAL):** The same pair of hands, the same desk description and the SAME doll design sheet appear in ALL ${count} scenes — as if filmed in one continuous take, only the build progress advances. Every scene prompt MUST repeat the doll design sheet + desk description word-for-word so separately generated images look like one continuous video.
+
+**MATERIAL & SCALE LOCK (CRITICAL):** The doll is a MINIATURE about 15 cm tall, always small in the hands. The doll and ALL its clothes are handmade ONLY from crumpled aluminum foil, fuzzy chenille pipe cleaners and yarn — the fuzzy pipe-cleaner texture must stay clearly visible. NEVER real fabric or sewn cloth, NEVER human-sized clothing, NEVER a factory-made plastic doll (no Barbie-like glossy doll) — in every scene it must look like a handmade pipe-cleaner craft.
+
+**BUILD-STAGE LOCK:** Follow this exact build order, spread evenly across the ${count} scenes: ${cfg.arc}. Each scene shows ONLY the parts that exist at that stage (early scenes: bare foil armature; middle scenes: partially wrapped body or unfinished clothes ON the doll). The COMPLETED doll may appear ONLY in the final scene as the reveal payoff, standing upright on the desk.
+
+**STRUCTURE:** ${count} scenes in strict chronological build order, hands actively working in each scene. For each scene provide a short Indonesian title (e.g. 'Scene 1: Kerangka Foil') and a CONCISE English prompt for an AI image generator that always repeats the locked doll design sheet + desk description and states the exact build stage.
+Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
+  };
+
   function createViralTab(cfg) {
     const p = cfg.prefix;
     const apiKey = "";
@@ -1701,9 +1780,10 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     if (!host) return;
 
     // ---- Render panel dari config ----
+    const extraOff = cfg.extraInput ? 1 : 0;
     const chipGroupsHtml = (cfg.chipGroups || []).map((g, gi) => `
       <div class="card p-6">
-        <div class="flex items-center gap-2 mb-3"><div class="step-num">${gi + 1}</div><h2 class="text-lg font-semibold text-gray-800">${g.label}</h2></div>
+        <div class="flex items-center gap-2 mb-3"><div class="step-num">${gi + 1 + extraOff}</div><h2 class="text-lg font-semibold text-gray-800">${g.label}</h2></div>
         <div id="${p}-group-${g.key}" data-group="${g.key}" class="grid gap-2 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
           <button type="button" data-val="__random__" class="theme-chip selected"><i class="fas fa-dice"></i>Kejutkan aku</button>
           ${g.options.map(o => `<button type="button" data-val="${window.escHtml(o)}" class="theme-chip">${window.escHtml(o)}</button>`).join('')}
@@ -1717,7 +1797,17 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         <p class="text-xs text-gray-400 mt-2">Tulis dari awal sampai hasil akhir — AI yang memecah jadi scene.</p>
       </div>` : '';
 
-    const baseStep = (cfg.custom ? 1 : 0) + (cfg.chipGroups ? cfg.chipGroups.length : 0);
+    const extraHtml = cfg.extraInput ? `
+      <div class="card p-6">
+        <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">${cfg.extraInput.label}</h2></div>
+        <textarea id="${p}-extra-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="${window.escHtml(cfg.extraInput.placeholder || '')}"></textarea>
+        ${cfg.extraInput.fromImage ? `
+        <input type="file" id="${p}-extra-image-input" accept="image/*" class="hidden">
+        <button type="button" id="${p}-extra-image-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg mt-2 w-full flex items-center justify-center"><i class="fas fa-camera mr-2"></i>Ambil ciri dari Foto (kartun/manusia — hasil tetap boneka)</button>` : ''}
+        <p class="text-xs text-gray-400 mt-2">Opsional — kosongkan biar AI berkreasi dari pilihan chip.</p>
+      </div>` : '';
+
+    const baseStep = (cfg.custom ? 1 : 0) + extraOff + (cfg.chipGroups ? cfg.chipGroups.length : 0);
     host.innerHTML = `
       <div class="container mx-auto p-4 md:p-8 max-w-7xl">
         <header class="text-center mb-8">
@@ -1727,6 +1817,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <div class="lg:col-span-1 space-y-6">
             ${customHtml}
+            ${extraHtml}
             ${chipGroupsHtml}
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">${baseStep + 1}</div><h2 class="text-lg font-semibold text-gray-800">Aspect Ratio</h2></div>
@@ -1785,10 +1876,99 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       b.classList.add('selected'); selectedCount = parseInt(b.dataset.count, 10);
     });
 
+    // Foto referensi → deskripsi teks (extraInput.fromImage). Foto TIDAK ikut ke generate gambar.
+    if (cfg.extraInput && cfg.extraInput.fromImage) {
+      const imgBtn = document.getElementById(`${p}-extra-image-btn`);
+      const imgInput = document.getElementById(`${p}-extra-image-input`);
+      imgBtn.addEventListener('click', () => imgInput.click());
+      imgInput.addEventListener('change', async () => {
+        const file = imgInput.files && imgInput.files[0];
+        if (!file) return;
+        const orig = imgBtn.innerHTML;
+        imgBtn.disabled = true;
+        imgBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Membaca foto...</span>';
+        try {
+          const { base64, mimeType } = await window.compressImage(file);
+          const describe = "Describe this character's visual appearance in Bahasa Indonesia as ONE short paragraph for a doll maker: jenis (cewek/cowok/hewan/robot dll), warna & gaya rambut, ciri wajah, SETIAP potong pakaian dengan warna persisnya, dan aksesori. JANGAN sebut nama karakter, orang, atau franchise. Balas deskripsinya saja.";
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: describe }, { inlineData: { mimeType, data: base64 } }] }] })
+          });
+          if (!res.ok) throw new Error(`API error: ${res.status}`);
+          const data = await res.json();
+          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+          if (!text) throw new Error('Deskripsi kosong');
+          document.getElementById(`${p}-extra-input`).value = text;
+          window.uiNotify('Ciri karakter berhasil diambil dari foto — silakan edit kalau perlu.');
+        } catch (err) {
+          window.uiNotify('Gagal membaca foto: ' + err.message);
+        } finally {
+          imgBtn.disabled = false;
+          imgBtn.innerHTML = orig;
+          imgInput.value = '';
+        }
+      });
+    }
+
+    // Lanjutkan Cerita: perpanjang story +1 klip dari scene terakhir (Mode Durasi, maks window.MAX_STORY_CLIPS)
+    const continueBtn = document.createElement('button');
+    continueBtn.type = 'button';
+    continueBtn.id = `${p}-continue-btn`;
+    continueBtn.className = 'w-full btn-secondary font-bold py-3 px-6 rounded-xl mt-6 hidden items-center justify-center';
+    grid.insertAdjacentElement('afterend', continueBtn);
+    function hideContinueBtn() { continueBtn.classList.add('hidden'); continueBtn.classList.remove('flex'); }
+    function updateContinueBtn() {
+      if (!durState.on) { hideContinueBtn(); return; }
+      const n = grid.querySelectorAll('.result-card').length;
+      if (!n) { hideContinueBtn(); return; }
+      const plan = window.clipPlan(durState.platform, durState.duration);
+      const clips = Math.ceil(n / plan.perClip);
+      if (clips >= window.MAX_STORY_CLIPS) { hideContinueBtn(); return; }
+      continueBtn.innerHTML = `<i class="fas fa-forward mr-2"></i>Lanjutkan Cerita (+1 klip · ${plan.clipSec} dtk) — Klip ${clips + 1}/${window.MAX_STORY_CLIPS}`;
+      continueBtn.classList.remove('hidden');
+      continueBtn.classList.add('flex');
+    }
+    continueBtn.addEventListener('click', async () => {
+      if (!durState.on) return;
+      const all = Array.from(grid.querySelectorAll('.result-card'));
+      if (!all.length) return;
+      const plan = window.clipPlan(durState.platform, durState.duration);
+      const clips = Math.ceil(all.length / plan.perClip);
+      if (clips >= window.MAX_STORY_CLIPS) { hideContinueBtn(); return; }
+      const orig = continueBtn.innerHTML;
+      continueBtn.disabled = true;
+      continueBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Melanjutkan cerita...</span>';
+      try {
+        const lastCard = all[all.length - 1];
+        const ideas = await analyzeAndGetPrompts({
+          titles: all.map(c => c.dataset.title || 'Scene'),
+          last: { title: lastCard.dataset.title || 'Scene', prompt: lastCard.dataset.prompt || '' },
+          nextClip: clips + 1, plan
+        });
+        const batch = ideas.slice(0, plan.perClip);
+        if (!batch.length) throw new Error('Storyboard lanjutan kosong.');
+        const startAt = all.length;
+        buildCards(batch, startAt);
+        await Promise.allSettled(batch.map((idea, j) => generateSingle(startAt + j + 1, idea.title, idea.prompt)));
+      } catch (err) {
+        console.error(err);
+        window.uiNotify('Gagal melanjutkan cerita: ' + err.message);
+      } finally {
+        continueBtn.disabled = false;
+        continueBtn.innerHTML = orig;
+        updateContinueBtn();
+      }
+    });
+
     // Konteks proses viral (pengganti descInput/currentTheme di mesin salinan)
+    function fullSelection() {
+      if (!cfg.extraInput) return selection;
+      const v = (document.getElementById(`${p}-extra-input`)?.value || '').trim();
+      return v ? { ...selection, [cfg.extraInput.key]: v } : selection;
+    }
     function viralContext() {
       if (cfg.custom) return document.getElementById(`${p}-custom-input`).value.trim();
-      const picks = Object.entries(selection).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join(', ');
+      const picks = Object.entries(fullSelection()).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join(', ');
       return `${cfg.subject}${picks ? ' — ' + picks : ''}`;
     }
     function currentTheme() { return selection['gaya'] || selection['latar'] || ''; }
@@ -1870,7 +2050,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     durPanel.addEventListener('click', (e) => {
       const pb = e.target.closest('[data-platform]');
       const db = e.target.closest('[data-duration]');
-      if (pb) durState.platform = pb.dataset.platform;
+      if (pb) { durState.platform = pb.dataset.platform; hideContinueBtn(); }
       else if (db) durState.duration = parseInt(db.dataset.duration, 10);
       else return;
       renderDurPanel();
@@ -1881,6 +2061,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       modeWrap.querySelectorAll('[data-mode]').forEach(x => x.classList.toggle('selected', x === mb));
       durPanel.classList.toggle('hidden', !durState.on);
       countGrid.classList.toggle('hidden', durState.on);
+      hideContinueBtn();
     });
     function effectiveCount() { return durState.on ? window.clipPlan(durState.platform, durState.duration).photos : selectedCount; }
     function retryPlaceholder(id) {
@@ -1909,23 +2090,24 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       setTimeout(() => modal.classList.add('show'), 10);
     }
 
-    function buildCards(prompts) {
-      grid.innerHTML = '';
+    function buildCards(prompts, startAt = 0) {
+      if (!startAt) grid.innerHTML = '';
       grid.dataset.captionCache = '';
       const ac = aspectClass(ratio());
       const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
       prompts.forEach((pr, i) => {
-        if (plan && i % plan.perClip === 0) {
-          const clipIdx = i / plan.perClip + 1;
-          const end = Math.min(i + plan.perClip, prompts.length);
+        const gi = startAt + i;
+        if (plan && gi % plan.perClip === 0) {
+          const clipIdx = gi / plan.perClip + 1;
+          const end = Math.min(gi + plan.perClip, startAt + prompts.length);
           const h = document.createElement('div');
           h.className = 'clip-divider';
           h.id = `${p}-clip-${clipIdx}`;
-          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${i + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button></span>`;
+          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${gi + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button></span>`;
           grid.appendChild(h);
         }
         const card = document.createElement('div');
-        card.id = `${p}-card-${i + 1}`;
+        card.id = `${p}-card-${gi + 1}`;
         card.className = 'result-card card p-4 flex flex-col justify-between';
         card.dataset.title = pr.title; card.dataset.prompt = pr.prompt;
         card.innerHTML = `<div class="mb-3"><h3 class="text-base font-semibold text-gray-800">${window.escHtml(pr.title)}</h3></div><div class="${p}-output-container ${ac} bg-gray-100 rounded-md flex items-center justify-center"><div class="loader"></div></div>`;
@@ -1984,13 +2166,17 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       if (lastError) out.innerHTML = durState.on ? retryPlaceholder(id) : '';
     }
 
-    async function analyzeAndGetPrompts() {
+    async function analyzeAndGetPrompts(continueFrom = null) {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
       const r = ratio();
-      let systemPrompt = (cfg.promptFn || window.buildViralPrompt)(cfg, cfg.custom ? { custom: document.getElementById(`${p}-custom-input`).value.trim() } : selection, { count: effectiveCount() });
-      if (durState.on) {
+      let systemPrompt = (cfg.promptFn || window.buildViralPrompt)(cfg, cfg.custom ? { custom: document.getElementById(`${p}-custom-input`).value.trim() } : fullSelection(), { count: continueFrom ? continueFrom.plan.perClip : effectiveCount() });
+      if (durState.on && !continueFrom) {
         const plan = window.clipPlan(durState.platform, durState.duration);
         systemPrompt += `\n\n**CLIP STRUCTURE (IMPORTANT):** These ${plan.photos} scenes will become ${plan.clips} separate video clip(s) of ${plan.clipSec} seconds each (${plan.perClip} scenes per clip, ~2 seconds per scene). Structure as ${plan.clips} chapter(s) of ONE continuous process; the LAST scene of each chapter must bridge smoothly into the first scene of the next.`;
+      }
+      if (continueFrom) {
+        const done = continueFrom.titles.length;
+        systemPrompt += `\n\n**CONTINUATION (IMPORTANT — THIS OVERRIDES ANY RULE ABOVE ABOUT STARTING AT THE VERY BEGINNING OR ENDING AT THE FINISHED REVEAL):** The story already exists and must NOT be restarted. Scenes so far, in order:\n${continueFrom.titles.map((t, i) => `${i + 1}. ${t}`).join('\n')}\nThe story currently ends at scene ${done}: "${continueFrom.last.title}" — its image prompt was: "${continueFrom.last.prompt}".\nNow write ONLY the NEXT ${continueFrom.plan.perClip} scenes (scene ${done + 1}–${done + continueFrom.plan.perClip}) that CONTINUE this same story seamlessly as video clip ${continueFrom.nextClip} (${continueFrom.plan.clipSec} seconds, ~2 seconds per scene). Keep the EXACT same subject identity, setting, lighting and style locks as the existing scenes — repeat the same locked subject description in every new scene prompt. Do NOT restart the story, do NOT repeat existing scenes, and do NOT force a final reveal; the first new scene must flow directly on from that last scene, and the last new scene should end on a natural pause that can be continued again.`;
       }
       const userQuery = `Generate the storyboard now. Desired aspect ratio is ${r}.`;
       const payload = { contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] }, generationConfig: { responseMimeType: "application/json", responseSchema: { type: "ARRAY", items: { type: "OBJECT", properties: { title: { type: "STRING" }, prompt: { type: "STRING" } }, required: ["title", "prompt"] } } } };
@@ -2007,6 +2193,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     generateBtn.addEventListener('click', async () => {
       if (cfg.custom && !document.getElementById(`${p}-custom-input`).value.trim()) { window.uiNotify('Tulis dulu ide proses viralmu ya.'); return; }
       generateBtn.disabled = true;
+      hideContinueBtn();
       const orig = generateBtn.innerHTML;
       generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menyusun cerita...</span>';
       downloadAllBtn.classList.add('hidden');
@@ -2036,7 +2223,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       if (!durState.on) { grid.querySelectorAll('.result-card').forEach(c => { if (!c.querySelector('img')) c.remove(); }); }
       generateBtn.disabled = false; generateBtn.innerHTML = orig;
       if (success === 0) window.uiNotify('Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.');
-      else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); if (captionBtn) captionBtn.classList.remove('hidden'); }
+      else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); if (captionBtn) captionBtn.classList.remove('hidden'); updateContinueBtn(); }
     });
 
     grid.addEventListener('click', (e) => {
@@ -2141,12 +2328,12 @@ ${storyList}
 
 Create a detailed cinematic English prompt for an AI image-to-video generator (Runway, Pika, Kling, Veo, Stable Video Diffusion) for THIS scene only, but crafted so all clips cut together into one seamless story:
 1. Keep the main subject EXACTLY as shown — do not change the subject/identity.
-2. Keep visual style, color grading, lighting mood, and pacing CONSISTENT with the rest of the sequence.
-3. Design camera motion for continuity: ${prevTitle ? `begin in a way that flows on from the previous scene ("${prevTitle}")` : 'this is the OPENING scene — start with an inviting establishing motion'}, and ${nextTitle ? `end in a way that leads into the next scene ("${nextTitle}")` : 'this is the FINAL scene — end on a satisfying reveal / closing beat'}.
-4. Add subtle dynamic elements suited to the scene (soft light shifts, gentle particles, growth/build motion, steam/liquid motion if relevant).
-5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
-6. ${window.audioSpeechRule(audioStyle, audioLang)}
-7. Be optimized for image-to-video AI, under 200 words, highly detailed.
+${durState.on ? `2. DURATION: this scene covers EXACTLY ~2 seconds in the final video — describe ONE clear, simple motion beat that reads fully within 2 seconds (no multi-step actions).\n` : ''}3. Keep visual style, color grading, lighting mood, and pacing CONSISTENT with the rest of the sequence.
+4. Design camera motion for continuity: ${prevTitle ? `begin in a way that flows on from the previous scene ("${prevTitle}")` : 'this is the OPENING scene — start with an inviting establishing motion'}, and ${nextTitle ? `end in a way that leads into the next scene ("${nextTitle}")` : 'this is the FINAL scene — end on a satisfying reveal / closing beat'}.
+5. Add subtle dynamic elements suited to the scene (soft light shifts, gentle particles, growth/build motion, steam/liquid motion if relevant).
+6. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
+7. ${window.audioSpeechRule(audioStyle, audioLang)}
+8. Be optimized for image-to-video AI, under 200 words, highly detailed.
 Output ONLY the video prompt for this scene, nothing else.`;
       const userText = `Scene ${sceneNum}/${total} — "${title}". Process/subject context: "${desc}". Audio style: ${audioStyle}. Spoken language: ${LANG_LABEL[audioLang]}. Write the continuous-story image-to-video prompt for this scene so it connects with the scene before and after.`;
       const payload = { contents: [{ parts: [{ text: userText }, { inlineData: { mimeType: 'image/png', data: base64 } }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
@@ -2180,8 +2367,8 @@ Output ONLY the video prompt for this scene, nothing else.`;
 ${sceneLines}
 
 Write ONE cinematic English prompt describing the FULL ${plan.clipSec}-second clip as continuous motion through these keyframes:
-1. Reference the keyframes in order with explicit timing (0–2s, 2–4s, ...). Keep the subject identity EXACTLY as shown in the photos.
-2. ONE consistent visual style, color grade, and lighting mood across the whole clip.
+1. STRICT TIMELINE (MOST IMPORTANT): structure the prompt as an explicit shot list with hard time codes, one segment per keyframe: [0s–2s] keyframe 1, [2s–4s] keyframe 2, and so on until [${(cards.length - 1) * 2}s–${cards.length * 2}s] keyframe ${cards.length}. EVERY keyframe MUST get its own ~2-second segment in the EXACT order given — NEVER skip, merge, reorder, or invent scenes. Each segment describes the motion FROM that keyframe TOWARD the next keyframe.
+2. Keep the subject identity EXACTLY as shown in the photos. ONE consistent visual style, color grade, and lighting mood across the whole clip.
 3. ${prevBridge ? `OPENING: flow on smoothly from the previous clip (which ended at "${prevBridge}").` : 'OPENING: this is the FIRST clip — start with an inviting establishing motion.'}
 4. ${nextBridge ? `ENDING: end on a camera motion that bridges into the next clip (which starts at "${nextBridge}").` : 'ENDING: this is the FINAL clip — close on a satisfying reveal beat.'}
 5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
@@ -2631,6 +2818,21 @@ Rules:
       { key: 'kendaraan', label: 'Kendaraan', options: ['Sedan', 'SUV', 'Truk', 'Bus sekolah', 'Mobil sport', 'Mobil klasik', 'Pickup', 'Mobil balap', 'Monster truck'] },
       { key: 'arena', label: 'Arena / Lokasi', options: ['Jalan tol', 'Tebing gunung', 'Tangga raksasa', 'Jembatan runtuh', 'Arena beton', 'Gurun', 'Jalan kota', 'Pabrik'] },
       { key: 'gaya', label: 'Gaya Kamera', options: ['Slow-motion sinematik', 'POV dashcam', 'Drone follow', 'Multi-angle replay', 'Time-lapse chaos'] },
+    ],
+  });
+
+  createViralTab({
+    prefix: 'dollcraft', title: 'Generator Video DIY Boneka', subtitle: 'Stop-motion bikin boneka dari kawat bulu + aluminium foil — dari kerangka sampai berdiri jadi.',
+    filenamePrefix: 'diy_boneka', analyzingMsg: 'AI sedang menyusun proses pembuatan boneka...', defaultAudio: 'asmr',
+    promptFn: window.buildDollCraftPrompt,
+    subject: 'a pair of human hands building a handmade character doll on a wooden craft desk, stop-motion DIY tutorial style: shaping a crumpled aluminum foil armature, wrapping it in fuzzy chenille pipe cleaners, dressing and decorating it into a finished doll; top-down first-person camera focused on the hands and desk, warm cozy lighting, craft tools and soft-focus room decor in the background',
+    arc: 'bentuk kerangka manusia (armature) dari aluminium foil yang diremas → balut seluruh kerangka dengan kawat bulu warna kulit sampai rata → pasang pakaian kawat bulu (atasan + bawahan sesuai pilihan) → tempel rambut benang, wajah gaya anime bermata besar & aksesori → boneka jadi berdiri tegak di meja (reveal)',
+    extraInput: { key: 'deskripsi karakter', label: 'Deskripsi Karakter (opsional)', placeholder: 'Contoh: cewek rambut hitam panjang, crop top ungu, rok lilit pink motif bunga, kacamata kuning di atas kepala', fromImage: true },
+    chipGroups: [
+      { key: 'karakter', label: 'Karakter', options: ['Cewek anime', 'Cowok anime', 'Chibi lucu', 'Hewan lucu', 'Idol / K-pop', 'Princess', 'Superhero'] },
+      { key: 'outfit', label: 'Outfit', options: ['Crop top & rok', 'Dress', 'Hoodie kasual', 'Seragam sekolah', 'Kimono / tradisional', 'Bebas warna-warni'] },
+      { key: 'latar meja', label: 'Latar Meja', options: ['Meja kayu cozy', 'Meja putih minimalis', 'Meja kamar aesthetic', 'Meja craft penuh alat'] },
+      { key: 'gaya', label: 'Gaya Video', options: ['Stop-motion cepat', 'Timelapse', 'POV tangan close-up', 'Satisfying santai'] },
     ],
   });
   // === END VIRAL STUDIO ===
