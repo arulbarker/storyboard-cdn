@@ -1707,20 +1707,21 @@ Respond ONLY with a valid JSON array of ${count} objects, in sequential story or
   // === VIRAL STUDIO ===
   // Fitur video proses/transformasi viral. B-copy dari createReviewTab (mesin durasi/
   // prompt video/caption disalin), diramping: text-to-image, tanpa upload/model.
-  window.buildViralPrompt = function (cfg, sel, { count }) {
+  window.buildViralPrompt = function (cfg, sel, { count, showcase: forcedShowcase }) {
     const picks = Object.entries(sel)
       .filter(([k]) => k !== 'custom')
       .map(([k, v]) => `${k}: ${v}`)
       .join(', ');
     const subject = cfg.custom ? sel.custom : cfg.subject;
+    const showcase = forcedShowcase !== undefined ? forcedShowcase : (count > 5 ? 2 : (count >= 3 ? 1 : 0));
     return `You are an expert short-form viral video storyboard artist. Create a **${count}-scene visual PROCESS/TRANSFORMATION story** (storyboard) for a satisfying viral short video.
 
 **THE PROCESS:** ${subject}.
-**TRANSFORMATION ARC:** ${cfg.arc}. Spread this arc evenly across all ${count} scenes: begin at the very start, show clear step-by-step change, end at the finished/reveal moment.
+**TRANSFORMATION ARC:** ${cfg.arc}. ${showcase ? `Spread this arc evenly across scenes 1–${count - showcase}: begin at the very start, show clear step-by-step change, and the process must be FULLY COMPLETED at scene ${count - showcase} (the finished/reveal moment).` : `Spread this arc evenly across all ${count} scenes: begin at the very start, show clear step-by-step change, end at the finished/reveal moment.`}
 ${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : ''}
 **SUBJECT LOCK (CRITICAL):** The main subject, objects, tools, setting, lighting style and camera framing MUST stay perfectly consistent across ALL ${count} scenes — as if filmed in one continuous take, only the stage of the process advances. Repeat the same detailed subject description in every scene prompt so separately generated images look like one continuous video.
-
-**STRUCTURE:** ${count} scenes in strict chronological order of the process. Each scene = one clear step forward. The final scene delivers the satisfying "reveal" payoff.
+${showcase ? `\n**SHOWCASE ENDING:** the last ${showcase} scene(s) show the FINISHED result being showcased — beautifully displayed/staged in its setting, cinematic professional close-up shots from new flattering angles. NO new process steps in these scenes; the work is done, this is the payoff for the viewer.\n` : ''}
+**STRUCTURE:** ${count} scenes in strict chronological order of the process. Each scene = one clear step forward.${showcase ? '' : ' The final scene delivers the satisfying "reveal" payoff.'}
 For each scene provide a short Indonesian title (e.g. 'Scene 1: Awal') and a CONCISE English prompt for an AI image generator that always repeats the locked subject description.
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
@@ -1752,11 +1753,12 @@ For each scene provide a short Indonesian title (e.g. 'Scene 1: Melaju') and a C
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
 
-  window.buildDollCraftPrompt = function (cfg, sel, { count }) {
+  window.buildDollCraftPrompt = function (cfg, sel, { count, showcase: forcedShowcase }) {
     const picks = Object.entries(sel)
       .filter(([, v]) => v)
       .map(([k, v]) => `${k}: ${v}`)
       .join(', ');
+    const showcase = forcedShowcase !== undefined ? forcedShowcase : (count > 5 ? 2 : (count >= 3 ? 1 : 0));
     return `You are an expert stop-motion DIY craft storyboard artist. Create a **${count}-scene visual CRAFTING PROCESS story** (storyboard) showing ONE miniature handmade doll being built step by step, for a satisfying viral short video.
 
 **THE CRAFT:** ${cfg.subject}.
@@ -1767,17 +1769,20 @@ ${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : 
 
 **MATERIAL & SCALE LOCK (CRITICAL):** The doll is a MINIATURE about 15 cm tall, always small in the hands. The doll and ALL its clothes are handmade ONLY from crumpled aluminum foil, fuzzy chenille pipe cleaners and yarn — the fuzzy pipe-cleaner texture must stay clearly visible. NEVER real fabric or sewn cloth, NEVER human-sized clothing, NEVER a factory-made plastic doll (no Barbie-like glossy doll) — in every scene it must look like a handmade pipe-cleaner craft.
 
-**BUILD-STAGE LOCK:** Follow this exact build order, spread evenly across the ${count} scenes: ${cfg.arc}. Each scene shows ONLY the parts that exist at that stage (early scenes: bare foil armature; middle scenes: partially wrapped body or unfinished clothes ON the doll). The COMPLETED doll may appear ONLY in the final scene as the reveal payoff, standing upright on the desk.
+**BUILD-STAGE LOCK:** Follow this exact build order, spread evenly across scenes 1–${count - showcase}: ${cfg.arc}. Each scene shows ONLY the parts that exist at that stage (early scenes: bare foil armature; middle scenes: partially wrapped body or unfinished clothes ON the doll). The doll must be FULLY COMPLETED at scene ${count - showcase} — the reveal payoff, standing upright on the desk.${showcase ? `
 
-**STRUCTURE:** ${count} scenes in strict chronological build order, hands actively working in each scene. For each scene provide a short Indonesian title (e.g. 'Scene 1: Kerangka Foil') and a CONCISE English prompt for an AI image generator that always repeats the locked doll design sheet + desk description and states the exact build stage.
+**SHOWCASE ENDING:** the last ${showcase} scene(s) show the FINISHED doll being showcased — posed and displayed proudly on the desk, cinematic professional close-up shots of its face and outfit details from new flattering angles (hands may gently present or turn it). NO new building steps in these scenes; the craft is done, this is the payoff for the viewer.` : ''}
+
+**STRUCTURE:** ${count} scenes in strict chronological build order${showcase ? ` (hands actively working in scenes 1–${count - showcase})` : ', hands actively working in each scene'}. For each scene provide a short Indonesian title (e.g. 'Scene 1: Kerangka Foil') and a CONCISE English prompt for an AI image generator that always repeats the locked doll design sheet + desk description and states the exact build stage.
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
 
-  window.buildBottleCraftPrompt = function (cfg, sel, { count }) {
+  window.buildBottleCraftPrompt = function (cfg, sel, { count, showcase: forcedShowcase }) {
     const picks = Object.entries(sel)
       .filter(([, v]) => v)
       .map(([k, v]) => `${k}: ${v}`)
       .join(', ');
+    const showcase = forcedShowcase !== undefined ? forcedShowcase : (count > 5 ? 2 : (count >= 3 ? 1 : 0));
     return `You are an expert DIY recycling craft storyboard artist. Create a **${count}-scene visual CRAFTING PROCESS story** (storyboard) showing ONE cute display figure being built step by step from recycled plastic bottles, for a satisfying viral short video.
 
 **THE CRAFT:** ${cfg.subject}.
@@ -1788,9 +1793,11 @@ ${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : 
 
 **MATERIAL LOCK (CRITICAL):** The figure is handmade ONLY from cut recycled plastic bottles joined with hot glue, decorated with rustic twine, acrylic paint and marker — the translucent/colored plastic texture, the bumpy ridged bottle bottoms and the visible glued seams must stay clearly visible. NEVER a factory-made toy, NEVER ceramic, resin or smooth seamless molded plastic — in every scene it must look like a handmade recycled-bottle craft.
 
-**BUILD-STAGE LOCK:** Follow this exact build order, spread evenly across the ${count} scenes: ${cfg.arc}. Each scene shows ONLY the parts that exist at that stage (early scenes: loose cut bottle pieces being prepared; middle scenes: partially glued body without decorations). The COMPLETED figure may appear ONLY in the final scene as the reveal payoff, displayed proudly on the desk.
+**BUILD-STAGE LOCK:** Follow this exact build order, spread evenly across scenes 1–${count - showcase}: ${cfg.arc}. Each scene shows ONLY the parts that exist at that stage (early scenes: loose cut bottle pieces being prepared; middle scenes: partially glued body without decorations). The figure must be FULLY COMPLETED at scene ${count - showcase} — the reveal payoff, displayed proudly on the desk.${showcase ? `
 
-**STRUCTURE:** ${count} scenes in strict chronological build order, hands actively working in each scene. For each scene provide a short Indonesian title (e.g. 'Scene 1: Potong Botol') and a CONCISE English prompt for an AI image generator that always repeats the locked craft design sheet + desk description and states the exact build stage.
+**SHOWCASE ENDING:** the last ${showcase} scene(s) show the FINISHED figure being showcased — beautifully displayed on the desk among the plants and fairy lights, cinematic professional close-up shots of its face and details from new flattering angles (hands may gently present or turn it). NO new building steps in these scenes; the craft is done, this is the payoff for the viewer.` : ''}
+
+**STRUCTURE:** ${count} scenes in strict chronological build order${showcase ? ` (hands actively working in scenes 1–${count - showcase})` : ', hands actively working in each scene'}. For each scene provide a short Indonesian title (e.g. 'Scene 1: Potong Botol') and a CONCISE English prompt for an AI image generator that always repeats the locked craft design sheet + desk description and states the exact build stage.
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
 
@@ -1970,7 +1977,8 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         if (!batch.length) throw new Error('Storyboard lanjutan kosong.');
         const startAt = all.length;
         buildCards(batch, startAt);
-        await Promise.allSettled(batch.map((idea, j) => generateSingle(startAt + j + 1, idea.title, idea.prompt)));
+        const anc = storyAnchor();
+        await Promise.allSettled(batch.map((idea, j) => generateSingle(startAt + j + 1, idea.title, idea.prompt, anc)));
       } catch (err) {
         console.error(err);
         window.uiNotify('Gagal melanjutkan cerita: ' + err.message);
@@ -2136,7 +2144,17 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       });
     }
 
-    async function generateSingle(id, title, prompt) {
+    function cardImgB64(card) {
+      const m = (card?.querySelector('img')?.src || '').match(/^data:image\/\w+;base64,(.+)$/);
+      return m ? m[1] : null;
+    }
+    function storyAnchor(excludeId) {
+      const withImg = Array.from(grid.querySelectorAll('.result-card'))
+        .filter(c => c.id !== `${p}-card-${excludeId}` && c.querySelector('img'));
+      return withImg.length ? cardImgB64(withImg[withImg.length - 1]) : null;
+    }
+
+    async function generateSingle(id, title, prompt, anchor = null) {
       const card = document.getElementById(`${p}-card-${id}`); if (!card) return;
       const out = card.querySelector(`.${p}-output-container`);
       out.innerHTML = '<div class="loader"></div>';
@@ -2151,7 +2169,9 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
           const finalPrompt = `${prompt}, cinematic, hyper-detailed, natural lighting, photorealistic, 8k, satisfying viral short video still`;
-          const parts = [{ text: finalPrompt }];
+          const parts = anchor
+            ? [{ text: `REFERENCE (CRITICAL): the attached image shows the FINISHED RESULT of this exact video and its exact setting. Copy its hands, desk/setting, lighting, materials, every color and the object design EXACTLY. But render ONLY the moment described below — if it is an earlier build stage, show a partially-built version of the EXACT same object from the reference at that stage. Do NOT invent a different design, never change colors or materials.\n\nSCENE TO RENDER: ${finalPrompt}` }, { inlineData: { mimeType: 'image/png', data: anchor } }]
+            : [{ text: finalPrompt }];
           const payload = {
             contents: [{ parts }],
             generationConfig: { responseModalities: ['TEXT', 'IMAGE'], imageConfig: { aspectRatio: ratio() } },
@@ -2190,14 +2210,15 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     async function analyzeAndGetPrompts(continueFrom = null) {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
       const r = ratio();
-      let systemPrompt = (cfg.promptFn || window.buildViralPrompt)(cfg, cfg.custom ? { custom: document.getElementById(`${p}-custom-input`).value.trim() } : fullSelection(), { count: continueFrom ? continueFrom.plan.perClip : effectiveCount() });
-      if (durState.on && !continueFrom) {
-        const plan = window.clipPlan(durState.platform, durState.duration);
-        systemPrompt += `\n\n**CLIP STRUCTURE (IMPORTANT):** These ${plan.photos} scenes will become ${plan.clips} separate video clip(s) of ${plan.clipSec} seconds each (${plan.perClip} scenes per clip, ~2 seconds per scene). Structure as ${plan.clips} chapter(s) of ONE continuous process; the LAST scene of each chapter must bridge smoothly into the first scene of the next.`;
+      const plan = (durState.on && !continueFrom) ? window.clipPlan(durState.platform, durState.duration) : null;
+      const clipShowcase = (plan && !cfg.noShowcase && plan.clips >= 2) ? plan.perClip : undefined;
+      let systemPrompt = (cfg.promptFn || window.buildViralPrompt)(cfg, cfg.custom ? { custom: document.getElementById(`${p}-custom-input`).value.trim() } : fullSelection(), { count: continueFrom ? continueFrom.plan.perClip : effectiveCount(), showcase: continueFrom ? 0 : clipShowcase });
+      if (plan) {
+        systemPrompt += `\n\n**CLIP STRUCTURE (IMPORTANT):** These ${plan.photos} scenes will become ${plan.clips} separate video clip(s) of ${plan.clipSec} seconds each (${plan.perClip} scenes per clip, ~2 seconds per scene). Structure as ${plan.clips} chapter(s) of ONE continuous story; the LAST scene of each chapter must bridge smoothly into the first scene of the next.${clipShowcase ? ` The FINAL clip (clip ${plan.clips}, scenes ${plan.photos - plan.perClip + 1}–${plan.photos}) is entirely the SHOWCASE chapter — the process must be FULLY COMPLETED by the end of clip ${plan.clips - 1}, and every scene of the final clip only showcases the finished result.` : ''}`;
       }
       if (continueFrom) {
         const done = continueFrom.titles.length;
-        systemPrompt += `\n\n**CONTINUATION (IMPORTANT — THIS OVERRIDES ANY RULE ABOVE ABOUT STARTING AT THE VERY BEGINNING OR ENDING AT THE FINISHED REVEAL):** The story already exists and must NOT be restarted. Scenes so far, in order:\n${continueFrom.titles.map((t, i) => `${i + 1}. ${t}`).join('\n')}\nThe story currently ends at scene ${done}: "${continueFrom.last.title}" — its image prompt was: "${continueFrom.last.prompt}".\nNow write ONLY the NEXT ${continueFrom.plan.perClip} scenes (scene ${done + 1}–${done + continueFrom.plan.perClip}) that CONTINUE this same story seamlessly as video clip ${continueFrom.nextClip} (${continueFrom.plan.clipSec} seconds, ~2 seconds per scene). Keep the EXACT same subject identity, setting, lighting and style locks as the existing scenes — repeat the same locked subject description in every new scene prompt. Do NOT restart the story, do NOT repeat existing scenes, and do NOT force a final reveal; the first new scene must flow directly on from that last scene, and the last new scene should end on a natural pause that can be continued again.`;
+        systemPrompt += `\n\n**CONTINUATION (MOST IMPORTANT RULE — THIS OVERRIDES EVERY RULE ABOVE ABOUT ARC ORDER, BUILD STAGES, STRUCTURE, STARTING AT THE BEGINNING OR ENDING AT A REVEAL/SHOWCASE):** The story already exists and must NOT be restarted. Every arc / build-order / stage-mapping / showcase rule above described the ORIGINAL scenes only — do NOT map any of them onto the new scenes. Scenes so far, in order:\n${continueFrom.titles.map((t, i) => `${i + 1}. ${t}`).join('\n')}\nThe story currently ends at scene ${done}: "${continueFrom.last.title}" — its image prompt was: "${continueFrom.last.prompt}".\nNow write ONLY the NEXT ${continueFrom.plan.perClip} scenes (scene ${done + 1}–${done + continueFrom.plan.perClip}) that CONTINUE this same story seamlessly as video clip ${continueFrom.nextClip} (${continueFrom.plan.clipSec} seconds, ~2 seconds per scene). Keep the EXACT same subject identity, setting, lighting and style locks as the existing scenes — repeat the same locked subject description in every new scene prompt. Do NOT restart the story, do NOT repeat existing scenes. The first new scene must flow directly on from that last scene. Judge the current state from the scene list above and pick exactly ONE of these two paths:\n- If the process/build was still IN PROGRESS at scene ${done}: continue it from that exact stage onward — NEVER go back to an earlier stage, never re-do a step already shown.\n- If the finished result was ALREADY revealed/completed: do NOT rebuild it and do NOT start a new one — the new scenes are a SHOWCASE/AFTERMATH chapter: the finished result displayed and celebrated in the same setting, cinematic professional close-up shots from new flattering angles, styling/decor details, satisfying final beauty shots.\nEnd the last new scene on a natural pause that can be continued again.`;
       }
       const userQuery = `Generate the storyboard now. Desired aspect ratio is ${r}.`;
       const payload = { contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] }, generationConfig: { responseMimeType: "application/json", responseSchema: { type: "ARRAY", items: { type: "OBJECT", properties: { title: { type: "STRING" }, prompt: { type: "STRING" } }, required: ["title", "prompt"] } } } };
@@ -2232,12 +2253,22 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       }
       generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Membuat Visual...</span>';
       const MAX = 3; let attempts = 0, success = 0;
+      const useAnchor = !cfg.noShowcase && ideas.length > 1;
       while (attempts < MAX && success === 0) {
         attempts++;
         buildCards(ideas);
+        if (useAnchor) {
+          const lastIdea = ideas[ideas.length - 1];
+          await generateSingle(ideas.length, lastIdea.title, lastIdea.prompt);
+        }
+        const anchor = useAnchor ? storyAnchor() : null;
         const chunk = durState.on ? window.clipPlan(durState.platform, durState.duration).perClip : ideas.length;
         for (let s = 0; s < ideas.length; s += chunk) {
-          await Promise.allSettled(ideas.slice(s, s + chunk).map((idea, j) => generateSingle(s + j + 1, idea.title, idea.prompt)));
+          await Promise.allSettled(ideas.slice(s, s + chunk).map((idea, j) => {
+            const gid = s + j + 1;
+            if (useAnchor && anchor && gid === ideas.length) return Promise.resolve();
+            return generateSingle(gid, idea.title, idea.prompt, anchor);
+          }));
         }
         success = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img')).length;
       }
@@ -2271,7 +2302,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       const img = card?.querySelector('img');
       if (btn.dataset.action === `${p}-download` && img) window.downloadDataURINew(img.src, btn.dataset.filename);
       else if (btn.dataset.action === `${p}-preview` && img) openPreview(img.src);
-      else if (btn.dataset.action === `${p}-regenerate` && card) generateSingle(id, card.dataset.title, card.dataset.prompt);
+      else if (btn.dataset.action === `${p}-regenerate` && card) generateSingle(id, card.dataset.title, card.dataset.prompt, cfg.noShowcase ? null : storyAnchor(id));
       else if (btn.dataset.action === `${p}-editprompt` && card) showEditPromptModal(id);
       else if (btn.dataset.action === `${p}-video` && img) generateVideoPrompt(id);
     });
@@ -2831,7 +2862,7 @@ Rules:
   createViralTab({
     prefix: 'carcrash', title: 'Generator Video Car Crash', subtitle: 'Crash, stunt & destruction fisika mobil — konten viral YouTube/Shorts.',
     filenamePrefix: 'car_crash', analyzingMsg: 'AI sedang menyusun simulasi crash...',
-    promptFn: window.buildCarCrashPrompt,
+    promptFn: window.buildCarCrashPrompt, noShowcase: true,
     subject: 'a realistic car crash/stunt simulation with soft-body physics destruction',
     arc: 'kendaraan mulai bergerak → aksi fisika memuncak → benturan klimaks → aftermath bangkai dramatis',
     chipGroups: [
