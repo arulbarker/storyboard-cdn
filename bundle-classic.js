@@ -1773,6 +1773,27 @@ ${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : 
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
 
+  window.buildBottleCraftPrompt = function (cfg, sel, { count }) {
+    const picks = Object.entries(sel)
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    return `You are an expert DIY recycling craft storyboard artist. Create a **${count}-scene visual CRAFTING PROCESS story** (storyboard) showing ONE cute display figure being built step by step from recycled plastic bottles, for a satisfying viral short video.
+
+**THE CRAFT:** ${cfg.subject}.
+${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : ''}
+**CRAFT DESIGN SHEET (DO THIS FIRST):** Before writing any scene, invent ONE fixed figure design from the user choices and write it as one reusable description: the overall shape, which bottle part forms each body part (e.g. bumpy ridged bottle bottoms for a turtle shell), the exact bottle color of every part, the twine/paint/marker decorations and the drawn face. Also fix ONE desk description: rustic wooden craft desk, the visible tools (scissors, sandpaper, hot glue gun, rustic twine, small brush, paint, black marker), small potted plants and warm bokeh fairy lights behind, warm natural light from a side window. You will reuse BOTH descriptions in every scene.
+
+**SUBJECT LOCK (CRITICAL):** The same pair of hands with neat nails, the same desk description and the SAME craft design sheet appear in ALL ${count} scenes — as if filmed in one continuous take, only the build progress advances. Every scene prompt MUST repeat the craft design sheet + desk description word-for-word so separately generated images look like one continuous video.
+
+**MATERIAL LOCK (CRITICAL):** The figure is handmade ONLY from cut recycled plastic bottles joined with hot glue, decorated with rustic twine, acrylic paint and marker — the translucent/colored plastic texture, the bumpy ridged bottle bottoms and the visible glued seams must stay clearly visible. NEVER a factory-made toy, NEVER ceramic, resin or smooth seamless molded plastic — in every scene it must look like a handmade recycled-bottle craft.
+
+**BUILD-STAGE LOCK:** Follow this exact build order, spread evenly across the ${count} scenes: ${cfg.arc}. Each scene shows ONLY the parts that exist at that stage (early scenes: loose cut bottle pieces being prepared; middle scenes: partially glued body without decorations). The COMPLETED figure may appear ONLY in the final scene as the reveal payoff, displayed proudly on the desk.
+
+**STRUCTURE:** ${count} scenes in strict chronological build order, hands actively working in each scene. For each scene provide a short Indonesian title (e.g. 'Scene 1: Potong Botol') and a CONCISE English prompt for an AI image generator that always repeats the locked craft design sheet + desk description and states the exact build stage.
+Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
+  };
+
   function createViralTab(cfg) {
     const p = cfg.prefix;
     const apiKey = "";
@@ -1803,7 +1824,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         <textarea id="${p}-extra-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="${window.escHtml(cfg.extraInput.placeholder || '')}"></textarea>
         ${cfg.extraInput.fromImage ? `
         <input type="file" id="${p}-extra-image-input" accept="image/*" class="hidden">
-        <button type="button" id="${p}-extra-image-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg mt-2 w-full flex items-center justify-center"><i class="fas fa-camera mr-2"></i>Ambil ciri dari Foto (kartun/manusia — hasil tetap boneka)</button>` : ''}
+        <button type="button" id="${p}-extra-image-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg mt-2 w-full flex items-center justify-center"><i class="fas fa-camera mr-2"></i>${window.escHtml(cfg.extraInput.imageBtnLabel || 'Ambil ciri dari Foto (kartun/manusia — hasil tetap boneka)')}</button>` : ''}
         <p class="text-xs text-gray-400 mt-2">Opsional — kosongkan biar AI berkreasi dari pilihan chip.</p>
       </div>` : '';
 
@@ -1889,7 +1910,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         imgBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Membaca foto...</span>';
         try {
           const { base64, mimeType } = await window.compressImage(file);
-          const describe = "Describe this character's visual appearance in Bahasa Indonesia as ONE short paragraph for a doll maker: jenis (cewek/cowok/hewan/robot dll), warna & gaya rambut, ciri wajah, SETIAP potong pakaian dengan warna persisnya, dan aksesori. JANGAN sebut nama karakter, orang, atau franchise. Balas deskripsinya saja.";
+          const describe = cfg.extraInput.imageDescribe || "Describe this character's visual appearance in Bahasa Indonesia as ONE short paragraph for a doll maker: jenis (cewek/cowok/hewan/robot dll), warna & gaya rambut, ciri wajah, SETIAP potong pakaian dengan warna persisnya, dan aksesori. JANGAN sebut nama karakter, orang, atau franchise. Balas deskripsinya saja.";
           const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ contents: [{ parts: [{ text: describe }, { inlineData: { mimeType, data: base64 } }] }] })
@@ -2833,6 +2854,21 @@ Rules:
       { key: 'outfit', label: 'Outfit', options: ['Crop top & rok', 'Dress', 'Hoodie kasual', 'Seragam sekolah', 'Kimono / tradisional', 'Bebas warna-warni'] },
       { key: 'latar meja', label: 'Latar Meja', options: ['Meja kayu cozy', 'Meja putih minimalis', 'Meja kamar aesthetic', 'Meja craft penuh alat'] },
       { key: 'gaya', label: 'Gaya Video', options: ['Stop-motion cepat', 'Timelapse', 'POV tangan close-up', 'Satisfying santai'] },
+    ],
+  });
+
+  createViralTab({
+    prefix: 'bottlecraft', title: 'Generator Video DIY Botol Plastik', subtitle: 'Daur ulang botol plastik bekas jadi pajangan lucu — dari potong botol sampai reveal di meja.',
+    filenamePrefix: 'diy_botol', analyzingMsg: 'AI sedang menyusun proses crafting botol...', defaultAudio: 'asmr',
+    promptFn: window.buildBottleCraftPrompt,
+    subject: 'a pair of human hands with neat nails crafting a cute display figure from recycled plastic bottles on a rustic wooden desk, aesthetic fast-paced DIY tutorial style: cutting bumpy bottle bottoms, sanding the edges, joining pieces with a hot glue gun, decorating with rustic twine, acrylic paint and black marker; close-up and top-down camera focused on the hands and the object, warm natural light from a side window, small potted plants and warm bokeh fairy lights in the background',
+    arc: 'potong bagian botol plastik dengan gunting + amplas ujungnya sampai halus → susun & rekatkan potongan jadi bentuk dasar dengan lem tembak → dekorasi: tempel tali rami di sambungan, pasang bagian kecil/kaki, cat detail dengan kuas → gambar wajah & detail akhir dengan spidol → pajangan jadi ditampilkan utuh di meja (reveal)',
+    extraInput: { key: 'deskripsi pajangan', label: 'Deskripsi Pajangan (opsional)', placeholder: 'Contoh: kura-kura dengan tempurung dari dasar botol hijau bergelombang, botol biru di tengah, kaki hijau berkuku kuning, mata besar & senyum dari spidol hitam', fromImage: true, imageBtnLabel: 'Ambil ciri dari Foto (objek/hewan — hasil tetap pajangan botol)', imageDescribe: "Describe this object or character's visual appearance in Bahasa Indonesia as ONE short paragraph for a recycled plastic bottle craft maker: bentuk keseluruhan, warna tiap bagian, ciri wajah/detail khas, dan dekorasinya. JANGAN sebut nama karakter, orang, atau franchise. Balas deskripsinya saja." },
+    chipGroups: [
+      { key: 'bentuk', label: 'Bentuk Pajangan', options: ['Kura-kura', 'Ikan', 'Burung hantu', 'Robot', 'Bunga & pot', 'Celengan babi', 'Lampu hias', 'Kepik / serangga lucu'] },
+      { key: 'warna botol', label: 'Warna Botol', options: ['Hijau & biru', 'Bening transparan', 'Warna-warni campur', 'Hijau semua', 'Biru semua'] },
+      { key: 'latar meja', label: 'Latar Meja', options: ['Meja kayu rustic + tanaman', 'Meja putih minimalis', 'Meja craft penuh alat', 'Meja kamar aesthetic + fairy lights'] },
+      { key: 'gaya', label: 'Gaya Video', options: ['Tutorial cepat (fast-paced)', 'Stop-motion', 'Satisfying santai', 'Timelapse'] },
     ],
   });
   // === END VIRAL STUDIO ===
