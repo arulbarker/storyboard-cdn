@@ -1801,6 +1801,54 @@ ${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : 
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
 
+  window.buildMetalCraftPrompt = function (cfg, sel, { count, showcase: forcedShowcase }) {
+    const picks = Object.entries(sel)
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    const showcase = forcedShowcase !== undefined ? forcedShowcase : (count > 5 ? 2 : (count >= 3 ? 1 : 0));
+    return `You are an expert DIY metal craft storyboard artist. Create a **${count}-scene visual CRAFTING PROCESS story** (storyboard) showing ONE miniature figurine being built step by step from industrial metal hardware (hex nuts, washers, copper wire), for a satisfying viral short video.
+
+**THE CRAFT:** ${cfg.subject}.
+${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : ''}
+**CRAFT DESIGN SHEET (DO THIS FIRST):** Before writing any scene, invent ONE fixed figurine design from the user choices and write it as one reusable description: the overall shape, which nuts and washers form each body part (e.g. hex nuts and round washers stacked into a dome shell for a turtle), the exact metal finish of every part (rustic, shiny steel, copper), the twisted thick copper wire limbs with round wire-loop eyes, and the small oval wooden display base. Also fix ONE workspace description: smooth matte dark grey work surface, the visible tools and materials (small clear bottle of liquid superglue, small pliers, bowls of loose nuts and washers), clean minimalist background, bright even soft studio lighting that highlights the metallic shine without harsh shadows, extreme close-up top-down camera on the hands. You will reuse BOTH descriptions in every scene.
+
+**SUBJECT LOCK (CRITICAL):** The same pair of hands with neat clean nails, the same workspace description and the SAME craft design sheet appear in ALL ${count} scenes — as if filmed in one continuous take, only the build progress advances. Every scene prompt MUST repeat the craft design sheet + workspace description word-for-word so separately generated images look like one continuous video.
+
+**MATERIAL LOCK (CRITICAL):** The figurine is handmade ONLY from steel hex nuts, round metal washers and thick twisted copper wire joined with drops of clear liquid superglue — the hexagonal nut shapes, the rustic/metallic texture, the copper wire twists and the visible glue joints must stay clearly visible. NEVER a factory-made toy, NEVER smooth cast or welded seamless metal sculpture, NEVER plastic or resin — in every scene it must look like a handmade nuts-and-wire craft.
+
+**BUILD-STAGE LOCK:** Follow this exact build order, spread evenly across scenes 1–${count - showcase}: ${cfg.arc}. Each scene shows ONLY the parts that exist at that stage (early scenes: loose nuts and washers arranged flat on the table; middle scenes: partial dome shell or bare wire frame without the shell). The figurine must be FULLY COMPLETED at scene ${count - showcase} — the reveal payoff, displayed proudly on the wooden base.${showcase ? `
+
+**SHOWCASE ENDING:** the last ${showcase} scene(s) show the FINISHED figurine being showcased — beautifully displayed on its oval wooden base on the dark grey surface, cinematic professional close-up shots of its shell and copper details from new flattering angles (hands may gently present or turn it). NO new building steps in these scenes; the craft is done, this is the payoff for the viewer.` : ''}
+
+**STRUCTURE:** ${count} scenes in strict chronological build order${showcase ? ` (hands actively working in scenes 1–${count - showcase})` : ', hands actively working in each scene'}. For each scene provide a short Indonesian title (e.g. 'Scene 1: Susun Mur') and a CONCISE English prompt for an AI image generator that always repeats the locked craft design sheet + workspace description and states the exact build stage.
+Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
+  };
+
+  window.buildStrawCraftPrompt = function (cfg, sel, { count, showcase: forcedShowcase }) {
+    const picks = Object.entries(sel)
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    const showcase = forcedShowcase !== undefined ? forcedShowcase : (count > 5 ? 2 : (count >= 3 ? 1 : 0));
+    return `You are an expert stop-motion DIY craft storyboard artist. Create a **${count}-scene visual CRAFTING PROCESS story** (storyboard) showing ONE miniature model being built step by step entirely from plastic drinking straws, precise satisfying stop-motion tutorial style, for a viral short video.
+
+**THE CRAFT:** ${cfg.subject}.
+${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : ''}
+**CRAFT DESIGN SHEET (DO THIS FIRST):** Before writing any scene, invent ONE fixed model design from the user choices and write it as one reusable description: the overall shape, which straw pieces form each part, the exact straw color of every part, the wheels or round details made of tightly packed circular straw segments (if the model has them), and the printed/drawn face or decal details (generic original cartoon design — NEVER name or copy a real franchise character). Also fix ONE workspace description: smooth plain beige/light-grey craft cutting mat, the visible tools (metal scissors, steel ruler, small brush, glue, folded cleaning cloth), a softly blurred background with assorted crafting tools and yellow hand tools out of focus, bright clean even studio lighting with no harsh shadows, static close-up camera focused on the fingers and material. You will reuse BOTH descriptions in every scene.
+
+**SUBJECT LOCK (CRITICAL):** The same pair of hands with neat clean nails, the same workspace description and the SAME craft design sheet appear in ALL ${count} scenes — as if filmed in one continuous take, only the build progress advances. Every scene prompt MUST repeat the craft design sheet + workspace description word-for-word so separately generated images look like one continuous video.
+
+**MATERIAL LOCK (CRITICAL):** The model is handmade ONLY from cut plastic drinking straws (some are bendy straws with ridged flexible segments) joined by snap-fitting pieces into one another and small drops of glue — the glossy tubular straw texture, the round open tube ends and the ridged bendy segments must stay clearly visible. NEVER a factory-made die-cast toy, NEVER a smooth molded plastic body, NEVER a real vehicle or object — in every scene it must look like a handmade straw-built craft.
+
+**BUILD-STAGE LOCK:** Follow this exact build order, spread evenly across scenes 1–${count - showcase}: ${cfg.arc}. Each scene shows ONLY the parts that exist at that stage (early scenes: loose measured and cut straw pieces on the mat; middle scenes: bare tubular frame or chassis without the outer shell). The model must be FULLY COMPLETED at scene ${count - showcase} — the reveal payoff, presented proudly on the mat.${showcase ? `
+
+**SHOWCASE ENDING:** the last ${showcase} scene(s) show the FINISHED model being showcased — displayed on the clean craft mat, cinematic professional close-up shots of its details from new flattering angles (hands may gently present, turn it, or wipe it with the cloth). NO new building steps in these scenes; the craft is done, this is the payoff for the viewer.` : ''}
+
+**STRUCTURE:** ${count} scenes in strict chronological build order${showcase ? ` (hands actively working in scenes 1–${count - showcase})` : ', hands actively working in each scene'}. For each scene provide a short Indonesian title (e.g. 'Scene 1: Potong Sedotan') and a CONCISE English prompt for an AI image generator that always repeats the locked craft design sheet + workspace description and states the exact build stage.
+Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
+  };
+
   function createViralTab(cfg) {
     const p = cfg.prefix;
     const apiKey = "";
@@ -1815,7 +1863,9 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         <div id="${p}-group-${g.key}" data-group="${g.key}" class="grid gap-2 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
           <button type="button" data-val="__random__" class="theme-chip selected"><i class="fas fa-dice"></i>Kejutkan aku</button>
           ${g.options.map(o => `<button type="button" data-val="${window.escHtml(o)}" class="theme-chip">${window.escHtml(o)}</button>`).join('')}
+          <button type="button" data-val="__custom__" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
         </div>
+        <input type="text" id="${p}-group-${g.key}-custom" class="hidden w-full mt-2 p-3 bg-white border-2 border-violet-300 rounded-xl text-sm focus:border-violet-500 transition" placeholder="Tulis ${window.escHtml(g.label.toLowerCase())} versimu sendiri...">
       </div>`).join('');
 
     const customHtml = cfg.custom ? `
@@ -1879,11 +1929,22 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     (cfg.chipGroups || []).forEach(g => {
       selection[g.key] = '';
       const gridEl = document.getElementById(`${p}-group-${g.key}`);
+      const customEl = document.getElementById(`${p}-group-${g.key}-custom`);
       gridEl.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-val]'); if (!btn) return;
         gridEl.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
         btn.classList.add('selected');
-        selection[g.key] = btn.dataset.val === '__random__' ? '' : btn.dataset.val;
+        if (btn.dataset.val === '__custom__') {
+          customEl.classList.remove('hidden');
+          customEl.focus();
+          selection[g.key] = customEl.value.trim();
+        } else {
+          customEl.classList.add('hidden');
+          selection[g.key] = btn.dataset.val === '__random__' ? '' : btn.dataset.val;
+        }
+      });
+      customEl.addEventListener('input', () => {
+        if (gridEl.querySelector('.theme-chip.selected')?.dataset.val === '__custom__') selection[g.key] = customEl.value.trim();
       });
     });
 
@@ -2900,6 +2961,36 @@ Rules:
       { key: 'warna botol', label: 'Warna Botol', options: ['Hijau & biru', 'Bening transparan', 'Warna-warni campur', 'Hijau semua', 'Biru semua'] },
       { key: 'latar meja', label: 'Latar Meja', options: ['Meja kayu rustic + tanaman', 'Meja putih minimalis', 'Meja craft penuh alat', 'Meja kamar aesthetic + fairy lights'] },
       { key: 'gaya', label: 'Gaya Video', options: ['Tutorial cepat (fast-paced)', 'Stop-motion', 'Satisfying santai', 'Timelapse'] },
+    ],
+  });
+
+  createViralTab({
+    prefix: 'metalcraft', title: 'Generator Video DIY Metal Craft', subtitle: 'Miniatur dari mur, ring besi & kawat tembaga — dari susun cangkang sampai reveal di alas kayu.',
+    filenamePrefix: 'diy_metal', analyzingMsg: 'AI sedang menyusun proses crafting metal...', defaultAudio: 'asmr',
+    promptFn: window.buildMetalCraftPrompt,
+    subject: 'a pair of human hands with neat clean nails assembling a miniature figurine from steel hex nuts, round metal washers and thick copper wire on a smooth matte dark grey work surface, fast-paced DIY crafting tutorial style: arranging nuts and washers into patterns, applying drops of clear liquid superglue, twisting thick copper wire into limbs with small pliers, mounting the finished piece on a small oval wooden base; extreme close-up and top-down camera focused entirely on the hands and materials, bright even soft studio lighting that highlights the metallic shine and copper glow, clean minimalist background',
+    arc: 'susun mur heksagonal & ring besi membentuk pola melingkar di meja → teteskan superglue bening ke sela-sela untuk merekatkan → lilit & pelintir kawat tembaga jadi kepala (mata bulat dari kawat), empat kaki dan ekor → rakit kerangka kawat tembaga ke cangkang mur yang sudah berbentuk kubah 3D → tutup puncak cangkang dengan mur & ring tambahan → figur jadi dipajang di alas kayu oval (reveal)',
+    extraInput: { key: 'deskripsi figur', label: 'Deskripsi Figur (opsional)', placeholder: 'Contoh: kura-kura dengan cangkang kubah dari mur rustic berkarat, kepala & kaki dari lilitan kawat tembaga, mata bulat kawat, di alas kayu oval', fromImage: true, imageBtnLabel: 'Ambil ciri dari Foto (objek/hewan — hasil tetap figur metal)', imageDescribe: "Describe this object or character's visual appearance in Bahasa Indonesia as ONE short paragraph for a metal nuts-and-wire craft maker: bentuk keseluruhan, bagian tubuh utamanya, warna/finish tiap bagian, dan ciri khasnya. JANGAN sebut nama karakter, orang, atau franchise. Balas deskripsinya saja." },
+    chipGroups: [
+      { key: 'bentuk', label: 'Bentuk Figur', options: ['Kura-kura', 'Laba-laba', 'Kalajengking', 'Burung hantu', 'Capung', 'Semut', 'Motor mini', 'Robot kecil'] },
+      { key: 'material', label: 'Material Metal', options: ['Mur rustic berkarat', 'Baja silver mengkilap', 'Dominan kawat tembaga', 'Mur hitam matte', 'Kuningan emas'] },
+      { key: 'latar meja', label: 'Latar Meja', options: ['Abu-abu gelap matte', 'Kayu workshop', 'Putih studio', 'Plat logam industrial'] },
+      { key: 'gaya', label: 'Gaya Video', options: ['Tutorial cepat (fast-paced)', 'Stop-motion', 'Satisfying santai', 'Timelapse', 'Sinematik makro'] },
+    ],
+  });
+
+  createViralTab({
+    prefix: 'strawcraft', title: 'Generator Video DIY Sedotan', subtitle: 'Model rakitan presisi dari sedotan plastik — dari potong sedotan sampai reveal di cutting mat.',
+    filenamePrefix: 'diy_sedotan', analyzingMsg: 'AI sedang menyusun proses rakit sedotan...', defaultAudio: 'asmr',
+    promptFn: window.buildStrawCraftPrompt,
+    subject: 'a pair of human hands with neat clean nails building a miniature model entirely from colored plastic drinking straws on a smooth plain beige craft cutting mat, precise fast-paced satisfying stop-motion DIY tutorial style: measuring straws with a steel ruler, cutting them with metal scissors, snap-fitting cut pieces into one another to build a tubular frame, assembling wheels from tightly packed circular straw segments, snapping on the outer shell piece by piece, wiping the finished model with a cloth; static extreme close-up camera focused on the fingers and material, bright clean even studio lighting with no harsh shadows, softly blurred background with assorted crafting tools and yellow hand tools',
+    arc: 'ukur sedotan dengan penggaris besi lalu potong presisi dengan gunting logam → sambung potongan sedotan jadi kerangka & sasis (snap-fit) → susun potongan sedotan kecil melingkar rapat jadi roda/bagian detail lalu pasang ke sasis → pasang bodi luar satu per satu dengan efek snap-on + detail wajah/mata dan dekal → pasang bagian akhir (spoiler/atap) → lap model jadi dengan kain, dipajang utuh di cutting mat (reveal)',
+    extraInput: { key: 'deskripsi model', label: 'Deskripsi Model (opsional)', placeholder: 'Contoh: mobil balap kartun merah glossy, mata besar di kaca depan, aksen petir kuning di samping, roda hitam dari susunan sedotan melingkar, spoiler belakang', fromImage: true, imageBtnLabel: 'Ambil ciri dari Foto (objek/karakter — hasil tetap model sedotan)', imageDescribe: "Describe this object or character's visual appearance in Bahasa Indonesia as ONE short paragraph for a plastic-straw model builder: bentuk keseluruhan, bagian-bagian utamanya, warna tiap bagian, dan ciri khas/detail wajahnya. JANGAN sebut nama karakter, orang, atau franchise. Balas deskripsinya saja." },
+    chipGroups: [
+      { key: 'bentuk', label: 'Bentuk Model', options: ['Mobil balap kartun', 'Motor', 'Pesawat', 'Helikopter', 'Kapal', 'Robot', 'Rumah mini', 'Kincir angin'] },
+      { key: 'warna sedotan', label: 'Warna Sedotan', options: ['Merah', 'Warna-warni campur', 'Biru & putih', 'Hitam & kuning', 'Pastel'] },
+      { key: 'latar meja', label: 'Latar Meja', options: ['Cutting mat krem', 'Meja putih studio', 'Meja kayu craft', 'Cutting mat hijau'] },
+      { key: 'gaya', label: 'Gaya Video', options: ['Stop-motion cepat', 'Tutorial cepat (fast-paced)', 'Satisfying santai', 'Timelapse'] },
     ],
   });
   // === END VIRAL STUDIO ===
