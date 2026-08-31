@@ -94,10 +94,65 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) { console.error('copy gagal', e); return false; }
   };
 
+  // === Helper simpan foto iOS → langsung ke Galeri (bukan Files) ===
+  // iPadOS 13+ menyamar sebagai "Mac" — cek touchPoints
+  window.__isIOS = function () {
+    var ua = navigator.userAgent || '';
+    if (/iPad|iPhone|iPod/.test(ua)) return true;
+    if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) return true;
+    return false;
+  };
+  // Web Share API level 2: File ber-MIME asli → share sheet native "Simpan ke Foto".
+  // Fallback berlapis: kalau iframe blokir web-share → modal long-press (JANGAN buka tab baru).
+  window.__iosShareOrSaveImage = async function (blob, filename) {
+    var mime = blob.type || 'image/png';
+    var file = null;
+    try { file = new File([blob], filename, { type: mime }); } catch (e) { file = null; }
+    if (file && navigator.canShare) {
+      try {
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file], title: filename });
+          return;
+        }
+      } catch (err) {
+        if (err && err.name === 'AbortError') return;
+      }
+    }
+    var url = URL.createObjectURL(blob);
+    var modal = document.createElement('div');
+    modal.className = 'image-preview-modal';
+    modal.innerHTML = '<div class="bg-white rounded-xl p-5 max-w-sm w-full" onclick="event.stopPropagation()">'
+      + '<p class="text-sm text-gray-700 mb-3 leading-relaxed">Tekan dan <b>tahan</b> foto di bawah, lalu pilih <b>"Simpan ke Foto"</b> atau <b>"Tambahkan ke Foto"</b>.</p>'
+      + '<img alt="" class="w-full rounded-lg" style="-webkit-touch-callout:default;pointer-events:auto;">'
+      + '<p class="text-[11px] text-gray-400 mt-3 break-all" data-fn></p>'
+      + '<div class="flex justify-end mt-4"><button type="button" data-ok class="btn-primary font-semibold py-2 px-5 rounded-lg text-sm">Tutup</button></div>'
+      + '</div>';
+    modal.querySelector('img').src = url;
+    modal.querySelector('[data-fn]').textContent = filename;
+    document.body.appendChild(modal);
+    setTimeout(function () { modal.classList.add('show'); }, 10);
+    var close = function () { modal.classList.remove('show'); setTimeout(function () { modal.remove(); URL.revokeObjectURL(url); }, 200); };
+    modal.querySelector('[data-ok]').addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  };
+
   // === Helper download global ===
   window.downloadDataURINew = function (dataURI, filename) {
+    const name = filename || 'storyboard.png';
+    const isImage = /\.(png|jpe?g|webp)$/i.test(name) || /^data:image\//i.test(dataURI);
+    if (isImage && window.__isIOS && window.__isIOS()) {
+      if (/^data:/i.test(dataURI)) {
+        const head = dataURI.slice(0, dataURI.indexOf(','));
+        const b64 = dataURI.slice(dataURI.indexOf(',') + 1);
+        const mime = (head.match(/data:([^;]+)/) || [])[1] || 'image/png';
+        window.__iosShareOrSaveImage(window.b64ToBlob(b64, mime), name);
+      } else {
+        fetch(dataURI).then(function (r) { return r.blob(); }).then(function (b) { window.__iosShareOrSaveImage(b, name); });
+      }
+      return;
+    }
     const a = document.createElement('a');
-    a.href = dataURI; a.download = filename || 'storyboard.png';
+    a.href = dataURI; a.download = name;
     document.body.appendChild(a); a.click(); a.remove();
   };
 
@@ -397,10 +452,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="text-sm font-semibold text-gray-800 truncate">${window.escHtml(m.name)}</p>
             <p class="text-[11px] text-gray-400">${new Date(m.createdAt).toLocaleDateString('id-ID')}</p>
             <div class="flex gap-1 mt-2">
-              <a href="${objUrl}" download="model_${m.name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.png" class="flex-1 btn-secondary text-xs font-semibold py-1.5 rounded-lg text-center"><i class="fas fa-download pointer-events-none"></i></a>
+              <button type="button" data-dl class="flex-1 btn-secondary text-xs font-semibold py-1.5 rounded-lg text-center"><i class="fas fa-download pointer-events-none"></i></button>
               <button type="button" data-del="${m.id}" class="flex-1 text-xs font-semibold py-1.5 rounded-lg" style="color:#dc2626;border:1px solid rgba(220,38,38,.3);"><i class="fas fa-trash pointer-events-none"></i></button>
             </div>
           </div>`;
+        card.querySelector('[data-dl]').addEventListener('click', () => {
+          const fn = `model_${m.name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.png`;
+          if (window.__isIOS && window.__isIOS()) { window.__iosShareOrSaveImage(m.blob, fn); return; }
+          const a = document.createElement('a');
+          a.href = objUrl; a.download = fn;
+          document.body.appendChild(a); a.click(); a.remove();
+        });
         card.querySelector('[data-del]').addEventListener('click', async (e) => {
           const delBtn = e.currentTarget;
           if (!(await window.uiConfirm(`Hapus model "${m.name}"?`))) return;
