@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Unduh Semua',
-      'btn.sheet': 'Jadikan 1 Foto',
+      'btn.sheet': 'Ekspor Storyboard',
       'loading.sheet': 'Menggabung...',
       'warn.no-scene-sheet': 'Belum ada foto scene untuk digabung.',
       'err.sheet': 'Gagal menggabung foto: ',
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'or',
       'btn.download-all': 'Download All',
-      'btn.sheet': 'Merge to 1 Image',
+      'btn.sheet': 'Export Storyboard',
       'loading.sheet': 'Merging...',
       'warn.no-scene-sheet': 'No scene photos to merge yet.',
       'err.sheet': 'Failed to merge image: ',
@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Muat Turun Semua',
-      'btn.sheet': 'Jadikan 1 Foto',
+      'btn.sheet': 'Ekspor Storyboard',
       'loading.sheet': 'Menggabung...',
       'warn.no-scene-sheet': 'Belum ada foto scene untuk digabung.',
       'err.sheet': 'Gagal menggabung foto: ',
@@ -1097,12 +1097,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.buildStoryboardSheet = async function (scenes, meta) {
     meta = meta || {};
-    // Layout GRID LANDSCAPE: kolom auto by jumlah scene → gambar tumbuh ke samping (bukan ke bawah), prompt font besar
+    // Layout GRID VERTIKAL: foto atas + prompt bawah. Dipanggil PER KLIP (sedikit scene) → grid pendek & prompt jelas.
     const n = scenes.length;
     const cols = meta.cols || (n <= 4 ? Math.max(1, n) : n <= 8 ? 4 : n <= 15 ? 5 : n <= 24 ? 6 : 7);
-    const pad = 40, gutter = 24, innerPad = 20, bannerH = 140;
-    const cardW = 480, photoBoxH = 320;
-    const numSize = 30, titleSize = 27, metaSize = 23, promptSize = 25, lineH = 34;
+    const pad = 40, gutter = 24, innerPad = 20, bannerH = 150;
+    const cardW = 460, photoBoxH = meta.photoBoxH || 300;
+    const numSize = 30, titleSize = 26, metaSize = 22, promptSize = 23, lineH = 31;
     const innerW = cardW - innerPad * 2;
     const W = pad * 2 + cols * cardW + (cols - 1) * gutter;
     const font = (s, w) => `${w ? w + ' ' : ''}${s}px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`;
@@ -1152,11 +1152,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.textBaseline = 'top';
     ctx.fillStyle = '#1b1830'; ctx.fillRect(0, 0, W, totalH);
     ctx.fillStyle = '#6d28d9'; ctx.fillRect(0, 0, W, bannerH);
-    ctx.fillStyle = '#ffffff'; ctx.font = font(44, '800');
-    ctx.fillText(meta.title || 'Storyboard', pad, 34);
-    ctx.font = font(24, '500'); ctx.fillStyle = 'rgba(255,255,255,0.85)';
-    const sub = [meta.duration, meta.count ? meta.count + ' scene' : ''].filter(Boolean).join('  ·  ');
-    if (sub) ctx.fillText(sub, pad, 90);
+    ctx.fillStyle = '#ffffff'; ctx.font = font(42, '800');
+    ctx.fillText(meta.title || 'Storyboard', pad, 30);
+    if (meta.sub) { ctx.font = font(23, '500'); ctx.fillStyle = 'rgba(255,255,255,0.9)'; ctx.fillText(meta.sub, pad, 84); }
     let y = bannerH + pad;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -1652,7 +1650,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sheetBtn.type = 'button';
         sheetBtn.id = `${p}-sheet-btn`;
         sheetBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
-        sheetBtn.innerHTML = '<i class="fas fa-images mr-1"></i><span data-i18n="btn.sheet">Jadikan 1 Foto</span>';
+        sheetBtn.innerHTML = '<i class="fas fa-images mr-1"></i><span data-i18n="btn.sheet">Ekspor Storyboard</span>';
         sheetBtn.addEventListener('click', exportStoryboardSheet);
         wrap.appendChild(sheetBtn);
         const syncSheet = () => sheetBtn.classList.toggle('hidden', downloadAllBtn.classList.contains('hidden'));
@@ -1667,32 +1665,51 @@ document.addEventListener('DOMContentLoaded', () => {
     let modelBase64 = null, modelMime = null;
 
     async function exportStoryboardSheet() {
-      const cards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img'));
-      if (!cards.length) { window.uiNotify(t('warn.no-scene-sheet')); return; }
-      const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
-      const scenes = cards.map((c, i) => {
-        let timing = '';
-        if (plan && plan.perClip) {
-          const persec = plan.clipSec / plan.perClip;
-          const pos = i % plan.perClip;
-          timing = `${Math.round(pos * persec)}-${Math.round((pos + 1) * persec)}s`;
-        }
-        return { num: i + 1, title: c.dataset.title || `Scene ${i + 1}`, timing, prompt: c.dataset.prompt || '', img: c.querySelector('img').src };
-      });
+      const allCards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img'));
+      if (!allCards.length) { window.uiNotify(t('warn.no-scene-sheet')); return; }
       const btn = document.getElementById(`${p}-sheet-btn`);
-      const orig = btn ? btn.innerHTML : '';
-      if (btn) { btn.disabled = true; btn.innerHTML = '<div class="loader"></div><span class="ml-2">' + t('loading.sheet') + '</span>'; }
-      try {
-        const dataURL = await window.buildStoryboardSheet(scenes, {
-          title: cfg.sheetTitle || 'Storyboard',
-          duration: plan ? `${durState.duration} dtk` : '',
-          count: scenes.length
+      const fmt = audioStyleSel ? audioStyleSel.options[audioStyleSel.selectedIndex].text : '';
+      // Bikin 1 gambar untuk sekelompok kartu (1 klip). startIdx = indeks scene global untuk penomoran & timing.
+      async function makeSheet(cards, startIdx, clipLabel, cols) {
+        const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
+        const persec = plan && plan.perClip ? plan.clipSec / plan.perClip : 0;
+        const scenes = cards.map((c, j) => {
+          const gi = startIdx + j;
+          const timing = plan ? `${Math.round(j * persec)}-${Math.round((j + 1) * persec)}s` : '';
+          return { num: gi + 1, title: c.dataset.title || `Scene ${gi + 1}`, timing, prompt: c.dataset.prompt || '', img: c.querySelector('img').src };
         });
-        window.downloadDataURINew(dataURL, `${cfg.filenamePrefix}_storyboard_sheet.jpg`);
-      } catch (err) {
-        console.error(err); window.uiNotify(t('err.sheet') + err.message);
-      } finally {
-        if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+        const sub = [clipLabel, plan ? `${plan.clipSec} dtk` : '', `${scenes.length} scene`, fmt ? `Format: ${fmt}` : ''].filter(Boolean).join('  ·  ');
+        return window.buildStoryboardSheet(scenes, { title: cfg.sheetTitle || 'Storyboard', sub, cols });
+      }
+      async function runJobs(jobs) {
+        const orig = btn ? btn.innerHTML : '';
+        if (btn) { btn.disabled = true; btn.innerHTML = '<div class="loader"></div><span class="ml-2">' + t('loading.sheet') + '</span>'; }
+        try {
+          for (const j of jobs) {
+            const url = await makeSheet(j.cards, j.startIdx, j.label, j.cols);
+            window.downloadDataURINew(url, j.fname);
+            await new Promise(r => setTimeout(r, 400)); // jeda antar unduhan biar tidak diblokir browser
+          }
+        } catch (err) { console.error(err); window.uiNotify(t('err.sheet') + err.message); }
+        finally { if (btn) { btn.disabled = false; btn.innerHTML = orig; } }
+      }
+      if (durState.on) {
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        const totalClips = Math.ceil(allCards.length / plan.perClip);
+        const jobFor = (k) => {
+          const s = (k - 1) * plan.perClip;
+          const cards = allCards.slice(s, s + plan.perClip);
+          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
+        };
+        if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
+        const choices = [{ label: `<i class="fas fa-images mr-2"></i>Semua klip (${totalClips} gambar)`, onPick: () => runJobs(Array.from({ length: totalClips }, (_, i) => jobFor(i + 1))) }];
+        for (let k = 1; k <= totalClips; k++) {
+          const jb = jobFor(k);
+          choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>Klip ${k} — Scene ${jb.startIdx + 1}–${jb.startIdx + jb.cards.length}`, onPick: () => runJobs([jb]) });
+        }
+        showChoiceModal('Storyboard klip yang mana?', choices);
+      } else {
+        runJobs([{ cards: allCards, startIdx: 0, label: '', fname: `${cfg.filenamePrefix}_storyboard.jpg`, cols: undefined }]);
       }
     }
 
