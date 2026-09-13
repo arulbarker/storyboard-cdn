@@ -1624,7 +1624,7 @@ document.addEventListener('DOMContentLoaded', () => {
       audioStyleSel = document.createElement('select');
       audioStyleSel.id = `${p}-audio-style`;
       audioStyleSel.className = 'btn-secondary text-sm font-semibold py-2 px-3 rounded-lg hidden';
-      audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option><option value="timelapse">⏩ Timelapse (tanpa narasi)</option>';
+      audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara ke kamera (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi (model diam)</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option><option value="timelapse">⏩ Timelapse (tanpa narasi)</option>';
       audioStyleSel.value = audioStyle;
       audioStyleSel.addEventListener('change', () => { audioStyle = audioStyleSel.value; });
 
@@ -3223,7 +3223,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       audioStyleSel = document.createElement('select');
       audioStyleSel.id = `${p}-audio-style`;
       audioStyleSel.className = 'btn-secondary text-sm font-semibold py-2 px-3 rounded-lg hidden';
-      audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option><option value="timelapse">⏩ Timelapse (tanpa narasi)</option>';
+      audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara ke kamera (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi (model diam)</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option><option value="timelapse">⏩ Timelapse (tanpa narasi)</option>';
       audioStyleSel.value = audioStyle;
       audioStyleSel.addEventListener('change', () => { audioStyle = audioStyleSel.value; });
 
