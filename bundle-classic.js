@@ -1097,10 +1097,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.buildStoryboardSheet = async function (scenes, meta) {
     meta = meta || {};
-    const cols = meta.cols || 2;
-    const W = 1600, pad = 48, gutter = 32, innerPad = 20;
-    const titleSize = 30, metaSize = 22, promptSize = 22, lineH = 30, bannerH = 150;
-    const cellW = Math.floor((W - pad * 2 - gutter * (cols - 1)) / cols);
+    // Layout HORIZONTAL: 1 scene = 1 baris (foto thumbnail kiri, prompt melebar kanan) — tahan skala walau scene banyak
+    const W = 1400, pad = 40, rowGap = 22, innerPad = 22, bannerH = 130;
+    const boxW = 380, boxH = 250; // area foto thumbnail (contain-fit)
+    const numSize = 30, titleSize = 28, metaSize = 22, promptSize = 24, lineH = 33;
+    const textX = pad + innerPad + boxW + 30;
+    const textW = W - textX - pad;
     const font = (s, w) => `${w ? w + ' ' : ''}${s}px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`;
     const mc = document.createElement('canvas').getContext('2d');
     function wrap(text, maxW, size, weight) {
@@ -1122,63 +1124,51 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
     }
     const imgs = await Promise.all(scenes.map(s => s.img ? window.loadImg(s.img).catch(() => null) : Promise.resolve(null)));
-    const cells = scenes.map((s, i) => {
+    const rows = scenes.map((s, i) => {
       const im = imgs[i];
-      const aspect = im ? im.naturalWidth / im.naturalHeight : 16 / 9;
-      const photoW = cellW - innerPad * 2;
-      const photoH = Math.round(photoW / (aspect || 1.777));
-      const promptLines = wrap(s.prompt, photoW, promptSize);
-      const timingH = s.timing ? (metaSize + 12) : 0;
-      const h = innerPad + (titleSize + 14) + photoH + 14 + timingH + promptLines.length * lineH + innerPad;
-      return { im, photoW, photoH, promptLines, timingH, h };
+      const aspect = (im && im.naturalHeight) ? im.naturalWidth / im.naturalHeight : 16 / 9;
+      let dw = boxW, dh = Math.round(boxW / aspect);
+      if (dh > boxH) { dh = boxH; dw = Math.round(boxH * aspect); } // contain-fit dalam box
+      const promptLines = wrap(s.prompt, textW, promptSize);
+      const titleH = titleSize + 14;
+      const timingH = s.timing ? (metaSize + 10) : 0;
+      const textH = titleH + timingH + promptLines.length * lineH;
+      const contentH = Math.max(dh, textH);
+      return { im, dw, dh, promptLines, contentH, h: contentH + innerPad * 2 };
     });
-    const rows = Math.ceil(scenes.length / cols);
-    const rowH = [];
-    for (let r = 0; r < rows; r++) {
-      let mx = 0;
-      for (let c = 0; c < cols; c++) { const i = r * cols + c; if (i < cells.length) mx = Math.max(mx, cells[i].h); }
-      rowH.push(mx);
-    }
     let totalH = bannerH + pad;
-    rowH.forEach(h => totalH += h + gutter);
-    totalH += pad - gutter;
+    rows.forEach(r => totalH += r.h + rowGap);
+    totalH += pad - rowGap;
     const cv = document.createElement('canvas');
     cv.width = W; cv.height = totalH;
     const ctx = cv.getContext('2d');
     ctx.textBaseline = 'top';
     ctx.fillStyle = '#1b1830'; ctx.fillRect(0, 0, W, totalH);
     ctx.fillStyle = '#6d28d9'; ctx.fillRect(0, 0, W, bannerH);
-    ctx.fillStyle = '#ffffff'; ctx.font = font(46, '800');
-    ctx.fillText(meta.title || 'Storyboard', pad, 34);
-    ctx.font = font(24, '500'); ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillStyle = '#ffffff'; ctx.font = font(42, '800');
+    ctx.fillText(meta.title || 'Storyboard', pad, 30);
+    ctx.font = font(23, '500'); ctx.fillStyle = 'rgba(255,255,255,0.85)';
     const sub = [meta.duration, meta.count ? meta.count + ' scene' : ''].filter(Boolean).join('  ·  ');
-    if (sub) ctx.fillText(sub, pad, 96);
+    if (sub) ctx.fillText(sub, pad, 84);
     let y = bannerH + pad;
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const idx = r * cols + c; if (idx >= cells.length) continue;
-        const cm = cells[idx], s = scenes[idx];
-        const x = pad + c * (cellW + gutter);
-        rr(ctx, x, y, cellW, rowH[r], 18); ctx.fillStyle = '#2a2640'; ctx.fill();
-        const cx = x + innerPad; let cy = y + innerPad;
-        ctx.fillStyle = '#06b6d4'; ctx.font = font(titleSize, '800');
-        const numTxt = String(s.num);
-        ctx.fillText(numTxt, cx, cy);
-        const numW = ctx.measureText(numTxt + '  ').width;
-        ctx.fillStyle = '#f3f4f6'; ctx.font = font(titleSize, '700');
-        ctx.fillText(s.title || '', cx + numW, cy);
-        cy += titleSize + 14;
-        if (cm.im) {
-          ctx.save(); rr(ctx, cx, cy, cm.photoW, cm.photoH, 12); ctx.clip();
-          ctx.drawImage(cm.im, cx, cy, cm.photoW, cm.photoH); ctx.restore();
-        } else { ctx.fillStyle = '#3a3550'; ctx.fillRect(cx, cy, cm.photoW, cm.photoH); }
-        cy += cm.photoH + 14;
-        if (s.timing) { ctx.fillStyle = '#06b6d4'; ctx.font = font(metaSize, '700'); ctx.fillText(s.timing, cx, cy); cy += metaSize + 12; }
-        ctx.fillStyle = '#cbd5e1'; ctx.font = font(promptSize, '400');
-        cm.promptLines.forEach(ln => { ctx.fillText(ln, cx, cy); cy += lineH; });
-      }
-      y += rowH[r] + gutter;
-    }
+    rows.forEach((r, i) => {
+      const s = scenes[i];
+      rr(ctx, pad, y, W - pad * 2, r.h, 18); ctx.fillStyle = '#2a2640'; ctx.fill();
+      const px = pad + innerPad, py = y + innerPad;
+      if (r.im) { ctx.save(); rr(ctx, px, py, r.dw, r.dh, 12); ctx.clip(); ctx.drawImage(r.im, px, py, r.dw, r.dh); ctx.restore(); }
+      else { ctx.fillStyle = '#3a3550'; ctx.fillRect(px, py, r.dw, r.dh); }
+      rr(ctx, px + 10, py + 10, 48, 42, 10); ctx.fillStyle = 'rgba(109,40,217,0.94)'; ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = font(numSize, '800'); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(String(s.num), px + 34, py + 32);
+      ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+      let ty = py;
+      ctx.fillStyle = '#f3f4f6'; ctx.font = font(titleSize, '700');
+      ctx.fillText(s.title || '', textX, ty); ty += titleSize + 14;
+      if (s.timing) { ctx.fillStyle = '#06b6d4'; ctx.font = font(metaSize, '700'); ctx.fillText(s.timing, textX, ty); ty += metaSize + 10; }
+      ctx.fillStyle = '#cbd5e1'; ctx.font = font(promptSize, '400');
+      r.promptLines.forEach(ln => { ctx.fillText(ln, textX, ty); ty += lineH; });
+      y += r.h + rowGap;
+    });
     return cv.toDataURL('image/jpeg', 0.92);
   };
 
