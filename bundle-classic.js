@@ -70,6 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Unduh Semua',
+      'btn.sheet': 'Jadikan 1 Foto',
+      'loading.sheet': 'Menggabung...',
+      'warn.no-scene-sheet': 'Belum ada foto scene untuk digabung.',
+      'err.sheet': 'Gagal menggabung foto: ',
       'btn.generate.product-review': 'Buat Scene Review',
       'btn.generate.skincare-review': 'Buat Scene Skincare',
       'btn.generate.product-ads': 'Buat Story Iklan',
@@ -275,6 +279,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'or',
       'btn.download-all': 'Download All',
+      'btn.sheet': 'Merge to 1 Image',
+      'loading.sheet': 'Merging...',
+      'warn.no-scene-sheet': 'No scene photos to merge yet.',
+      'err.sheet': 'Failed to merge image: ',
       'btn.generate.product-review': 'Create Review Scene',
       'btn.generate.skincare-review': 'Create Skincare Scene',
       'btn.generate.product-ads': 'Create Ad Story',
@@ -480,6 +488,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Muat Turun Semua',
+      'btn.sheet': 'Jadikan 1 Foto',
+      'loading.sheet': 'Menggabung...',
+      'warn.no-scene-sheet': 'Belum ada foto scene untuk digabung.',
+      'err.sheet': 'Gagal menggabung foto: ',
       'btn.generate.product-review': 'Cipta Babak Ulasan',
       'btn.generate.skincare-review': 'Cipta Babak Penjagaan Kulit',
       'btn.generate.product-ads': 'Cipta Kisah Iklan',
@@ -1079,6 +1091,97 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(a); a.click(); a.remove();
   };
 
+  // === STORYBOARD SHEET (gabung semua scene + prompt jadi 1 foto) ===
+  window.loadImg = window.loadImg || function (src) {
+    return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => rej(new Error('img load failed')); im.src = src; });
+  };
+  window.buildStoryboardSheet = async function (scenes, meta) {
+    meta = meta || {};
+    const cols = meta.cols || 2;
+    const W = 1600, pad = 48, gutter = 32, innerPad = 20;
+    const titleSize = 30, metaSize = 22, promptSize = 22, lineH = 30, bannerH = 150;
+    const cellW = Math.floor((W - pad * 2 - gutter * (cols - 1)) / cols);
+    const font = (s, w) => `${w ? w + ' ' : ''}${s}px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`;
+    const mc = document.createElement('canvas').getContext('2d');
+    function wrap(text, maxW, size, weight) {
+      mc.font = font(size, weight);
+      const words = String(text || '').split(/\s+/);
+      const lines = []; let line = '';
+      for (const w of words) {
+        const test = line ? line + ' ' + w : w;
+        if (mc.measureText(test).width > maxW && line) { lines.push(line); line = w; }
+        else line = test;
+      }
+      if (line) lines.push(line);
+      return lines.length ? lines : [''];
+    }
+    function rr(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      if (ctx.roundRect) { ctx.roundRect(x, y, w, h, r); return; }
+      ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+    }
+    const imgs = await Promise.all(scenes.map(s => s.img ? window.loadImg(s.img).catch(() => null) : Promise.resolve(null)));
+    const cells = scenes.map((s, i) => {
+      const im = imgs[i];
+      const aspect = im ? im.naturalWidth / im.naturalHeight : 16 / 9;
+      const photoW = cellW - innerPad * 2;
+      const photoH = Math.round(photoW / (aspect || 1.777));
+      const promptLines = wrap(s.prompt, photoW, promptSize);
+      const timingH = s.timing ? (metaSize + 12) : 0;
+      const h = innerPad + (titleSize + 14) + photoH + 14 + timingH + promptLines.length * lineH + innerPad;
+      return { im, photoW, photoH, promptLines, timingH, h };
+    });
+    const rows = Math.ceil(scenes.length / cols);
+    const rowH = [];
+    for (let r = 0; r < rows; r++) {
+      let mx = 0;
+      for (let c = 0; c < cols; c++) { const i = r * cols + c; if (i < cells.length) mx = Math.max(mx, cells[i].h); }
+      rowH.push(mx);
+    }
+    let totalH = bannerH + pad;
+    rowH.forEach(h => totalH += h + gutter);
+    totalH += pad - gutter;
+    const cv = document.createElement('canvas');
+    cv.width = W; cv.height = totalH;
+    const ctx = cv.getContext('2d');
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = '#1b1830'; ctx.fillRect(0, 0, W, totalH);
+    ctx.fillStyle = '#6d28d9'; ctx.fillRect(0, 0, W, bannerH);
+    ctx.fillStyle = '#ffffff'; ctx.font = font(46, '800');
+    ctx.fillText(meta.title || 'Storyboard', pad, 34);
+    ctx.font = font(24, '500'); ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    const sub = [meta.duration, meta.count ? meta.count + ' scene' : ''].filter(Boolean).join('  ·  ');
+    if (sub) ctx.fillText(sub, pad, 96);
+    let y = bannerH + pad;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const idx = r * cols + c; if (idx >= cells.length) continue;
+        const cm = cells[idx], s = scenes[idx];
+        const x = pad + c * (cellW + gutter);
+        rr(ctx, x, y, cellW, rowH[r], 18); ctx.fillStyle = '#2a2640'; ctx.fill();
+        const cx = x + innerPad; let cy = y + innerPad;
+        ctx.fillStyle = '#06b6d4'; ctx.font = font(titleSize, '800');
+        const numTxt = String(s.num);
+        ctx.fillText(numTxt, cx, cy);
+        const numW = ctx.measureText(numTxt + '  ').width;
+        ctx.fillStyle = '#f3f4f6'; ctx.font = font(titleSize, '700');
+        ctx.fillText(s.title || '', cx + numW, cy);
+        cy += titleSize + 14;
+        if (cm.im) {
+          ctx.save(); rr(ctx, cx, cy, cm.photoW, cm.photoH, 12); ctx.clip();
+          ctx.drawImage(cm.im, cx, cy, cm.photoW, cm.photoH); ctx.restore();
+        } else { ctx.fillStyle = '#3a3550'; ctx.fillRect(cx, cy, cm.photoW, cm.photoH); }
+        cy += cm.photoH + 14;
+        if (s.timing) { ctx.fillStyle = '#06b6d4'; ctx.font = font(metaSize, '700'); ctx.fillText(s.timing, cx, cy); cy += metaSize + 12; }
+        ctx.fillStyle = '#cbd5e1'; ctx.font = font(promptSize, '400');
+        cm.promptLines.forEach(ln => { ctx.fillText(ln, cx, cy); cy += lineH; });
+      }
+      y += rowH[r] + gutter;
+    }
+    return cv.toDataURL('image/jpeg', 0.92);
+  };
+
   // === Helper kompres gambar (return {base64, mimeType, dataUrl}) ===
   window.compressImage = function (file, maxDim = 1280, quality = 0.85) {
     return new Promise((resolve, reject) => {
@@ -1542,12 +1645,54 @@ document.addEventListener('DOMContentLoaded', () => {
       wrap.appendChild(audioLangBtn);
       wrap.appendChild(captionBtn);
       wrap.appendChild(videoAllBtn);
+      if (cfg.sheetExport) {
+        const sheetBtn = document.createElement('button');
+        sheetBtn.type = 'button';
+        sheetBtn.id = `${p}-sheet-btn`;
+        sheetBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
+        sheetBtn.innerHTML = '<i class="fas fa-images mr-1"></i><span data-i18n="btn.sheet">Jadikan 1 Foto</span>';
+        sheetBtn.addEventListener('click', exportStoryboardSheet);
+        wrap.appendChild(sheetBtn);
+        const syncSheet = () => sheetBtn.classList.toggle('hidden', downloadAllBtn.classList.contains('hidden'));
+        new MutationObserver(syncSheet).observe(downloadAllBtn, { attributes: true, attributeFilter: ['class'] });
+        syncSheet();
+      }
       wrap.appendChild(downloadAllBtn);
     }
 
     let selectedCount = 4;
     let images = [];
     let modelBase64 = null, modelMime = null;
+
+    async function exportStoryboardSheet() {
+      const cards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img'));
+      if (!cards.length) { window.uiNotify(t('warn.no-scene-sheet')); return; }
+      const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
+      const scenes = cards.map((c, i) => {
+        let timing = '';
+        if (plan && plan.perClip) {
+          const persec = plan.clipSec / plan.perClip;
+          const pos = i % plan.perClip;
+          timing = `${Math.round(pos * persec)}-${Math.round((pos + 1) * persec)}s`;
+        }
+        return { num: i + 1, title: c.dataset.title || `Scene ${i + 1}`, timing, prompt: c.dataset.prompt || '', img: c.querySelector('img').src };
+      });
+      const btn = document.getElementById(`${p}-sheet-btn`);
+      const orig = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = '<div class="loader"></div><span class="ml-2">' + t('loading.sheet') + '</span>'; }
+      try {
+        const dataURL = await window.buildStoryboardSheet(scenes, {
+          title: cfg.sheetTitle || 'Storyboard',
+          duration: plan ? `${durState.duration} dtk` : '',
+          count: scenes.length
+        });
+        window.downloadDataURINew(dataURL, `${cfg.filenamePrefix}_storyboard_sheet.jpg`);
+      } catch (err) {
+        console.error(err); window.uiNotify(t('err.sheet') + err.message);
+      } finally {
+        if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+      }
+    }
 
     function ratio() { return document.querySelector(`#${p}-ratio-selection .ratio-btn.selected`)?.dataset.ratio || '16:9'; }
     function currentTheme() {
@@ -2401,6 +2546,8 @@ Rules:
     prefix: 'review',
     subject: 'product',
     filenamePrefix: 'review',
+    sheetExport: true,
+    sheetTitle: 'Storyboard — Review Produk',
     analyzingMsg: 'AI sedang menganalisis produk...',
     descUserText: 'Buatkan deskripsi produk untuk gambar ini.',
     descPrompt: `You are a professional affiliate reviewer. Analyze the product in the image and write a concise, authentic-sounding review intro in Indonesian. Highlight its key features from a user's perspective. Keep it under 500 characters.`,
