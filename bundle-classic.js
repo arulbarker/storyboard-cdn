@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.influencer.or': 'atau',
       'btn.download-all': 'Unduh Semua',
       'btn.sheet': 'Ekspor Storyboard',
-      'loading.sheet': 'Menggabung...',
+      'loading.sheet': 'Membuat prompt...',
       'warn.no-scene-sheet': 'Belum ada foto scene untuk digabung.',
       'err.sheet': 'Gagal menggabung foto: ',
       'btn.generate.product-review': 'Buat Scene Review',
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.influencer.or': 'or',
       'btn.download-all': 'Download All',
       'btn.sheet': 'Export Storyboard',
-      'loading.sheet': 'Merging...',
+      'loading.sheet': 'Generating prompts...',
       'warn.no-scene-sheet': 'No scene photos to merge yet.',
       'err.sheet': 'Failed to merge image: ',
       'btn.generate.product-review': 'Create Review Scene',
@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.influencer.or': 'atau',
       'btn.download-all': 'Muat Turun Semua',
       'btn.sheet': 'Ekspor Storyboard',
-      'loading.sheet': 'Menggabung...',
+      'loading.sheet': 'Membuat prompt...',
       'warn.no-scene-sheet': 'Belum ada foto scene untuk digabung.',
       'err.sheet': 'Gagal menggabung foto: ',
       'btn.generate.product-review': 'Cipta Babak Ulasan',
@@ -1100,9 +1100,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Layout GRID VERTIKAL: foto atas + prompt bawah. Dipanggil PER KLIP (sedikit scene) → grid pendek & prompt jelas.
     const n = scenes.length;
     const cols = meta.cols || (n <= 4 ? Math.max(1, n) : n <= 8 ? 4 : n <= 15 ? 5 : n <= 24 ? 6 : 7);
-    const pad = 40, gutter = 24, innerPad = 20, bannerH = 150;
-    const cardW = 460, photoBoxH = meta.photoBoxH || 300;
-    const numSize = 30, titleSize = 26, metaSize = 22, promptSize = 23, lineH = 31;
+    const pad = 40, gutter = 24, innerPad = 22, bannerH = 150;
+    const cardW = 540, maxPhotoH = 980; // foto isi lebar kartu; cap tinggi utk jaga-jaga rasio ekstrem
+    const numSize = 32, titleSize = 30, metaSize = 24, promptSize = 28, lineH = 38; // font prompt diperbesar biar terbaca
     const innerW = cardW - innerPad * 2;
     const W = pad * 2 + cols * cardW + (cols - 1) * gutter;
     const font = (s, w) => `${w ? w + ' ' : ''}${s}px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`;
@@ -1129,13 +1129,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const cells = scenes.map((s, i) => {
       const im = imgs[i];
       const aspect = (im && im.naturalHeight) ? im.naturalWidth / im.naturalHeight : 16 / 9;
-      let dw = innerW, dh = Math.round(innerW / aspect);
-      if (dh > photoBoxH) { dh = photoBoxH; dw = Math.round(photoBoxH * aspect); } // contain, tinggi foto dibatasi
+      let dw = innerW, dh = Math.round(innerW / aspect); // foto isi lebar kartu, tinggi ikut rasio asli (9:16 → tinggi)
+      if (dh > maxPhotoH) { dh = maxPhotoH; dw = Math.round(maxPhotoH * aspect); }
       const promptLines = wrap(s.prompt, innerW, promptSize);
       const timingH = s.timing ? (metaSize + 10) : 0;
-      const h = innerPad + photoBoxH + 16 + (titleSize + 12) + timingH + promptLines.length * lineH + innerPad;
-      return { im, dw, dh, promptLines, h };
+      return { im, dw, dh, promptLines, timingH };
     });
+    const photoAreaH = Math.max(...cells.map(c => c.dh)); // area foto = foto tertinggi → kartu ikut rasio konten (potret/lanskap)
+    cells.forEach(cm => { cm.h = innerPad + photoAreaH + 16 + (titleSize + 12) + cm.timingH + cm.promptLines.length * lineH + innerPad; });
     const rows = Math.ceil(n / cols);
     const rowH = [];
     for (let r = 0; r < rows; r++) {
@@ -1170,7 +1171,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = '#fff'; ctx.font = font(numSize, '800'); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillText(String(s.num), photoX + 32, cy + 30);
         ctx.textAlign = 'left'; ctx.textBaseline = 'top';
-        cy += photoBoxH + 16;
+        cy += photoAreaH + 16;
         ctx.fillStyle = '#f3f4f6'; ctx.font = font(titleSize, '700');
         ctx.fillText(s.title || '', cx, cy); cy += titleSize + 12;
         if (s.timing) { ctx.fillStyle = '#06b6d4'; ctx.font = font(metaSize, '700'); ctx.fillText(s.timing, cx, cy); cy += metaSize + 10; }
@@ -1645,18 +1646,16 @@ document.addEventListener('DOMContentLoaded', () => {
       wrap.appendChild(audioLangBtn);
       wrap.appendChild(captionBtn);
       wrap.appendChild(videoAllBtn);
-      if (cfg.sheetExport) {
-        const sheetBtn = document.createElement('button');
-        sheetBtn.type = 'button';
-        sheetBtn.id = `${p}-sheet-btn`;
-        sheetBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
-        sheetBtn.innerHTML = '<i class="fas fa-images mr-1"></i><span data-i18n="btn.sheet">Ekspor Storyboard</span>';
-        sheetBtn.addEventListener('click', exportStoryboardSheet);
-        wrap.appendChild(sheetBtn);
-        const syncSheet = () => sheetBtn.classList.toggle('hidden', downloadAllBtn.classList.contains('hidden'));
-        new MutationObserver(syncSheet).observe(downloadAllBtn, { attributes: true, attributeFilter: ['class'] });
-        syncSheet();
-      }
+      const sheetBtn = document.createElement('button');
+      sheetBtn.type = 'button';
+      sheetBtn.id = `${p}-sheet-btn`;
+      sheetBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
+      sheetBtn.innerHTML = '<i class="fas fa-images mr-1"></i><span data-i18n="btn.sheet">Ekspor Storyboard</span>';
+      sheetBtn.addEventListener('click', exportStoryboardSheet);
+      wrap.appendChild(sheetBtn);
+      const syncSheet = () => sheetBtn.classList.toggle('hidden', downloadAllBtn.classList.contains('hidden'));
+      new MutationObserver(syncSheet).observe(downloadAllBtn, { attributes: true, attributeFilter: ['class'] });
+      syncSheet();
       wrap.appendChild(downloadAllBtn);
     }
 
@@ -1664,7 +1663,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let images = [];
     let modelBase64 = null, modelMime = null;
 
-    async function exportStoryboardSheet() {
+    async function exportStoryboardSheet(onlyClip) {
       const allCards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img'));
       if (!allCards.length) { window.uiNotify(t('warn.no-scene-sheet')); return; }
       const btn = document.getElementById(`${p}-sheet-btn`);
@@ -1673,10 +1672,12 @@ document.addEventListener('DOMContentLoaded', () => {
       async function makeSheet(cards, startIdx, clipLabel, cols) {
         const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
         const persec = plan && plan.perClip ? plan.clipSec / plan.perClip : 0;
+        // Teks yang ditempel = PROMPT VIDEO per scene (ikut format audio terpilih), digenerate dulu → SAMA dgn hasil realtime. Fallback ke prompt gambar bila gagal.
+        const vps = await Promise.all(cards.map(c => requestVideoPrompt(c).then(r => r.vp).catch(() => c.dataset.prompt || '')));
         const scenes = cards.map((c, j) => {
           const gi = startIdx + j;
           const timing = plan ? `${Math.round(j * persec)}-${Math.round((j + 1) * persec)}s` : '';
-          return { num: gi + 1, title: c.dataset.title || `Scene ${gi + 1}`, timing, prompt: c.dataset.prompt || '', img: c.querySelector('img').src };
+          return { num: gi + 1, title: c.dataset.title || `Scene ${gi + 1}`, timing, prompt: vps[j], img: c.querySelector('img').src };
         });
         const sub = [clipLabel, plan ? `${plan.clipSec} dtk` : '', `${scenes.length} scene`, fmt ? `Format: ${fmt}` : ''].filter(Boolean).join('  ·  ');
         return window.buildStoryboardSheet(scenes, { title: cfg.sheetTitle || 'Storyboard', sub, cols });
@@ -1701,6 +1702,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const cards = allCards.slice(s, s + plan.perClip);
           return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
         };
+        if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
         const choices = [{ label: `<i class="fas fa-images mr-2"></i>Semua klip (${totalClips} gambar)`, onPick: () => runJobs(Array.from({ length: totalClips }, (_, i) => jobFor(i + 1))) }];
         for (let k = 1; k <= totalClips; k++) {
@@ -1926,7 +1928,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const h = document.createElement('div');
           h.className = 'clip-divider';
           h.id = `${p}-clip-${clipIdx}`;
-          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${gi + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button></span>`;
+          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${gi + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button><button type="button" data-action="${p}-clip-sheet" data-clip="${clipIdx}" class="action-btn bg-violet-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-images mr-1 pointer-events-none"></i>Storyboard</button></span>`;
           grid.appendChild(h);
         }
         const card = document.createElement('div');
@@ -2047,6 +2049,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const plan = window.clipPlan(durState.platform, durState.duration);
         const all = Array.from(grid.querySelectorAll('.result-card'));
         downloadCards(all.slice((k - 1) * plan.perClip, k * plan.perClip));
+        return;
+      }
+      if (btn.dataset.action === `${p}-clip-sheet`) {
+        exportStoryboardSheet(parseInt(btn.dataset.clip, 10));
         return;
       }
       const id = btn.dataset.sceneId;
@@ -2565,7 +2571,6 @@ Rules:
     prefix: 'review',
     subject: 'product',
     filenamePrefix: 'review',
-    sheetExport: true,
     sheetTitle: 'Storyboard — Review Produk',
     analyzingMsg: 'AI sedang menganalisis produk...',
     descUserText: 'Buatkan deskripsi produk untuk gambar ini.',
@@ -3263,11 +3268,72 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       wrap.appendChild(audioLangBtn);
       wrap.appendChild(captionBtn);
       wrap.appendChild(videoAllBtn);
+      const sheetBtn = document.createElement('button');
+      sheetBtn.type = 'button';
+      sheetBtn.id = `${p}-sheet-btn`;
+      sheetBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
+      sheetBtn.innerHTML = '<i class="fas fa-images mr-1"></i><span data-i18n="btn.sheet">Ekspor Storyboard</span>';
+      sheetBtn.addEventListener('click', exportStoryboardSheet);
+      wrap.appendChild(sheetBtn);
+      const syncSheet = () => sheetBtn.classList.toggle('hidden', downloadAllBtn.classList.contains('hidden'));
+      new MutationObserver(syncSheet).observe(downloadAllBtn, { attributes: true, attributeFilter: ['class'] });
+      syncSheet();
       wrap.appendChild(downloadAllBtn);
     }
 
     // ---- Mode Durasi Video (salinan) ----
     const durState = { on: true, platform: 'omni', duration: 10 };
+
+    async function exportStoryboardSheet(onlyClip) {
+      const allCards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img'));
+      if (!allCards.length) { window.uiNotify(t('warn.no-scene-sheet')); return; }
+      const btn = document.getElementById(`${p}-sheet-btn`);
+      const fmt = audioStyleSel ? audioStyleSel.options[audioStyleSel.selectedIndex].text : '';
+      async function makeSheet(cards, startIdx, clipLabel, cols) {
+        const plan = durState.on ? window.clipPlan(durState.platform, durState.duration) : null;
+        const persec = plan && plan.perClip ? plan.clipSec / plan.perClip : 0;
+        // Teks yang ditempel = PROMPT VIDEO per scene (ikut format audio terpilih), digenerate dulu → SAMA dgn hasil realtime. Fallback ke prompt gambar bila gagal.
+        const vps = await Promise.all(cards.map(c => requestVideoPrompt(c).then(r => r.vp).catch(() => c.dataset.prompt || '')));
+        const scenes = cards.map((c, j) => {
+          const gi = startIdx + j;
+          const timing = plan ? `${Math.round(j * persec)}-${Math.round((j + 1) * persec)}s` : '';
+          return { num: gi + 1, title: c.dataset.title || `Scene ${gi + 1}`, timing, prompt: vps[j], img: c.querySelector('img').src };
+        });
+        const sub = [clipLabel, plan ? `${plan.clipSec} dtk` : '', `${scenes.length} scene`, fmt ? `Format: ${fmt}` : ''].filter(Boolean).join('  ·  ');
+        return window.buildStoryboardSheet(scenes, { title: cfg.sheetTitle || 'Storyboard', sub, cols });
+      }
+      async function runJobs(jobs) {
+        const orig = btn ? btn.innerHTML : '';
+        if (btn) { btn.disabled = true; btn.innerHTML = '<div class="loader"></div><span class="ml-2">' + t('loading.sheet') + '</span>'; }
+        try {
+          for (const j of jobs) {
+            const url = await makeSheet(j.cards, j.startIdx, j.label, j.cols);
+            window.downloadDataURINew(url, j.fname);
+            await new Promise(r => setTimeout(r, 400)); // jeda antar unduhan biar tidak diblokir browser
+          }
+        } catch (err) { console.error(err); window.uiNotify(t('err.sheet') + err.message); }
+        finally { if (btn) { btn.disabled = false; btn.innerHTML = orig; } }
+      }
+      if (durState.on) {
+        const plan = window.clipPlan(durState.platform, durState.duration);
+        const totalClips = Math.ceil(allCards.length / plan.perClip);
+        const jobFor = (k) => {
+          const s = (k - 1) * plan.perClip;
+          const cards = allCards.slice(s, s + plan.perClip);
+          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
+        };
+        if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
+        if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
+        const choices = [{ label: `<i class="fas fa-images mr-2"></i>Semua klip (${totalClips} gambar)`, onPick: () => runJobs(Array.from({ length: totalClips }, (_, i) => jobFor(i + 1))) }];
+        for (let k = 1; k <= totalClips; k++) {
+          const jb = jobFor(k);
+          choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>Klip ${k} — Scene ${jb.startIdx + 1}–${jb.startIdx + jb.cards.length}`, onPick: () => runJobs([jb]) });
+        }
+        showChoiceModal('Storyboard klip yang mana?', choices);
+      } else {
+        runJobs([{ cards: allCards, startIdx: 0, label: '', fname: `${cfg.filenamePrefix}_storyboard.jpg`, cols: undefined }]);
+      }
+    }
     const modeWrap = document.createElement('div');
     modeWrap.className = 'flex gap-2 mb-3';
     modeWrap.innerHTML = `<button type="button" data-mode="duration" class="theme-chip selected"><i class="fas fa-film mr-1"></i><span data-i18n="mode.duration">Durasi Video</span></button><button type="button" data-mode="count" class="theme-chip"><i class="fas fa-images mr-1"></i><span data-i18n="mode.count">Jumlah Foto</span></button>`;
@@ -3346,7 +3412,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           const h = document.createElement('div');
           h.className = 'clip-divider';
           h.id = `${p}-clip-${clipIdx}`;
-          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${gi + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button></span>`;
+          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${gi + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button><button type="button" data-action="${p}-clip-sheet" data-clip="${clipIdx}" class="action-btn bg-violet-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-images mr-1 pointer-events-none"></i>Storyboard</button></span>`;
           grid.appendChild(h);
         }
         const card = document.createElement('div');
@@ -3509,6 +3575,10 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         const plan = window.clipPlan(durState.platform, durState.duration);
         const all = Array.from(grid.querySelectorAll('.result-card'));
         downloadCards(all.slice((k - 1) * plan.perClip, k * plan.perClip));
+        return;
+      }
+      if (btn.dataset.action === `${p}-clip-sheet`) {
+        exportStoryboardSheet(parseInt(btn.dataset.clip, 10));
         return;
       }
       const id = btn.dataset.sceneId;
