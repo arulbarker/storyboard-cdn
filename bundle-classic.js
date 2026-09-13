@@ -16,6 +16,197 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.daily': 'Day in My Life',
       'nav.testi': 'Testimoni',
       'nav.grwm': 'GRWM',
+      'hdr.product-review.title': 'Generator Review Produk',
+      'hdr.product-review.sub': 'Solusi AI untuk konten review produk afiliasi Anda.',
+      'hdr.skincare-review.title': 'Generator Review Skincare',
+      'hdr.skincare-review.sub': 'Buat scene review skincare profesional untuk konten Anda.',
+      'hdr.product-ads.title': 'Generator Story Iklan',
+      'hdr.product-ads.sub': 'Solusi AI untuk konten promosi & storyboard iklan brand Anda.',
+      'hdr.fashion.title': 'Generator Review Fashion / OOTD',
+      'hdr.fashion.sub': 'Storyboard review baju & aksesoris dengan model konsisten.',
+      'hdr.unboxing.title': 'Generator Unboxing Scene',
+      'hdr.unboxing.sub': 'Storyboard buka paket produk — hook kuat untuk konten afiliasi.',
+      'hdr.food-review.title': 'Generator Review Makanan Profesional',
+      'hdr.food-review.sub': 'Buat review makanan seperti TikToker & Selebgram dengan AI.',
+      'hdr.tutorial.title': 'Generator Tutorial Cara Pakai',
+      'hdr.tutorial.sub': 'Story langkah demi langkah: masalah → cara pakai → hasil. Cocok untuk konten edukasi affiliate.',
+      'hdr.daily.title': 'Generator Day in My Life',
+      'hdr.daily.sub': 'Story vlog harian pagi → malam dengan produk terselip natural. Soft-selling ala TikTok.',
+      'hdr.testi.title': 'Generator Testimoni',
+      'hdr.testi.sub': 'Story problem → solution ala UGC: keluhan → nemu produk → pakai → hasil. Format iklan konversi.',
+      'hdr.grwm.title': 'Generator GRWM',
+      'hdr.grwm.sub': 'Get Ready With Me: tampilan awal → tahapan makeup/skincare/outfit → final look. Tren kuat TikTok.',
+      'hdr.influencer.title': 'AI Influencer Studio',
+      'hdr.influencer.sub': 'Racik model virtual, simpan, lalu pakai di semua fitur review.',
+      'step.upload-product': 'Unggah Gambar Produk',
+      'step.upload-skincare': 'Unggah Produk Skincare',
+      'step.upload-fashion': 'Unggah Produk Fashion',
+      'step.upload-food': 'Upload Foto Makanan',
+      'step.desc-product': 'Deskripsi Produk',
+      'step.desc-skincare': 'Deskripsi Skincare',
+      'step.desc-fashion': 'Deskripsi Fashion',
+      'step.desc-food': 'Deskripsi Makanan',
+      'step.photo-theme': 'Tema Foto',
+      'step.theme-setting': 'Tema / Setting',
+      'step.theme-ambience': 'Tema / Ambience',
+      'step.aspect-ratio': 'Aspect Ratio',
+      'step.count': 'Jumlah Generate',
+      'step.compose-model': 'Racik Model',
+      'step.result': 'Hasil',
+      'step.model-library': 'Pustaka Model',
+      'field.upload-click-drag': 'Klik atau seret gambar ke sini',
+      'field.upload-hint-png': 'PNG, JPG, WEBP (bisa lebih dari satu)',
+      'field.upload-click-food': 'Klik untuk upload foto makanan',
+      'field.upload-hint-heic': 'JPG, PNG, WEBP, HEIC (iPhone) — bisa lebih dari satu',
+      'btn.ai-generate': 'AI Generate',
+      'field.upload-click-model': 'Klik untuk pilih foto model',
+      'field.model-photo': 'Foto Model',
+      'field.optional': '(Opsional)',
+      'field.required': '(Wajib)',
+      'hint.model-food': 'Reviewer akan tampil mencicipi makanan di semua scene',
+      'field.gender': 'Gender',
+      'field.age': 'Usia',
+      'field.look': 'Look',
+      'field.hijab': 'Hijab',
+      'field.influencer.or': 'atau',
+      'btn.download-all': 'Unduh Semua',
+      'btn.generate.product-review': 'Buat Scene Review',
+      'btn.generate.skincare-review': 'Buat Scene Skincare',
+      'btn.generate.product-ads': 'Buat Story Iklan',
+      'btn.generate.fashion': 'Buat Story Fashion',
+      'btn.generate.unboxing': 'Buat Unboxing Scene',
+      'btn.generate.food-review': 'Buat Review Makanan',
+      'btn.generate.tutorial': 'Buat Story Tutorial',
+      'btn.generate.daily': 'Buat Story Harian',
+      'btn.generate.testi': 'Buat Story Testimoni',
+      'btn.generate.grwm': 'Buat Story GRWM',
+      'btn.generate.model': 'Buat Model AI',
+      'btn.upload-own-photo': 'Upload Foto Sendiri',
+      'btn.influencer.regen': 'Regenerate',
+      'btn.influencer.save': 'Simpan',
+      'result.heading': 'Hasil Review',
+      'result.heading.ads': 'Hasil Story Iklan',
+      'result.heading.fashion': 'Hasil Fashion Story',
+      'result.heading.unboxing': 'Hasil Unboxing Story',
+      'result.heading.food': 'Hasil Review Makanan',
+      'result.heading.tutorial': 'Hasil Story Tutorial',
+      'result.heading.daily': 'Hasil Day in My Life',
+      'result.heading.testi': 'Hasil Story Testimoni',
+      'result.heading.grwm': 'Hasil Story GRWM',
+      'hint.theme-generic': 'Pilih konsep tempat & mood untuk seluruh scene. "Tidak Ada" = biar AI yang tentukan.',
+      'hint.theme-fashion': 'Pilih konsep tempat & gaya untuk seluruh scene OOTD. "Tidak Ada" = biar AI yang tentukan.',
+      'hint.theme-ads': 'Pilih konsep tempat & mood untuk seluruh scene iklan. "Tidak Ada" = biar AI yang tentukan.',
+      'hint.theme-unboxing': 'Pilih konsep tempat & mood untuk seluruh scene unboxing. "Tidak Ada" = biar AI yang tentukan.',
+      'hint.theme-food': 'Pilih konsep tempat & mood untuk seluruh scene makanan. "Tidak Ada" = biar AI yang tentukan.',
+      'hint.theme-tutorial': 'Pilih konsep tempat & mood untuk seluruh langkah tutorial. "Tidak Ada" = biar AI yang tentukan.',
+      'hint.theme-daily': 'Pilih vibe keseharian untuk seluruh scene. "Tidak Ada" = biar AI yang tentukan.',
+      'hint.theme-testi': 'Pilih suasana natural untuk testimoni yang jujur & relatable. "Tidak Ada" = biar AI yang tentukan.',
+      'hint.theme-grwm': 'Pilih vibe & occasion GRWM untuk seluruh scene. "Tidak Ada" = biar AI yang tentukan.',
+      'tip.desc-quality': 'Tip: deskripsi detail menghasilkan review yang lebih berkualitas.',
+      'hint.model-tutorial': 'Model akan memperagakan tiap langkah di semua scene',
+      'hint.model-daily': 'Model jadi tokoh utama sepanjang hari',
+      'hint.model-testi': 'Model jadi orang yang bertestimoni di semua scene',
+      'hint.model-grwm': 'Model yang sama dari awal sampai siap pergi',
+      'hint.model-required-daily': 'Day in My Life bercerita tentang orangnya — foto model wajib supaya wajah konsisten di semua scene.',
+      'hint.model-required-grwm': 'GRWM bercerita tentang proses bersiap orangnya — foto model wajib supaya wajah konsisten dari polos sampai final look.',
+      'hint.product-tutorial': 'Cocok untuk: hampir semua produk yang punya cara pakai — skincare, gadget, alat dapur, peralatan rumah, produk perawatan.',
+      'hint.product-daily': 'Cocok untuk: produk yang dipakai sehari-hari — tumbler, tas, gadget, skincare, outfit kasual, snack/minuman.',
+      'hint.product-testi': 'Cocok untuk: produk pemecah masalah yang ada efek sebelum-sesudahnya — obat jerawat, pembersih, suplemen, alat bantu.',
+      'hint.product-grwm': 'Cocok untuk: produk dandan — makeup, skincare, hijab, parfum, aksesori. Story selalu mulai dari tampilan polos → final look; untuk baju/outfit lebih pas pakai tab <strong>Review Fashion</strong>.',
+      'hint.influencer-empty': 'Belum ada foto — racik lalu klik "Buat Model AI".',
+      'ph.desc-product': 'Deskripsikan produk Anda... atau gunakan AI Generate',
+      'ph.desc-skincare': 'Deskripsikan skincare Anda (kandungan, manfaat, tekstur)... atau gunakan AI Generate',
+      'ph.desc-ads': 'Deskripsikan produk & pesan iklan Anda... atau gunakan AI Generate',
+      'ph.desc-fashion': 'Jelaskan item fashion (jenis, bahan, gaya, ukuran)... atau gunakan AI Generate',
+      'ph.desc-unboxing': 'Deskripsikan produk & isi paketnya... atau gunakan AI Generate',
+      'ph.desc-food': 'Jelaskan makanan ini (nama, rasa, tekstur, bahan, harga)... atau gunakan AI Generate',
+      'ph.desc-tutorial': 'Deskripsikan produk & cara pakainya... atau gunakan AI Generate',
+      'ph.desc-daily': 'Deskripsikan produk & kapan dipakainya dalam sehari... atau gunakan AI Generate',
+      'ph.desc-testi': 'Deskripsikan produk & masalah yang dipecahkannya... atau gunakan AI Generate',
+      'ph.desc-grwm': 'Deskripsikan produk & untuk acara apa bersiap-siapnya... atau gunakan AI Generate',
+      'ph.review-theme': 'Tulis tema sendiri: minimalis & bersih, nuansa alam tropis, futuristik neon...',
+      'ph.skincare-theme': 'Tulis tema sendiri: clean beauty, glowing skin, aesthetic pastel...',
+      'ph.ads-theme': 'Tulis tema sendiri: urban modern, luxury dark, cerah ceria outdoor...',
+      'ph.fashion-theme': 'Tulis tema sendiri: street style urban, aesthetic pastel, studio minimalis...',
+      'ph.unboxing-theme': 'Tulis tema sendiri: meja kayu hangat, studio bersih, nuansa cozy...',
+      'ph.food-theme': 'Tulis tema sendiri: rustic kayu hangat, moody low-key, cerah high-key studio...',
+      'ph.tutorial-theme': 'Tulis tema sendiri: meja kayu hangat, studio bersih, nuansa cozy...',
+      'ph.daily-theme': 'Tulis vibe sendiri: pagi cozy, kerja di kafe, sore di taman...',
+      'ph.testi-theme': 'Tulis suasana sendiri: kamar apa adanya, teras sore, selfie-cam...',
+      'ph.grwm-theme': 'Tulis vibe sendiri: vanity ringlight, GRWM kondangan, clean girl...',
+      'ph.custom-theme': 'Tulis tema sendiri...',
+      'ph.model-name': 'Nama model, mis. Salsa',
+      'btn.all-video-prompt': 'Semua Prompt Video',
+      'mode.duration': 'Durasi Video',
+      'mode.count': 'Jumlah Foto',
+      'btn.pick-model-library': 'Pilih dari Pustaka Model',
+      'btn.retry': 'Coba Lagi',
+      'title.regenerate': 'Regenerate',
+      'title.editprompt': 'Edit Prompt',
+      'title.video': 'Buat Prompt Video',
+      'title.download': 'Unduh',
+      'loading.visual': 'Membuat Visual...',
+      'loading.continue': 'Melanjutkan cerita...',
+      'loading.caption': 'Membuat Caption...',
+      'loading.clip-prompt': 'Membuat Prompt Klip',
+      'loading.video-prompt': 'Membuat Prompt Video...',
+      'msg.scene-failed': 'Scene gagal dibuat',
+      'btn.copy': 'Copy',
+      'btn.copy-all': 'Copy Semua',
+      'btn.download-txt': 'Unduh .txt',
+      'msg.copied': 'Tersalin!',
+      'msg.use-download-txt': 'Pakai Unduh .txt',
+      'msg.press-ctrl-c': 'Tekan Ctrl+C',
+      'modal.edit-prompt-title': 'Edit Prompt Gambar',
+      'modal.caption-title': 'Caption Video',
+      'login.subtitle': 'Masuk dengan email pembelianmu',
+      'login.email-ph': 'Email pembelian...',
+      'login.submit': 'Masuk',
+      'login.checking': 'Memeriksa akses...',
+      'login.no-access': 'Belum punya akses?',
+      'login.buy-lynk': 'Beli di Lynk.id',
+      'login.buy-mayar': 'Beli di Mayar',
+      'err.login.email-required': 'Masukkan email pembelianmu dulu.',
+      'err.login.invalid-email': 'Format email tidak valid.',
+      'err.login.failed': 'Login gagal. Periksa email atau koneksi lalu coba lagi.',
+      'warn.model-required': 'Fitur ini butuh Foto Model — upload foto model dulu ya.',
+      'warn.viral-idea-required': 'Tulis dulu ide proses viralmu ya.',
+      'warn.model-name-required': 'Kasih nama modelnya dulu ya.',
+      'warn.library-full': 'Pustaka penuh (maksimal 5 model). Hapus salah satu dulu ya.',
+      'warn.no-models': 'Belum ada model tersimpan — buat dulu di menu AI Influencer.',
+      'warn.google-limit': 'Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.',
+      'warn.file-unreadable': 'File tidak bisa dibaca — pastikan itu file gambar (JPG/PNG/HEIC).',
+      'warn.session-ended': 'Sesi berakhir. Akun ini login di perangkat lain.',
+      'menu.model-studio': 'Model Studio', 'menu.viral': 'Video Short Viral', 'nav.logout': 'Keluar',
+      'nav.influencer': 'AI Influencer', 'navd.influencer': 'Buat & simpan model AI',
+      'navd.product-review': 'Foto review produk afiliasi', 'navd.skincare-review': 'Scene review skincare',
+      'navd.fashion': 'OOTD & fashion story', 'navd.unboxing': 'Story buka paket produk',
+      'navd.product-ads': 'Storyboard iklan brand', 'navd.food-review': 'Food review ala selebgram',
+      'navd.tutorial': 'Story cara pakai produk', 'navd.daily': 'Vlog harian + produk',
+      'navd.testi': 'Story masalah → solusi', 'navd.grwm': 'Get ready with me story',
+      'nav.viralcustom': 'Custom Viral', 'navd.viralcustom': 'Racik ide prosesmu sendiri',
+      'nav.fruitmold': 'Cetakan Buah', 'navd.fruitmold': 'Buah tumbuh dalam cetakan lucu',
+      'nav.housebuild': 'Pembangunan Rumah', 'navd.housebuild': 'Lahan kosong → rumah jadi',
+      'nav.landclear': 'Pembersihan Lahan', 'navd.landclear': 'Kotor → bersih satisfying',
+      'nav.carcrash': 'Car Crash', 'navd.carcrash': 'Crash & stunt fisika mobil',
+      'nav.dollcraft': 'DIY Boneka', 'navd.dollcraft': 'Stop-motion boneka pipe cleaner',
+      'nav.bottlecraft': 'DIY Botol Plastik', 'navd.bottlecraft': 'Daur ulang botol jadi pajangan',
+      'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniatur dari mur & kawat tembaga',
+      'nav.strawcraft': 'DIY Sedotan', 'navd.strawcraft': 'Model rakitan dari sedotan plastik',
+      'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara pakai app ini',
+      'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
+      'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'dtk/klip',
+      'modal.close': 'Tutup', 'modal.fail-prompt': 'Gagal membuat prompt', 'btn.save': 'Simpan', 'btn.cancel': 'Batal',
+      'progress.preparing': 'Menyiapkan', 'progress.done': 'Selesai', 'unit.prompt': 'prompt', 'unit.keyframe': 'keyframe',
+      'vp.title-prefix': 'Prompt Video — Scene', 'vp.section-label': 'Video Prompt', 'vp.per-scene': 'Prompt Per Scene',
+      'vp.all-clip-prompts': 'Semua Prompt Klip', 'vp.clip-title-prefix': 'Prompt Video — Klip', 'vp.one-clip-prompt': 'Satu prompt untuk SATU klip utuh',
+      'edit.hint': 'Ubah prompt gambar scene ini, lalu klik <strong>Simpan</strong>. Tekan tombol <strong>Regenerate</strong> di kartu untuk membuat ulang gambar dengan prompt baru.',
+      'vp.tips': '<strong>Tips:</strong> pakai tombol <strong>Semua Prompt Video</strong> untuk ambil semua scene sekaligus. Copy tiap prompt ke platform image-to-video (Runway, Pika, Kling, Veo) dengan gambar scene-nya, gabung berurutan → satu cerita utuh.',
+      'clip.howto': '<strong>Cara pakai:</strong> unggah %C foto klip ini BERURUTAN ke platform image-to-video (%P) + paste prompt ini → 1 klip %S dtk. Gabungkan semua klip berurutan di CapCut/editor → satu story utuh.',
+      'err.continue-story': 'Gagal melanjutkan cerita: ', 'err.delete-server': 'Gagal menghapus di server — cek koneksi lalu coba lagi.', 'err.read-photo': 'Gagal membaca foto: ', 'ok.features-extracted': 'Ciri karakter berhasil diambil dari foto — silakan edit kalau perlu.', 'warn.storage-unavailable': 'Penyimpanan browser tidak tersedia (mode private/incognito?). Model tidak tersimpan — kamu tetap bisa klik kanan foto untuk menyimpannya manual.', 'warn.storage-short': 'Penyimpanan browser tidak tersedia di sesi ini.', 'ph.group-custom': 'Tulis %L versimu sendiri...',
+      'lib.empty': 'Belum ada model — racik di atas lalu Simpan.', 'ios.save-hint': 'Tekan dan <b>tahan</b> foto di bawah, lalu pilih <b>"Simpan ke Foto"</b> atau <b>"Tambahkan ke Foto"</b>.',
+      'whatsnew.title': 'Yang Baru', 'whatsnew.empty': 'Belum ada catatan perubahan.',
+      'btn.delete': 'Hapus', 'confirm.delete-model': 'Hapus model "%N"?',
     },
     en: {
       'menu.review': 'Review Generator',
@@ -30,21 +221,753 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.daily': 'Day in My Life',
       'nav.testi': 'Testimonial',
       'nav.grwm': 'GRWM',
+      'hdr.product-review.title': 'Product Review Generator',
+      'hdr.product-review.sub': 'AI solution for your affiliate product review content.',
+      'hdr.skincare-review.title': 'Skincare Review Generator',
+      'hdr.skincare-review.sub': 'Create professional skincare review scenes for your content.',
+      'hdr.product-ads.title': 'Ad Story Generator',
+      'hdr.product-ads.sub': 'AI solution for promotional content & brand ad storyboards.',
+      'hdr.fashion.title': 'Fashion / OOTD Review Generator',
+      'hdr.fashion.sub': 'Storyboard clothing & accessories reviews with consistent models.',
+      'hdr.unboxing.title': 'Unboxing Scene Generator',
+      'hdr.unboxing.sub': 'Product unboxing storyboard — strong hooks for affiliate content.',
+      'hdr.food-review.title': 'Professional Food Review Generator',
+      'hdr.food-review.sub': 'Create food reviews like TikTokers & Influencers with AI.',
+      'hdr.tutorial.title': 'How-To Tutorial Generator',
+      'hdr.tutorial.sub': 'Step-by-step story: problem → usage → result. Perfect for affiliate education content.',
+      'hdr.daily.title': 'Day in My Life Generator',
+      'hdr.daily.sub': 'Morning to night daily vlog story with products naturally integrated. Soft-selling TikTok style.',
+      'hdr.testi.title': 'Testimonial Generator',
+      'hdr.testi.sub': 'Problem → solution story UGC style: complaint → found product → used → result. Conversion ad format.',
+      'hdr.grwm.title': 'GRWM Generator',
+      'hdr.grwm.sub': 'Get Ready With Me: initial look → makeup/skincare/outfit steps → final look. TikTok trend.',
+      'hdr.influencer.title': 'AI Influencer Studio',
+      'hdr.influencer.sub': 'Design virtual models, save them, then use across all review features.',
+      'step.upload-product': 'Upload Product Image',
+      'step.upload-skincare': 'Upload Skincare Product',
+      'step.upload-fashion': 'Upload Fashion Product',
+      'step.upload-food': 'Upload Food Photo',
+      'step.desc-product': 'Product Description',
+      'step.desc-skincare': 'Skincare Description',
+      'step.desc-fashion': 'Fashion Description',
+      'step.desc-food': 'Food Description',
+      'step.photo-theme': 'Photo Theme',
+      'step.theme-setting': 'Theme / Setting',
+      'step.theme-ambience': 'Theme / Ambience',
+      'step.aspect-ratio': 'Aspect Ratio',
+      'step.count': 'Generate Count',
+      'step.compose-model': 'Design Model',
+      'step.result': 'Result',
+      'step.model-library': 'Model Library',
+      'field.upload-click-drag': 'Click or drag image here',
+      'field.upload-hint-png': 'PNG, JPG, WEBP (multiple allowed)',
+      'field.upload-click-food': 'Click to upload food photo',
+      'field.upload-hint-heic': 'JPG, PNG, WEBP, HEIC (iPhone) — multiple allowed',
+      'btn.ai-generate': 'AI Generate',
+      'field.upload-click-model': 'Click to select model photo',
+      'field.model-photo': 'Model Photo',
+      'field.optional': '(Optional)',
+      'field.required': '(Required)',
+      'hint.model-food': 'Reviewer will appear tasting the food in all scenes',
+      'field.gender': 'Gender',
+      'field.age': 'Age',
+      'field.look': 'Look',
+      'field.hijab': 'Hijab',
+      'field.influencer.or': 'or',
+      'btn.download-all': 'Download All',
+      'btn.generate.product-review': 'Create Review Scene',
+      'btn.generate.skincare-review': 'Create Skincare Scene',
+      'btn.generate.product-ads': 'Create Ad Story',
+      'btn.generate.fashion': 'Create Fashion Story',
+      'btn.generate.unboxing': 'Create Unboxing Scene',
+      'btn.generate.food-review': 'Create Food Review',
+      'btn.generate.tutorial': 'Create Tutorial Story',
+      'btn.generate.daily': 'Create Daily Story',
+      'btn.generate.testi': 'Create Testimonial Story',
+      'btn.generate.grwm': 'Create GRWM Story',
+      'btn.generate.model': 'Create AI Model',
+      'btn.upload-own-photo': 'Upload Your Own Photo',
+      'btn.influencer.regen': 'Regenerate',
+      'btn.influencer.save': 'Save',
+      'result.heading': 'Review Results',
+      'result.heading.ads': 'Ad Story Results',
+      'result.heading.fashion': 'Fashion Story Results',
+      'result.heading.unboxing': 'Unboxing Story Results',
+      'result.heading.food': 'Food Review Results',
+      'result.heading.tutorial': 'Tutorial Story Results',
+      'result.heading.daily': 'Day in My Life Results',
+      'result.heading.testi': 'Testimonial Story Results',
+      'result.heading.grwm': 'GRWM Story Results',
+      'hint.theme-generic': 'Choose a place concept & mood for all scenes. "None" = let AI decide.',
+      'hint.theme-fashion': 'Choose a place concept & style for all OOTD scenes. "None" = let AI decide.',
+      'hint.theme-ads': 'Choose a place concept & mood for all ad scenes. "None" = let AI decide.',
+      'hint.theme-unboxing': 'Choose a place concept & mood for all unboxing scenes. "None" = let AI decide.',
+      'hint.theme-food': 'Choose a place concept & mood for all food scenes. "None" = let AI decide.',
+      'hint.theme-tutorial': 'Choose a place concept & mood for all tutorial steps. "None" = let AI decide.',
+      'hint.theme-daily': 'Choose a daily vibe for all scenes. "None" = let AI decide.',
+      'hint.theme-testi': 'Choose a natural setting for honest & relatable testimonials. "None" = let AI decide.',
+      'hint.theme-grwm': 'Choose a GRWM vibe & occasion for all scenes. "None" = let AI decide.',
+      'tip.desc-quality': 'Tip: detailed descriptions produce higher quality reviews.',
+      'hint.model-tutorial': 'Model will demonstrate each step in all scenes',
+      'hint.model-daily': 'Model becomes the main character throughout the day',
+      'hint.model-testi': 'Model becomes the person giving testimonials in all scenes',
+      'hint.model-grwm': 'Same model from start to ready to go',
+      'hint.model-required-daily': 'Day in My Life is about the person — a model photo is required for consistent face across all scenes.',
+      'hint.model-required-grwm': 'GRWM is about the getting-ready process — a model photo is required for consistent face from bare to final look.',
+      'hint.product-tutorial': 'Works for: almost any product with instructions — skincare, gadgets, kitchen tools, home equipment, care products.',
+      'hint.product-daily': 'Works for: everyday products — tumblers, bags, gadgets, skincare, casual outfits, snacks/drinks.',
+      'hint.product-testi': 'Works for: problem-solving products with before-after effects — acne treatment, cleaners, supplements, aids.',
+      'hint.product-grwm': 'Works for: beauty products — makeup, skincare, hijab, perfume, accessories. Story always starts bare → final look; for clothing/outfits use the <strong>Fashion Review</strong> tab.',
+      'hint.influencer-empty': 'No photo yet — design and click "Create AI Model".',
+      'ph.desc-product': 'Describe your product... or use AI Generate',
+      'ph.desc-skincare': 'Describe your skincare (ingredients, benefits, texture)... or use AI Generate',
+      'ph.desc-ads': 'Describe the product & your ad message... or use AI Generate',
+      'ph.desc-fashion': 'Describe the fashion item (type, fabric, style, size)... or use AI Generate',
+      'ph.desc-unboxing': 'Describe the product & package contents... or use AI Generate',
+      'ph.desc-food': 'Describe this food (name, taste, texture, ingredients, price)... or use AI Generate',
+      'ph.desc-tutorial': 'Describe the product & how to use it... or use AI Generate',
+      'ph.desc-daily': 'Describe the product & when it is used throughout the day... or use AI Generate',
+      'ph.desc-testi': 'Describe the product & the problem it solves... or use AI Generate',
+      'ph.desc-grwm': 'Describe the product & what occasion you are getting ready for... or use AI Generate',
+      'ph.review-theme': 'Write your own theme: minimalist & clean, tropical nature vibes, futuristic neon...',
+      'ph.skincare-theme': 'Write your own theme: clean beauty, glowing skin, aesthetic pastel...',
+      'ph.ads-theme': 'Write your own theme: urban modern, luxury dark, bright cheerful outdoor...',
+      'ph.fashion-theme': 'Write your own theme: street style urban, aesthetic pastel, minimalist studio...',
+      'ph.unboxing-theme': 'Write your own theme: warm wooden desk, clean studio, cozy vibes...',
+      'ph.food-theme': 'Write your own theme: warm rustic wood, moody low-key, bright high-key studio...',
+      'ph.tutorial-theme': 'Write your own theme: warm wooden desk, clean studio, cozy vibes...',
+      'ph.daily-theme': 'Write your own vibe: cozy morning, working at a cafe, afternoon in the park...',
+      'ph.testi-theme': 'Write your own setting: bare bedroom, evening porch, selfie-cam...',
+      'ph.grwm-theme': 'Write your own vibe: vanity ringlight, GRWM for a wedding, clean girl...',
+      'ph.custom-theme': 'Write your own theme...',
+      'ph.model-name': 'Model name, e.g. Salsa',
+      'btn.all-video-prompt': 'All Video Prompts',
+      'mode.duration': 'Video Duration',
+      'mode.count': 'Photo Count',
+      'btn.pick-model-library': 'Choose from Model Library',
+      'btn.retry': 'Retry',
+      'title.regenerate': 'Regenerate',
+      'title.editprompt': 'Edit Prompt',
+      'title.video': 'Make Video Prompt',
+      'title.download': 'Download',
+      'loading.visual': 'Creating visuals...',
+      'loading.continue': 'Continuing story...',
+      'loading.caption': 'Creating caption...',
+      'loading.clip-prompt': 'Creating clip prompt',
+      'loading.video-prompt': 'Creating video prompt...',
+      'msg.scene-failed': 'Scene failed to generate',
+      'btn.copy': 'Copy',
+      'btn.copy-all': 'Copy All',
+      'btn.download-txt': 'Download .txt',
+      'msg.copied': 'Copied!',
+      'msg.use-download-txt': 'Use Download .txt',
+      'msg.press-ctrl-c': 'Press Ctrl+C',
+      'modal.edit-prompt-title': 'Edit Image Prompt',
+      'modal.caption-title': 'Video Caption',
+      'login.subtitle': 'Sign in with your purchase email',
+      'login.email-ph': 'Purchase email...',
+      'login.submit': 'Sign In',
+      'login.checking': 'Checking access...',
+      'login.no-access': "Don't have access yet?",
+      'login.buy-lynk': 'Buy on Lynk.id',
+      'login.buy-mayar': 'Buy on Mayar',
+      'err.login.email-required': 'Enter your purchase email first.',
+      'err.login.invalid-email': 'Invalid email format.',
+      'err.login.failed': 'Login failed. Check your email or connection and try again.',
+      'warn.model-required': 'This feature needs a Model Photo — upload one first.',
+      'warn.viral-idea-required': 'Write your viral process idea first.',
+      'warn.model-name-required': 'Give your model a name first.',
+      'warn.library-full': 'Library full (max 5 models). Delete one first.',
+      'warn.no-models': 'No saved models yet — create one in the AI Influencer menu.',
+      'warn.google-limit': 'This Google account has reached its limit, please use another Google account.',
+      'warn.file-unreadable': "File can't be read — make sure it's an image (JPG/PNG/HEIC).",
+      'warn.session-ended': 'Session ended. This account is signed in on another device.',
+      'menu.model-studio': 'Model Studio', 'menu.viral': 'Viral Short Video', 'nav.logout': 'Log Out',
+      'nav.influencer': 'AI Influencer', 'navd.influencer': 'Create & save AI models',
+      'navd.product-review': 'Affiliate product review photos', 'navd.skincare-review': 'Skincare review scenes',
+      'navd.fashion': 'OOTD & fashion story', 'navd.unboxing': 'Product unboxing story',
+      'navd.product-ads': 'Brand ad storyboard', 'navd.food-review': 'Celeb-style food review',
+      'navd.tutorial': 'Product how-to story', 'navd.daily': 'Daily vlog + product',
+      'navd.testi': 'Problem → solution story', 'navd.grwm': 'Get ready with me story',
+      'nav.viralcustom': 'Custom Viral', 'navd.viralcustom': 'Craft your own process idea',
+      'nav.fruitmold': 'Fruit Mold', 'navd.fruitmold': 'Fruit growing in cute molds',
+      'nav.housebuild': 'House Building', 'navd.housebuild': 'Empty land → finished house',
+      'nav.landclear': 'Land Clearing', 'navd.landclear': 'Dirty → clean, satisfying',
+      'nav.carcrash': 'Car Crash', 'navd.carcrash': 'Car crash & stunt physics',
+      'nav.dollcraft': 'DIY Doll', 'navd.dollcraft': 'Pipe-cleaner doll stop-motion',
+      'nav.bottlecraft': 'DIY Plastic Bottle', 'navd.bottlecraft': 'Recycle bottles into decor',
+      'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniature from nuts & copper wire',
+      'nav.strawcraft': 'DIY Straw', 'navd.strawcraft': 'Model built from plastic straws',
+      'nav.tutorial-app': 'App Tutorial', 'navd.tutorial-app': 'How to use this app (video)',
+      'dur.platform': 'Video platform', 'dur.story-duration': 'Story duration',
+      'unit.photos': 'photos', 'unit.clips': 'clips', 'unit.sec-per-clip': 'sec/clip',
+      'modal.close': 'Close', 'modal.fail-prompt': 'Failed to create prompt', 'btn.save': 'Save', 'btn.cancel': 'Cancel',
+      'progress.preparing': 'Preparing', 'progress.done': 'Done', 'unit.prompt': 'prompts', 'unit.keyframe': 'keyframes',
+      'vp.title-prefix': 'Video Prompt — Scene', 'vp.section-label': 'Video Prompt', 'vp.per-scene': 'Per-Scene Prompts',
+      'vp.all-clip-prompts': 'All Clip Prompts', 'vp.clip-title-prefix': 'Video Prompt — Clip', 'vp.one-clip-prompt': 'One prompt for ONE full clip',
+      'edit.hint': 'Edit this scene image prompt, then click <strong>Save</strong>. Press the <strong>Regenerate</strong> button on the card to rebuild the image with the new prompt.',
+      'vp.tips': '<strong>Tips:</strong> use the <strong>All Video Prompts</strong> button to grab all scenes at once. Copy each prompt into an image-to-video platform (Runway, Pika, Kling, Veo) with its scene image, join them in order → one complete story.',
+      'clip.howto': '<strong>How to use:</strong> upload these %C clip photos IN ORDER to an image-to-video platform (%P) + paste this prompt → one %S-sec clip. Join all clips in order in CapCut/your editor → one complete story.',
+      'err.continue-story': 'Failed to continue the story: ', 'err.delete-server': 'Failed to delete on the server — check your connection and try again.', 'err.read-photo': 'Failed to read the photo: ', 'ok.features-extracted': 'Character features extracted from the photo — edit if needed.', 'warn.storage-unavailable': 'Browser storage is unavailable (private/incognito mode?). The model was not saved — you can still right-click the photo to save it manually.', 'warn.storage-short': 'Browser storage is unavailable in this session.', 'ph.group-custom': 'Write your own %L...',
+      'lib.empty': 'No models yet — create one above then Save.', 'ios.save-hint': 'Press and <b>hold</b> the photo below, then choose <b>"Save to Photos"</b> or <b>"Add to Photos"</b>.',
+      'whatsnew.title': "What's New", 'whatsnew.empty': 'No changelog yet.',
+      'btn.delete': 'Delete', 'confirm.delete-model': 'Delete model "%N"?',
+    },
+    ms: {
+      'menu.review': 'Penjana Ulasan',
+      'menu.food': 'Foto Makanan Profesional',
+      'nav.product-review': 'Ulasan Produk',
+      'nav.skincare-review': 'Ulasan Penjagaan Kulit',
+      'nav.fashion': 'Ulasan Fesyen',
+      'nav.unboxing': 'Babak Buka Kotak',
+      'nav.product-ads': 'Kisah Iklan',
+      'nav.food-review': 'Ulasan Makanan',
+      'nav.tutorial': 'Tutorial Guna',
+      'nav.daily': 'Day in My Life',
+      'nav.testi': 'Testimoni',
+      'nav.grwm': 'GRWM',
+      'hdr.product-review.title': 'Penjana Ulasan Produk',
+      'hdr.product-review.sub': 'Penyelesaian AI untuk kandungan ulasan produk afiliasi anda.',
+      'hdr.skincare-review.title': 'Penjana Ulasan Penjagaan Kulit',
+      'hdr.skincare-review.sub': 'Cipta babak ulasan penjagaan kulit profesional untuk kandungan anda.',
+      'hdr.product-ads.title': 'Penjana Kisah Iklan',
+      'hdr.product-ads.sub': 'Penyelesaian AI untuk kandungan promosi & papan cerita iklan jenama anda.',
+      'hdr.fashion.title': 'Penjana Ulasan Fesyen / OOTD',
+      'hdr.fashion.sub': 'Papan cerita ulasan baju & aksesori dengan model yang konsisten.',
+      'hdr.unboxing.title': 'Penjana Babak Buka Kotak',
+      'hdr.unboxing.sub': 'Papan cerita buka peket produk — cangkuk kuat untuk kandungan afiliasi.',
+      'hdr.food-review.title': 'Penjana Ulasan Makanan Profesional',
+      'hdr.food-review.sub': 'Cipta ulasan makanan seperti TikToker & Selebgram dengan AI.',
+      'hdr.tutorial.title': 'Penjana Tutorial Cara Guna',
+      'hdr.tutorial.sub': 'Kisah langkah demi langkah: masalah → cara guna → keputusan. Sesuai untuk kandungan pendidikan afiliasi.',
+      'hdr.daily.title': 'Penjana Day in My Life',
+      'hdr.daily.sub': 'Kisah vlog harian pagi → malam dengan produk tersisip semula jadi. Jualan lembut gaya TikTok.',
+      'hdr.testi.title': 'Penjana Testimoni',
+      'hdr.testi.sub': 'Kisah masalah → penyelesaian gaya UGC: aduan → jumpa produk → guna → keputusan. Format iklan penukaran.',
+      'hdr.grwm.title': 'Penjana GRWM',
+      'hdr.grwm.sub': 'Get Ready With Me: penampilan awal → langkah solek/penjagaan kulit/pakaian → penampilan akhir. Tren kuat TikTok.',
+      'hdr.influencer.title': 'AI Influencer Studio',
+      'hdr.influencer.sub': 'Reka model maya, simpan, kemudian guna dalam semua ciri ulasan.',
+      'step.upload-product': 'Muat Naik Gambar Produk',
+      'step.upload-skincare': 'Muat Naik Produk Penjagaan Kulit',
+      'step.upload-fashion': 'Muat Naik Produk Fesyen',
+      'step.upload-food': 'Muat Naik Foto Makanan',
+      'step.desc-product': 'Penerangan Produk',
+      'step.desc-skincare': 'Penerangan Penjagaan Kulit',
+      'step.desc-fashion': 'Penerangan Fesyen',
+      'step.desc-food': 'Penerangan Makanan',
+      'step.photo-theme': 'Tema Foto',
+      'step.theme-setting': 'Tema / Tetapan',
+      'step.theme-ambience': 'Tema / Suasana',
+      'step.aspect-ratio': 'Nisbah Aspek',
+      'step.count': 'Bilangan Jana',
+      'step.compose-model': 'Reka Model',
+      'step.result': 'Keputusan',
+      'step.model-library': 'Pustaka Model',
+      'field.upload-click-drag': 'Klik atau seret gambar ke sini',
+      'field.upload-hint-png': 'PNG, JPG, WEBP (boleh lebih daripada satu)',
+      'field.upload-click-food': 'Klik untuk muat naik foto makanan',
+      'field.upload-hint-heic': 'JPG, PNG, WEBP, HEIC (iPhone) — boleh lebih daripada satu',
+      'btn.ai-generate': 'Jana AI',
+      'field.upload-click-model': 'Klik untuk pilih foto model',
+      'field.model-photo': 'Foto Model',
+      'field.optional': '(Pilihan)',
+      'field.required': '(Wajib)',
+      'hint.model-food': 'Pengulas akan kelihatan merasa makanan di semua babak',
+      'field.gender': 'Jantina',
+      'field.age': 'Umur',
+      'field.look': 'Penampilan',
+      'field.hijab': 'Hijab',
+      'field.influencer.or': 'atau',
+      'btn.download-all': 'Muat Turun Semua',
+      'btn.generate.product-review': 'Cipta Babak Ulasan',
+      'btn.generate.skincare-review': 'Cipta Babak Penjagaan Kulit',
+      'btn.generate.product-ads': 'Cipta Kisah Iklan',
+      'btn.generate.fashion': 'Cipta Kisah Fesyen',
+      'btn.generate.unboxing': 'Cipta Babak Buka Kotak',
+      'btn.generate.food-review': 'Cipta Ulasan Makanan',
+      'btn.generate.tutorial': 'Cipta Kisah Tutorial',
+      'btn.generate.daily': 'Cipta Kisah Harian',
+      'btn.generate.testi': 'Cipta Kisah Testimoni',
+      'btn.generate.grwm': 'Cipta Kisah GRWM',
+      'btn.generate.model': 'Cipta Model AI',
+      'btn.upload-own-photo': 'Muat Naik Foto Sendiri',
+      'btn.influencer.regen': 'Jana Semula',
+      'btn.influencer.save': 'Simpan',
+      'result.heading': 'Keputusan Ulasan',
+      'result.heading.ads': 'Keputusan Kisah Iklan',
+      'result.heading.fashion': 'Keputusan Kisah Fesyen',
+      'result.heading.unboxing': 'Keputusan Kisah Buka Kotak',
+      'result.heading.food': 'Keputusan Ulasan Makanan',
+      'result.heading.tutorial': 'Keputusan Kisah Tutorial',
+      'result.heading.daily': 'Keputusan Day in My Life',
+      'result.heading.testi': 'Keputusan Kisah Testimoni',
+      'result.heading.grwm': 'Keputusan Kisah GRWM',
+      'hint.theme-generic': 'Pilih konsep tempat & mood untuk semua babak. "Tiada" = biar AI yang tentukan.',
+      'hint.theme-fashion': 'Pilih konsep tempat & gaya untuk semua babak OOTD. "Tiada" = biar AI yang tentukan.',
+      'hint.theme-ads': 'Pilih konsep tempat & mood untuk semua babak iklan. "Tiada" = biar AI yang tentukan.',
+      'hint.theme-unboxing': 'Pilih konsep tempat & mood untuk semua babak buka kotak. "Tiada" = biar AI yang tentukan.',
+      'hint.theme-food': 'Pilih konsep tempat & mood untuk semua babak makanan. "Tiada" = biar AI yang tentukan.',
+      'hint.theme-tutorial': 'Pilih konsep tempat & mood untuk semua langkah tutorial. "Tiada" = biar AI yang tentukan.',
+      'hint.theme-daily': 'Pilih vibe keseharian untuk semua babak. "Tiada" = biar AI yang tentukan.',
+      'hint.theme-testi': 'Pilih suasana semula jadi untuk testimoni yang jujur & relatable. "Tiada" = biar AI yang tentukan.',
+      'hint.theme-grwm': 'Pilih vibe & majlis GRWM untuk semua babak. "Tiada" = biar AI yang tentukan.',
+      'tip.desc-quality': 'Petua: penerangan terperinci menghasilkan ulasan yang lebih berkualiti.',
+      'hint.model-tutorial': 'Model akan memperagakan setiap langkah di semua babak',
+      'hint.model-daily': 'Model menjadi watak utama sepanjang hari',
+      'hint.model-testi': 'Model menjadi orang yang memberi testimoni di semua babak',
+      'hint.model-grwm': 'Model yang sama dari awal hingga siap keluar',
+      'hint.model-required-daily': 'Day in My Life bercerita tentang orangnya — foto model wajib supaya wajah konsisten di semua babak.',
+      'hint.model-required-grwm': 'GRWM bercerita tentang proses bersedia — foto model wajib supaya wajah konsisten dari polos hingga penampilan akhir.',
+      'hint.product-tutorial': 'Sesuai untuk: hampir semua produk yang ada cara penggunaan — penjagaan kulit, alat, peralatan dapur, peralatan rumah, produk penjagaan.',
+      'hint.product-daily': 'Sesuai untuk: produk yang digunakan sehari-hari — tumbler, beg, alat, penjagaan kulit, pakaian kasual, snek/minuman.',
+      'hint.product-testi': 'Sesuai untuk: produk penyelesaian masalah dengan kesan sebelum-selepas — ubat jerawat, pembersih, suplemen, alat bantu.',
+      'hint.product-grwm': 'Sesuai untuk: produk solek — makeup, penjagaan kulit, hijab, wangian, aksesori. Kisah sentiasa bermula dari polos → penampilan akhir; untuk baju/pakaian lebih sesuai gunakan tab <strong>Ulasan Fesyen</strong>.',
+      'hint.influencer-empty': 'Tiada foto lagi — reka dan klik "Cipta Model AI".',
+      'ph.desc-product': 'Huraikan produk anda... atau gunakan Jana AI',
+      'ph.desc-skincare': 'Huraikan penjagaan kulit anda (bahan, manfaat, tekstur)... atau gunakan Jana AI',
+      'ph.desc-ads': 'Huraikan produk & mesej iklan anda... atau gunakan Jana AI',
+      'ph.desc-fashion': 'Huraikan item fesyen (jenis, bahan, gaya, saiz)... atau gunakan Jana AI',
+      'ph.desc-unboxing': 'Huraikan produk & kandungan peket... atau gunakan Jana AI',
+      'ph.desc-food': 'Huraikan makanan ini (nama, rasa, tekstur, bahan, harga)... atau gunakan Jana AI',
+      'ph.desc-tutorial': 'Huraikan produk & cara menggunakannya... atau gunakan Jana AI',
+      'ph.desc-daily': 'Huraikan produk & bila digunakan dalam sehari... atau gunakan Jana AI',
+      'ph.desc-testi': 'Huraikan produk & masalah yang diselesaikannya... atau gunakan Jana AI',
+      'ph.desc-grwm': 'Huraikan produk & untuk majlis apa anda bersiap... atau gunakan Jana AI',
+      'ph.review-theme': 'Tulis tema sendiri: minimalis & bersih, nuansa alam tropika, futuristik neon...',
+      'ph.skincare-theme': 'Tulis tema sendiri: clean beauty, kulit bercahaya, aesthetic pastel...',
+      'ph.ads-theme': 'Tulis tema sendiri: urban moden, luxury dark, cerah ceria luar...',
+      'ph.fashion-theme': 'Tulis tema sendiri: street style urban, aesthetic pastel, studio minimalis...',
+      'ph.unboxing-theme': 'Tulis tema sendiri: meja kayu hangat, studio bersih, nuansa cozy...',
+      'ph.food-theme': 'Tulis tema sendiri: kayu rustik hangat, moody low-key, terang high-key studio...',
+      'ph.tutorial-theme': 'Tulis tema sendiri: meja kayu hangat, studio bersih, nuansa cozy...',
+      'ph.daily-theme': 'Tulis vibe sendiri: pagi cozy, kerja di kafe, petang di taman...',
+      'ph.testi-theme': 'Tulis suasana sendiri: bilik apa adanya, teras petang, selfie-cam...',
+      'ph.grwm-theme': 'Tulis vibe sendiri: vanity ringlight, GRWM kenduri, clean girl...',
+      'ph.custom-theme': 'Tulis tema sendiri...',
+      'ph.model-name': 'Nama model, cth. Salsa',
+      'btn.all-video-prompt': 'Semua Prompt Video',
+      'mode.duration': 'Durasi Video',
+      'mode.count': 'Bilangan Foto',
+      'btn.pick-model-library': 'Pilih dari Pustaka Model',
+      'btn.retry': 'Cuba Lagi',
+      'title.regenerate': 'Jana Semula',
+      'title.editprompt': 'Edit Prompt',
+      'title.video': 'Jana Prompt Video',
+      'title.download': 'Muat Turun',
+      'loading.visual': 'Menjana visual...',
+      'loading.continue': 'Menyambung cerita...',
+      'loading.caption': 'Menjana kapsyen...',
+      'loading.clip-prompt': 'Menjana Prompt Klip',
+      'loading.video-prompt': 'Menjana Prompt Video...',
+      'msg.scene-failed': 'Babak gagal dijana',
+      'btn.copy': 'Salin',
+      'btn.copy-all': 'Salin Semua',
+      'btn.download-txt': 'Muat Turun .txt',
+      'msg.copied': 'Disalin!',
+      'msg.use-download-txt': 'Guna Muat Turun .txt',
+      'msg.press-ctrl-c': 'Tekan Ctrl+C',
+      'modal.edit-prompt-title': 'Edit Prompt Gambar',
+      'modal.caption-title': 'Kapsyen Video',
+      'login.subtitle': 'Log masuk dengan e-mel pembelian anda',
+      'login.email-ph': 'E-mel pembelian...',
+      'login.submit': 'Log Masuk',
+      'login.checking': 'Menyemak akses...',
+      'login.no-access': 'Belum ada akses?',
+      'login.buy-lynk': 'Beli di Lynk.id',
+      'login.buy-mayar': 'Beli di Mayar',
+      'err.login.email-required': 'Masukkan e-mel pembelian anda dahulu.',
+      'err.login.invalid-email': 'Format e-mel tidak sah.',
+      'err.login.failed': 'Log masuk gagal. Semak e-mel atau sambungan dan cuba lagi.',
+      'warn.model-required': 'Ciri ini perlukan Foto Model — muat naik foto model dahulu.',
+      'warn.viral-idea-required': 'Tulis idea proses viral anda dahulu.',
+      'warn.model-name-required': 'Beri nama model anda dahulu.',
+      'warn.library-full': 'Pustaka penuh (maksimum 5 model). Padam salah satu dahulu.',
+      'warn.no-models': 'Belum ada model disimpan — cipta dahulu di menu AI Influencer.',
+      'warn.google-limit': 'Akaun Google ini telah mencapai had, sila guna akaun Google lain.',
+      'warn.file-unreadable': 'Fail tidak dapat dibaca — pastikan ia fail imej (JPG/PNG/HEIC).',
+      'warn.session-ended': 'Sesi tamat. Akaun ini log masuk di peranti lain.',
+      'menu.model-studio': 'Studio Model', 'menu.viral': 'Video Pendek Viral', 'nav.logout': 'Log Keluar',
+      'nav.influencer': 'AI Influencer', 'navd.influencer': 'Cipta & simpan model AI',
+      'navd.product-review': 'Foto ulasan produk afiliat', 'navd.skincare-review': 'Babak ulasan penjagaan kulit',
+      'navd.fashion': 'Kisah OOTD & fesyen', 'navd.unboxing': 'Kisah buka bungkusan produk',
+      'navd.product-ads': 'Papan cerita iklan jenama', 'navd.food-review': 'Ulasan makanan gaya selebriti',
+      'navd.tutorial': 'Kisah cara guna produk', 'navd.daily': 'Vlog harian + produk',
+      'navd.testi': 'Kisah masalah → penyelesaian', 'navd.grwm': 'Kisah get ready with me',
+      'nav.viralcustom': 'Viral Tersuai', 'navd.viralcustom': 'Cipta idea proses sendiri',
+      'nav.fruitmold': 'Acuan Buah', 'navd.fruitmold': 'Buah membesar dalam acuan comel',
+      'nav.housebuild': 'Pembinaan Rumah', 'navd.housebuild': 'Tanah kosong → rumah siap',
+      'nav.landclear': 'Pembersihan Tanah', 'navd.landclear': 'Kotor → bersih, memuaskan',
+      'nav.carcrash': 'Car Crash', 'navd.carcrash': 'Perlanggaran & aksi fizik kereta',
+      'nav.dollcraft': 'DIY Patung', 'navd.dollcraft': 'Stop-motion patung pipe cleaner',
+      'nav.bottlecraft': 'DIY Botol Plastik', 'navd.bottlecraft': 'Kitar semula botol jadi hiasan',
+      'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniatur dari nat & dawai tembaga',
+      'nav.strawcraft': 'DIY Straw', 'navd.strawcraft': 'Model binaan dari straw plastik',
+      'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara guna app ini',
+      'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
+      'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'saat/klip',
+      'modal.close': 'Tutup', 'modal.fail-prompt': 'Gagal cipta prompt', 'btn.save': 'Simpan', 'btn.cancel': 'Batal',
+      'progress.preparing': 'Menyediakan', 'progress.done': 'Selesai', 'unit.prompt': 'prompt', 'unit.keyframe': 'keyframe',
+      'vp.title-prefix': 'Prompt Video — Babak', 'vp.section-label': 'Prompt Video', 'vp.per-scene': 'Prompt Setiap Babak',
+      'vp.all-clip-prompts': 'Semua Prompt Klip', 'vp.clip-title-prefix': 'Prompt Video — Klip', 'vp.one-clip-prompt': 'Satu prompt untuk SATU klip penuh',
+      'edit.hint': 'Edit prompt gambar babak ini, kemudian klik <strong>Simpan</strong>. Tekan butang <strong>Regenerate</strong> pada kad untuk jana semula gambar dengan prompt baharu.',
+      'vp.tips': '<strong>Petua:</strong> guna butang <strong>Semua Prompt Video</strong> untuk ambil semua babak sekaligus. Salin setiap prompt ke platform image-to-video (Runway, Pika, Kling, Veo) dengan imej babaknya, gabung ikut turutan → satu cerita penuh.',
+      'clip.howto': '<strong>Cara guna:</strong> muat naik %C foto klip ini MENGIKUT TURUTAN ke platform image-to-video (%P) + tampal prompt ini → 1 klip %S saat. Gabungkan semua klip ikut turutan di CapCut/editor → satu cerita penuh.',
+      'err.continue-story': 'Gagal menyambung cerita: ', 'err.delete-server': 'Gagal padam di pelayan — semak sambungan dan cuba lagi.', 'err.read-photo': 'Gagal membaca foto: ', 'ok.features-extracted': 'Ciri watak berjaya diambil dari foto — sunting jika perlu.', 'warn.storage-unavailable': 'Storan pelayar tidak tersedia (mod peribadi/incognito?). Model tidak disimpan — anda masih boleh klik kanan foto untuk simpan secara manual.', 'warn.storage-short': 'Storan pelayar tidak tersedia dalam sesi ini.', 'ph.group-custom': 'Tulis %L versi anda...',
+      'lib.empty': 'Belum ada model — cipta di atas kemudian Simpan.', 'ios.save-hint': 'Tekan dan <b>tahan</b> foto di bawah, kemudian pilih <b>"Simpan ke Foto"</b> atau <b>"Tambah ke Foto"</b>.',
+      'whatsnew.title': 'Apa yang Baru', 'whatsnew.empty': 'Belum ada catatan perubahan.',
+      'btn.delete': 'Padam', 'confirm.delete-model': 'Padam model "%N"?',
     },
   };
-  function getLang() { return localStorage.getItem('app_language') || 'id'; }
+  function detectLang() {
+    const list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+    for (const raw of list) {
+      const p = String(raw).toLowerCase().split('-')[0];
+      if (p === 'ms') return 'ms';
+      if (p === 'id' || p === 'in') return 'id';
+      if (p === 'en') return 'en';
+    }
+    return 'en';
+  }
+  function getLang() {
+    const saved = localStorage.getItem('app_language');
+    if (saved && ['id', 'en', 'ms'].includes(saved)) return saved;
+    return detectLang();
+  }
+  function tr(lang, key) {
+    const v = T[lang] && T[lang][key];
+    if (v != null) return v;
+    const f = T.id && T.id[key];
+    return f != null ? f : null;
+  }
+  function t(key) { return tr(getLang(), key) || key; }
+  window.__t = t;
+  window.__dynT = (txt) => dynTr(getLang(), txt);
+
   function applyLanguage() {
     const lang = getLang();
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (T[lang] && T[lang][key]) el.textContent = T[lang][key];
+    document.querySelectorAll('[data-i18n]').forEach(el => { const v = tr(lang, el.getAttribute('data-i18n')); if (v != null) el.textContent = v; });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => { const v = tr(lang, el.getAttribute('data-i18n-html')); if (v != null) el.innerHTML = v; });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const v = tr(lang, el.getAttribute('data-i18n-placeholder')); if (v != null) el.setAttribute('placeholder', v); });
+    applyChipLabels(lang);
+    applyDynLabels(lang);
+    const sw = document.getElementById('lang-switcher');
+    if (sw && sw.value !== lang) sw.value = lang;
+  }
+
+  // Teks dinamis bikinan JS (chrome viral: title/subtitle/label grup/section): terjemah via DYN_LABELS keyed teks ID sumber
+  function dynTr(lang, idText) {
+    const map = window.DYN_LABELS && window.DYN_LABELS[lang];
+    return (map && map[idText]) || idText;
+  }
+  function applyDynLabels(lang) {
+    document.querySelectorAll('[data-i18n-dyn]').forEach(el => {
+      if (!el.dataset.i18nId) el.dataset.i18nId = el.textContent.trim();
+      el.textContent = dynTr(lang, el.dataset.i18nId);
     });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const key = el.getAttribute('data-i18n-placeholder');
-      if (T[lang] && T[lang][key]) el.setAttribute('placeholder', T[lang][key]);
+    document.querySelectorAll('[data-i18n-dyn-ph]').forEach(el => {
+      if (!el.dataset.i18nIdPh) el.dataset.i18nIdPh = el.getAttribute('placeholder') || '';
+      el.setAttribute('placeholder', dynTr(lang, el.dataset.i18nIdPh));
     });
   }
+
+  function applyChipLabels(lang) {
+    document.querySelectorAll('.theme-chip').forEach(chip => {
+      if (!chip.dataset.i18nId) {
+        const txt = getLastText(chip);
+        if (!txt) return;
+        chip.dataset.i18nId = txt.textContent.trim();
+      }
+      const idLabel = chip.dataset.i18nId;
+      const map = window.CHIP_LABELS && window.CHIP_LABELS[lang];
+      const label = (map && map[idLabel]) || idLabel;
+      const node = getLastText(chip);
+      if (node) node.textContent = label;
+    });
+  }
+  function getLastText(el) {
+    for (let i = el.childNodes.length - 1; i >= 0; i--) {
+      const n = el.childNodes[i];
+      if (n.nodeType === 3 && n.textContent.trim()) return n;
+    }
+    return null;
+  }
   window.__applyLanguage = applyLanguage;
+  window.__setLang = function (lang) {
+    if (!['id', 'en', 'ms'].includes(lang)) return;
+    localStorage.setItem('app_language', lang);
+    applyLanguage();
+    document.dispatchEvent(new CustomEvent('ssp-lang-changed'));
+  };
+  (function initLangSwitcher() {
+    const sw = document.getElementById('lang-switcher');
+    if (sw) { sw.value = getLang(); sw.addEventListener('change', () => window.__setLang(sw.value)); }
+    applyLanguage();
+  })();
+
+  // === end i18n engine ===
+
+  // === VERSION & WHAT'S NEW ===
+  window.APP_VERSION = '2.1';
+  window.CHANGELOG = [
+    { version: '2.1', date: '13 Sep 2026', changes: [
+      { id: 'Antarmuka 3 bahasa (English/Melayu/Indonesia) + deteksi otomatis & pemilih bahasa di sidebar',
+        en: 'Trilingual interface (English/Malay/Indonesian) + auto-detect & language switcher in the sidebar',
+        ms: 'Antara muka tiga bahasa (Inggeris/Melayu/Indonesia) + auto-kesan & penukar bahasa di sidebar' },
+    ] },
+    { version: '2.0', date: '12 Sep 2026', changes: [
+      { id: 'Simpan foto hasil generate langsung ke Galeri di iPhone/iPad (iOS)',
+        en: 'Save generated photos straight to the Gallery on iPhone/iPad (iOS)',
+        ms: 'Simpan foto hasil terus ke Galeri pada iPhone/iPad (iOS)' },
+    ] },
+  ];
+  function showWhatsNew() {
+    const lang = getLang();
+    const body = (window.CHANGELOG || []).map(rel => {
+      const lines = (rel.changes || []).map(c => `<li class="flex gap-2 text-sm text-gray-600 mb-1.5"><i class="fas fa-check text-violet-500 mt-1" style="font-size:.7rem;"></i><span>${window.escHtml(c[lang] || c.id)}</span></li>`).join('');
+      return `<div class="mb-4"><div class="flex items-center gap-2 mb-2"><span class="text-sm font-bold text-white px-2 py-0.5 rounded-full" style="background:linear-gradient(135deg,#6d28d9,#4f46e5);">v${window.escHtml(rel.version)}</span><span class="text-xs text-gray-400">${window.escHtml(rel.date)}</span></div><ul>${lines}</ul></div>`;
+    }).join('') || `<p class="text-sm text-gray-500">${t('whatsnew.empty')}</p>`;
+    const modal = document.createElement('div');
+    modal.className = 'image-preview-modal';
+    const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+    modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-gift text-violet-500 mr-2"></i>${t('whatsnew.title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+      ${body}
+      <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold mt-2">${t('modal.close')}</button>
+    </div>`;
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('show'), 10);
+  }
+  window.__showWhatsNew = showWhatsNew;
+  (function initVersionBadge() {
+    const badge = document.getElementById('version-badge');
+    const label = document.getElementById('version-badge-label');
+    const dot = document.getElementById('version-badge-dot');
+    if (!badge || !label) return;
+    label.textContent = 'v' + window.APP_VERSION;
+    if (dot) dot.classList.toggle('hidden', localStorage.getItem('ssp_seen_version') === window.APP_VERSION);
+    badge.addEventListener('click', () => {
+      showWhatsNew();
+      localStorage.setItem('ssp_seen_version', window.APP_VERSION);
+      if (dot) dot.classList.add('hidden');
+    });
+  })();
+
+  // === CHIP LABELS (i18n label chip; nilai data-theme/data-val TETAP) ===
+  // Hanya label yang BERBEDA dari teks ID yang perlu entri; sisanya fallback ke ID.
+  // EN dibuat komprehensif; MS hanya yang beda dari Indonesia (ID≈MS).
+  window.CHIP_LABELS = {
+    en: {
+      'Tidak Ada': 'None', 'Custom': 'Custom', 'Kejutkan aku': 'Surprise me',
+      'Wanita': 'Woman', 'Pria': 'Man', 'Remaja': 'Teen', 'Non-hijab': 'Non-hijab',
+      'Minimalis': 'Minimalist', 'Minimalis 1 lantai': 'Minimalist 1 Floor', '2 lantai': '2 Floors',
+      'Modern minimalis': 'Modern Minimalist', 'Klasik mewah': 'Classic Luxury', 'Rustic Kayu': 'Rustic Wood',
+      'Cerah Outdoor': 'Bright Outdoor', 'Sinematik': 'Cinematic', 'Sinematik makro': 'Macro Cinematic',
+      'Slow-motion sinematik': 'Cinematic Slow-motion', 'Stop-motion cepat': 'Fast Stop-motion',
+      'Time-lapse cepat': 'Fast Time-lapse', 'Time-lapse chaos': 'Chaos Time-lapse',
+      'Tutorial cepat (fast-paced)': 'Fast Tutorial', 'Satisfying santai': 'Relaxed Satisfying',
+      'Bertahap detail': 'Gradual Detail', 'Multi-angle replay': 'Multi-angle Replay',
+      'Cermin Rias': 'Vanity Mirror', 'Meja Rias': 'Vanity Table', 'Close-up Wajah': 'Face Close-up',
+      'POV tangan': 'Hand POV', 'POV Tangan': 'Hand POV', 'POV tangan close-up': 'Hand Close-up POV',
+      'POV pekerja': 'Worker POV', 'Hands Reveal': 'Hands Reveal',
+      'Dalam Mobil': 'Inside Car', 'Dalam ruangan': 'Indoor', 'Di Kantor': 'At the Office',
+      'Kantor Modern': 'Modern Office', 'Meja Kerja': 'Work Desk', 'Meja Makan': 'Dining Table',
+      'Meja Kayu': 'Wooden Table', 'Meja kayu cozy': 'Cozy Wooden Table', 'Meja kayu craft': 'Craft Wooden Table',
+      'Meja kayu rustic + tanaman': 'Rustic Wooden Table + Plants', 'Meja craft penuh alat': 'Craft Table Full of Tools',
+      'Meja kamar aesthetic': 'Aesthetic Room Desk', 'Meja kamar aesthetic + fairy lights': 'Aesthetic Desk + Fairy Lights',
+      'Meja putih minimalis': 'Minimalist White Table', 'Meja putih studio': 'Studio White Table',
+      'Kamar Tidur': 'Bedroom', 'Kamar Mandi': 'Bathroom', 'Kamar Aesthetic': 'Aesthetic Room',
+      'Kamar Estetik': 'Aesthetic Room', 'Kamar Natural': 'Natural Room', 'Ruang Tamu': 'Living Room',
+      'Dapur': 'Kitchen', 'Dapur Rumah': 'Home Kitchen', 'Teras Rumah': 'House Porch',
+      'Halaman rumah': 'House Yard', 'Halaman bersih': 'Clean Yard', 'Halaman kotor': 'Messy Yard',
+      'Rumah kaca': 'Greenhouse', 'Rumah mewah modern': 'Modern Luxury House', 'Rumah mini': 'Mini House',
+      'Ruko': 'Shophouse', 'Kafe Santai': 'Chill Café', 'Malam Santai': 'Relaxed Night', 'Me Time Malam': 'Night Me Time',
+      'Pagi Fresh': 'Fresh Morning', 'Kost Vibe': 'Dorm Vibe', 'Gym Ringan': 'Light Gym',
+      'Pantai': 'Beach', 'Tepi pantai': 'Seaside', 'Pegunungan': 'Mountains', 'Tebing gunung': 'Mountain Cliff',
+      'Gurun': 'Desert', 'Sungai': 'River', 'Taman': 'Park', 'Taman Kota': 'City Park', 'Taman rapi': 'Tidy Garden',
+      'Pedesaan': 'Countryside', 'Perkotaan': 'Urban', 'Alam terbuka': 'Open Nature', 'Tengah hutan': 'Deep Forest',
+      'Jalan kota': 'City Street', 'Jalan tol': 'Highway', 'Apartemen City': 'City Apartment',
+      'Pabrik': 'Factory', 'Pasar': 'Market', 'Pasar tradisional': 'Traditional Market', 'Kebun sayur': 'Vegetable Garden',
+      'Kebun terbengkalai': 'Abandoned Garden', 'Kebun/pohon': 'Garden/Trees', 'Rumput hijau': 'Green Grass',
+      'Lahan sampah': 'Trash Land', 'Lahan siap tanam': 'Ready-to-plant Land', 'Semak belukar': 'Bushes',
+      'Selokan/kolam': 'Ditch/Pond', 'Arena beton': 'Concrete Arena', 'Tangga raksasa': 'Giant Stairs',
+      'Jembatan runtuh': 'Collapsing Bridge', 'Obstacle rintangan gila': 'Crazy Obstacle Course',
+      'Downhill / terjun ramp': 'Downhill / Ramp Jump', 'Balapan chaos': 'Chaotic Race', 'Crash tabrakan': 'Crash Collision',
+      'vs Objek raksasa': 'vs Giant Object', 'Lampu hias': 'Decorative Lights',
+      'Mobil balap': 'Race Car', 'Mobil balap kartun': 'Cartoon Race Car', 'Mobil klasik': 'Classic Car',
+      'Mobil sport': 'Sports Car', 'Motor': 'Motorcycle', 'Motor mini': 'Mini Motorcycle', 'Motoran': 'Riding Motorcycle',
+      'Truk': 'Truck', 'Pesawat': 'Airplane', 'Kapal': 'Ship', 'Helikopter': 'Helicopter', 'Bus sekolah': 'School Bus',
+      'Mesin potong rumput': 'Lawn Mower', 'Alat berat (excavator)': 'Heavy Equipment (Excavator)',
+      'Manual (parang/cangkul)': 'Manual (machete/hoe)', 'Robot kecil': 'Small Robot', 'Kincir angin': 'Windmill',
+      'Kubus': 'Cube', 'Bintang': 'Star', 'Hati': 'Heart',
+      'Kura-kura': 'Turtle', 'Laba-laba': 'Spider', 'Kalajengking': 'Scorpion', 'Burung hantu': 'Owl',
+      'Capung': 'Dragonfly', 'Semut': 'Ant', 'Beruang': 'Bear', 'Kelinci': 'Rabbit', 'Keledai': 'Donkey',
+      'Ikan': 'Fish', 'Hewan lucu': 'Cute Animal', 'Kepik / serangga lucu': 'Ladybug / Cute Bug',
+      'Celengan babi': 'Piggy Bank', 'Wajah lucu': 'Cute Face', 'Chibi lucu': 'Cute Chibi',
+      'Cewek anime': 'Anime Girl', 'Cowok anime': 'Anime Boy', 'Kimono / tradisional': 'Kimono / Traditional',
+      'Apel': 'Apple', 'Jeruk': 'Orange', 'Anggur': 'Grapes', 'Semangka': 'Watermelon', 'Melon': 'Melon',
+      'Pir': 'Pear', 'Labu': 'Pumpkin', 'Stroberi besar': 'Big Strawberry', 'Bunga & pot': 'Flowers & Pot',
+      'Jepang': 'Japan', 'Barat': 'Western', 'Asia Timur': 'East Asia', 'Skandinavia': 'Scandinavian',
+      'Seragam sekolah': 'School Uniform', 'Hoodie kasual': 'Casual Hoodie', 'Crop top & rok': 'Crop Top & Skirt',
+      'Kondangan': 'Wedding Party', 'Kombinasi': 'Combination', 'Bebas warna-warni': 'Free Colorful',
+      'Warna-warni campur': 'Mixed Colorful', 'Merah': 'Red', 'Biru & putih': 'Blue & White', 'Biru semua': 'All Blue',
+      'Hijau & biru': 'Green & Blue', 'Hijau semua': 'All Green', 'Hitam & kuning': 'Black & Yellow',
+      'Abu-abu gelap matte': 'Matte Dark Grey', 'Baja silver mengkilap': 'Shiny Silver Steel',
+      'Dominan kawat tembaga': 'Mostly Copper Wire', 'Mur hitam matte': 'Matte Black Nuts',
+      'Mur rustic berkarat': 'Rusty Rustic Nuts', 'Kuningan emas': 'Golden Brass', 'Bening transparan': 'Clear Transparent',
+      'Plat logam industrial': 'Industrial Metal Plate', 'Kayu workshop': 'Workshop Wood', 'Cabin kayu': 'Wooden Cabin',
+      'Cutting mat hijau': 'Green Cutting Mat', 'Cutting mat krem': 'Beige Cutting Mat', 'Putih studio': 'Studio White',
+      'Tropis': 'Tropical', 'Piknik': 'Picnic', '20-an': '20s', '30-an': '30s',
+      'Balkon': 'Balcony', 'Dokumenter': 'Documentary',
+    },
+    ms: {
+      'Tidak Ada': 'Tiada', 'Custom': 'Tersuai', 'Kejutkan aku': 'Kejutkan saya',
+      'Pria': 'Lelaki', 'Wanita': 'Wanita', 'Remaja': 'Remaja',
+      'Mobil balap': 'Kereta Lumba', 'Mobil balap kartun': 'Kereta Lumba Kartun', 'Mobil klasik': 'Kereta Klasik',
+      'Mobil sport': 'Kereta Sport', 'Motor': 'Motosikal', 'Motor mini': 'Motosikal Mini', 'Motoran': 'Menunggang Motosikal',
+      'Truk': 'Trak', 'Pesawat': 'Kapal Terbang', 'Bus sekolah': 'Bas Sekolah', 'Mesin potong rumput': 'Mesin Pemotong Rumput',
+      'Kamar Tidur': 'Bilik Tidur', 'Kamar Mandi': 'Bilik Mandi', 'Kamar Aesthetic': 'Bilik Aesthetic',
+      'Kamar Estetik': 'Bilik Estetik', 'Kamar Natural': 'Bilik Natural', 'Dalam ruangan': 'Dalam Bilik',
+      'Di Kantor': 'Di Pejabat', 'Kantor Modern': 'Pejabat Moden', 'Pabrik': 'Kilang',
+      'Jalan tol': 'Lebuh Raya', 'Jalan kota': 'Jalan Bandar', 'Perkotaan': 'Bandar', 'Pedesaan': 'Luar Bandar',
+      'Pegunungan': 'Pergunungan', 'Apartemen City': 'Apartmen Bandar', 'Rumah mewah modern': 'Rumah Mewah Moden',
+      'Modern minimalis': 'Moden Minimalis', 'Teras Rumah': 'Beranda Rumah', 'Kebun sayur': 'Kebun Sayur',
+      'Jeruk': 'Oren', 'Apel': 'Epal', 'Semangka': 'Tembikai', 'Stroberi besar': 'Strawberi Besar',
+      'Kelinci': 'Arnab', 'Keledai': 'Keldai', 'Celengan babi': 'Tabung Babi',
+      'Cewek anime': 'Gadis Anime', 'Cowok anime': 'Teruna Anime', 'Seragam sekolah': 'Pakaian Seragam Sekolah',
+      'Kondangan': 'Majlis Kahwin', 'Kombinasi': 'Kombinasi', 'Bebas warna-warni': 'Bebas Warna-warni',
+      'Minimalis': 'Minimalis', 'Minimalis 1 lantai': 'Minimalis 1 Tingkat', '2 lantai': '2 Tingkat',
+      'Lahan siap tanam': 'Tanah Sedia Tanam', 'Lahan sampah': 'Tanah Sampah', 'Semak belukar': 'Semak Samun',
+      'Jembatan runtuh': 'Jambatan Runtuh', 'Tangga raksasa': 'Tangga Gergasi', 'vs Objek raksasa': 'vs Objek Gergasi',
+      'Obstacle rintangan gila': 'Halangan Gila', 'Crash tabrakan': 'Pelanggaran', 'Balapan chaos': 'Perlumbaan Kelam-kabut',
+      'Bunga & pot': 'Bunga & Pasu', 'Lampu hias': 'Lampu Hiasan', 'Rumput hijau': 'Rumput Hijau',
+      'Halaman kotor': 'Laman Kotor', 'Halaman bersih': 'Laman Bersih', 'Halaman rumah': 'Laman Rumah',
+    },
+  };
+
+  // === DYN LABELS (teks chrome dinamis bikinan JS: header viral, label grup chip, section) ===
+  window.DYN_LABELS = {
+    en: {
+      'Generator Video Cetakan Buah': 'Fruit Mold Video Generator',
+      'Generator Video Pembangunan Rumah': 'House Building Video Generator',
+      'Generator Video Pembersihan Lahan': 'Land Clearing Video Generator',
+      'Generator Video Viral Custom': 'Custom Viral Video Generator',
+      'Generator Video Car Crash': 'Car Crash Video Generator',
+      'Generator Video DIY Boneka': 'DIY Doll Video Generator',
+      'Generator Video DIY Botol Plastik': 'DIY Plastic Bottle Video Generator',
+      'Generator Video DIY Metal Craft': 'DIY Metal Craft Video Generator',
+      'Generator Video DIY Sedotan': 'DIY Straw Video Generator',
+      'Buah tumbuh dalam cetakan bentuk lucu — dari pohon sampai laku di pasar.': 'Fruit growing in cute-shaped molds — from tree to selling at the market.',
+      'Dari lahan kosong sampai rumah jadi — progresi konstruksi yang memuaskan.': 'From empty land to a finished house — a satisfying construction progression.',
+      'Before kotor → proses → after bersih rapi. Transformasi satisfying.': 'Before dirty → process → after clean and tidy. A satisfying transformation.',
+      'Racik ide proses/transformasimu sendiri — AI yang pecah jadi scene.': 'Craft your own process/transformation idea — AI splits it into scenes.',
+      'Crash, stunt & destruction fisika mobil — konten viral YouTube/Shorts.': 'Car crash, stunt & destruction physics — viral YouTube/Shorts content.',
+      'Stop-motion bikin boneka dari kawat bulu + aluminium foil — dari kerangka sampai berdiri jadi.': 'Stop-motion doll-making from pipe cleaners + aluminium foil — from frame to standing finished.',
+      'Daur ulang botol plastik bekas jadi pajangan lucu — dari potong botol sampai reveal di meja.': 'Recycle used plastic bottles into cute decor — from cutting the bottle to the reveal on the table.',
+      'Miniatur dari mur, ring besi & kawat tembaga — dari susun cangkang sampai reveal di alas kayu.': 'Miniature from nuts, washers & copper wire — from stacking the shell to the reveal on a wooden base.',
+      'Model rakitan presisi dari sedotan plastik — dari potong sedotan sampai reveal di cutting mat.': 'A precise model built from plastic straws — from cutting straws to the reveal on the cutting mat.',
+      'Buah': 'Fruit', 'Bentuk Cetakan': 'Mold Shape', 'Latar': 'Background', 'Gaya Video': 'Video Style',
+      'Tipe Rumah': 'House Type', 'Gaya Arsitektur': 'Architecture Style', 'Lokasi': 'Location', 'Kecepatan Proses': 'Process Speed',
+      'Jenis Lahan': 'Land Type', 'Metode': 'Method', 'Hasil Akhir': 'Final Result',
+      'Jenis Aksi': 'Action Type', 'Kendaraan': 'Vehicle', 'Arena / Lokasi': 'Arena / Location', 'Gaya Kamera': 'Camera Style',
+      'Karakter': 'Character', 'Outfit': 'Outfit', 'Latar Meja': 'Table Background',
+      'Bentuk Pajangan': 'Decor Shape', 'Warna Botol': 'Bottle Color', 'Bentuk Figur': 'Figure Shape', 'Material Metal': 'Metal Material',
+      'Bentuk Model': 'Model Shape', 'Warna Sedotan': 'Straw Color',
+      'Deskripsi Karakter (opsional)': 'Character Description (optional)', 'Deskripsi Pajangan (opsional)': 'Decor Description (optional)',
+      'Deskripsi Figur (opsional)': 'Figure Description (optional)', 'Deskripsi Model (opsional)': 'Model Description (optional)',
+      'Ceritakan proses viralmu': 'Tell your viral process',
+      'Tulis dari awal sampai hasil akhir — AI yang memecah jadi scene.': 'Write from start to final result — the AI splits it into scenes.',
+      'Opsional — kosongkan biar AI berkreasi dari pilihan chip.': 'Optional — leave empty to let AI create from the chip choices.',
+      'Ambil ciri dari Foto (objek/hewan — hasil tetap pajangan botol)': 'Get features from Photo (object/animal — result stays a bottle decor)',
+      'Ambil ciri dari Foto (objek/hewan — hasil tetap figur metal)': 'Get features from Photo (object/animal — result stays a metal figure)',
+      'Ambil ciri dari Foto (objek/karakter — hasil tetap model sedotan)': 'Get features from Photo (object/character — result stays a straw model)',
+      'Ambil ciri dari Foto (kartun/manusia — hasil tetap boneka)': 'Get features from Photo (cartoon/human — result stays a doll)',
+      'Contoh: cewek rambut hitam panjang, crop top ungu, rok lilit pink motif bunga, kacamata kuning di atas kepala': 'Example: girl with long black hair, purple crop top, pink floral wrap skirt, yellow glasses on her head',
+      'Contoh: kura-kura dengan tempurung dari dasar botol hijau bergelombang, botol biru di tengah, kaki hijau berkuku kuning, mata besar & senyum dari spidol hitam': 'Example: a turtle with a shell from a wavy green bottle base, a blue bottle in the middle, green legs with yellow claws, big eyes & a smile from a black marker',
+      'Contoh: kura-kura dengan cangkang kubah dari mur rustic berkarat, kepala & kaki dari lilitan kawat tembaga, mata bulat kawat, di alas kayu oval': 'Example: a turtle with a domed shell from rusty rustic nuts, head & legs from coiled copper wire, round wire eyes, on an oval wooden base',
+      'Contoh: mobil balap kartun merah glossy, mata besar di kaca depan, aksen petir kuning di samping, roda hitam dari susunan sedotan melingkar, spoiler belakang': 'Example: a glossy red cartoon race car, big eyes on the windshield, yellow lightning accents on the sides, black wheels from coiled straws, a rear spoiler',
+      'AI sedang menganalisis produk...': 'AI is analyzing the product...',
+      'AI sedang menganalisis produk skincare...': 'AI is analyzing the skincare product...',
+      'AI sedang menyusun story iklan...': 'AI is composing the ad story...',
+      'AI sedang menganalisis makanan...': 'AI is analyzing the food...',
+      'AI sedang menyusun story fashion...': 'AI is composing the fashion story...',
+      'AI sedang menyusun scene unboxing...': 'AI is composing the unboxing scenes...',
+      'AI sedang menyusun langkah tutorial...': 'AI is composing the tutorial steps...',
+      'AI sedang menyusun story harian...': 'AI is composing the daily story...',
+      'AI sedang menyusun story testimoni...': 'AI is composing the testimonial story...',
+      'AI sedang menyusun story GRWM...': 'AI is composing the GRWM story...',
+      'AI sedang menyusun proses cetakan buah...': 'AI is composing the fruit mold process...',
+      'AI sedang menyusun proses pembangunan...': 'AI is composing the construction process...',
+      'AI sedang menyusun proses pembersihan...': 'AI is composing the cleaning process...',
+      'AI sedang meracik ide viralmu...': 'AI is crafting your viral idea...',
+      'AI sedang menyusun simulasi crash...': 'AI is composing the crash simulation...',
+      'AI sedang menyusun proses pembuatan boneka...': 'AI is composing the doll-making process...',
+      'AI sedang menyusun proses crafting botol...': 'AI is composing the bottle crafting process...',
+      'AI sedang menyusun proses crafting metal...': 'AI is composing the metal crafting process...',
+      'AI sedang menyusun proses rakit sedotan...': 'AI is composing the straw assembly process...',
+    },
+    ms: {
+      'Generator Video Cetakan Buah': 'Penjana Video Acuan Buah',
+      'Generator Video Pembangunan Rumah': 'Penjana Video Pembinaan Rumah',
+      'Generator Video Pembersihan Lahan': 'Penjana Video Pembersihan Tanah',
+      'Generator Video Viral Custom': 'Penjana Video Viral Tersuai',
+      'Generator Video Car Crash': 'Penjana Video Car Crash',
+      'Generator Video DIY Boneka': 'Penjana Video DIY Patung',
+      'Generator Video DIY Botol Plastik': 'Penjana Video DIY Botol Plastik',
+      'Generator Video DIY Metal Craft': 'Penjana Video DIY Metal Craft',
+      'Generator Video DIY Sedotan': 'Penjana Video DIY Straw',
+      'Buah tumbuh dalam cetakan bentuk lucu — dari pohon sampai laku di pasar.': 'Buah membesar dalam acuan bentuk comel — dari pokok hingga laku di pasar.',
+      'Dari lahan kosong sampai rumah jadi — progresi konstruksi yang memuaskan.': 'Dari tanah kosong hingga rumah siap — progres pembinaan yang memuaskan.',
+      'Before kotor → proses → after bersih rapi. Transformasi satisfying.': 'Sebelum kotor → proses → selepas bersih kemas. Transformasi memuaskan.',
+      'Racik ide proses/transformasimu sendiri — AI yang pecah jadi scene.': 'Cipta idea proses/transformasi sendiri — AI pecahkan jadi babak.',
+      'Crash, stunt & destruction fisika mobil — konten viral YouTube/Shorts.': 'Perlanggaran, aksi & pemusnahan fizik kereta — kandungan viral YouTube/Shorts.',
+      'Stop-motion bikin boneka dari kawat bulu + aluminium foil — dari kerangka sampai berdiri jadi.': 'Stop-motion buat patung dari pipe cleaner + kerajang aluminium — dari rangka hingga siap berdiri.',
+      'Daur ulang botol plastik bekas jadi pajangan lucu — dari potong botol sampai reveal di meja.': 'Kitar semula botol plastik terpakai jadi hiasan comel — dari potong botol hingga reveal di meja.',
+      'Miniatur dari mur, ring besi & kawat tembaga — dari susun cangkang sampai reveal di alas kayu.': 'Miniatur dari nat, ring besi & dawai tembaga — dari susun cangkang hingga reveal di alas kayu.',
+      'Model rakitan presisi dari sedotan plastik — dari potong sedotan sampai reveal di cutting mat.': 'Model binaan tepat dari straw plastik — dari potong straw hingga reveal di cutting mat.',
+      'Buah': 'Buah', 'Bentuk Cetakan': 'Bentuk Acuan', 'Latar': 'Latar', 'Gaya Video': 'Gaya Video',
+      'Tipe Rumah': 'Jenis Rumah', 'Gaya Arsitektur': 'Gaya Seni Bina', 'Lokasi': 'Lokasi', 'Kecepatan Proses': 'Kelajuan Proses',
+      'Jenis Lahan': 'Jenis Tanah', 'Metode': 'Kaedah', 'Hasil Akhir': 'Hasil Akhir',
+      'Jenis Aksi': 'Jenis Aksi', 'Kendaraan': 'Kenderaan', 'Arena / Lokasi': 'Arena / Lokasi', 'Gaya Kamera': 'Gaya Kamera',
+      'Karakter': 'Watak', 'Outfit': 'Pakaian', 'Latar Meja': 'Latar Meja',
+      'Bentuk Pajangan': 'Bentuk Hiasan', 'Warna Botol': 'Warna Botol', 'Bentuk Figur': 'Bentuk Figura', 'Material Metal': 'Bahan Logam',
+      'Bentuk Model': 'Bentuk Model', 'Warna Sedotan': 'Warna Straw',
+      'Deskripsi Karakter (opsional)': 'Penerangan Watak (pilihan)', 'Deskripsi Pajangan (opsional)': 'Penerangan Hiasan (pilihan)',
+      'Deskripsi Figur (opsional)': 'Penerangan Figura (pilihan)', 'Deskripsi Model (opsional)': 'Penerangan Model (pilihan)',
+      'Ceritakan proses viralmu': 'Ceritakan proses viral anda',
+      'Tulis dari awal sampai hasil akhir — AI yang memecah jadi scene.': 'Tulis dari mula hingga hasil akhir — AI pecahkan jadi babak.',
+      'Opsional — kosongkan biar AI berkreasi dari pilihan chip.': 'Pilihan — biar kosong supaya AI berkarya dari pilihan chip.',
+      'Ambil ciri dari Foto (objek/hewan — hasil tetap pajangan botol)': 'Ambil ciri dari Foto (objek/haiwan — hasil kekal hiasan botol)',
+      'Ambil ciri dari Foto (objek/hewan — hasil tetap figur metal)': 'Ambil ciri dari Foto (objek/haiwan — hasil kekal figura logam)',
+      'Ambil ciri dari Foto (objek/karakter — hasil tetap model sedotan)': 'Ambil ciri dari Foto (objek/watak — hasil kekal model straw)',
+      'Ambil ciri dari Foto (kartun/manusia — hasil tetap boneka)': 'Ambil ciri dari Foto (kartun/manusia — hasil kekal patung)',
+      'Contoh: cewek rambut hitam panjang, crop top ungu, rok lilit pink motif bunga, kacamata kuning di atas kepala': 'Contoh: gadis berambut hitam panjang, crop top ungu, skirt lilit pink corak bunga, cermin mata kuning atas kepala',
+      'Contoh: kura-kura dengan tempurung dari dasar botol hijau bergelombang, botol biru di tengah, kaki hijau berkuku kuning, mata besar & senyum dari spidol hitam': 'Contoh: kura-kura dengan cangkang dari dasar botol hijau beralun, botol biru di tengah, kaki hijau berkuku kuning, mata besar & senyum dari marker hitam',
+      'Contoh: kura-kura dengan cangkang kubah dari mur rustic berkarat, kepala & kaki dari lilitan kawat tembaga, mata bulat kawat, di alas kayu oval': 'Contoh: kura-kura dengan cangkang kubah dari nat rustic berkarat, kepala & kaki dari lilitan dawai tembaga, mata bulat dawai, di alas kayu bujur',
+      'Contoh: mobil balap kartun merah glossy, mata besar di kaca depan, aksen petir kuning di samping, roda hitam dari susunan sedotan melingkar, spoiler belakang': 'Contoh: kereta lumba kartun merah glossy, mata besar pada cermin depan, aksen kilat kuning di tepi, roda hitam dari susunan straw melingkar, spoiler belakang',
+      'AI sedang menganalisis produk...': 'AI sedang menganalisis produk...',
+      'AI sedang menganalisis produk skincare...': 'AI sedang menganalisis produk penjagaan kulit...',
+      'AI sedang menyusun story iklan...': 'AI sedang menyusun kisah iklan...',
+      'AI sedang menganalisis makanan...': 'AI sedang menganalisis makanan...',
+      'AI sedang menyusun story fashion...': 'AI sedang menyusun kisah fesyen...',
+      'AI sedang menyusun scene unboxing...': 'AI sedang menyusun babak buka bungkusan...',
+      'AI sedang menyusun langkah tutorial...': 'AI sedang menyusun langkah tutorial...',
+      'AI sedang menyusun story harian...': 'AI sedang menyusun kisah harian...',
+      'AI sedang menyusun story testimoni...': 'AI sedang menyusun kisah testimoni...',
+      'AI sedang menyusun story GRWM...': 'AI sedang menyusun kisah GRWM...',
+      'AI sedang menyusun proses cetakan buah...': 'AI sedang menyusun proses acuan buah...',
+      'AI sedang menyusun proses pembangunan...': 'AI sedang menyusun proses pembinaan...',
+      'AI sedang menyusun proses pembersihan...': 'AI sedang menyusun proses pembersihan...',
+      'AI sedang meracik ide viralmu...': 'AI sedang mengolah idea viral anda...',
+      'AI sedang menyusun simulasi crash...': 'AI sedang menyusun simulasi perlanggaran...',
+      'AI sedang menyusun proses pembuatan boneka...': 'AI sedang menyusun proses pembuatan patung...',
+      'AI sedang menyusun proses crafting botol...': 'AI sedang menyusun proses kraf botol...',
+      'AI sedang menyusun proses crafting metal...': 'AI sedang menyusun proses kraf logam...',
+      'AI sedang menyusun proses rakit sedotan...': 'AI sedang menyusun proses pasang straw...',
+    },
+  };
 
   // === Tab switching ===
   function switchTab(tabId) {
@@ -122,10 +1045,10 @@ document.addEventListener('DOMContentLoaded', () => {
     var modal = document.createElement('div');
     modal.className = 'image-preview-modal';
     modal.innerHTML = '<div class="bg-white rounded-xl p-5 max-w-sm w-full" onclick="event.stopPropagation()">'
-      + '<p class="text-sm text-gray-700 mb-3 leading-relaxed">Tekan dan <b>tahan</b> foto di bawah, lalu pilih <b>"Simpan ke Foto"</b> atau <b>"Tambahkan ke Foto"</b>.</p>'
+      + '<p class="text-sm text-gray-700 mb-3 leading-relaxed">' + t('ios.save-hint') + '</p>'
       + '<img alt="" class="w-full rounded-lg" style="-webkit-touch-callout:default;pointer-events:auto;">'
       + '<p class="text-[11px] text-gray-400 mt-3 break-all" data-fn></p>'
-      + '<div class="flex justify-end mt-4"><button type="button" data-ok class="btn-primary font-semibold py-2 px-5 rounded-lg text-sm">Tutup</button></div>'
+      + '<div class="flex justify-end mt-4"><button type="button" data-ok class="btn-primary font-semibold py-2 px-5 rounded-lg text-sm">' + t('modal.close') + '</button></div>'
       + '</div>';
     modal.querySelector('img').src = url;
     modal.querySelector('[data-fn]').textContent = filename;
@@ -311,8 +1234,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.uiConfirm = function (pesan, labelYa) {
     return new Promise((res) => {
       const { modal, close } = buildUiDialog(pesan,
-        '<button type="button" data-no class="btn-secondary font-semibold py-2 px-5 rounded-lg text-sm">Batal</button>' +
-        `<button type="button" data-yes class="font-semibold py-2 px-5 rounded-lg text-sm" style="background:#dc2626;color:#fff;">${labelYa || 'Hapus'}</button>`);
+        '<button type="button" data-no class="btn-secondary font-semibold py-2 px-5 rounded-lg text-sm">' + t('btn.cancel') + '</button>' +
+        `<button type="button" data-yes class="font-semibold py-2 px-5 rounded-lg text-sm" style="background:#dc2626;color:#fff;">${labelYa || t('btn.delete')}</button>`);
       const done = (v) => { close(); res(v); };
       modal.querySelector('[data-yes]').addEventListener('click', () => done(true));
       modal.querySelector('[data-no]').addEventListener('click', () => done(false));
@@ -411,17 +1334,17 @@ document.addEventListener('DOMContentLoaded', () => {
         saveRow.classList.remove('hidden');
       } catch (err) {
         console.error('upload model failed:', err);
-        window.uiNotify('File tidak bisa dibaca — pastikan itu file gambar (JPG/PNG/HEIC).');
+        window.uiNotify(t('warn.file-unreadable'));
       }
     });
 
     saveBtn.addEventListener('click', async () => {
       const name = nameInput.value.trim();
-      if (!name) { window.uiNotify('Kasih nama modelnya dulu ya.'); nameInput.focus(); return; }
+      if (!name) { window.uiNotify(t('warn.model-name-required')); nameInput.focus(); return; }
       if (!currentB64) return;
       let existing = [];
       try { existing = await window.modelDB.list(); } catch (err) {}
-      if (existing.length >= 5) { window.uiNotify('Pustaka penuh (maksimal 5 model). Hapus salah satu dulu ya.'); return; }
+      if (existing.length >= 5) { window.uiNotify(t('warn.library-full')); return; }
       const rec = { id: String(Date.now()), name, mime: currentMime, cfg: currentSource === 'upload' ? { source: 'upload' } : currentCfg(), createdAt: new Date().toISOString() };
       let cloudOk = false;
       try { if (window.modelCloud) cloudOk = await window.modelCloud.upload(Object.assign({}, rec, { base64: currentB64 })); }
@@ -432,16 +1355,16 @@ document.addEventListener('DOMContentLoaded', () => {
         renderLibrary();
       } catch (err) {
         console.error('modelDB put failed:', err);
-        window.uiNotify('Penyimpanan browser tidak tersedia (mode private/incognito?). Model tidak tersimpan — kamu tetap bisa klik kanan foto untuk menyimpannya manual.');
+        window.uiNotify(t('warn.storage-unavailable'));
       }
     });
 
     async function renderLibrary() {
       let list = [];
       try { list = await window.modelDB.list(); }
-      catch (err) { console.error('modelDB list failed:', err); libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">Penyimpanan browser tidak tersedia di sesi ini.</p>'; return; }
+      catch (err) { console.error('modelDB list failed:', err); libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">' + t('warn.storage-short') + '</p>'; return; }
       libCount.textContent = `${list.length}/5 model`;
-      if (!list.length) { libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">Belum ada model — racik di atas lalu Simpan.</p>'; return; }
+      if (!list.length) { libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">' + t('lib.empty') + '</p>'; return; }
       libGrid.innerHTML = '';
       list.forEach(m => {
         const objUrl = URL.createObjectURL(m.blob);
@@ -465,13 +1388,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         card.querySelector('[data-del]').addEventListener('click', async (e) => {
           const delBtn = e.currentTarget;
-          if (!(await window.uiConfirm(`Hapus model "${m.name}"?`))) return;
+          if (!(await window.uiConfirm(t('confirm.delete-model').replace('%N', m.name)))) return;
           delBtn.disabled = true;
           if (m.cloud === true && window.modelCloud) {
             const ok = await window.modelCloud.del(m.id);
             if (!ok) {
               delBtn.disabled = false;
-              window.uiNotify('Gagal menghapus di server — cek koneksi lalu coba lagi.');
+              window.uiNotify(t('err.delete-server'));
               return;
             }
           }
@@ -547,7 +1470,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (clips >= window.MAX_STORY_CLIPS) { hideContinueBtn(); return; }
       const orig = continueBtn.innerHTML;
       continueBtn.disabled = true;
-      continueBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Melanjutkan cerita...</span>';
+      continueBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.continue')}</span>`;
       try {
         const lastCard = all[all.length - 1];
         const ideas = await analyzeAndGetPrompts({
@@ -562,7 +1485,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await Promise.allSettled(batch.map((idea, j) => generateSingle(startAt + j + 1, idea.title, idea.prompt)));
       } catch (err) {
         console.error(err);
-        window.uiNotify('Gagal melanjutkan cerita: ' + err.message);
+        window.uiNotify(t('err.continue-story') + err.message);
       } finally {
         continueBtn.disabled = false;
         continueBtn.innerHTML = orig;
@@ -582,7 +1505,7 @@ document.addEventListener('DOMContentLoaded', () => {
       videoAllBtn = document.createElement('button');
       videoAllBtn.type = 'button';
       videoAllBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
-      videoAllBtn.innerHTML = '<i class="fas fa-film mr-1"></i>Semua Prompt Video';
+      videoAllBtn.innerHTML = '<i class="fas fa-film mr-1"></i><span data-i18n="btn.all-video-prompt">Semua Prompt Video</span>';
       videoAllBtn.addEventListener('click', () => {
         if (!durState.on) { generateAllVideoPrompts(); return; }
         const plan = window.clipPlan(durState.platform, durState.duration);
@@ -651,7 +1574,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const durState = { on: true, platform: 'omni', duration: 10 };
     const modeWrap = document.createElement('div');
     modeWrap.className = 'flex gap-2 mb-3';
-    modeWrap.innerHTML = `<button type="button" data-mode="duration" class="theme-chip selected"><i class="fas fa-film mr-1"></i>Durasi Video</button><button type="button" data-mode="count" class="theme-chip"><i class="fas fa-images mr-1"></i>Jumlah Foto</button>`;
+    modeWrap.innerHTML = `<button type="button" data-mode="duration" class="theme-chip selected"><i class="fas fa-film mr-1"></i><span data-i18n="mode.duration">Durasi Video</span></button><button type="button" data-mode="count" class="theme-chip"><i class="fas fa-images mr-1"></i><span data-i18n="mode.count">Jumlah Foto</span></button>`;
     const durPanel = document.createElement('div');
     durPanel.id = `${p}-duration-panel`;
     countGrid.parentNode.insertBefore(modeWrap, countGrid);
@@ -663,13 +1586,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!opts.includes(durState.duration)) durState.duration = opts[0];
       const plan = window.clipPlan(durState.platform, durState.duration);
       durPanel.innerHTML = `
-        <div class="text-xs font-semibold text-gray-500 mb-1">Platform video</div>
-        <div class="flex flex-wrap gap-2 mb-3">${Object.entries(window.VIDEO_PLATFORMS).map(([k, v]) => `<button type="button" data-platform="${k}" class="theme-chip ${k === durState.platform ? 'selected' : ''}">${v.label} — ${v.clipSec} dtk/klip</button>`).join('')}</div>
-        <div class="text-xs font-semibold text-gray-500 mb-1">Durasi story</div>
-        <div class="flex flex-wrap gap-2 mb-3">${opts.map(s => `<button type="button" data-duration="${s}" class="theme-chip ${s === durState.duration ? 'selected' : ''}">${s} dtk</button>`).join('')}</div>
-        <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-2" data-clip-info><i class="fas fa-info-circle mr-1"></i>= ${plan.photos} foto · ${plan.clips} klip × ${plan.perClip} foto (${plan.clipSec} dtk/klip)</p>`;
+        <div class="text-xs font-semibold text-gray-500 mb-1">${t('dur.platform')}</div>
+        <div class="flex flex-wrap gap-2 mb-3">${Object.entries(window.VIDEO_PLATFORMS).map(([k, v]) => `<button type="button" data-platform="${k}" class="theme-chip ${k === durState.platform ? 'selected' : ''}">${v.label} — ${v.clipSec} ${t('unit.sec-per-clip')}</button>`).join('')}</div>
+        <div class="text-xs font-semibold text-gray-500 mb-1">${t('dur.story-duration')}</div>
+        <div class="flex flex-wrap gap-2 mb-3">${opts.map(s => `<button type="button" data-duration="${s}" class="theme-chip ${s === durState.duration ? 'selected' : ''}">${s} ${t('unit.sec')}</button>`).join('')}</div>
+        <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-2" data-clip-info><i class="fas fa-info-circle mr-1"></i>= ${plan.photos} ${t('unit.photos')} · ${plan.clips} ${t('unit.clips')} × ${plan.perClip} ${t('unit.photos')} (${plan.clipSec} ${t('unit.sec-per-clip')})</p>`;
     }
     renderDurPanel();
+    document.addEventListener('ssp-lang-changed', renderDurPanel);
     durPanel.addEventListener('click', (e) => {
       const pb = e.target.closest('[data-platform]');
       const db = e.target.closest('[data-duration]');
@@ -688,7 +1612,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     function effectiveCount() { return durState.on ? window.clipPlan(durState.platform, durState.duration).photos : selectedCount; }
     function retryPlaceholder(id) {
-      return `<div class="text-center p-3"><p class="text-xs text-red-500 mb-2">Scene gagal dibuat</p><button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-4 py-2 rounded-lg text-sm font-semibold"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button></div>`;
+      return `<div class="text-center p-3"><p class="text-xs text-red-500 mb-2">${t('msg.scene-failed')}</p><button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-4 py-2 rounded-lg text-sm font-semibold"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>${t('btn.retry')}</button></div>`;
     }
     function showChoiceModal(title, choices) {
       const modal = document.createElement('div');
@@ -754,12 +1678,12 @@ document.addEventListener('DOMContentLoaded', () => {
       libBtn.type = 'button';
       libBtn.id = `${p}-library-btn`;
       libBtn.className = 'btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden';
-      libBtn.innerHTML = '<i class="fas fa-user-astronaut mr-1"></i>Pilih dari Pustaka Model';
+      libBtn.innerHTML = '<i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span>';
       modelPreviewContainer.insertAdjacentElement('afterend', libBtn);
       libBtn.addEventListener('click', async () => {
         let list = [];
         try { list = await window.modelDB.list(); } catch (err) { console.error(err); }
-        if (!list.length) { window.uiNotify('Belum ada model tersimpan — buat dulu di menu AI Influencer.'); return; }
+        if (!list.length) { window.uiNotify(t('warn.no-models')); return; }
         showChoiceModal('Pilih model dari pustaka', list.map(m => ({
           label: `<span class="flex items-center gap-3"><img src="${URL.createObjectURL(m.blob)}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span>`,
           onPick: async () => {
@@ -888,10 +1812,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <img src="${imageUrl}" class="w-full h-full object-cover rounded-md" alt="Scene">
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 flex flex-wrap gap-2 justify-end opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition">
               <button data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
-              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="Regenerate"><i class="fas fa-sync-alt pointer-events-none"></i></button>
-              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="Edit Prompt"><i class="fas fa-pen pointer-events-none"></i></button>
-              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="Buat Prompt Video"><i class="fas fa-film pointer-events-none"></i></button>
-              <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="Unduh"><i class="fas fa-download pointer-events-none"></i></button>
+              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}"><i class="fas fa-sync-alt pointer-events-none"></i></button>
+              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}"><i class="fas fa-pen pointer-events-none"></i></button>
+              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}"><i class="fas fa-film pointer-events-none"></i></button>
+              <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
             </div>
           </div>`;
           return;
@@ -905,7 +1829,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateBtn.addEventListener('click', async () => {
       if (!images.length) return;
-      if (cfg.requireModel && !modelBase64) { window.uiNotify('Fitur ini butuh Foto Model — upload foto model dulu ya.'); return; }
+      if (cfg.requireModel && !modelBase64) { window.uiNotify(t('warn.model-required')); return; }
       generateBtn.disabled = true;
       hideContinueBtn();
       const orig = generateBtn.innerHTML;
@@ -915,7 +1839,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (captionBtn) captionBtn.classList.add('hidden');
       if (audioStyleSel) audioStyleSel.classList.add('hidden');
       if (audioLangBtn) audioLangBtn.classList.add('hidden');
-      grid.innerHTML = `<div class="col-span-full text-center py-10"><div class="loader inline-block"></div><p class="mt-4 text-gray-500">${cfg.analyzingMsg}</p></div>`;
+      grid.innerHTML = `<div class="col-span-full text-center py-10"><div class="loader inline-block"></div><p class="mt-4 text-gray-500">${window.__dynT(cfg.analyzingMsg)}</p></div>`;
       let ideas;
       try { ideas = await analyzeAndGetPrompts(); }
       catch (err) {
@@ -923,7 +1847,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = `<div class="col-span-full text-center py-10 text-red-500">Terjadi kesalahan: ${window.escHtml(err.message)}</div>`;
         generateBtn.disabled = false; generateBtn.innerHTML = orig; return;
       }
-      generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Membuat Visual...</span>';
+      generateBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.visual')}</span>`;
       const MAX = 3; let attempts = 0, success = 0;
       while (attempts < MAX && success === 0) {
         attempts++;
@@ -938,7 +1862,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.querySelectorAll('.result-card').forEach(c => { if (!c.querySelector('img')) c.remove(); });
       }
       generateBtn.disabled = false; generateBtn.innerHTML = orig;
-      if (success === 0) window.uiNotify('Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.');
+      if (success === 0) window.uiNotify(t('warn.google-limit'));
       else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); if (captionBtn) captionBtn.classList.remove('hidden'); updateContinueBtn(); }
     });
 
@@ -1006,10 +1930,10 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>Edit Prompt Gambar</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
-        <p class="text-xs text-gray-500 mb-2">Ubah prompt gambar scene ini, lalu klik <strong>Simpan</strong>. Tekan tombol <strong>Regenerate</strong> di kartu untuk membuat ulang gambar dengan prompt baru.</p>
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-2">${t('edit.hint')}</p>
         <textarea data-editp rows="7" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm font-mono resize-none focus:border-violet-500 transition">${window.escHtml(card.dataset.prompt || '')}</textarea>
-        <div class="flex gap-2 mt-4"><button data-save class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-floppy-disk mr-1"></i>Simpan</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">Batal</button></div>
+        <div class="flex gap-2 mt-4"><button data-save class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-floppy-disk mr-1"></i>${t('btn.save')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">${t('btn.cancel')}</button></div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
       document.body.appendChild(modal);
@@ -1155,7 +2079,7 @@ Rules:
     function showCaptionModal() {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>Membuat Caption...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
+      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>${t('loading.caption')}</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
       modal.innerHTML = loadingHTML;
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -1168,15 +2092,15 @@ Rules:
           const parts = parseCaptionText(text);
           const blocks = parts.map((s, i) => `
             <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
-              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${window.escHtml(s.label)}</span><button data-copyone="${i}" class="text-xs bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button></div>
+              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${window.escHtml(s.label)}</span><button data-copyone="${i}" class="text-xs bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
               <textarea data-cap="${i}" rows="${s.key === 'hashtag' ? 3 : 5}" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm resize-none">${window.escHtml(s.body)}</textarea>
             </div>`).join('');
           modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>Caption Video</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>${t('modal.caption-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
             ${blocks}
             <div class="flex gap-2">
-              <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>Copy Semua</button>
-              <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-download mr-1"></i>Unduh .txt</button>
+              <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}</button>
+              <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-download mr-1"></i>${t('btn.download-txt')}</button>
             </div>
           </div>`;
           modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
@@ -1184,15 +2108,15 @@ Rules:
             const ta = modal.querySelector(`[data-cap="${btn.dataset.copyone}"]`);
             const ok = window.copyText(ta.value);
             if (!ok) { ta.focus(); ta.select(); }
-            btn.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>Tersalin!' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Tekan Ctrl+C';
-            setTimeout(() => { btn.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 2000);
+            btn.innerHTML = ok ? `<i class="fas fa-check mr-1 pointer-events-none"></i>${t('msg.copied')}` : `<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>${t('msg.press-ctrl-c')}`;
+            setTimeout(() => { btn.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 2000);
           }));
           const aggregate = () => parts.map(s => `# ${s.label}\n${s.body}`).join('\n\n');
           const copyAllBtn = modal.querySelector('[data-copyall]');
           copyAllBtn.addEventListener('click', () => {
             const ok = window.copyText(aggregate());
-            copyAllBtn.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>Tersalin!' : '<i class="fas fa-download mr-1"></i>Pakai Unduh .txt';
-            setTimeout(() => { copyAllBtn.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Semua'; }, 2200);
+            copyAllBtn.innerHTML = ok ? `<i class="fas fa-check mr-1"></i>${t('msg.copied')}` : `<i class="fas fa-download mr-1"></i>${t('msg.use-download-txt')}`;
+            setTimeout(() => { copyAllBtn.innerHTML = `<i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}`; }, 2200);
           });
           modal.querySelector('[data-txt]').addEventListener('click', () => {
             const b = new Blob([aggregate()], { type: 'text/plain' });
@@ -1202,7 +2126,7 @@ Rules:
           });
         } catch (err) {
           console.error('caption error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat caption</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">Tutup</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat caption</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -1214,7 +2138,7 @@ Rules:
     async function generateClipPrompt(clipIdx) {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Membuat Prompt Klip ${clipIdx}...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
+      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('loading.clip-prompt')} ${clipIdx}...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
       modal.innerHTML = loadingHTML;
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -1227,26 +2151,26 @@ Rules:
           const plan = window.clipPlan(durState.platform, durState.duration);
           const thumbs = cards.map(c => `<img src="${c.querySelector('img').src}" class="h-16 rounded object-cover">`).join('');
           modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Prompt Video — Klip ${clipIdx} (${cards.length} foto · ${plan.clipSec} dtk)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.clip-title-prefix')} ${clipIdx} (${cards.length} ${t('unit.photos')} · ${plan.clipSec} ${t('unit.sec')})</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
             <div class="flex gap-2 mb-3 overflow-x-auto">${thumbs}</div>
             <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
-              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">Satu prompt untuk SATU klip utuh (${cards.length} keyframe):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button></div>
+              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${t('vp.one-clip-prompt')} (${cards.length} ${t('unit.keyframe')}):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
               <textarea data-prompt rows="9" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm font-mono resize-none">${window.escHtml(vp)}</textarea>
             </div>
-            <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i><strong>Cara pakai:</strong> unggah ${cards.length} foto klip ini BERURUTAN ke platform image-to-video (${window.VIDEO_PLATFORMS[durState.platform].label}) + paste prompt ini → 1 klip ${plan.clipSec} dtk. Gabungkan semua klip berurutan di CapCut/editor → satu story utuh.</p>
-            <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">Tutup</button>
+            <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i>${t('clip.howto').replace('%C', cards.length).replace('%P', window.VIDEO_PLATFORMS[durState.platform].label).replace('%S', plan.clipSec)}</p>
+            <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button>
           </div>`;
           modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
           const copyBtn = modal.querySelector('[data-copy]'), ta = modal.querySelector('[data-prompt]');
           copyBtn.addEventListener('click', () => {
             const ok = window.copyText(ta.value);
             if (!ok) { ta.focus(); ta.select(); }
-            copyBtn.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>Tersalin!' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Tekan Ctrl+C';
-            setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 2000);
+            copyBtn.innerHTML = ok ? `<i class="fas fa-check mr-1 pointer-events-none"></i>${t('msg.copied')}` : `<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>${t('msg.press-ctrl-c')}`;
+            setTimeout(() => { copyBtn.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 2000);
           });
         } catch (err) {
           console.error('clip prompt error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt klip</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">Tutup</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt klip</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -1258,7 +2182,7 @@ Rules:
       const card = document.getElementById(`${p}-card-${id}`); if (!card || !card.querySelector('img')) return;
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Membuat Prompt Video...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
+      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${t('loading.video-prompt')}</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
       modal.innerHTML = loadingHTML;
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -1269,26 +2193,26 @@ Rules:
         try {
         const { sceneNum, total, title, vp, imageUrl } = await requestVideoPrompt(card);
         modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-          <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Prompt Video — Scene ${sceneNum}/${total}: ${window.escHtml(title)}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+          <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${t('vp.title-prefix')} ${sceneNum}/${total}: ${window.escHtml(title)}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
           <img src="${imageUrl}" class="w-full rounded-lg mb-3 max-h-56 object-contain bg-gray-100">
           <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
-            <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">Video Prompt (Scene ${sceneNum}/${total}, nyambung ke scene lain):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button></div>
+            <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${t('vp.section-label')} (Scene ${sceneNum}/${total}):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
             <textarea data-prompt rows="8" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm font-mono resize-none">${window.escHtml(vp)}</textarea>
           </div>
-          <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i><strong>Tips:</strong> pakai tombol <strong>Semua Prompt Video</strong> untuk ambil semua scene sekaligus. Copy tiap prompt ke platform image-to-video (Runway, Pika, Kling, Veo) dengan gambar scene-nya, gabung berurutan → satu cerita utuh.</p>
-          <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">Tutup</button>
+          <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i>${t('vp.tips')}</p>
+          <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button>
         </div>`;
         modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
         const copyBtn = modal.querySelector('[data-copy]'), ta = modal.querySelector('[data-prompt]');
         copyBtn.addEventListener('click', () => {
           const ok = window.copyText(ta.value);
           if (!ok) { ta.focus(); ta.select(); }
-          copyBtn.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>Tersalin!' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Tekan Ctrl+C';
-          setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 2000);
+          copyBtn.innerHTML = ok ? `<i class="fas fa-check mr-1 pointer-events-none"></i>${t('msg.copied')}` : `<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>${t('msg.press-ctrl-c')}`;
+          setTimeout(() => { copyBtn.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 2000);
         });
         } catch (err) {
           console.error('video prompt error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">Tutup</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-prompt')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -1312,12 +2236,12 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `Prompt Per Scene — Klip ${clipIdx}` : 'Semua Prompt Video'} (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
-        <p class="text-xs text-gray-500 mb-3" data-progress>Menyiapkan 0/${total}...</p>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `${t('vp.per-scene')} — ${t('unit.clip-title')} ${clipIdx}` : t('btn.all-video-prompt')} (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-3" data-progress>${t('progress.preparing')} 0/${total}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
-          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>Copy Semua</button>
-          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>Unduh .txt</button>
+          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}</button>
+          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>${t('btn.download-txt')}</button>
         </div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -1334,14 +2258,14 @@ Rules:
       }
       function refreshAggregate() {
         const done = resultsByIdx.filter(Boolean).length;
-        progressEl.textContent = `Selesai ${done}/${total} prompt`;
+        progressEl.textContent = `${t('progress.done')} ${done}/${total} ${t('unit.prompt')}`;
         copyAll.classList.toggle('hidden', done === 0);
         txtBtn.classList.toggle('hidden', done === 0);
       }
       copyAll.addEventListener('click', () => {
         const ok = window.copyText(aggregateText());
-        copyAll.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>Tersalin!' : '<i class="fas fa-download mr-1"></i>Pakai Unduh .txt';
-        setTimeout(() => { copyAll.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Semua'; }, 2200);
+        copyAll.innerHTML = ok ? `<i class="fas fa-check mr-1"></i>${t('msg.copied')}` : `<i class="fas fa-download mr-1"></i>${t('msg.use-download-txt')}`;
+        setTimeout(() => { copyAll.innerHTML = `<i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}`; }, 2200);
       });
       txtBtn.addEventListener('click', () => {
         const b = new Blob([aggregateText()], { type: 'text/plain' });
@@ -1372,17 +2296,17 @@ Rules:
         const title = card.dataset.title || `Scene ${i + 1}`;
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
         copyOne.addEventListener('click', () => {
           const ok = window.copyText(ta.value);
           copyOne.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>OK' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Ctrl+C';
-          setTimeout(() => { copyOne.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 1800);
+          setTimeout(() => { copyOne.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 1800);
         });
         retryBtn.addEventListener('click', () => runBlock(i, card, ta, st, retryBtn));
-        progressEl.textContent = `Menyiapkan ${i + 1}/${total}...`;
+        progressEl.textContent = `${t('progress.preparing')} ${i + 1}/${total}...`;
         await runBlock(i, card, ta, st, retryBtn);
       }
       refreshAggregate();
@@ -1397,12 +2321,12 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Semua Prompt Klip (${totalClips} klip · ${plan.clipSec} dtk/klip)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
-        <p class="text-xs text-gray-500 mb-3" data-progress>Menyiapkan 0/${totalClips}...</p>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.all-clip-prompts')} (${totalClips} ${t('unit.clips')} · ${plan.clipSec} ${t('unit.sec-per-clip')})</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-3" data-progress>${t('progress.preparing')} 0/${totalClips}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
-          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>Copy Semua</button>
-          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>Unduh .txt</button>
+          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}</button>
+          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>${t('btn.download-txt')}</button>
         </div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -1419,14 +2343,14 @@ Rules:
       }
       function refreshAggregate() {
         const done = resultsByIdx.filter(Boolean).length;
-        progressEl.textContent = `Selesai ${done}/${totalClips} prompt klip`;
+        progressEl.textContent = `${t('progress.done')} ${done}/${totalClips} ${t('unit.prompt')} ${t('unit.clip')}`;
         copyAll.classList.toggle('hidden', done === 0);
         txtBtn.classList.toggle('hidden', done === 0);
       }
       copyAll.addEventListener('click', () => {
         const ok = window.copyText(aggregateText());
-        copyAll.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>Tersalin!' : '<i class="fas fa-download mr-1"></i>Pakai Unduh .txt';
-        setTimeout(() => { copyAll.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Semua'; }, 2200);
+        copyAll.innerHTML = ok ? `<i class="fas fa-check mr-1"></i>${t('msg.copied')}` : `<i class="fas fa-download mr-1"></i>${t('msg.use-download-txt')}`;
+        setTimeout(() => { copyAll.innerHTML = `<i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}`; }, 2200);
       });
       txtBtn.addEventListener('click', () => {
         const b = new Blob([aggregateText()], { type: 'text/plain' });
@@ -1455,17 +2379,17 @@ Rules:
       for (let i = 0; i < totalClips; i++) {
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Klip ${i + 1}/${totalClips} — Scene ${i * plan.perClip + 1}–${Math.min((i + 1) * plan.perClip, all.length)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Klip ${i + 1}/${totalClips} — Scene ${i * plan.perClip + 1}–${Math.min((i + 1) * plan.perClip, all.length)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
         copyOne.addEventListener('click', () => {
           const ok = window.copyText(ta.value);
           copyOne.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>OK' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Ctrl+C';
-          setTimeout(() => { copyOne.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 1800);
+          setTimeout(() => { copyOne.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 1800);
         });
         retryBtn.addEventListener('click', () => runBlock(i, ta, st, retryBtn));
-        progressEl.textContent = `Menyiapkan ${i + 1}/${totalClips}...`;
+        progressEl.textContent = `${t('progress.preparing')} ${i + 1}/${totalClips}...`;
         await runBlock(i, ta, st, retryBtn);
       }
       refreshAggregate();
@@ -1921,38 +2845,38 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     const extraOff = cfg.extraInput ? 1 : 0;
     const chipGroupsHtml = (cfg.chipGroups || []).map((g, gi) => `
       <div class="card p-6">
-        <div class="flex items-center gap-2 mb-3"><div class="step-num">${gi + 1 + extraOff}</div><h2 class="text-lg font-semibold text-gray-800">${g.label}</h2></div>
+        <div class="flex items-center gap-2 mb-3"><div class="step-num">${gi + 1 + extraOff}</div><h2 class="text-lg font-semibold text-gray-800" data-i18n-dyn>${g.label}</h2></div>
         <div id="${p}-group-${g.key}" data-group="${g.key}" class="grid gap-2 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr));">
           <button type="button" data-val="__random__" class="theme-chip selected"><i class="fas fa-dice"></i>Kejutkan aku</button>
           ${g.options.map(o => `<button type="button" data-val="${window.escHtml(o)}" class="theme-chip">${window.escHtml(o)}</button>`).join('')}
           <button type="button" data-val="__custom__" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
         </div>
-        <input type="text" id="${p}-group-${g.key}-custom" class="hidden w-full mt-2 p-3 bg-white border-2 border-violet-300 rounded-xl text-sm focus:border-violet-500 transition" placeholder="Tulis ${window.escHtml(g.label.toLowerCase())} versimu sendiri...">
+        <input type="text" id="${p}-group-${g.key}-custom" class="hidden w-full mt-2 p-3 bg-white border-2 border-violet-300 rounded-xl text-sm focus:border-violet-500 transition" placeholder="${t('ph.group-custom').replace('%L', window.escHtml(g.label.toLowerCase()))}">
       </div>`).join('');
 
     const customHtml = cfg.custom ? `
       <div class="card p-6">
-        <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">Ceritakan proses viralmu</h2></div>
-        <textarea id="${p}-custom-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="Contoh: sabun batangan diukir pelan-pelan jadi bentuk mawar, lalu dibungkus cantik untuk dijual"></textarea>
-        <p class="text-xs text-gray-400 mt-2">Tulis dari awal sampai hasil akhir — AI yang memecah jadi scene.</p>
+        <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800" data-i18n-dyn>Ceritakan proses viralmu</h2></div>
+        <textarea id="${p}-custom-input" rows="4" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" data-i18n-dyn-ph placeholder="Contoh: sabun batangan diukir pelan-pelan jadi bentuk mawar, lalu dibungkus cantik untuk dijual"></textarea>
+        <p class="text-xs text-gray-400 mt-2" data-i18n-dyn>Tulis dari awal sampai hasil akhir — AI yang memecah jadi scene.</p>
       </div>` : '';
 
     const extraHtml = cfg.extraInput ? `
       <div class="card p-6">
-        <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800">${cfg.extraInput.label}</h2></div>
-        <textarea id="${p}-extra-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" placeholder="${window.escHtml(cfg.extraInput.placeholder || '')}"></textarea>
+        <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800" data-i18n-dyn>${cfg.extraInput.label}</h2></div>
+        <textarea id="${p}-extra-input" rows="3" class="w-full p-4 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" data-i18n-dyn-ph placeholder="${window.escHtml(cfg.extraInput.placeholder || '')}"></textarea>
         ${cfg.extraInput.fromImage ? `
         <input type="file" id="${p}-extra-image-input" accept="image/*" class="hidden">
-        <button type="button" id="${p}-extra-image-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg mt-2 w-full flex items-center justify-center"><i class="fas fa-camera mr-2"></i>${window.escHtml(cfg.extraInput.imageBtnLabel || 'Ambil ciri dari Foto (kartun/manusia — hasil tetap boneka)')}</button>` : ''}
-        <p class="text-xs text-gray-400 mt-2">Opsional — kosongkan biar AI berkreasi dari pilihan chip.</p>
+        <button type="button" id="${p}-extra-image-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg mt-2 w-full flex items-center justify-center"><i class="fas fa-camera mr-2"></i><span data-i18n-dyn>${window.escHtml(cfg.extraInput.imageBtnLabel || 'Ambil ciri dari Foto (kartun/manusia — hasil tetap boneka)')}</span></button>` : ''}
+        <p class="text-xs text-gray-400 mt-2" data-i18n-dyn>Opsional — kosongkan biar AI berkreasi dari pilihan chip.</p>
       </div>` : '';
 
     const baseStep = (cfg.custom ? 1 : 0) + extraOff + (cfg.chipGroups ? cfg.chipGroups.length : 0);
     host.innerHTML = `
       <div class="container mx-auto p-4 md:p-8 max-w-7xl">
         <header class="text-center mb-8">
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent">${cfg.title}</h1>
-          <p class="text-gray-500 mt-2">${cfg.subtitle}</p>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent" data-i18n-dyn>${cfg.title}</h1>
+          <p class="text-gray-500 mt-2" data-i18n-dyn>${cfg.subtitle}</p>
         </header>
         <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <div class="lg:col-span-1 space-y-6">
@@ -1979,7 +2903,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           <div class="lg:col-span-2">
             <div class="flex items-center justify-between mb-4">
               <h2 class="text-xl font-bold text-gray-800">Hasil Storyboard</h2>
-              <button id="${p}-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i>Unduh Semua</button>
+              <button id="${p}-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i><span data-i18n="btn.download-all">Unduh Semua</span></button>
             </div>
             <div id="${p}-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
           </div>
@@ -2050,9 +2974,9 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
           if (!text) throw new Error('Deskripsi kosong');
           document.getElementById(`${p}-extra-input`).value = text;
-          window.uiNotify('Ciri karakter berhasil diambil dari foto — silakan edit kalau perlu.');
+          window.uiNotify(t('ok.features-extracted'));
         } catch (err) {
-          window.uiNotify('Gagal membaca foto: ' + err.message);
+          window.uiNotify(t('err.read-photo') + err.message);
         } finally {
           imgBtn.disabled = false;
           imgBtn.innerHTML = orig;
@@ -2088,7 +3012,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       if (clips >= window.MAX_STORY_CLIPS) { hideContinueBtn(); return; }
       const orig = continueBtn.innerHTML;
       continueBtn.disabled = true;
-      continueBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Melanjutkan cerita...</span>';
+      continueBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.continue')}</span>`;
       try {
         const lastCard = all[all.length - 1];
         const ideas = await analyzeAndGetPrompts({
@@ -2104,7 +3028,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         await Promise.allSettled(batch.map((idea, j) => generateSingle(startAt + j + 1, idea.title, idea.prompt, anc)));
       } catch (err) {
         console.error(err);
-        window.uiNotify('Gagal melanjutkan cerita: ' + err.message);
+        window.uiNotify(t('err.continue-story') + err.message);
       } finally {
         continueBtn.disabled = false;
         continueBtn.innerHTML = orig;
@@ -2136,7 +3060,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       videoAllBtn = document.createElement('button');
       videoAllBtn.type = 'button';
       videoAllBtn.className = 'btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden';
-      videoAllBtn.innerHTML = '<i class="fas fa-film mr-1"></i>Semua Prompt Video';
+      videoAllBtn.innerHTML = '<i class="fas fa-film mr-1"></i><span data-i18n="btn.all-video-prompt">Semua Prompt Video</span>';
       videoAllBtn.addEventListener('click', () => {
         if (!durState.on) { generateAllVideoPrompts(); return; }
         const plan = window.clipPlan(durState.platform, durState.duration);
@@ -2180,7 +3104,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     const durState = { on: true, platform: 'omni', duration: 10 };
     const modeWrap = document.createElement('div');
     modeWrap.className = 'flex gap-2 mb-3';
-    modeWrap.innerHTML = `<button type="button" data-mode="duration" class="theme-chip selected"><i class="fas fa-film mr-1"></i>Durasi Video</button><button type="button" data-mode="count" class="theme-chip"><i class="fas fa-images mr-1"></i>Jumlah Foto</button>`;
+    modeWrap.innerHTML = `<button type="button" data-mode="duration" class="theme-chip selected"><i class="fas fa-film mr-1"></i><span data-i18n="mode.duration">Durasi Video</span></button><button type="button" data-mode="count" class="theme-chip"><i class="fas fa-images mr-1"></i><span data-i18n="mode.count">Jumlah Foto</span></button>`;
     const durPanel = document.createElement('div');
     durPanel.id = `${p}-duration-panel`;
     countGrid.parentNode.insertBefore(modeWrap, countGrid);
@@ -2192,13 +3116,14 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       if (!opts.includes(durState.duration)) durState.duration = opts[0];
       const plan = window.clipPlan(durState.platform, durState.duration);
       durPanel.innerHTML = `
-        <div class="text-xs font-semibold text-gray-500 mb-1">Platform video</div>
-        <div class="flex flex-wrap gap-2 mb-3">${Object.entries(window.VIDEO_PLATFORMS).map(([k, v]) => `<button type="button" data-platform="${k}" class="theme-chip ${k === durState.platform ? 'selected' : ''}">${v.label} — ${v.clipSec} dtk/klip</button>`).join('')}</div>
-        <div class="text-xs font-semibold text-gray-500 mb-1">Durasi story</div>
-        <div class="flex flex-wrap gap-2 mb-3">${opts.map(s => `<button type="button" data-duration="${s}" class="theme-chip ${s === durState.duration ? 'selected' : ''}">${s} dtk</button>`).join('')}</div>
-        <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-2" data-clip-info><i class="fas fa-info-circle mr-1"></i>= ${plan.photos} foto · ${plan.clips} klip × ${plan.perClip} foto (${plan.clipSec} dtk/klip)</p>`;
+        <div class="text-xs font-semibold text-gray-500 mb-1">${t('dur.platform')}</div>
+        <div class="flex flex-wrap gap-2 mb-3">${Object.entries(window.VIDEO_PLATFORMS).map(([k, v]) => `<button type="button" data-platform="${k}" class="theme-chip ${k === durState.platform ? 'selected' : ''}">${v.label} — ${v.clipSec} ${t('unit.sec-per-clip')}</button>`).join('')}</div>
+        <div class="text-xs font-semibold text-gray-500 mb-1">${t('dur.story-duration')}</div>
+        <div class="flex flex-wrap gap-2 mb-3">${opts.map(s => `<button type="button" data-duration="${s}" class="theme-chip ${s === durState.duration ? 'selected' : ''}">${s} ${t('unit.sec')}</button>`).join('')}</div>
+        <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-2" data-clip-info><i class="fas fa-info-circle mr-1"></i>= ${plan.photos} ${t('unit.photos')} · ${plan.clips} ${t('unit.clips')} × ${plan.perClip} ${t('unit.photos')} (${plan.clipSec} ${t('unit.sec-per-clip')})</p>`;
     }
     renderDurPanel();
+    document.addEventListener('ssp-lang-changed', renderDurPanel);
     durPanel.addEventListener('click', (e) => {
       const pb = e.target.closest('[data-platform]');
       const db = e.target.closest('[data-duration]');
@@ -2217,7 +3142,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     });
     function effectiveCount() { return durState.on ? window.clipPlan(durState.platform, durState.duration).photos : selectedCount; }
     function retryPlaceholder(id) {
-      return `<div class="text-center p-3"><p class="text-xs text-red-500 mb-2">Scene gagal dibuat</p><button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-4 py-2 rounded-lg text-sm font-semibold"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button></div>`;
+      return `<div class="text-center p-3"><p class="text-xs text-red-500 mb-2">${t('msg.scene-failed')}</p><button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-4 py-2 rounded-lg text-sm font-semibold"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>${t('btn.retry')}</button></div>`;
     }
     function showChoiceModal(title, choices) {
       const modal = document.createElement('div');
@@ -2315,10 +3240,10 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
             <img src="${imageUrl}" class="w-full h-full object-cover rounded-md" alt="Scene">
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 flex flex-wrap gap-2 justify-end opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition">
               <button data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
-              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="Regenerate"><i class="fas fa-sync-alt pointer-events-none"></i></button>
-              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="Edit Prompt"><i class="fas fa-pen pointer-events-none"></i></button>
-              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="Buat Prompt Video"><i class="fas fa-film pointer-events-none"></i></button>
-              <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="Unduh"><i class="fas fa-download pointer-events-none"></i></button>
+              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}"><i class="fas fa-sync-alt pointer-events-none"></i></button>
+              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}"><i class="fas fa-pen pointer-events-none"></i></button>
+              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}"><i class="fas fa-film pointer-events-none"></i></button>
+              <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
             </div>
           </div>`;
           return;
@@ -2356,7 +3281,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     }
 
     generateBtn.addEventListener('click', async () => {
-      if (cfg.custom && !document.getElementById(`${p}-custom-input`).value.trim()) { window.uiNotify('Tulis dulu ide proses viralmu ya.'); return; }
+      if (cfg.custom && !document.getElementById(`${p}-custom-input`).value.trim()) { window.uiNotify(t('warn.viral-idea-required')); return; }
       generateBtn.disabled = true;
       hideContinueBtn();
       const orig = generateBtn.innerHTML;
@@ -2366,7 +3291,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       if (captionBtn) captionBtn.classList.add('hidden');
       if (audioStyleSel) audioStyleSel.classList.add('hidden');
       if (audioLangBtn) audioLangBtn.classList.add('hidden');
-      grid.innerHTML = `<div class="col-span-full text-center py-10"><div class="loader inline-block"></div><p class="mt-4 text-gray-500">${cfg.analyzingMsg}</p></div>`;
+      grid.innerHTML = `<div class="col-span-full text-center py-10"><div class="loader inline-block"></div><p class="mt-4 text-gray-500">${window.__dynT(cfg.analyzingMsg)}</p></div>`;
       let ideas;
       try { ideas = await analyzeAndGetPrompts(); }
       catch (err) {
@@ -2374,7 +3299,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         grid.innerHTML = `<div class="col-span-full text-center py-10 text-red-500">Terjadi kesalahan: ${window.escHtml(err.message)}</div>`;
         generateBtn.disabled = false; generateBtn.innerHTML = orig; return;
       }
-      generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Membuat Visual...</span>';
+      generateBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.visual')}</span>`;
       const MAX = 3; let attempts = 0, success = 0;
       const useAnchor = !cfg.noShowcase && ideas.length > 1;
       while (attempts < MAX && success === 0) {
@@ -2397,7 +3322,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       }
       if (!durState.on) { grid.querySelectorAll('.result-card').forEach(c => { if (!c.querySelector('img')) c.remove(); }); }
       generateBtn.disabled = false; generateBtn.innerHTML = orig;
-      if (success === 0) window.uiNotify('Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.');
+      if (success === 0) window.uiNotify(t('warn.google-limit'));
       else { downloadAllBtn.classList.remove('hidden'); if (videoAllBtn) videoAllBtn.classList.remove('hidden'); if (audioStyleSel) audioStyleSel.classList.remove('hidden'); if (audioLangBtn) audioLangBtn.classList.remove('hidden'); if (captionBtn) captionBtn.classList.remove('hidden'); updateContinueBtn(); }
     });
 
@@ -2465,10 +3390,10 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>Edit Prompt Gambar</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
-        <p class="text-xs text-gray-500 mb-2">Ubah prompt gambar scene ini, lalu klik <strong>Simpan</strong>. Tekan tombol <strong>Regenerate</strong> di kartu untuk membuat ulang gambar dengan prompt baru.</p>
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-2">${t('edit.hint')}</p>
         <textarea data-editp rows="7" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm font-mono resize-none focus:border-violet-500 transition">${window.escHtml(card.dataset.prompt || '')}</textarea>
-        <div class="flex gap-2 mt-4"><button data-save class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-floppy-disk mr-1"></i>Simpan</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">Batal</button></div>
+        <div class="flex gap-2 mt-4"><button data-save class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-floppy-disk mr-1"></i>${t('btn.save')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">${t('btn.cancel')}</button></div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
       document.body.appendChild(modal);
@@ -2614,7 +3539,7 @@ Rules:
     function showCaptionModal() {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>Membuat Caption...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
+      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>${t('loading.caption')}</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
       modal.innerHTML = loadingHTML;
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -2627,15 +3552,15 @@ Rules:
           const parts = parseCaptionText(text);
           const blocks = parts.map((s, i) => `
             <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
-              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${window.escHtml(s.label)}</span><button data-copyone="${i}" class="text-xs bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button></div>
+              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${window.escHtml(s.label)}</span><button data-copyone="${i}" class="text-xs bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
               <textarea data-cap="${i}" rows="${s.key === 'hashtag' ? 3 : 5}" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm resize-none">${window.escHtml(s.body)}</textarea>
             </div>`).join('');
           modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>Caption Video</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>${t('modal.caption-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
             ${blocks}
             <div class="flex gap-2">
-              <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>Copy Semua</button>
-              <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-download mr-1"></i>Unduh .txt</button>
+              <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}</button>
+              <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-download mr-1"></i>${t('btn.download-txt')}</button>
             </div>
           </div>`;
           modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
@@ -2643,15 +3568,15 @@ Rules:
             const ta = modal.querySelector(`[data-cap="${btn.dataset.copyone}"]`);
             const ok = window.copyText(ta.value);
             if (!ok) { ta.focus(); ta.select(); }
-            btn.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>Tersalin!' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Tekan Ctrl+C';
-            setTimeout(() => { btn.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 2000);
+            btn.innerHTML = ok ? `<i class="fas fa-check mr-1 pointer-events-none"></i>${t('msg.copied')}` : `<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>${t('msg.press-ctrl-c')}`;
+            setTimeout(() => { btn.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 2000);
           }));
           const aggregate = () => parts.map(s => `# ${s.label}\n${s.body}`).join('\n\n');
           const copyAllBtn = modal.querySelector('[data-copyall]');
           copyAllBtn.addEventListener('click', () => {
             const ok = window.copyText(aggregate());
-            copyAllBtn.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>Tersalin!' : '<i class="fas fa-download mr-1"></i>Pakai Unduh .txt';
-            setTimeout(() => { copyAllBtn.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Semua'; }, 2200);
+            copyAllBtn.innerHTML = ok ? `<i class="fas fa-check mr-1"></i>${t('msg.copied')}` : `<i class="fas fa-download mr-1"></i>${t('msg.use-download-txt')}`;
+            setTimeout(() => { copyAllBtn.innerHTML = `<i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}`; }, 2200);
           });
           modal.querySelector('[data-txt]').addEventListener('click', () => {
             const b = new Blob([aggregate()], { type: 'text/plain' });
@@ -2661,7 +3586,7 @@ Rules:
           });
         } catch (err) {
           console.error('caption error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat caption</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">Tutup</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat caption</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -2673,7 +3598,7 @@ Rules:
     async function generateClipPrompt(clipIdx) {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Membuat Prompt Klip ${clipIdx}...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
+      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('loading.clip-prompt')} ${clipIdx}...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
       modal.innerHTML = loadingHTML;
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -2686,26 +3611,26 @@ Rules:
           const plan = window.clipPlan(durState.platform, durState.duration);
           const thumbs = cards.map(c => `<img src="${c.querySelector('img').src}" class="h-16 rounded object-cover">`).join('');
           modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Prompt Video — Klip ${clipIdx} (${cards.length} foto · ${plan.clipSec} dtk)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.clip-title-prefix')} ${clipIdx} (${cards.length} ${t('unit.photos')} · ${plan.clipSec} ${t('unit.sec')})</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
             <div class="flex gap-2 mb-3 overflow-x-auto">${thumbs}</div>
             <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
-              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">Satu prompt untuk SATU klip utuh (${cards.length} keyframe):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button></div>
+              <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${t('vp.one-clip-prompt')} (${cards.length} ${t('unit.keyframe')}):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
               <textarea data-prompt rows="9" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm font-mono resize-none">${window.escHtml(vp)}</textarea>
             </div>
-            <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i><strong>Cara pakai:</strong> unggah ${cards.length} foto klip ini BERURUTAN ke platform image-to-video (${window.VIDEO_PLATFORMS[durState.platform].label}) + paste prompt ini → 1 klip ${plan.clipSec} dtk. Gabungkan semua klip berurutan di CapCut/editor → satu story utuh.</p>
-            <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">Tutup</button>
+            <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i>${t('clip.howto').replace('%C', cards.length).replace('%P', window.VIDEO_PLATFORMS[durState.platform].label).replace('%S', plan.clipSec)}</p>
+            <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button>
           </div>`;
           modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
           const copyBtn = modal.querySelector('[data-copy]'), ta = modal.querySelector('[data-prompt]');
           copyBtn.addEventListener('click', () => {
             const ok = window.copyText(ta.value);
             if (!ok) { ta.focus(); ta.select(); }
-            copyBtn.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>Tersalin!' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Tekan Ctrl+C';
-            setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 2000);
+            copyBtn.innerHTML = ok ? `<i class="fas fa-check mr-1 pointer-events-none"></i>${t('msg.copied')}` : `<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>${t('msg.press-ctrl-c')}`;
+            setTimeout(() => { copyBtn.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 2000);
           });
         } catch (err) {
           console.error('clip prompt error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt klip</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">Tutup</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt klip</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -2717,7 +3642,7 @@ Rules:
       const card = document.getElementById(`${p}-card-${id}`); if (!card || !card.querySelector('img')) return;
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Membuat Prompt Video...</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
+      const loadingHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-4 text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${t('loading.video-prompt')}</h3><div class="flex items-center justify-center py-8"><div class="loader"></div></div></div>`;
       modal.innerHTML = loadingHTML;
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -2728,26 +3653,26 @@ Rules:
         try {
         const { sceneNum, total, title, vp, imageUrl } = await requestVideoPrompt(card);
         modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-          <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Prompt Video — Scene ${sceneNum}/${total}: ${window.escHtml(title)}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+          <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${t('vp.title-prefix')} ${sceneNum}/${total}: ${window.escHtml(title)}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
           <img src="${imageUrl}" class="w-full rounded-lg mb-3 max-h-56 object-contain bg-gray-100">
           <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
-            <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">Video Prompt (Scene ${sceneNum}/${total}, nyambung ke scene lain):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button></div>
+            <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${t('vp.section-label')} (Scene ${sceneNum}/${total}):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
             <textarea data-prompt rows="8" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm font-mono resize-none">${window.escHtml(vp)}</textarea>
           </div>
-          <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i><strong>Tips:</strong> pakai tombol <strong>Semua Prompt Video</strong> untuk ambil semua scene sekaligus. Copy tiap prompt ke platform image-to-video (Runway, Pika, Kling, Veo) dengan gambar scene-nya, gabung berurutan → satu cerita utuh.</p>
-          <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">Tutup</button>
+          <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-3 mb-3"><i class="fas fa-info-circle mr-1"></i>${t('vp.tips')}</p>
+          <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button>
         </div>`;
         modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
         const copyBtn = modal.querySelector('[data-copy]'), ta = modal.querySelector('[data-prompt]');
         copyBtn.addEventListener('click', () => {
           const ok = window.copyText(ta.value);
           if (!ok) { ta.focus(); ta.select(); }
-          copyBtn.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>Tersalin!' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Tekan Ctrl+C';
-          setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 2000);
+          copyBtn.innerHTML = ok ? `<i class="fas fa-check mr-1 pointer-events-none"></i>${t('msg.copied')}` : `<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>${t('msg.press-ctrl-c')}`;
+          setTimeout(() => { copyBtn.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 2000);
         });
         } catch (err) {
           console.error('video prompt error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">Tutup</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-prompt')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -2771,12 +3696,12 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `Prompt Per Scene — Klip ${clipIdx}` : 'Semua Prompt Video'} (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
-        <p class="text-xs text-gray-500 mb-3" data-progress>Menyiapkan 0/${total}...</p>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `${t('vp.per-scene')} — ${t('unit.clip-title')} ${clipIdx}` : t('btn.all-video-prompt')} (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-3" data-progress>${t('progress.preparing')} 0/${total}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
-          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>Copy Semua</button>
-          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>Unduh .txt</button>
+          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}</button>
+          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>${t('btn.download-txt')}</button>
         </div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -2793,14 +3718,14 @@ Rules:
       }
       function refreshAggregate() {
         const done = resultsByIdx.filter(Boolean).length;
-        progressEl.textContent = `Selesai ${done}/${total} prompt`;
+        progressEl.textContent = `${t('progress.done')} ${done}/${total} ${t('unit.prompt')}`;
         copyAll.classList.toggle('hidden', done === 0);
         txtBtn.classList.toggle('hidden', done === 0);
       }
       copyAll.addEventListener('click', () => {
         const ok = window.copyText(aggregateText());
-        copyAll.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>Tersalin!' : '<i class="fas fa-download mr-1"></i>Pakai Unduh .txt';
-        setTimeout(() => { copyAll.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Semua'; }, 2200);
+        copyAll.innerHTML = ok ? `<i class="fas fa-check mr-1"></i>${t('msg.copied')}` : `<i class="fas fa-download mr-1"></i>${t('msg.use-download-txt')}`;
+        setTimeout(() => { copyAll.innerHTML = `<i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}`; }, 2200);
       });
       txtBtn.addEventListener('click', () => {
         const b = new Blob([aggregateText()], { type: 'text/plain' });
@@ -2831,17 +3756,17 @@ Rules:
         const title = card.dataset.title || `Scene ${i + 1}`;
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
         copyOne.addEventListener('click', () => {
           const ok = window.copyText(ta.value);
           copyOne.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>OK' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Ctrl+C';
-          setTimeout(() => { copyOne.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 1800);
+          setTimeout(() => { copyOne.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 1800);
         });
         retryBtn.addEventListener('click', () => runBlock(i, card, ta, st, retryBtn));
-        progressEl.textContent = `Menyiapkan ${i + 1}/${total}...`;
+        progressEl.textContent = `${t('progress.preparing')} ${i + 1}/${total}...`;
         await runBlock(i, card, ta, st, retryBtn);
       }
       refreshAggregate();
@@ -2856,12 +3781,12 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>Semua Prompt Klip (${totalClips} klip · ${plan.clipSec} dtk/klip)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
-        <p class="text-xs text-gray-500 mb-3" data-progress>Menyiapkan 0/${totalClips}...</p>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.all-clip-prompts')} (${totalClips} ${t('unit.clips')} · ${plan.clipSec} ${t('unit.sec-per-clip')})</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-3" data-progress>${t('progress.preparing')} 0/${totalClips}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
-          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>Copy Semua</button>
-          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>Unduh .txt</button>
+          <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}</button>
+          <button data-txt class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm hidden"><i class="fas fa-download mr-1"></i>${t('btn.download-txt')}</button>
         </div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -2878,14 +3803,14 @@ Rules:
       }
       function refreshAggregate() {
         const done = resultsByIdx.filter(Boolean).length;
-        progressEl.textContent = `Selesai ${done}/${totalClips} prompt klip`;
+        progressEl.textContent = `${t('progress.done')} ${done}/${totalClips} ${t('unit.prompt')} ${t('unit.clip')}`;
         copyAll.classList.toggle('hidden', done === 0);
         txtBtn.classList.toggle('hidden', done === 0);
       }
       copyAll.addEventListener('click', () => {
         const ok = window.copyText(aggregateText());
-        copyAll.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>Tersalin!' : '<i class="fas fa-download mr-1"></i>Pakai Unduh .txt';
-        setTimeout(() => { copyAll.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy Semua'; }, 2200);
+        copyAll.innerHTML = ok ? `<i class="fas fa-check mr-1"></i>${t('msg.copied')}` : `<i class="fas fa-download mr-1"></i>${t('msg.use-download-txt')}`;
+        setTimeout(() => { copyAll.innerHTML = `<i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}`; }, 2200);
       });
       txtBtn.addEventListener('click', () => {
         const b = new Blob([aggregateText()], { type: 'text/plain' });
@@ -2914,17 +3839,17 @@ Rules:
       for (let i = 0; i < totalClips; i++) {
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Klip ${i + 1}/${totalClips} — Scene ${i * plan.perClip + 1}–${Math.min((i + 1) * plan.perClip, all.length)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>Copy</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Klip ${i + 1}/${totalClips} — Scene ${i * plan.perClip + 1}–${Math.min((i + 1) * plan.perClip, all.length)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
         copyOne.addEventListener('click', () => {
           const ok = window.copyText(ta.value);
           copyOne.innerHTML = ok ? '<i class="fas fa-check mr-1 pointer-events-none"></i>OK' : '<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>Ctrl+C';
-          setTimeout(() => { copyOne.innerHTML = '<i class="fas fa-copy mr-1 pointer-events-none"></i>Copy'; }, 1800);
+          setTimeout(() => { copyOne.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 1800);
         });
         retryBtn.addEventListener('click', () => runBlock(i, ta, st, retryBtn));
-        progressEl.textContent = `Menyiapkan ${i + 1}/${totalClips}...`;
+        progressEl.textContent = `${t('progress.preparing')} ${i + 1}/${totalClips}...`;
         await runBlock(i, ta, st, retryBtn);
       }
       refreshAggregate();
@@ -3169,7 +4094,7 @@ Rules:
         const d = await api('cek', email);
         if (d.status === 'INVALID') {
           clearInterval(sesInterval);
-          await window.uiNotify('Sesi berakhir. Akun ini login di perangkat lain.');
+          await window.uiNotify(t('warn.session-ended'));
           clearSession();
           location.reload();
         }
@@ -3179,7 +4104,7 @@ Rules:
     loginBtn.addEventListener('click', async () => {
       errEl.classList.add('hidden');
       const email = emailInput.value.trim().toLowerCase();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Format email tidak valid.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError(t('err.login.invalid-email')); return; }
       setLoading(true);
       try {
         const d = await api('login', email);
@@ -3188,10 +4113,10 @@ Rules:
           localStorage.setItem('ssp_name', d.nama || email);
           openApp(d.nama || email);
         } else {
-          showError(d.message || 'Gagal terhubung ke server. Coba lagi.');
+          showError(d.message || t('err.login.failed'));
         }
       } catch (e) {
-        showError('Gagal terhubung ke server. Coba lagi.');
+        showError(t('err.login.failed'));
       }
       setLoading(false);
     });
