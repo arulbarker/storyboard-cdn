@@ -1218,7 +1218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cinematic: 'AUDIO: No narration or dialogue. Mood-driven cinematic background music that drives the pacing, with thin ambient sound effects only.',
     timelapse: 'AUDIO: No human speech, voiceover, or dialogue at all. The footage plays as a fast time-lapse of the process; drive it with upbeat, rhythmic background music synced to the rapid progress, layered with light natural ambient and subtle whoosh SFX. Any label, name, or text appears on-screen only.'
   };
-  const LANG_LABEL = { id: 'Indonesian', en: 'English' };
+  const LANG_LABEL = { id: 'Indonesian', en: 'English', ms: 'Malay' };
   // Gaya audio TANPA suara orang bicara sama sekali (musik + SFX saja)
   const NO_SPEECH_STYLES = ['asmr', 'cinematic', 'timelapse'];
   window.audioSpeechRule = function (audioStyle, audioLang) {
@@ -1600,7 +1600,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tombol "Semua Prompt Video" di samping Unduh Semua (dibuat dinamis)
     // Gaya audio + bahasa untuk prompt video (global per fitur)
     let audioStyle = cfg.defaultAudio || 'voiceover';
-    let audioLang = 'id';
+    let audioLang = getLang();
+    let audioLangManual = false;
     let videoAllBtn = null, audioStyleSel = null, audioLangBtn = null, captionBtn = null;
     if (downloadAllBtn && downloadAllBtn.parentNode) {
       const wrap = document.createElement('div');
@@ -1633,7 +1634,8 @@ document.addEventListener('DOMContentLoaded', () => {
       audioLangBtn.className = 'btn-secondary text-sm font-semibold py-2 px-3 rounded-lg hidden';
       const renderLang = () => { audioLangBtn.innerHTML = `<i class="fas fa-language mr-1"></i>${audioLang.toUpperCase()}`; };
       renderLang();
-      audioLangBtn.addEventListener('click', () => { audioLang = audioLang === 'id' ? 'en' : 'id'; renderLang(); });
+      audioLangBtn.addEventListener('click', () => { audioLang = audioLang === 'id' ? 'en' : audioLang === 'en' ? 'ms' : 'id'; audioLangManual = true; renderLang(); });
+      document.addEventListener('ssp-lang-changed', () => { if (!audioLangManual) { audioLang = getLang(); renderLang(); } });
 
       captionBtn = document.createElement('button');
       captionBtn.type = 'button';
@@ -3222,7 +3224,8 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
 
     // ---- Header output: audio + bahasa + Semua Prompt Video + Caption (salinan) ----
     let audioStyle = cfg.defaultAudio || 'voiceover';
-    let audioLang = 'id';
+    let audioLang = getLang();
+    let audioLangManual = false;
     let videoAllBtn = null, audioStyleSel = null, audioLangBtn = null, captionBtn = null;
     if (downloadAllBtn && downloadAllBtn.parentNode) {
       const wrap = document.createElement('div');
@@ -3255,7 +3258,8 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       audioLangBtn.className = 'btn-secondary text-sm font-semibold py-2 px-3 rounded-lg hidden';
       const renderLang = () => { audioLangBtn.innerHTML = `<i class="fas fa-language mr-1"></i>${audioLang.toUpperCase()}`; };
       renderLang();
-      audioLangBtn.addEventListener('click', () => { audioLang = audioLang === 'id' ? 'en' : 'id'; renderLang(); });
+      audioLangBtn.addEventListener('click', () => { audioLang = audioLang === 'id' ? 'en' : audioLang === 'en' ? 'ms' : 'id'; audioLangManual = true; renderLang(); });
+      document.addEventListener('ssp-lang-changed', () => { if (!audioLangManual) { audioLang = getLang(); renderLang(); } });
 
       captionBtn = document.createElement('button');
       captionBtn.type = 'button';
