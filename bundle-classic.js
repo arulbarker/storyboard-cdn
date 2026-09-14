@@ -182,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.file-unreadable': 'File tidak bisa dibaca — pastikan itu file gambar (JPG/PNG/HEIC).',
       'warn.session-ended': 'Sesi berakhir. Akun ini login di perangkat lain.',
       'menu.model-studio': 'Model Studio', 'menu.viral': 'Video Short Viral', 'nav.logout': 'Keluar',
+      'menu.guide': '⭐ Mulai Di Sini', 'nav.guide': 'Panduan Aplikasi', 'navd.guide': 'Cara pakai semua fitur', 'hdr.guide.title': 'Panduan Aplikasi', 'hdr.guide.sub': 'Klik tiap bagian untuk membuka penjelasannya.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Buat & simpan model AI',
       'navd.product-review': 'Foto review produk afiliasi', 'navd.skincare-review': 'Scene review skincare',
       'navd.fashion': 'OOTD & fashion story', 'navd.unboxing': 'Story buka paket produk',
@@ -391,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.file-unreadable': "File can't be read — make sure it's an image (JPG/PNG/HEIC).",
       'warn.session-ended': 'Session ended. This account is signed in on another device.',
       'menu.model-studio': 'Model Studio', 'menu.viral': 'Viral Short Video', 'nav.logout': 'Log Out',
+      'menu.guide': '⭐ Start Here', 'nav.guide': 'App Guide', 'navd.guide': 'How to use every feature', 'hdr.guide.title': 'App Guide', 'hdr.guide.sub': 'Tap each section to expand its explanation.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Create & save AI models',
       'navd.product-review': 'Affiliate product review photos', 'navd.skincare-review': 'Skincare review scenes',
       'navd.fashion': 'OOTD & fashion story', 'navd.unboxing': 'Product unboxing story',
@@ -600,6 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.file-unreadable': 'Fail tidak dapat dibaca — pastikan ia fail imej (JPG/PNG/HEIC).',
       'warn.session-ended': 'Sesi tamat. Akaun ini log masuk di peranti lain.',
       'menu.model-studio': 'Studio Model', 'menu.viral': 'Video Pendek Viral', 'nav.logout': 'Log Keluar',
+      'menu.guide': '⭐ Mula Di Sini', 'nav.guide': 'Panduan Aplikasi', 'navd.guide': 'Cara guna semua ciri', 'hdr.guide.title': 'Panduan Aplikasi', 'hdr.guide.sub': 'Ketik setiap bahagian untuk buka penjelasannya.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Cipta & simpan model AI',
       'navd.product-review': 'Foto ulasan produk afiliat', 'navd.skincare-review': 'Babak ulasan penjagaan kulit',
       'navd.fashion': 'Kisah OOTD & fesyen', 'navd.unboxing': 'Kisah buka bungkusan produk',
@@ -980,6 +983,80 @@ document.addEventListener('DOMContentLoaded', () => {
       'AI sedang menyusun proses rakit sedotan...': 'AI sedang menyusun proses pasang straw...',
     },
   };
+
+  // === TUTORIAL PANEL ===
+  const GUIDE_CONTENT = {
+    id: [
+      { t: '1. Mulai Cepat', h: '<p>Aplikasi ini mengubah foto produk/ide jadi <b>foto storyboard</b> (scene 1→N) untuk kamu jadikan video.</p><ul><li>Masuk dengan <b>email pembelian</b> kamu.</li><li>Pilih fitur di menu kiri, isi input, tekan <b>Generate</b>.</li><li>Tiap kartu hasil bisa di-Regenerate, Edit Prompt, ambil <b>Prompt Video</b>, dan diunduh.</li></ul><p>Penting: app menghasilkan <b>foto + teks prompt</b>. Proses foto→video kamu lakukan di platform luar (Runway/Pika/Kling/Veo).</p>' },
+      { t: '2. Pilih Bahasa', h: '<p>Ganti bahasa antarmuka lewat menu <b>🌐</b> di sidebar (English / Melayu / Indonesia).</p><p><b>Bahasa ucapan video otomatis ikut</b> bahasa aplikasi — pilih Melayu, model di prompt video bicara Melayu. Kamu tetap bisa mengubahnya per fitur lewat tombol bahasa (ID→EN→MS) di header hasil.</p>' },
+      { t: '3. Model Studio (AI Influencer)', h: '<p>Buat model virtual: racik lewat chip (gender/usia/look/hijab) lalu Generate, atau <b>upload foto</b> sendiri. Simpan ke <b>Pustaka Model</b> (ikut akun, maks 5).</p><p>Saat pakai fitur review, tekan <b>Pilih dari Pustaka Model</b> untuk memasukkan model tersimpan ke story.</p>' },
+      { t: '4. Mode Durasi vs Jumlah Foto', h: '<p>Dua cara menentukan panjang story:</p><ul><li><b>Mode Durasi</b> — pilih platform + durasi (mis. 30 dtk); app hitung jumlah klip & scene otomatis.</li><li><b>Jumlah Foto</b> — kamu pilih sendiri berapa foto (1–10).</li></ul>' },
+      { t: '5. Tema Foto', h: '<p>Tiap fitur punya <b>chip tema</b>: "Tidak Ada" (acak/default), "Custom" (tulis sendiri), atau preset tempat/mood sesuai konteks fitur. Cukup klik salah satu chip.</p>' },
+      { t: '6. Review Generator (10 fitur)', h: '<ul><li><b>Review Produk</b> — foto review produk afiliasi.</li><li><b>Skincare</b> — scene review skincare glowing.</li><li><b>Fashion / OOTD</b> — story fashion & outfit.</li><li><b>Unboxing</b> — story buka paket.</li><li><b>Story Iklan</b> — storyboard iklan brand.</li><li><b>Review Makanan</b> — food review; isi Foto Model untuk gaya food vlogger.</li><li><b>Tutorial Pakai</b> — cara pakai produk.</li><li><b>Day in My Life</b> — vlog harian (model wajib).</li><li><b>Testimoni</b> — story masalah → solusi.</li><li><b>GRWM</b> — get ready with me (model wajib).</li></ul>' },
+      { t: '7. Video Short Viral (9 fitur)', h: '<ul><li><b>Custom Viral</b> — racik ide prosesmu sendiri.</li><li><b>Cetakan Buah</b> — buah tumbuh dalam cetakan lucu.</li><li><b>Pembangunan Rumah</b> — lahan kosong → rumah jadi.</li><li><b>Pembersihan Lahan</b> — kotor → bersih satisfying.</li><li><b>Car Crash</b> — crash & stunt fisika mobil.</li><li><b>DIY Boneka</b> — stop-motion pipe cleaner.</li><li><b>DIY Botol</b> — daur ulang botol jadi pajangan.</li><li><b>DIY Metal</b> — miniatur mur & kawat tembaga.</li><li><b>DIY Sedotan</b> — model rakitan sedotan.</li></ul><p>Fitur viral text-to-image (tanpa upload); hasil scene akhir dipakai sebagai acuan agar desain konsisten.</p>' },
+      { t: '8. Generate & Kartu Hasil', h: '<p>Tiap kartu punya: <b>Preview</b>, <b>Regenerate</b>, <b>Edit Prompt</b> (ubah prompt lalu Regenerate), <b>Video</b> (ambil prompt image-to-video), <b>Download</b>. Scene yang gagal punya tombol <b>Coba Lagi</b>.</p>' },
+      { t: '9. Prompt Video', h: '<p>Tombol <b>Video</b> di kartu menghasilkan prompt image-to-video sadar-cerita. Atur <b>Gaya Audio</b> (UGC, Voiceover, ASMR, Sinematik, Timelapse, dll) dan <b>bahasa ucapan</b>. Di header ada <b>Semua Prompt Video</b> (Per Scene / Per Klip).</p>' },
+      { t: '10. Lanjutkan Cerita', h: '<p>Di Mode Durasi, tombol <b>Lanjutkan Cerita</b> memperpanjang story <b>+1 klip</b> dari scene terakhir tanpa mengulang dari awal.</p>' },
+      { t: '11. Caption', h: '<p>Tombol <b>Caption</b> membuat 3 varian caption (Soft/Story/Hard-selling) + hashtag untuk video final. Bahasa ikut tombol bahasa ucapan.</p>' },
+      { t: '12. Ekspor Storyboard', h: '<p>Gabung foto scene + prompt video jadi <b>1 gambar per klip</b> — tekan <b>Ekspor Storyboard</b> di header atau <b>Storyboard</b> di tiap pembatas klip.</p>' },
+      { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (musik + SFX saja).</li><li>Kalau hasil kurang pas, tekan Regenerate atau Edit Prompt.</li></ul>' },
+    ],
+    en: [
+      { t: '1. Quick Start', h: '<p>This app turns product photos/ideas into <b>storyboard photos</b> (scene 1→N) for you to turn into video.</p><ul><li>Sign in with your <b>purchase email</b>.</li><li>Pick a feature on the left, fill the inputs, hit <b>Generate</b>.</li><li>Each result card can Regenerate, Edit Prompt, grab a <b>Video Prompt</b>, and download.</li></ul><p>Note: the app produces <b>photos + prompt text</b>. Turning photos into video is done on external platforms (Runway/Pika/Kling/Veo).</p>' },
+      { t: '2. Choose Language', h: '<p>Switch the interface language via the <b>🌐</b> menu in the sidebar (English / Malay / Indonesian).</p><p>The <b>video speech language follows automatically</b> — pick Malay and the model speaks Malay in the video prompt. You can still change it per feature with the language button (ID→EN→MS) in the results header.</p>' },
+      { t: '3. Model Studio (AI Influencer)', h: '<p>Create a virtual model: mix via chips (gender/age/look/hijab) then Generate, or <b>upload your own photo</b>. Save to the <b>Model Library</b> (tied to your account, max 5).</p><p>Inside review features, tap <b>Pick from Model Library</b> to insert a saved model into the story.</p>' },
+      { t: '4. Duration Mode vs Photo Count', h: '<p>Two ways to set story length:</p><ul><li><b>Duration Mode</b> — pick platform + duration (e.g. 30s); the app computes clips & scenes automatically.</li><li><b>Photo Count</b> — you choose how many photos (1–10).</li></ul>' },
+      { t: '5. Photo Theme', h: '<p>Each feature has <b>theme chips</b>: "None" (random/default), "Custom" (write your own), or place/mood presets fitting the feature. Just click one chip.</p>' },
+      { t: '6. Review Generator (10 features)', h: '<ul><li><b>Product Review</b> — affiliate product review photos.</li><li><b>Skincare</b> — glowing skincare review scenes.</li><li><b>Fashion / OOTD</b> — fashion & outfit story.</li><li><b>Unboxing</b> — parcel-opening story.</li><li><b>Ad Story</b> — brand ad storyboard.</li><li><b>Food Review</b> — food review; add a Model Photo for a food-vlogger style.</li><li><b>How-To</b> — how to use the product.</li><li><b>Day in My Life</b> — daily vlog (model required).</li><li><b>Testimonial</b> — problem → solution story.</li><li><b>GRWM</b> — get ready with me (model required).</li></ul>' },
+      { t: '7. Viral Short Video (9 features)', h: '<ul><li><b>Custom Viral</b> — craft your own process idea.</li><li><b>Fruit Mold</b> — fruit growing in a cute mold.</li><li><b>House Build</b> — empty land → finished house.</li><li><b>Land Clearing</b> — messy → clean, satisfying.</li><li><b>Car Crash</b> — car crash & stunt physics.</li><li><b>DIY Doll</b> — pipe-cleaner stop-motion.</li><li><b>DIY Bottle</b> — recycle bottles into decor.</li><li><b>DIY Metal</b> — miniatures from nuts & copper wire.</li><li><b>DIY Straw</b> — models assembled from straws.</li></ul><p>Viral features are text-to-image (no upload); the final scene is used as a reference so the design stays consistent.</p>' },
+      { t: '8. Generate & Result Cards', h: '<p>Each card has: <b>Preview</b>, <b>Regenerate</b>, <b>Edit Prompt</b> (edit then Regenerate), <b>Video</b> (grab image-to-video prompt), <b>Download</b>. Failed scenes have a <b>Retry</b> button.</p>' },
+      { t: '9. Video Prompt', h: '<p>The <b>Video</b> button on a card produces a story-aware image-to-video prompt. Set the <b>Audio Style</b> (UGC, Voiceover, ASMR, Cinematic, Timelapse, etc.) and <b>speech language</b>. The header has <b>All Video Prompts</b> (Per Scene / Per Clip).</p>' },
+      { t: '10. Continue Story', h: '<p>In Duration Mode, the <b>Continue Story</b> button extends the story by <b>+1 clip</b> from the last scene without restarting.</p>' },
+      { t: '11. Caption', h: '<p>The <b>Caption</b> button creates 3 caption variants (Soft/Story/Hard-selling) + hashtags for the final video. Language follows the speech-language button.</p>' },
+      { t: '12. Export Storyboard', h: '<p>Combine scene photos + video prompts into <b>1 image per clip</b> — tap <b>Export Storyboard</b> in the header or <b>Storyboard</b> on each clip divider.</p>' },
+      { t: '13. Tips & FAQ', h: '<ul><li>The app only outputs <b>photos + prompt text</b> — make the video on Runway/Pika/Kling/Veo.</li><li>ASMR/Cinematic/Timelapse are intentionally <b>without human speech</b> (music + SFX only).</li><li>If a result is off, hit Regenerate or Edit Prompt.</li></ul>' },
+    ],
+    ms: [
+      { t: '1. Mula Pantas', h: '<p>Aplikasi ini menukar foto produk/idea menjadi <b>foto storyboard</b> (adegan 1→N) untuk kamu jadikan video.</p><ul><li>Log masuk dengan <b>e-mel pembelian</b> kamu.</li><li>Pilih ciri di menu kiri, isi input, tekan <b>Generate</b>.</li><li>Setiap kad hasil boleh Regenerate, Edit Prompt, ambil <b>Prompt Video</b>, dan muat turun.</li></ul><p>Penting: app menghasilkan <b>foto + teks prompt</b>. Proses foto→video dibuat di platform luar (Runway/Pika/Kling/Veo).</p>' },
+      { t: '2. Pilih Bahasa', h: '<p>Tukar bahasa antara muka melalui menu <b>🌐</b> di sidebar (English / Melayu / Indonesia).</p><p><b>Bahasa pertuturan video ikut secara automatik</b> — pilih Melayu, model dalam prompt video bercakap Melayu. Kamu masih boleh mengubahnya per ciri melalui butang bahasa (ID→EN→MS) di pengepala hasil.</p>' },
+      { t: '3. Studio Model (AI Influencer)', h: '<p>Cipta model maya: gabung melalui cip (jantina/umur/gaya/hijab) kemudian Generate, atau <b>muat naik foto</b> sendiri. Simpan ke <b>Pustaka Model</b> (ikut akaun, maks 5).</p><p>Semasa guna ciri review, tekan <b>Pilih dari Pustaka Model</b> untuk memasukkan model tersimpan ke dalam cerita.</p>' },
+      { t: '4. Mod Tempoh vs Bilangan Foto', h: '<p>Dua cara menetapkan panjang cerita:</p><ul><li><b>Mod Tempoh</b> — pilih platform + tempoh (cth. 30 saat); app kira klip & adegan automatik.</li><li><b>Bilangan Foto</b> — kamu pilih berapa foto (1–10).</li></ul>' },
+      { t: '5. Tema Foto', h: '<p>Setiap ciri ada <b>cip tema</b>: "Tiada" (rawak/lalai), "Custom" (tulis sendiri), atau pratetap tempat/mood mengikut konteks ciri. Cuma klik satu cip.</p>' },
+      { t: '6. Review Generator (10 ciri)', h: '<ul><li><b>Review Produk</b> — foto review produk afiliasi.</li><li><b>Skincare</b> — adegan review skincare glowing.</li><li><b>Fashion / OOTD</b> — cerita fesyen & pakaian.</li><li><b>Unboxing</b> — cerita buka bungkusan.</li><li><b>Cerita Iklan</b> — storyboard iklan jenama.</li><li><b>Review Makanan</b> — food review; isi Foto Model untuk gaya food vlogger.</li><li><b>Cara Guna</b> — cara guna produk.</li><li><b>Day in My Life</b> — vlog harian (model wajib).</li><li><b>Testimoni</b> — cerita masalah → penyelesaian.</li><li><b>GRWM</b> — get ready with me (model wajib).</li></ul>' },
+      { t: '7. Video Pendek Viral (9 ciri)', h: '<ul><li><b>Custom Viral</b> — reka idea proses kamu sendiri.</li><li><b>Acuan Buah</b> — buah membesar dalam acuan comel.</li><li><b>Pembinaan Rumah</b> — tanah kosong → rumah siap.</li><li><b>Pembersihan Tanah</b> — kotor → bersih memuaskan.</li><li><b>Car Crash</b> — fizik kemalangan & aksi kereta.</li><li><b>DIY Patung</b> — stop-motion pipe cleaner.</li><li><b>DIY Botol</b> — kitar semula botol jadi hiasan.</li><li><b>DIY Logam</b> — miniatur dari nat & dawai tembaga.</li><li><b>DIY Straw</b> — model dipasang dari straw.</li></ul><p>Ciri viral ialah text-to-image (tanpa muat naik); adegan akhir dijadikan rujukan supaya reka bentuk konsisten.</p>' },
+      { t: '8. Generate & Kad Hasil', h: '<p>Setiap kad ada: <b>Preview</b>, <b>Regenerate</b>, <b>Edit Prompt</b> (ubah kemudian Regenerate), <b>Video</b> (ambil prompt image-to-video), <b>Muat Turun</b>. Adegan gagal ada butang <b>Cuba Lagi</b>.</p>' },
+      { t: '9. Prompt Video', h: '<p>Butang <b>Video</b> pada kad menghasilkan prompt image-to-video sedar-cerita. Tetapkan <b>Gaya Audio</b> (UGC, Voiceover, ASMR, Sinematik, Timelapse, dll) dan <b>bahasa pertuturan</b>. Pengepala ada <b>Semua Prompt Video</b> (Per Adegan / Per Klip).</p>' },
+      { t: '10. Sambung Cerita', h: '<p>Dalam Mod Tempoh, butang <b>Sambung Cerita</b> memanjangkan cerita <b>+1 klip</b> dari adegan terakhir tanpa mula semula.</p>' },
+      { t: '11. Caption', h: '<p>Butang <b>Caption</b> menghasilkan 3 varian caption (Soft/Story/Hard-selling) + hashtag untuk video akhir. Bahasa ikut butang bahasa pertuturan.</p>' },
+      { t: '12. Eksport Storyboard', h: '<p>Gabung foto adegan + prompt video jadi <b>1 imej per klip</b> — tekan <b>Eksport Storyboard</b> di pengepala atau <b>Storyboard</b> pada setiap pembahagi klip.</p>' },
+      { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (muzik + SFX sahaja).</li><li>Jika hasil kurang tepat, tekan Regenerate atau Edit Prompt.</li></ul>' },
+    ],
+  };
+  function renderGuide() {
+    const box = document.getElementById('guide-accordion');
+    if (!box) return;
+    const lang = getLang();
+    const list = GUIDE_CONTENT[lang] || GUIDE_CONTENT.id;
+    box.innerHTML = '';
+    list.forEach(sec => {
+      const item = document.createElement('div');
+      item.className = 'guide-acc-item';
+      const head = document.createElement('button');
+      head.type = 'button';
+      head.className = 'guide-acc-head';
+      head.innerHTML = `<span>${sec.t}</span><i class="fas fa-chevron-right chev"></i>`;
+      const body = document.createElement('div');
+      body.className = 'guide-acc-body';
+      body.innerHTML = sec.h;
+      head.addEventListener('click', () => item.classList.toggle('open'));
+      item.appendChild(head);
+      item.appendChild(body);
+      box.appendChild(item);
+    });
+  }
+  renderGuide();
+  document.addEventListener('ssp-lang-changed', renderGuide);
+  // === end TUTORIAL PANEL ===
 
   // === Tab switching ===
   function switchTab(tabId) {

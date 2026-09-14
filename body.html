@@ -23,6 +23,8 @@
         <button id="nav-hide" class="nav-toggle-btn" aria-label="Sembunyikan menu"><i class="fas fa-angles-left"></i></button>
       </div>
       <nav class="sidebar-nav">
+        <div class="nav-section" data-i18n="menu.guide">⭐ Mulai Di Sini</div>
+        <button data-tab="guide" class="nav-item main-tab-btn"><span class="nav-ico" style="color:var(--brand-yellow);"><i class="fas fa-star"></i></span><span><span data-i18n="nav.guide">Panduan Aplikasi</span> <span class="guide-star-dot"></span><small data-i18n="navd.guide">Cara pakai semua fitur</small></span></button>
         <div class="nav-section" data-i18n="menu.model-studio">Model Studio</div>
         <button data-tab="influencer" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-user-astronaut"></i></span><span><span data-i18n="nav.influencer">AI Influencer</span><small data-i18n="navd.influencer">Buat & simpan model AI</small></span></button>
         <div class="nav-section" data-i18n="menu.review">Review Generator</div>
@@ -1129,6 +1131,13 @@
       <div id="content-strawcraft" class="main-content-panel hidden"></div>
       <div id="content-landclear" class="main-content-panel hidden"></div>
       <div id="content-viralcustom" class="main-content-panel hidden"></div>
+      <div id="content-guide" class="main-content-panel hidden">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-2xl font-bold mb-1" style="color:#4c1d95;"><i class="fas fa-star mr-2" style="color:var(--brand-yellow);"></i><span data-i18n="hdr.guide.title">Panduan Aplikasi</span></h1>
+          <p class="text-sm mb-5" style="color:#64748b;" data-i18n="hdr.guide.sub">Klik tiap bagian untuk membuka penjelasannya.</p>
+          <div id="guide-accordion"></div>
+        </div>
+      </div>
       <div id="content-influencer" class="main-content-panel hidden">
         <div class="container mx-auto p-4 md:p-8 max-w-7xl">
           <header class="text-center mb-8">
