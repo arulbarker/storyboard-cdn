@@ -5087,12 +5087,12 @@ OUTPUT: generate ONLY the actual scene — the person from the reference photo s
             } catch (e) {}
           }
         }
-        for (const s of server) {
-          if (!localIds.has(String(s.id))) {
+        await Promise.all(server.filter(s => !localIds.has(String(s.id))).map(async s => {
+          try {
             const b64 = await window.modelCloud.get(s.id);
             if (b64) await window.modelDB.put({ id: String(s.id), name: s.name, blob: window.b64ToBlob(b64, 'image/png'), mime: 'image/png', cfg: s.cfg, createdAt: s.createdAt, cloud: true });
-          }
-        }
+          } catch (e) {}
+        }));
       } catch (e) { console.error('syncModels:', e); }
       document.dispatchEvent(new CustomEvent('ssp-models-changed'));
     };
