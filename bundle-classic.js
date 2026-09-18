@@ -184,6 +184,20 @@ document.addEventListener('DOMContentLoaded', () => {
       'menu.model-studio': 'Model Studio', 'menu.viral': 'Video Short Viral', 'nav.logout': 'Keluar',
       'menu.guide': '⭐ Mulai Di Sini', 'nav.guide': 'Panduan Aplikasi', 'navd.guide': 'Cara pakai semua fitur', 'hdr.guide.title': 'Panduan Aplikasi', 'hdr.guide.sub': 'Klik tiap bagian untuk membuka penjelasannya.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Buat & simpan model AI',
+      'nav.talker': 'Influencer Bicara', 'navd.talker': 'Konten bicara per niche',
+      'hdr.talker.title': 'AI Influencer Bicara', 'hdr.talker.sub': 'Naskah nyambung antar klip — satukan di CapCut jadi satu monolog utuh.',
+      'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Opsional)',
+      'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Bicara', 'talk.step-branding': 'Nama Akun di Backdrop (Opsional)',
+      'talk.step-duration': 'Platform & Durasi', 'talk.script-lang': 'Bahasa naskah',
+      'talk.btn-script': 'Buat Naskah', 'talk.btn-rescript': 'Buat Ulang Naskah', 'talk.btn-photos': 'Generate Foto',
+      'talk.script-title': 'Naskah per Klip (bisa diedit)', 'talk.result': 'Hasil Klip', 'talk.btn-copy': 'Salin Semua',
+      'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Tombol 📋 = salin prompt siap-pakai untuk Flow/Veo (gambar storyboard dibaca AI, lembarannya tidak ikut ke video).',
+      'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bicara bersama Arul',
+      'warn.talker-model-required': 'Pilih foto model dulu (upload atau dari Pustaka Model).',
+      'warn.talker-script-first': 'Buat naskah dulu sebelum generate foto.',
+      'warn.talker-custom-empty': 'Isi dulu teks custom-nya ya.',
+      'err.talker-script': 'Gagal membuat naskah: ',
+      'loading.talker-script': 'AI sedang menulis naskah...', 'loading.talker-photos': 'Membuat foto klip...',
       'navd.product-review': 'Foto review produk afiliasi', 'navd.skincare-review': 'Scene review skincare',
       'navd.fashion': 'OOTD & fashion story', 'navd.unboxing': 'Story buka paket produk',
       'navd.product-ads': 'Storyboard iklan brand', 'navd.food-review': 'Food review ala selebgram',
@@ -200,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.strawcraft': 'DIY Sedotan', 'navd.strawcraft': 'Model rakitan dari sedotan plastik',
       'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara pakai app ini',
       'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
-      'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'dtk/klip',
+      'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'dtk/klip', 'unit.sec': 'dtk',
       'modal.close': 'Tutup', 'modal.fail-prompt': 'Gagal membuat prompt', 'btn.save': 'Simpan', 'btn.cancel': 'Batal',
       'progress.preparing': 'Menyiapkan', 'progress.done': 'Selesai', 'unit.prompt': 'prompt', 'unit.keyframe': 'keyframe',
       'vp.title-prefix': 'Prompt Video — Scene', 'vp.section-label': 'Video Prompt', 'vp.per-scene': 'Prompt Per Scene',
@@ -394,6 +408,20 @@ document.addEventListener('DOMContentLoaded', () => {
       'menu.model-studio': 'Model Studio', 'menu.viral': 'Viral Short Video', 'nav.logout': 'Log Out',
       'menu.guide': '⭐ Start Here', 'nav.guide': 'App Guide', 'navd.guide': 'How to use every feature', 'hdr.guide.title': 'App Guide', 'hdr.guide.sub': 'Tap each section to expand its explanation.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Create & save AI models',
+      'nav.talker': 'Talking Influencer', 'navd.talker': 'Niche talking-head content',
+      'hdr.talker.title': 'AI Talking Influencer', 'hdr.talker.sub': 'The script flows across clips — join them in CapCut into one full monologue.',
+      'talk.step-model': 'Model Photo (Required)', 'talk.step-niche': 'Pick a Niche', 'talk.step-topic': 'Topic (Optional)',
+      'talk.step-latar': 'Setting', 'talk.step-gaya': 'Speaking Style', 'talk.step-branding': 'Account Name on Backdrop (Optional)',
+      'talk.step-duration': 'Platform & Duration', 'talk.script-lang': 'Script language',
+      'talk.btn-script': 'Write Script', 'talk.btn-rescript': 'Rewrite Script', 'talk.btn-photos': 'Generate Photos',
+      'talk.script-title': 'Script per Clip (editable)', 'talk.result': 'Clip Results', 'talk.btn-copy': 'Copy All',
+      'talk.flow-copy': 'Copy Flow Prompt', 'talk.flow-hint': 'The 📋 button copies a ready-to-use prompt for Flow/Veo (the AI reads the storyboard image; the sheet itself will not appear in the video).',
+      'ph.talk-topic': 'e.g. finding peace through hard times', 'ph.talk-branding': 'e.g. Ruang Bertumbuh Fatimah Zahra',
+      'warn.talker-model-required': 'Pick a model photo first (upload or from the Model Library).',
+      'warn.talker-script-first': 'Write the script first before generating photos.',
+      'warn.talker-custom-empty': 'Fill in the custom text first.',
+      'err.talker-script': 'Failed to write the script: ',
+      'loading.talker-script': 'AI is writing the script...', 'loading.talker-photos': 'Generating clip photos...',
       'navd.product-review': 'Affiliate product review photos', 'navd.skincare-review': 'Skincare review scenes',
       'navd.fashion': 'OOTD & fashion story', 'navd.unboxing': 'Product unboxing story',
       'navd.product-ads': 'Brand ad storyboard', 'navd.food-review': 'Celeb-style food review',
@@ -410,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.strawcraft': 'DIY Straw', 'navd.strawcraft': 'Model built from plastic straws',
       'nav.tutorial-app': 'App Tutorial', 'navd.tutorial-app': 'How to use this app (video)',
       'dur.platform': 'Video platform', 'dur.story-duration': 'Story duration',
-      'unit.photos': 'photos', 'unit.clips': 'clips', 'unit.sec-per-clip': 'sec/clip',
+      'unit.photos': 'photos', 'unit.clips': 'clips', 'unit.sec-per-clip': 'sec/clip', 'unit.sec': 'sec',
       'modal.close': 'Close', 'modal.fail-prompt': 'Failed to create prompt', 'btn.save': 'Save', 'btn.cancel': 'Cancel',
       'progress.preparing': 'Preparing', 'progress.done': 'Done', 'unit.prompt': 'prompts', 'unit.keyframe': 'keyframes',
       'vp.title-prefix': 'Video Prompt — Scene', 'vp.section-label': 'Video Prompt', 'vp.per-scene': 'Per-Scene Prompts',
@@ -604,6 +632,20 @@ document.addEventListener('DOMContentLoaded', () => {
       'menu.model-studio': 'Studio Model', 'menu.viral': 'Video Pendek Viral', 'nav.logout': 'Log Keluar',
       'menu.guide': '⭐ Mula Di Sini', 'nav.guide': 'Panduan Aplikasi', 'navd.guide': 'Cara guna semua ciri', 'hdr.guide.title': 'Panduan Aplikasi', 'hdr.guide.sub': 'Ketik setiap bahagian untuk buka penjelasannya.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Cipta & simpan model AI',
+      'nav.talker': 'Influencer Bercakap', 'navd.talker': 'Kandungan bercakap ikut niche',
+      'hdr.talker.title': 'AI Influencer Bercakap', 'hdr.talker.sub': 'Skrip bersambung antara klip — gabungkan di CapCut jadi satu monolog penuh.',
+      'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Pilihan)',
+      'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Percakapan', 'talk.step-branding': 'Nama Akaun di Latar (Pilihan)',
+      'talk.step-duration': 'Platform & Tempoh', 'talk.script-lang': 'Bahasa skrip',
+      'talk.btn-script': 'Buat Skrip', 'talk.btn-rescript': 'Buat Semula Skrip', 'talk.btn-photos': 'Jana Foto',
+      'talk.script-title': 'Skrip per Klip (boleh diedit)', 'talk.result': 'Hasil Klip', 'talk.btn-copy': 'Salin Semua',
+      'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Butang 📋 = salin prompt sedia-guna untuk Flow/Veo (imej storyboard dibaca AI, helaiannya tidak masuk ke video).',
+      'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bertumbuh Fatimah Zahra',
+      'warn.talker-model-required': 'Pilih foto model dahulu (muat naik atau dari Pustaka Model).',
+      'warn.talker-script-first': 'Buat skrip dahulu sebelum jana foto.',
+      'warn.talker-custom-empty': 'Isi dahulu teks custom.',
+      'err.talker-script': 'Gagal membuat skrip: ',
+      'loading.talker-script': 'AI sedang menulis skrip...', 'loading.talker-photos': 'Menjana foto klip...',
       'navd.product-review': 'Foto ulasan produk afiliat', 'navd.skincare-review': 'Babak ulasan penjagaan kulit',
       'navd.fashion': 'Kisah OOTD & fesyen', 'navd.unboxing': 'Kisah buka bungkusan produk',
       'navd.product-ads': 'Papan cerita iklan jenama', 'navd.food-review': 'Ulasan makanan gaya selebriti',
@@ -620,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.strawcraft': 'DIY Straw', 'navd.strawcraft': 'Model binaan dari straw plastik',
       'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara guna app ini',
       'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
-      'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'saat/klip',
+      'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'saat/klip', 'unit.sec': 'saat',
       'modal.close': 'Tutup', 'modal.fail-prompt': 'Gagal cipta prompt', 'btn.save': 'Simpan', 'btn.cancel': 'Batal',
       'progress.preparing': 'Menyediakan', 'progress.done': 'Selesai', 'unit.prompt': 'prompt', 'unit.keyframe': 'keyframe',
       'vp.title-prefix': 'Prompt Video — Babak', 'vp.section-label': 'Prompt Video', 'vp.per-scene': 'Prompt Setiap Babak',
@@ -776,6 +818,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.CHIP_LABELS = {
     en: {
       'Tidak Ada': 'None', 'Custom': 'Custom', 'Kejutkan aku': 'Surprise me',
+      'Kata Bijak / Motivasi': 'Wisdom / Motivation', 'Islami': 'Islamic', 'Kerja Harian / Karier': 'Daily Work / Career',
+      'Keuangan': 'Finance', 'Cinta / Hubungan': 'Love / Relationships', 'Kesehatan Mental': 'Mental Health',
+      'Studio Podcast': 'Podcast Studio', 'Ruang Tamu Cozy': 'Cozy Living Room', 'Kafe': 'Coffee Shop',
+      'Dalam Mobil': 'In the Car', 'Taman': 'Park',
+      'Tenang / Reflektif': 'Calm / Reflective', 'Semangat / Motivator': 'Energetic / Motivator', 'Ceramah Lembut': 'Gentle Preaching',
       'Wanita': 'Woman', 'Pria': 'Man', 'Remaja': 'Teen', 'Non-hijab': 'Non-hijab',
       'Minimalis': 'Minimalist', 'Minimalis 1 lantai': 'Minimalist 1 Floor', '2 lantai': '2 Floors',
       'Modern minimalis': 'Modern Minimalist', 'Klasik mewah': 'Classic Luxury', 'Rustic Kayu': 'Rustic Wood',
@@ -839,6 +886,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     ms: {
       'Tidak Ada': 'Tiada', 'Custom': 'Tersuai', 'Kejutkan aku': 'Kejutkan saya',
+      'Kerja Harian / Karier': 'Kerja Harian / Kerjaya', 'Keuangan': 'Kewangan', 'Kesehatan Mental': 'Kesihatan Mental',
+      'Ruang Tamu Cozy': 'Ruang Tamu Selesa', 'Dalam Mobil': 'Dalam Kereta',
+      'Semangat / Motivator': 'Bersemangat / Motivator',
       'Pria': 'Lelaki', 'Wanita': 'Wanita', 'Remaja': 'Remaja',
       'Mobil balap': 'Kereta Lumba', 'Mobil balap kartun': 'Kereta Lumba Kartun', 'Mobil klasik': 'Kereta Klasik',
       'Mobil sport': 'Kereta Sport', 'Motor': 'Motosikal', 'Motor mini': 'Motosikal Mini', 'Motoran': 'Menunggang Motosikal',
@@ -1000,6 +1050,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '11. Caption', h: '<p>Tombol <b>Caption</b> membuat 3 varian caption (Soft/Story/Hard-selling) + hashtag untuk video final. Bahasa ikut tombol bahasa ucapan.</p>' },
       { t: '12. Ekspor Storyboard', h: '<p>Gabung foto scene + prompt video jadi <b>1 gambar per klip</b> — tekan <b>Ekspor Storyboard</b> di header atau <b>Storyboard</b> di tiap pembatas klip.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (musik + SFX saja).</li><li>Kalau hasil kurang pas, tekan Regenerate atau Edit Prompt.</li></ul>' },
+      { t: '14. Influencer Bicara', h: '<p>Buat konten <b>talking-head per niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya bicara → <b>Buat Naskah</b> (AI menulis monolog utuh, bisa diedit per klip) → <b>Generate Foto</b> (1 foto per klip).</p><p><b>Naskah nyambung antar klip</b> — prompt video tiap klip berisi kata-kata persis segmen itu. Generate video per klip di platform luar (Kling/Veo), lalu satukan di CapCut jadi satu monolog utuh (mis. 6 klip × 10 dtk = 60 dtk).</p>' },
     ],
     en: [
       { t: '1. Quick Start', h: '<p>This app turns product photos/ideas into <b>storyboard photos</b> (scene 1→N) for you to turn into video.</p><ul><li>Sign in with your <b>purchase email</b>.</li><li>Pick a feature on the left, fill the inputs, hit <b>Generate</b>.</li><li>Each result card can Regenerate, Edit Prompt, grab a <b>Video Prompt</b>, and download.</li></ul><p>Note: the app produces <b>photos + prompt text</b>. Turning photos into video is done on external platforms (Runway/Pika/Kling/Veo).</p>' },
@@ -1015,6 +1066,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '11. Caption', h: '<p>The <b>Caption</b> button creates 3 caption variants (Soft/Story/Hard-selling) + hashtags for the final video. Language follows the speech-language button.</p>' },
       { t: '12. Export Storyboard', h: '<p>Combine scene photos + video prompts into <b>1 image per clip</b> — tap <b>Export Storyboard</b> in the header or <b>Storyboard</b> on each clip divider.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>The app only outputs <b>photos + prompt text</b> — make the video on Runway/Pika/Kling/Veo.</li><li>ASMR/Cinematic/Timelapse are intentionally <b>without human speech</b> (music + SFX only).</li><li>If a result is off, hit Regenerate or Edit Prompt.</li></ul>' },
+      { t: '14. Talking Influencer', h: '<p>Create <b>niche talking-head content</b> (wisdom, Islamic, parenting, etc.): pick a model photo (required), niche, setting, speaking style → <b>Write Script</b> (AI writes one full monologue, editable per clip) → <b>Generate Photos</b> (1 photo per clip).</p><p><b>The script flows across clips</b> — each clip\'s video prompt contains that exact segment. Generate each clip on an external platform (Kling/Veo), then join them in CapCut into one full monologue (e.g. 6 clips × 10 s = 60 s).</p>' },
     ],
     ms: [
       { t: '1. Mula Pantas', h: '<p>Aplikasi ini menukar foto produk/idea menjadi <b>foto storyboard</b> (adegan 1→N) untuk kamu jadikan video.</p><ul><li>Log masuk dengan <b>e-mel pembelian</b> kamu.</li><li>Pilih ciri di menu kiri, isi input, tekan <b>Generate</b>.</li><li>Setiap kad hasil boleh Regenerate, Edit Prompt, ambil <b>Prompt Video</b>, dan muat turun.</li></ul><p>Penting: app menghasilkan <b>foto + teks prompt</b>. Proses foto→video dibuat di platform luar (Runway/Pika/Kling/Veo).</p>' },
@@ -1030,6 +1082,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '11. Caption', h: '<p>Butang <b>Caption</b> menghasilkan 3 varian caption (Soft/Story/Hard-selling) + hashtag untuk video akhir. Bahasa ikut butang bahasa pertuturan.</p>' },
       { t: '12. Eksport Storyboard', h: '<p>Gabung foto adegan + prompt video jadi <b>1 imej per klip</b> — tekan <b>Eksport Storyboard</b> di pengepala atau <b>Storyboard</b> pada setiap pembahagi klip.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (muzik + SFX sahaja).</li><li>Jika hasil kurang tepat, tekan Regenerate atau Edit Prompt.</li></ul>' },
+      { t: '14. Influencer Bercakap', h: '<p>Buat <b>kandungan talking-head ikut niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya percakapan → <b>Buat Skrip</b> (AI menulis satu monolog penuh, boleh diedit per klip) → <b>Jana Foto</b> (1 foto per klip).</p><p><b>Skrip bersambung antara klip</b> — prompt video setiap klip mengandungi kata-kata tepat segmen itu. Jana video per klip di platform luaran (Kling/Veo), kemudian gabungkan di CapCut jadi satu monolog penuh (cth. 6 klip × 10 saat = 60 saat).</p>' },
     ],
   };
   function renderGuide() {
@@ -4298,6 +4351,665 @@ Rules:
     ],
   });
   // === END VIRAL STUDIO ===
+
+  // === TALKING INFLUENCER ===
+  // Tab "Influencer Bicara": talking-head per niche, 1 foto per klip, naskah nyambung antar klip.
+  window.TALKER_PLATFORMS = {
+    omni:     { label: 'Gemini Omni', clipSec: 10 },
+    seedance: { label: 'Seedance',    clipSec: 15 }
+  };
+
+  window.buildTalkerScriptPrompt = function (sel, plan) {
+    const L = { id: 'Bahasa Indonesia', en: 'English', ms: 'Bahasa Melayu (Malay)' };
+    const lang = L[sel.lang] || L.id;
+    const lo = Math.round(plan.clipSec * 2.2), hi = Math.round(plan.clipSec * 2.6);
+    return `You are an expert scriptwriter for short-form social-media talking-head videos (wisdom quotes, life advice, niche monologues).
+Write ONE continuous ${plan.totalSec}-second spoken monologue in ${lang} for the niche "${sel.niche}"${sel.topic ? ` about this topic: "${sel.topic}"` : ' (pick one strong specific topic yourself that fits the niche)'} then split it into ${plan.clips} consecutive segments — one per ${plan.clipSec}-second video clip.
+
+**SPEAKING STYLE:** ${sel.gaya}. Natural spoken language, warm and personal, like talking to one close friend. No bullet points, no headings — pure speech.
+**CONTINUITY LOCK (MOST IMPORTANT):** the segments are ONE flowing monologue cut into pieces. Every segment MUST end exactly at the end of a complete sentence — NEVER cut a sentence in the middle across two segments; the next segment starts a NEW sentence that continues the same train of thought. NEVER restart, NEVER greet again, NEVER re-introduce or summarize previous segments in segment 2 and onward.
+**WORD BUDGET:** each segment must be ${lo}–${hi} words (≈2.3 spoken words per second) so it fits exactly in ${plan.clipSec} seconds of relaxed natural speech. Count carefully.
+**STRUCTURE:** segment 1 opens with a strong hook (a bold statement or a question — NO "hai semuanya"-style greeting). Middle segments deliver the substance with concrete, relatable moments. The final segment lands a memorable takeaway plus a soft call-to-action (save/share/follow).
+Respond ONLY with valid JSON: {"title": "short content title in ${lang}", "segments": ["segment 1 text", "segment 2 text", ...]} with EXACTLY ${plan.clips} segments.`;
+  };
+
+  window.buildTalkerVideoPrompt = function (segment, idx, plan, sel) {
+    const L = { id: 'Bahasa Indonesia', en: 'English', ms: 'Bahasa Melayu (Malay)' };
+    const lang = L[sel.lang] || L.id;
+    const isFirst = idx === 0, isLast = idx === plan.clips - 1;
+    const open = isFirst
+      ? 'This is the OPENING clip: the person starts speaking with confident hook energy from the very first frame.'
+      : `This clip CONTINUES one ongoing monologue (clip ${idx + 1} of ${plan.clips}): the person is ALREADY mid-talk — NO greeting, NO restart, NO long pause at the start; they begin a new sentence that continues the ongoing train of thought from the previous clip.`;
+    const end = isLast
+      ? 'Ending: this is the CLOSING clip — the person finishes the final sentence and gives a warm sincere closing smile to camera.'
+      : 'Ending: the person finishes their last sentence naturally, but the monologue is NOT done — do NOT wrap up, no goodbye; the next clip continues the talk.';
+    return `Talking-head video, EXACTLY ${plan.clipSec} seconds, 9:16 vertical. Animate the person in the image speaking DIRECTLY to camera with accurate natural lip-sync.
+
+SPEECH — the person speaks these EXACT words in ${lang}, nothing more, nothing less:
+"${segment}"
+
+DELIVERY: ${sel.gaya}. ${open} ${end}
+CAMERA & MOTION: static podcast-style framing, subtle micro-movements only — natural blinks, small head tilts, light hand gestures; identity, outfit, background and lighting stay EXACTLY as in the image. The camera angle stays EXACTLY as in the image (multi-cam podcast setup): if the image shows a side angle, the person still speaks toward the main front camera, NOT into this lens.
+AUDIO: the person's clear voice only, soft room tone; NO music, NO other voices.
+ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the background stays as is).`;
+  };
+
+  (function createTalkerTab() {
+    const p = 'talker';
+    const apiKey = "";
+    const host = document.getElementById(`content-${p}`);
+    if (!host) return;
+
+    const NICHE_OPTS = ['Kata Bijak / Motivasi', 'Islami', 'Parenting', 'Kerja Harian / Karier', 'Keuangan', 'Cinta / Hubungan', 'Kesehatan Mental'];
+    const LATAR_OPTS = ['Studio Podcast', 'Ruang Tamu Cozy', 'Kafe', 'Dalam Mobil', 'Taman'];
+    const GAYA_OPTS = ['Tenang / Reflektif', 'Semangat / Motivator', 'Storytelling', 'Ceramah Lembut'];
+    const LATAR_EN = {
+      'Studio Podcast': 'in a cozy professional podcast studio: seated at a dark wooden table with a large broadcast microphone on a boom arm in front, warm wood-panel wall and soft warm lamps softly blurred behind',
+      'Ruang Tamu Cozy': 'in a warm cozy living room: seated on a sofa with soft cushions, a warm lamp and house plants softly blurred behind',
+      'Kafe': 'in an aesthetic coffee shop: seated at a table near a window with a cup of coffee beside, warm cafe interior softly blurred behind',
+      'Dalam Mobil': 'inside a parked car: seated in the driver seat talking to a mounted phone camera, soft daylight through the windows',
+      'Taman': 'outdoors in a green park: soft natural daylight, trees and greenery softly blurred behind'
+    };
+
+    // ---- Render panel ----
+    function chipGrid(key, opts, withCustom) {
+      return `<div id="${p}-group-${key}" data-group="${key}" class="grid gap-2 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
+        ${opts.map((o, i) => `<button type="button" data-val="${window.escHtml(o)}" class="theme-chip${i === 0 ? ' selected' : ''}">${window.escHtml(o)}</button>`).join('')}
+        ${withCustom ? '<button type="button" data-val="__custom__" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>' : ''}
+      </div>
+      ${withCustom ? `<input type="text" id="${p}-group-${key}-custom" class="hidden w-full mt-2 p-3 bg-white border-2 border-violet-300 rounded-xl text-sm focus:border-violet-500 transition">` : ''}`;
+    }
+    host.innerHTML = `
+      <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center mb-8">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold brand-gradient bg-clip-text text-transparent" data-i18n="hdr.talker.title">AI Influencer Bicara</h1>
+          <p class="text-gray-500 mt-2" data-i18n="hdr.talker.sub">Naskah nyambung antar klip — satukan di CapCut jadi satu monolog utuh.</p>
+        </header>
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          <div class="lg:col-span-1 space-y-6">
+            <div class="card p-6">
+              <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-model">Foto Model (Wajib)</h2></div>
+              <div id="${p}-model-image-upload-area">
+                <label for="${p}-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                  <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium" data-i18n="field.upload-click-model">Klik untuk pilih foto model</span>
+                </label>
+                <input type="file" id="${p}-model-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+              </div>
+              <div id="${p}-model-image-preview-container" class="hidden mt-2 relative">
+                <img id="${p}-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
+                <button id="${p}-model-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
+              </div>
+              <button type="button" id="${p}-library-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden"><i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span></button>
+            </div>
+            <div class="card p-6">
+              <div class="flex items-center gap-2 mb-3"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-niche">Pilih Niche</h2></div>
+              ${chipGrid('niche', NICHE_OPTS, true)}
+              <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-topic">Topik (Opsional)</label>
+              <textarea id="${p}-topic-input" rows="2" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" data-i18n-placeholder="ph.talk-topic" placeholder="Contoh: ikhlas menghadapi ujian hidup"></textarea>
+            </div>
+            <div class="card p-6">
+              <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-latar">Latar</h2></div>
+              ${chipGrid('latar', LATAR_OPTS, true)}
+              <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-branding">Nama Akun di Backdrop (Opsional)</label>
+              <input type="text" id="${p}-branding-input" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition" data-i18n-placeholder="ph.talk-branding" placeholder="Contoh: Ruang Bertumbuh Fatimah Zahra">
+            </div>
+            <div class="card p-6">
+              <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-gaya">Gaya Bicara</h2></div>
+              ${chipGrid('gaya', GAYA_OPTS, false)}
+            </div>
+            <div class="card p-6">
+              <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-duration">Platform & Durasi</h2></div>
+              <div id="${p}-duration-panel"></div>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-xs font-semibold text-gray-500" data-i18n="talk.script-lang">Bahasa naskah</span>
+                <button type="button" id="${p}-script-lang" class="btn-secondary text-sm font-semibold py-2 px-3 rounded-lg"></button>
+              </div>
+            </div>
+            <button type="button" id="${p}-script-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg"><i class="fas fa-pen-nib mr-2"></i><span data-i18n="talk.btn-script">Buat Naskah</span></button>
+            <div id="${p}-script-card" class="card p-6 hidden">
+              <h2 class="text-lg font-semibold text-gray-800 mb-1" data-i18n="talk.script-title">Naskah per Klip (bisa diedit)</h2>
+              <p id="${p}-script-name" class="text-sm text-violet-700 font-semibold mb-3"></p>
+              <div id="${p}-script-list" class="space-y-3"></div>
+              <button type="button" id="${p}-rescript-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3"><i class="fas fa-rotate mr-1"></i><span data-i18n="talk.btn-rescript">Buat Ulang Naskah</span></button>
+            </div>
+            <button type="button" id="${p}-photos-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span data-i18n="talk.btn-photos">Generate Foto</span></button>
+          </div>
+          <div class="lg:col-span-2">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <h2 class="text-xl font-bold text-gray-800" data-i18n="talk.result">Hasil Klip</h2>
+              <div class="flex items-center gap-2">
+                <button type="button" id="${p}-video-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-film mr-1"></i><span data-i18n="btn.all-video-prompt">Semua Prompt Video</span></button>
+                <button type="button" id="${p}-sheet-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-images mr-1"></i><span data-i18n="btn.sheet">Ekspor Storyboard</span></button>
+                <button type="button" id="${p}-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i><span data-i18n="btn.download-all">Unduh Semua</span></button>
+              </div>
+            </div>
+            <div id="${p}-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+          </div>
+        </main>
+      </div>`;
+
+    // ---- Chip single-select (default = opsi pertama) ----
+    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0] };
+    ['niche', 'latar', 'gaya'].forEach(key => {
+      const gridEl = document.getElementById(`${p}-group-${key}`);
+      const customEl = document.getElementById(`${p}-group-${key}-custom`);
+      gridEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-val]'); if (!btn) return;
+        gridEl.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
+        btn.classList.add('selected');
+        if (btn.dataset.val === '__custom__' && customEl) {
+          customEl.classList.remove('hidden'); customEl.focus();
+          selection[key] = customEl.value.trim();
+        } else {
+          if (customEl) customEl.classList.add('hidden');
+          selection[key] = btn.dataset.val;
+        }
+      });
+      if (customEl) customEl.addEventListener('input', () => {
+        if (gridEl.querySelector('.theme-chip.selected')?.dataset.val === '__custom__') selection[key] = customEl.value.trim();
+      });
+    });
+
+    // ---- Foto model (upload + pustaka) ----
+    let modelBase64 = null, modelMime = null;
+    const modelInput = document.getElementById(`${p}-model-image-input`);
+    const modelUploadArea = document.getElementById(`${p}-model-image-upload-area`);
+    const modelPreviewContainer = document.getElementById(`${p}-model-image-preview-container`);
+    const modelPreview = document.getElementById(`${p}-model-image-preview`);
+    function setModel(b64, mime, srcUrl) {
+      modelBase64 = b64; modelMime = mime;
+      modelPreview.src = srcUrl;
+      modelUploadArea.classList.add('hidden');
+      modelPreviewContainer.classList.remove('hidden');
+    }
+    modelInput.addEventListener('change', async () => {
+      const file = modelInput.files && modelInput.files[0]; if (!file) return;
+      try {
+        const { base64, mimeType } = await window.compressImage(file);
+        setModel(base64, mimeType, `data:${mimeType};base64,${base64}`);
+      } catch (err) { window.uiNotify(t('warn.file-unreadable')); }
+    });
+    document.getElementById(`${p}-model-remove-btn`).addEventListener('click', () => {
+      modelBase64 = null; modelMime = null; modelInput.value = '';
+      modelUploadArea.classList.remove('hidden'); modelPreviewContainer.classList.add('hidden');
+    });
+    const libBtn = document.getElementById(`${p}-library-btn`);
+    libBtn.addEventListener('click', async () => {
+      let list = [];
+      try { list = await window.modelDB.list(); } catch (err) { console.error(err); }
+      if (!list.length) { window.uiNotify(t('warn.no-models')); return; }
+      showChoiceModal(t('btn.pick-model-library'), list.map(m => ({
+        label: `<span class="flex items-center gap-3"><img src="${URL.createObjectURL(m.blob)}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span>`,
+        onPick: async () => setModel(await window.blobToB64(m.blob), m.mime, URL.createObjectURL(m.blob))
+      })));
+    });
+    async function refreshLibBtn() {
+      try { libBtn.classList.toggle('hidden', !(await window.modelDB.list()).length); }
+      catch { libBtn.classList.add('hidden'); }
+    }
+    document.addEventListener('ssp-models-changed', refreshLibBtn);
+    refreshLibBtn();
+
+    // ---- Platform & durasi (engine sendiri — TIDAK pakai window.VIDEO_PLATFORMS) ----
+    const state = { platform: 'omni', totalSec: 60 };
+    const durPanel = document.getElementById(`${p}-duration-panel`);
+    function plan() {
+      const clipSec = window.TALKER_PLATFORMS[state.platform].clipSec;
+      return { clipSec, clips: Math.round(state.totalSec / clipSec), totalSec: state.totalSec };
+    }
+    function renderDurPanel() {
+      const pf = window.TALKER_PLATFORMS[state.platform];
+      const opts = []; for (let s = pf.clipSec; s <= 60; s += pf.clipSec) opts.push(s);
+      if (!opts.includes(state.totalSec)) state.totalSec = opts[opts.length - 1];
+      const pl = plan();
+      durPanel.innerHTML = `
+        <div class="text-xs font-semibold text-gray-500 mb-1">${t('dur.platform')}</div>
+        <div class="flex flex-wrap gap-2 mb-3">${Object.entries(window.TALKER_PLATFORMS).map(([k, v]) => `<button type="button" data-platform="${k}" class="theme-chip ${k === state.platform ? 'selected' : ''}">${v.label} — ${v.clipSec} ${t('unit.sec-per-clip')}</button>`).join('')}</div>
+        <div class="text-xs font-semibold text-gray-500 mb-1">${t('dur.story-duration')}</div>
+        <div class="flex flex-wrap gap-2 mb-2">${opts.map(s => `<button type="button" data-duration="${s}" class="theme-chip ${s === state.totalSec ? 'selected' : ''}">${s} ${t('unit.sec')}</button>`).join('')}</div>
+        <p class="text-xs text-violet-800 bg-violet-50 border border-violet-200 rounded-lg p-2"><i class="fas fa-info-circle mr-1"></i>= ${pl.clips} ${t('unit.clips')} × 1 ${t('unit.photos')} (${pl.clipSec} ${t('unit.sec-per-clip')})</p>`;
+    }
+    renderDurPanel();
+    document.addEventListener('ssp-lang-changed', renderDurPanel);
+    durPanel.addEventListener('click', (e) => {
+      const pb = e.target.closest('[data-platform]');
+      const db = e.target.closest('[data-duration]');
+      if (pb) state.platform = pb.dataset.platform;
+      else if (db) state.totalSec = parseInt(db.dataset.duration, 10);
+      else return;
+      renderDurPanel();
+      resetOutputs();
+    });
+
+    // ---- Bahasa naskah (default ikut bahasa app, override manual — pola audioLang) ----
+    let talkerLang = getLang();
+    let talkerLangManual = false;
+    const langBtn = document.getElementById(`${p}-script-lang`);
+    const renderScriptLang = () => { langBtn.innerHTML = `<i class="fas fa-language mr-1"></i>${talkerLang.toUpperCase()}`; };
+    renderScriptLang();
+    langBtn.addEventListener('click', () => { talkerLang = talkerLang === 'id' ? 'en' : talkerLang === 'en' ? 'ms' : 'id'; talkerLangManual = true; renderScriptLang(); });
+    document.addEventListener('ssp-lang-changed', () => { if (!talkerLangManual) { talkerLang = getLang(); renderScriptLang(); } });
+
+    // ---- State naskah + reset ----
+    const grid = document.getElementById(`${p}-b-roll-grid`);
+    const scriptBtn = document.getElementById(`${p}-script-btn`);
+    const rescriptBtn = document.getElementById(`${p}-rescript-btn`);
+    const photosBtn = document.getElementById(`${p}-photos-btn`);
+    const scriptCard = document.getElementById(`${p}-script-card`);
+    const scriptList = document.getElementById(`${p}-script-list`);
+    const videoAllBtn = document.getElementById(`${p}-video-all-btn`);
+    const sheetBtn = document.getElementById(`${p}-sheet-btn`);
+    const downloadAllBtn = document.getElementById(`${p}-download-all-btn`);
+    let script = null;
+    function resetOutputs() {
+      script = null;
+      scriptCard.classList.add('hidden');
+      scriptList.innerHTML = '';
+      photosBtn.disabled = true;
+      grid.innerHTML = '';
+      [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.add('hidden'));
+    }
+
+    function currentSel() {
+      return {
+        niche: selection.niche, topic: document.getElementById(`${p}-topic-input`).value.trim(),
+        latar: selection.latar, gaya: selection.gaya,
+        branding: document.getElementById(`${p}-branding-input`).value.trim(), lang: talkerLang
+      };
+    }
+
+    // ---- Buat Naskah ----
+    async function generateScript(triggerBtn) {
+      const sel = currentSel();
+      if (!sel.niche || !sel.latar) { window.uiNotify(t('warn.talker-custom-empty')); return; }
+      const pl = plan();
+      const orig = triggerBtn.innerHTML;
+      triggerBtn.disabled = true;
+      triggerBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.talker-script')}</span>`;
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        const payload = {
+          contents: [{ parts: [{ text: 'Write the monologue script now.' }] }],
+          systemInstruction: { parts: [{ text: window.buildTalkerScriptPrompt(sel, pl) }] },
+          generationConfig: { responseMimeType: 'application/json', responseSchema: { type: 'OBJECT', properties: { title: { type: 'STRING' }, segments: { type: 'ARRAY', items: { type: 'STRING' } } }, required: ['title', 'segments'] } }
+        };
+        const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const result = await res.json();
+        let raw = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!raw) throw new Error('Invalid response structure from API.');
+        raw = raw.replace(/```json/g, '').replace(/```/g, '').trim();
+        const s = raw.indexOf('{'), e2 = raw.lastIndexOf('}');
+        if (s === -1 || e2 === -1) throw new Error('No valid JSON in response.');
+        const js = JSON.parse(raw.substring(s, e2 + 1));
+        if (!Array.isArray(js.segments) || !js.segments.length) throw new Error('Segments kosong.');
+        js.segments = js.segments.slice(0, pl.clips);
+        if (js.segments.length < pl.clips) throw new Error(`Naskah hanya ${js.segments.length}/${pl.clips} segmen — coba lagi.`);
+        script = js;
+        renderScript(pl);
+        grid.innerHTML = '';
+        [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.add('hidden'));
+      } catch (err) {
+        console.error(err);
+        window.uiNotify(t('err.talker-script') + err.message);
+      } finally {
+        triggerBtn.disabled = false;
+        triggerBtn.innerHTML = orig;
+      }
+    }
+    function renderScript(pl) {
+      document.getElementById(`${p}-script-name`).textContent = script.title || '';
+      scriptList.innerHTML = script.segments.map((seg, i) => `
+        <div>
+          <div class="text-xs font-semibold text-gray-500 mb-1">Klip ${i + 1} · ${pl.clipSec} ${t('unit.sec')}</div>
+          <textarea id="${p}-seg-${i + 1}" rows="3" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl text-sm focus:border-violet-500 transition resize-none">${window.escHtml(seg)}</textarea>
+        </div>`).join('');
+      scriptCard.classList.remove('hidden');
+      photosBtn.disabled = false;
+    }
+    function readSegments() {
+      if (!script) return [];
+      return script.segments.map((seg, i) => (document.getElementById(`${p}-seg-${i + 1}`)?.value || seg).trim());
+    }
+    scriptBtn.addEventListener('click', () => generateScript(scriptBtn));
+    rescriptBtn.addEventListener('click', () => generateScript(rescriptBtn));
+
+    // showChoiceModal lokal (pola factory — fungsi ini function-scoped di factory lain, tidak global)
+    function showChoiceModal(title, choices) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="space-y-2" data-choices></div>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      const wrap = modal.querySelector('[data-choices]');
+      choices.forEach(c => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'w-full btn-secondary py-2.5 px-4 rounded-lg font-semibold text-sm text-left';
+        b.innerHTML = c.label;
+        b.addEventListener('click', () => { close(); c.onPick(); });
+        wrap.appendChild(b);
+      });
+      modal.querySelector('[data-close]').addEventListener('click', close);
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    // ---- Prompt scene foto (1 foto per klip) ----
+    const POSES = [
+      'hands resting relaxed on the table, warm confident smile',
+      'one hand raised mid-explanation, engaged expression',
+      'both hands gesturing gently while talking',
+      'leaning slightly forward toward the camera, sincere look',
+      'hands loosely clasped, calm thoughtful expression',
+      'one hand on chest, warm heartfelt expression'
+    ];
+    // Multi-cam podcast pakai kode kamera industri (diagram user 2026-09-19): host di tengah, CAM A kiri 45°, WIDE CAM tengah, CAM B kanan 45°, 180-degree rule.
+    // Orang TETAP bicara menghadap WIDE CAM; klip 1 & terakhir = WIDE CAM (eye contact), klip tengah = cross-shot CAM A/B (LOOKING OFF-CAMERA).
+    const ANGLES = [
+      "CAM A — professional interview CROSS-SHOT from 45 degrees camera-LEFT, same eye level (standard multicam podcast setup, 180-degree rule respected): the subject framed in THREE-QUARTER PROFILE, LOOKING OFF-CAMERA — eyeline locked on the unseen WIDE CAM straight in front of them — ZERO eye contact with this lens, NOT into this side camera",
+      "CAM B — professional interview CROSS-SHOT from 45 degrees camera-RIGHT, same eye level (standard multicam podcast setup, 180-degree rule respected): the subject framed in THREE-QUARTER PROFILE, LOOKING OFF-CAMERA — eyeline locked on the unseen WIDE CAM straight in front of them — ZERO eye contact with this lens, NOT into this side camera",
+      "CAM A — WIDE CROSS-SHOT from 45 degrees camera-LEFT: wider framing showing more of the desk and room, subject in three-quarter profile, LOOKING OFF-CAMERA toward the unseen WIDE CAM in front of them — ZERO eye contact with this lens, NOT into this side camera",
+      "CAM B — TIGHT CROSS-SHOT from 45 degrees camera-RIGHT: chest-up close-up, face in three-quarter profile, LOOKING OFF-CAMERA toward the unseen WIDE CAM in front of them — ZERO eye contact with this lens, NOT into this side camera"
+    ];
+    function angleFor(k, total) {
+      if (k === 1 || k === total) return 'MAIN FRONT CAMERA (WIDE CAM, dead-center in front of the subject): straight-on eye-level shot, the person looks directly into this lens with warm direct eye contact';
+      return ANGLES[(k - 2) % ANGLES.length];
+    }
+    function scenePrompt(k, total) {
+      const sel = currentSel();
+      const setting = LATAR_EN[sel.latar] || `in this setting: ${sel.latar}`;
+      const branding = sel.branding
+        ? `A backdrop sign/wall text behind the person reads EXACTLY "${sel.branding}" — spell it perfectly letter by letter; this is the ONLY readable text in the scene.`
+        : 'No readable text anywhere in the scene.';
+      return `Photorealistic 9:16 vertical photo from a multi-cam podcast setup. CAMERA ANGLE — THE MOST IMPORTANT RULE, the composition MUST clearly show it: ${angleFor(k, total)}. The subject: the EXACT same person as the reference photo (same face, same hair/hijab, same modest outfit), a social-media content creator mid-speech, ${setting}. ${branding} Half-body framing, ${POSES[(k - 1) % POSES.length]}. Warm inviting light, sharp focus on the face, softly blurred background, high-end social media content quality, 8k.`;
+    }
+
+    function cardImgB64(card) {
+      const m = (card?.querySelector('img')?.src || '').match(/^data:image\/\w+;base64,(.+)$/);
+      return m ? m[1] : null;
+    }
+    function anchorB64() { return cardImgB64(document.getElementById(`${p}-card-1`)); }
+
+    function retryPlaceholder(id) {
+      return `<div class="text-center p-3"><p class="text-xs text-red-500 mb-2">${t('msg.scene-failed')}</p><button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-4 py-2 rounded-lg text-sm font-semibold"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>${t('btn.retry')}</button></div>`;
+    }
+
+    function buildCards(segs, pl) {
+      grid.innerHTML = '';
+      segs.forEach((seg, i) => {
+        const k = i + 1;
+        const card = document.createElement('div');
+        card.id = `${p}-card-${k}`;
+        card.className = 'result-card card p-4 flex flex-col justify-between';
+        card.dataset.title = `Klip ${k}`;
+        card.dataset.seg = seg;
+        card.dataset.prompt = scenePrompt(k, segs.length);
+        card.innerHTML = `<div class="mb-3"><h3 class="text-base font-semibold text-gray-800">Klip ${k} · ${pl.clipSec} ${t('unit.sec')}</h3><p class="text-xs text-gray-400 mt-1">${window.escHtml(seg.length > 90 ? seg.slice(0, 90) + '…' : seg)}</p></div><div class="${p}-output-container aspect-[9/16] bg-gray-100 rounded-md flex items-center justify-center"><div class="loader"></div></div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    async function generateSingle(id, anchor) {
+      const card = document.getElementById(`${p}-card-${id}`); if (!card) return;
+      const out = card.querySelector(`.${p}-output-container`);
+      out.innerHTML = '<div class="loader"></div>';
+      const prompt = card.dataset.prompt;
+      const retries = 3; let lastError = null;
+      for (let i = 0; i < retries; i++) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
+          let refText = `REFERENCE PHOTO 1 (CRITICAL): the FIRST attached image is the person — copy their face, hair/hijab and overall identity EXACTLY.`;
+          if (anchor) refText += ` REFERENCE PHOTO 2 (CRITICAL): the SECOND attached image is clip 1 of this SAME video — copy its outfit, setting, backdrop text, lighting and color grade EXACTLY; only the pose/gesture, expression and CAMERA ANGLE may differ. IGNORE the camera angle of both reference photos — compose this scene STRICTLY from the CAMERA ANGLE described below (multi-cam setup, same room and seat), do NOT copy the frontal composition of the references.`;
+          const parts = [{ text: `${refText}\n\nSCENE TO RENDER: ${prompt}` }, { inlineData: { mimeType: modelMime || 'image/png', data: modelBase64 } }];
+          if (anchor) parts.push({ inlineData: { mimeType: 'image/png', data: anchor } });
+          const payload = {
+            contents: [{ parts }],
+            generationConfig: { responseModalities: ['TEXT', 'IMAGE'], imageConfig: { aspectRatio: '9:16' } },
+            safetySettings: [
+              { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+            ]
+          };
+          const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const result = await res.json();
+          const b64 = result?.candidates?.[0]?.content?.parts?.find(x => x.inlineData)?.inlineData?.data;
+          if (!b64) throw new Error('No image data received');
+          out.innerHTML = `<div class="relative w-full h-full group">
+            <img src="data:image/png;base64,${b64}" class="w-full h-full object-cover rounded-md" alt="Klip ${id}">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 flex flex-wrap gap-2 justify-end opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition">
+              <button data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
+              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}"><i class="fas fa-sync-alt pointer-events-none"></i></button>
+              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}"><i class="fas fa-pen pointer-events-none"></i></button>
+              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}"><i class="fas fa-film pointer-events-none"></i></button>
+              <button data-action="${p}-download" data-scene-id="${id}" data-filename="talker_klip${id}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
+            </div>
+          </div>`;
+          return;
+        } catch (err) {
+          lastError = err; console.error(`Attempt ${i + 1} klip ${id} failed:`, err);
+          if (i < retries - 1) await new Promise(rz => setTimeout(rz, 1000 * Math.pow(2, i)));
+        }
+      }
+      if (lastError) out.innerHTML = retryPlaceholder(id);
+    }
+
+    // ---- Generate Foto (klip 1 dulu → anchor → sisanya paralel) ----
+    photosBtn.addEventListener('click', async () => {
+      if (!modelBase64) { window.uiNotify(t('warn.talker-model-required')); return; }
+      if (!script) { window.uiNotify(t('warn.talker-script-first')); return; }
+      const segs = readSegments();
+      const pl = plan();
+      const orig = photosBtn.innerHTML;
+      photosBtn.disabled = true;
+      photosBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.talker-photos')}</span>`;
+      [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.add('hidden'));
+      try {
+        buildCards(segs, pl);
+        await generateSingle(1, null);
+        const anc = anchorB64(); // gagal → fail-soft: klip lain jalan tanpa anchor
+        await Promise.allSettled(segs.slice(1).map((_, j) => generateSingle(j + 2, anc)));
+        const success = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img')).length;
+        if (!success) window.uiNotify(t('warn.google-limit'));
+        else [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.remove('hidden'));
+      } finally {
+        photosBtn.disabled = false;
+        photosBtn.innerHTML = orig;
+      }
+    });
+
+    // ---- Aksi kartu ----
+    function segText(id) {
+      return (document.getElementById(`${p}-seg-${id}`)?.value || document.getElementById(`${p}-card-${id}`)?.dataset.seg || '').trim();
+    }
+    function openPreview(src) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      modal.innerHTML = `<img src="${src}" class="max-w-[92vw] max-h-[90vh] rounded-lg object-contain">`;
+      modal.addEventListener('click', () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); });
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+    function editPromptModal(id) {
+      const card = document.getElementById(`${p}-card-${id}`); if (!card) return;
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-2">${t('edit.hint')}</p>
+        <textarea data-editp rows="7" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm font-mono resize-none focus:border-violet-500 transition">${window.escHtml(card.dataset.prompt || '')}</textarea>
+        <div class="flex gap-2 mt-4"><button data-save class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-floppy-disk mr-1"></i>${t('btn.save')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">${t('btn.cancel')}</button></div>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+      modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
+      modal.querySelector('[data-save]').addEventListener('click', () => {
+        const v = modal.querySelector('[data-editp]').value.trim();
+        if (v) card.dataset.prompt = v;
+        close();
+      });
+    }
+    function videoPromptModal(id) {
+      const vp = window.buildTalkerVideoPrompt(segText(id), id - 1, plan(), currentSel());
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Prompt Video — Klip ${id}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <textarea readonly rows="12" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm font-mono resize-none">${window.escHtml(vp)}</textarea>
+        <button data-copy class="w-full btn-primary py-2 rounded-lg font-semibold text-sm mt-3"><i class="fas fa-copy mr-1"></i>${t('talk.btn-copy')}</button>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+      modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
+      modal.querySelector('[data-copy]').addEventListener('click', (e) => {
+        const ok = window.copyText(vp);
+        e.currentTarget.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>OK' : `<i class="fas fa-i-cursor mr-1"></i>${t('msg.press-ctrl-c')}`;
+      });
+    }
+    grid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action]'); if (!btn) return;
+      const id = parseInt(btn.dataset.sceneId, 10);
+      const card = document.getElementById(`${p}-card-${id}`);
+      const img = card?.querySelector('img');
+      if (btn.dataset.action === `${p}-download` && img) window.downloadDataURINew(img.src, btn.dataset.filename);
+      else if (btn.dataset.action === `${p}-preview` && img) openPreview(img.src);
+      else if (btn.dataset.action === `${p}-regenerate` && card) generateSingle(id, id === 1 ? null : anchorB64());
+      else if (btn.dataset.action === `${p}-editprompt` && card) editPromptModal(id);
+      else if (btn.dataset.action === `${p}-video` && card) videoPromptModal(id);
+    });
+
+    // ---- Header output ----
+    function allVideoPrompts() {
+      const pl = plan();
+      const sel = currentSel();
+      const segs = readSegments();
+      return segs.map((seg, i) => `=== KLIP ${i + 1} (${i * pl.clipSec}–${(i + 1) * pl.clipSec} dtk) ===\n${window.buildTalkerVideoPrompt(seg, i, pl, sel)}`).join('\n\n');
+    }
+    videoAllBtn.addEventListener('click', () => {
+      const text = allVideoPrompts();
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i><span data-i18n="btn.all-video-prompt">Semua Prompt Video</span></h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <textarea readonly rows="16" class="w-full p-3 border-2 border-gray-200 rounded-lg text-xs font-mono resize-none">${window.escHtml(text)}</textarea>
+        <div class="flex gap-2 mt-3">
+          <button data-copy class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>${t('talk.btn-copy')}</button>
+          <button data-dl class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-download mr-1"></i>.txt</button>
+        </div>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+      modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
+      modal.querySelector('[data-copy]').addEventListener('click', (e) => {
+        const ok = window.copyText(text);
+        e.currentTarget.innerHTML = ok ? '<i class="fas fa-check mr-1"></i>OK' : `<i class="fas fa-i-cursor mr-1"></i>${t('msg.press-ctrl-c')}`;
+      });
+      modal.querySelector('[data-dl]').addEventListener('click', () => {
+        window.downloadDataURINew('data:text/plain;charset=utf-8,' + encodeURIComponent(text), 'influencer_bicara_prompts.txt');
+      });
+    });
+
+    // Ekspor Storyboard KHUSUS talker: PER KLIP — 1 gambar per klip (foto + prompt-nya), TIDAK digabung (keputusan user 2026-09-18)
+    sheetBtn.addEventListener('click', () => {
+      const cards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img'));
+      if (!cards.length) { window.uiNotify(t('warn.no-scene-sheet')); return; }
+      const pl = plan();
+      const sel = currentSel();
+      async function makeClipSheet(c) {
+        const k = parseInt(c.id.replace(`${p}-card-`, ''), 10);
+        const scenes = [{ num: k, title: `Klip ${k}/${pl.clips}`, timing: `${(k - 1) * pl.clipSec}-${k * pl.clipSec}s`, prompt: window.buildTalkerVideoPrompt(segText(k), k - 1, pl, sel), img: c.querySelector('img').src }];
+        const sub = `Klip ${k}/${pl.clips} · ${pl.clipSec} ${t('unit.sec')}`;
+        const url = await window.buildStoryboardSheet(scenes, { title: t('hdr.talker.title'), sub, cols: 1 });
+        window.downloadDataURINew(url, `talker_storyboard_klip${k}.jpg`);
+      }
+      async function runJobs(list) {
+        const orig = sheetBtn.innerHTML;
+        sheetBtn.disabled = true;
+        sheetBtn.innerHTML = '<div class="loader"></div><span class="ml-2">' + t('loading.sheet') + '</span>';
+        try {
+          for (const c of list) {
+            await makeClipSheet(c);
+            await new Promise(r => setTimeout(r, 400)); // jeda antar unduhan biar tidak diblokir browser
+          }
+        } catch (err) { console.error(err); window.uiNotify(t('err.sheet') + err.message); }
+        finally { sheetBtn.disabled = false; sheetBtn.innerHTML = orig; }
+      }
+      const choices = [{ label: `<i class="fas fa-images mr-2"></i>Semua klip (${cards.length} gambar — 1 per klip)`, onPick: () => runJobs(cards) }];
+      cards.forEach(c => {
+        const k = parseInt(c.id.replace(`${p}-card-`, ''), 10);
+        choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>Klip ${k}`, onPick: () => runJobs([c]) });
+      });
+      showSheetModal('Storyboard klip yang mana?', choices);
+    });
+
+    // Prompt siap-pakai untuk Flow/Veo: gambar storyboard dibaca sebagai LEMBAR INSTRUKSI, bukan frame video (feedback user 2026-09-19)
+    function flowSheetPrompt() {
+      const pl = plan();
+      return `The attached image is a STORYBOARD SHEET, not a video frame. It contains one reference photo and the full video direction written as text below it.
+
+READ the direction text on the sheet and follow it EXACTLY as the complete instruction (speech words, delivery, camera, audio).
+
+OUTPUT: generate ONLY the actual scene — the person from the reference photo speaking to camera as directed, 9:16 vertical, ${pl.clipSec} seconds. Do NOT show the sheet itself: no borders, no header, no text overlay, no photo-in-photo. The video must look like a real camera recording of the person, nothing else.`;
+    }
+    // Modal khusus storyboard: tiap baris punya tombol 📋 salin prompt Flow di samping tombol klip
+    function showSheetModal(title, choices) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-2"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <p class="text-xs text-gray-500 mb-3">${t('talk.flow-hint')}</p>
+        <div class="space-y-2" data-choices></div>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      const wrap = modal.querySelector('[data-choices]');
+      choices.forEach(c => {
+        const row = document.createElement('div');
+        row.className = 'flex gap-2';
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'flex-1 btn-secondary py-2.5 px-4 rounded-lg font-semibold text-sm text-left';
+        b.innerHTML = c.label;
+        b.addEventListener('click', () => { close(); c.onPick(); });
+        const cp = document.createElement('button');
+        cp.type = 'button';
+        cp.setAttribute('data-copyflow', '1');
+        cp.title = t('talk.flow-copy');
+        cp.className = 'btn-secondary px-3 rounded-lg text-sm';
+        cp.innerHTML = '<i class="fas fa-copy pointer-events-none"></i>';
+        cp.addEventListener('click', () => {
+          const ok = window.copyText(flowSheetPrompt());
+          cp.innerHTML = ok ? '<i class="fas fa-check pointer-events-none"></i>' : '<i class="fas fa-i-cursor pointer-events-none"></i>';
+          setTimeout(() => { cp.innerHTML = '<i class="fas fa-copy pointer-events-none"></i>'; }, 1500);
+        });
+        row.appendChild(b);
+        row.appendChild(cp);
+        wrap.appendChild(row);
+      });
+      modal.querySelector('[data-close]').addEventListener('click', close);
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    downloadAllBtn.addEventListener('click', () => {
+      grid.querySelectorAll('.result-card').forEach(card => {
+        const img = card.querySelector('img'); if (!img) return;
+        const k = parseInt(card.id.replace(`${p}-card-`, ''), 10);
+        window.downloadDataURINew(img.src, `talker_klip${k}.png`);
+      });
+    });
+  })();
+  // === END TALKING INFLUENCER ===
 
   // === LOGIN SYSTEM (lisensi via GAS + Sheet) ===
   const LOGIN_CFG = {
