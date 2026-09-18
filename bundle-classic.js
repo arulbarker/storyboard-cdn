@@ -194,6 +194,21 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Tombol 📋 = salin prompt siap-pakai untuk Flow/Veo (gambar storyboard dibaca AI, lembarannya tidak ikut ke video).',
       'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bicara bersama Arul',
       'warn.talker-model-required': 'Pilih foto model dulu (upload atau dari Pustaka Model).',
+      'talk.step-product': 'Foto Produk (Opsional, maks 5)',
+      'talk.product-hint': 'Baju, sepatu, tas, dll — influencer akan memakainya di foto (cocok untuk affiliate).',
+      'btn.upload-product': 'Upload Produk',
+      'btn.pick-product-library': 'Pustaka Produk',
+      'btn.save-product': 'Simpan ke akun',
+      'badge.product-saved': 'Tersimpan',
+      'modal.product-name': 'Nama produk',
+      'warn.product-limit': 'Maksimal 5 produk per video.',
+      'warn.product-name-required': 'Isi nama produk dulu.',
+      'warn.product-library-full': 'Pustaka produk penuh (maksimal 5 produk).',
+      'warn.no-products': 'Belum ada produk tersimpan.',
+      'confirm.delete-product': 'Hapus produk "%N" dari akun?',
+      'talk.step-brand': 'Logo/Brand Sponsor (Opsional)',
+      'talk.brand-hint': 'Tampil sebagai properti set (layar/papan di meja atau banner di latar) — tidak disimpan ke akun.',
+      'field.upload-click-brand': 'Klik untuk pilih logo brand',
       'warn.talker-script-first': 'Buat naskah dulu sebelum generate foto.',
       'warn.talker-custom-empty': 'Isi dulu teks custom-nya ya.',
       'err.talker-script': 'Gagal membuat naskah: ',
@@ -418,6 +433,21 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.flow-copy': 'Copy Flow Prompt', 'talk.flow-hint': 'The 📋 button copies a ready-to-use prompt for Flow/Veo (the AI reads the storyboard image; the sheet itself will not appear in the video).',
       'ph.talk-topic': 'e.g. finding peace through hard times', 'ph.talk-branding': 'e.g. Ruang Bertumbuh Fatimah Zahra',
       'warn.talker-model-required': 'Pick a model photo first (upload or from the Model Library).',
+      'talk.step-product': 'Product Photos (Optional, max 5)',
+      'talk.product-hint': 'Clothes, shoes, bags, etc — the influencer will wear/use them in the photos (great for affiliate).',
+      'btn.upload-product': 'Upload Product',
+      'btn.pick-product-library': 'Product Library',
+      'btn.save-product': 'Save to account',
+      'badge.product-saved': 'Saved',
+      'modal.product-name': 'Product name',
+      'warn.product-limit': 'Maximum 5 products per video.',
+      'warn.product-name-required': 'Enter a product name first.',
+      'warn.product-library-full': 'Product library is full (max 5 products).',
+      'warn.no-products': 'No saved products yet.',
+      'confirm.delete-product': 'Delete product "%N" from your account?',
+      'talk.step-brand': 'Sponsor Logo/Brand (Optional)',
+      'talk.brand-hint': 'Shown as a set prop (screen/sign on the table or a backdrop banner) — not saved to your account.',
+      'field.upload-click-brand': 'Click to pick a brand logo',
       'warn.talker-script-first': 'Write the script first before generating photos.',
       'warn.talker-custom-empty': 'Fill in the custom text first.',
       'err.talker-script': 'Failed to write the script: ',
@@ -642,6 +672,21 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Butang 📋 = salin prompt sedia-guna untuk Flow/Veo (imej storyboard dibaca AI, helaiannya tidak masuk ke video).',
       'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bertumbuh Fatimah Zahra',
       'warn.talker-model-required': 'Pilih foto model dahulu (muat naik atau dari Pustaka Model).',
+      'talk.step-product': 'Foto Produk (Pilihan, maks 5)',
+      'talk.product-hint': 'Baju, kasut, beg, dll — influencer akan memakainya dalam foto (sesuai untuk affiliate).',
+      'btn.upload-product': 'Muat Naik Produk',
+      'btn.pick-product-library': 'Pustaka Produk',
+      'btn.save-product': 'Simpan ke akaun',
+      'badge.product-saved': 'Tersimpan',
+      'modal.product-name': 'Nama produk',
+      'warn.product-limit': 'Maksimum 5 produk setiap video.',
+      'warn.product-name-required': 'Isi nama produk dahulu.',
+      'warn.product-library-full': 'Pustaka produk penuh (maksimum 5 produk).',
+      'warn.no-products': 'Belum ada produk tersimpan.',
+      'confirm.delete-product': 'Padam produk "%N" dari akaun?',
+      'talk.step-brand': 'Logo/Jenama Penaja (Pilihan)',
+      'talk.brand-hint': 'Dipapar sebagai prop set (skrin/papan di meja atau sepanduk latar) — tidak disimpan ke akaun.',
+      'field.upload-click-brand': 'Klik untuk pilih logo jenama',
       'warn.talker-script-first': 'Buat skrip dahulu sebelum jana foto.',
       'warn.talker-custom-empty': 'Isi dahulu teks custom.',
       'err.talker-script': 'Gagal membuat skrip: ',
@@ -1433,6 +1478,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const tx = db.transaction('models', 'readwrite');
         tx.objectStore('models').delete(id);
         tx.oncomplete = () => { document.dispatchEvent(new CustomEvent('ssp-models-changed')); res(); };
+        tx.onerror = () => rej(tx.error);
+      });
+    }
+  };
+  window.productDB = {
+    _open() {
+      return new Promise((res, rej) => {
+        const rq = indexedDB.open('ssp_products', 1);
+        rq.onupgradeneeded = () => rq.result.createObjectStore('products', { keyPath: 'id' });
+        rq.onsuccess = () => res(rq.result);
+        rq.onerror = () => rej(rq.error);
+      });
+    },
+    async put(rec) {
+      const db = await this._open();
+      return new Promise((res, rej) => {
+        const tx = db.transaction('products', 'readwrite');
+        tx.objectStore('products').put(rec);
+        tx.oncomplete = () => { document.dispatchEvent(new CustomEvent('ssp-products-changed')); res(); };
+        tx.onerror = () => rej(tx.error);
+      });
+    },
+    async list() {
+      const db = await this._open();
+      return new Promise((res, rej) => {
+        const rq = db.transaction('products', 'readonly').objectStore('products').getAll();
+        rq.onsuccess = () => res((rq.result || []).sort((a, b) => b.id.localeCompare(a.id)));
+        rq.onerror = () => rej(rq.error);
+      });
+    },
+    async remove(id) {
+      const db = await this._open();
+      return new Promise((res, rej) => {
+        const tx = db.transaction('products', 'readwrite');
+        tx.objectStore('products').delete(id);
+        tx.oncomplete = () => { document.dispatchEvent(new CustomEvent('ssp-products-changed')); res(); };
         tx.onerror = () => rej(tx.error);
       });
     }
@@ -4442,6 +4523,28 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
               <button type="button" id="${p}-library-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden"><i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span></button>
             </div>
             <div class="card p-6">
+              <div class="flex items-center gap-2 mb-3"><div class="step-num">1b</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-product">Foto Produk (Opsional, maks 5)</h2></div>
+              <p class="text-xs text-gray-400 mb-3" data-i18n="talk.product-hint">Baju, sepatu, tas, dll — influencer akan memakainya di foto (cocok untuk affiliate).</p>
+              <div id="${p}-product-slots" class="grid grid-cols-3 gap-2 mb-3"></div>
+              <div class="flex gap-2">
+                <button type="button" id="${p}-product-add-btn" class="btn-secondary flex-1 text-sm font-semibold py-2 px-3 rounded-lg"><i class="fas fa-plus mr-1"></i><span data-i18n="btn.upload-product">Upload Produk</span></button>
+                <button type="button" id="${p}-product-library-btn" class="btn-secondary flex-1 text-sm font-semibold py-2 px-3 rounded-lg hidden"><i class="fas fa-box-open mr-1"></i><span data-i18n="btn.pick-product-library">Pustaka Produk</span></button>
+              </div>
+              <input type="file" id="${p}-product-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+              <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-brand">Logo/Brand Sponsor (Opsional)</label>
+              <p class="text-xs text-gray-400 mb-2" data-i18n="talk.brand-hint">Tampil sebagai properti set (layar/papan di meja atau banner di latar) — tidak disimpan ke akun.</p>
+              <div id="${p}-brand-upload-area">
+                <label for="${p}-brand-input" class="file-input-label rounded-xl p-4 text-center text-gray-500 flex flex-col items-center justify-center min-h-[80px]">
+                  <i class="fas fa-rectangle-ad text-2xl mb-1"></i><span class="text-sm font-medium" data-i18n="field.upload-click-brand">Klik untuk pilih logo brand</span>
+                </label>
+                <input type="file" id="${p}-brand-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+              </div>
+              <div id="${p}-brand-preview-container" class="hidden mt-2 relative">
+                <img id="${p}-brand-preview" src="#" alt="Brand" class="rounded-xl w-full h-auto object-contain max-h-40 bg-white border-2 border-gray-100">
+                <button id="${p}-brand-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
+              </div>
+            </div>
+            <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-niche">Pilih Niche</h2></div>
               ${chipGrid('niche', NICHE_OPTS, true)}
               <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-topic">Topik (Opsional)</label>
@@ -4549,6 +4652,151 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     }
     document.addEventListener('ssp-models-changed', refreshLibBtn);
     refreshLibBtn();
+
+    // ---- Foto produk (opsional, maks 5) — influencer memakainya, cocok untuk affiliate ----
+    const PRODUCT_MAX = 5;
+    const products = []; // {b64, mime, name, cloudId} — cloudId terisi = sudah di pustaka akun
+    const prodSlots = document.getElementById(`${p}-product-slots`);
+    const prodAddBtn = document.getElementById(`${p}-product-add-btn`);
+    const prodLibBtn = document.getElementById(`${p}-product-library-btn`);
+    const prodInput = document.getElementById(`${p}-product-input`);
+    function renderProducts() {
+      prodSlots.innerHTML = products.map((pr, i) => `
+        <div class="relative rounded-xl border-2 border-gray-100 overflow-hidden bg-white">
+          <img src="data:${pr.mime};base64,${pr.b64}" class="w-full aspect-square object-cover" alt="${window.escHtml(pr.name || 'Produk')}">
+          <button type="button" data-prod-remove="${i}" class="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full text-xs"><i class="fas fa-times pointer-events-none"></i></button>
+          ${pr.cloudId
+            ? `<span class="absolute bottom-1 left-1 right-1 text-center text-[10px] font-semibold text-white bg-violet-600/80 rounded-md py-0.5"><i class="fas fa-cloud mr-1"></i>${t('badge.product-saved')}</span>`
+            : `<button type="button" data-prod-save="${i}" class="absolute bottom-1 left-1 right-1 text-[10px] font-semibold text-white bg-gray-800/70 rounded-md py-0.5"><i class="fas fa-cloud-arrow-up mr-1 pointer-events-none"></i><span class="pointer-events-none">${t('btn.save-product')}</span></button>`}
+        </div>`).join('');
+      prodAddBtn.classList.toggle('hidden', products.length >= PRODUCT_MAX);
+    }
+    prodAddBtn.addEventListener('click', () => prodInput.click());
+    prodInput.addEventListener('change', async () => {
+      const file = prodInput.files && prodInput.files[0];
+      prodInput.value = '';
+      if (!file) return;
+      if (products.length >= PRODUCT_MAX) { window.uiNotify(t('warn.product-limit')); return; }
+      try {
+        const { base64, mimeType } = await window.compressImage(file);
+        products.push({ b64: base64, mime: mimeType, name: '', cloudId: null });
+        renderProducts();
+      } catch (err) { window.uiNotify(t('warn.file-unreadable')); }
+    });
+    prodSlots.addEventListener('click', (e) => {
+      const rm = e.target.closest('[data-prod-remove]');
+      if (rm) { products.splice(parseInt(rm.dataset.prodRemove, 10), 1); renderProducts(); return; }
+      const sv = e.target.closest('[data-prod-save]');
+      if (sv) saveProduct(parseInt(sv.dataset.prodSave, 10));
+    });
+    function showNameModal(title, onOk) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <input type="text" data-name maxlength="60" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl text-sm focus:border-violet-500 transition">
+        <button type="button" data-ok class="w-full btn-primary font-bold py-2.5 px-4 rounded-xl mt-3">OK</button>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      modal.querySelector('[data-close]').addEventListener('click', close);
+      modal.querySelector('[data-ok]').addEventListener('click', () => {
+        const v = modal.querySelector('[data-name]').value.trim();
+        if (!v) { window.uiNotify(t('warn.product-name-required')); return; }
+        close(); onOk(v);
+      });
+      document.body.appendChild(modal);
+      setTimeout(() => { modal.classList.add('show'); modal.querySelector('[data-name]').focus(); }, 10);
+    }
+    async function saveProduct(i) {
+      const pr = products[i]; if (!pr || pr.cloudId) return;
+      let existing = [];
+      try { existing = await window.productDB.list(); } catch (err) {}
+      if (existing.length >= PRODUCT_MAX) { window.uiNotify(t('warn.product-library-full')); return; }
+      showNameModal(t('modal.product-name'), async (name) => {
+        const rec = { id: String(Date.now()), name, mime: pr.mime, createdAt: new Date().toISOString() };
+        let cloudOk = false;
+        try { if (window.productCloud) cloudOk = await window.productCloud.upload({ id: rec.id, name, base64: pr.b64 }); }
+        catch (err) { console.error('product cloud upload failed:', err); }
+        try {
+          await window.productDB.put(Object.assign({}, rec, { blob: window.b64ToBlob(pr.b64, pr.mime), cloud: cloudOk }));
+          pr.cloudId = rec.id; pr.name = name;
+          renderProducts();
+        } catch (err) { console.error('productDB put failed:', err); window.uiNotify(t('warn.storage-unavailable')); }
+      });
+    }
+    function showProductLibraryModal(list) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${t('btn.pick-product-library')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="space-y-2" data-rows></div>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      modal.querySelector('[data-close]').addEventListener('click', close);
+      const rows = modal.querySelector('[data-rows]');
+      list.forEach(m => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-2';
+        const objUrl = URL.createObjectURL(m.blob);
+        row.innerHTML = `
+          <button type="button" data-use class="flex-1 btn-secondary py-2 px-3 rounded-lg font-semibold text-sm text-left"><span class="flex items-center gap-3"><img src="${objUrl}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span></button>
+          <button type="button" data-del class="text-xs font-semibold py-2.5 px-3 rounded-lg" style="color:#dc2626;border:1px solid rgba(220,38,38,.3);"><i class="fas fa-trash pointer-events-none"></i></button>`;
+        row.querySelector('[data-use]').addEventListener('click', async () => {
+          if (products.length >= PRODUCT_MAX) { window.uiNotify(t('warn.product-limit')); return; }
+          close();
+          products.push({ b64: await window.blobToB64(m.blob), mime: m.mime, name: m.name, cloudId: m.id });
+          renderProducts();
+        });
+        row.querySelector('[data-del]').addEventListener('click', async (e) => {
+          const btn = e.currentTarget;
+          if (!(await window.uiConfirm(t('confirm.delete-product').replace('%N', m.name)))) return;
+          btn.disabled = true;
+          if (m.cloud === true && window.productCloud) {
+            const ok = await window.productCloud.del(m.id);
+            if (!ok) { btn.disabled = false; window.uiNotify(t('err.delete-server')); return; }
+          }
+          try { await window.productDB.remove(m.id); row.remove(); } catch (err) { console.error(err); btn.disabled = false; }
+        });
+        rows.appendChild(row);
+      });
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+    prodLibBtn.addEventListener('click', async () => {
+      let list = [];
+      try { list = await window.productDB.list(); } catch (err) { console.error(err); }
+      if (!list.length) { window.uiNotify(t('warn.no-products')); return; }
+      showProductLibraryModal(list);
+    });
+    async function refreshProdLibBtn() {
+      try { prodLibBtn.classList.toggle('hidden', !(await window.productDB.list()).length); }
+      catch { prodLibBtn.classList.add('hidden'); }
+    }
+    document.addEventListener('ssp-products-changed', refreshProdLibBtn);
+    refreshProdLibBtn();
+
+    // ---- Logo/brand sponsor (opsional, TANPA database — properti set, ikut anchor klip 1) ----
+    let brandB64 = null, brandMime = null;
+    const brandInput = document.getElementById(`${p}-brand-input`);
+    const brandUploadArea = document.getElementById(`${p}-brand-upload-area`);
+    const brandPreviewContainer = document.getElementById(`${p}-brand-preview-container`);
+    const brandPreview = document.getElementById(`${p}-brand-preview`);
+    brandInput.addEventListener('change', async () => {
+      const file = brandInput.files && brandInput.files[0]; if (!file) return;
+      try {
+        const { base64, mimeType } = await window.compressImage(file);
+        brandB64 = base64; brandMime = mimeType;
+        brandPreview.src = `data:${mimeType};base64,${base64}`;
+        brandUploadArea.classList.add('hidden');
+        brandPreviewContainer.classList.remove('hidden');
+      } catch (err) { window.uiNotify(t('warn.file-unreadable')); }
+    });
+    document.getElementById(`${p}-brand-remove-btn`).addEventListener('click', () => {
+      brandB64 = null; brandMime = null; brandInput.value = '';
+      brandUploadArea.classList.remove('hidden'); brandPreviewContainer.classList.add('hidden');
+    });
 
     // ---- Platform & durasi (engine sendiri — TIDAK pakai window.VIDEO_PLATFORMS) ----
     const state = { platform: 'omni', totalSec: 60 };
@@ -4721,10 +4969,17 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     function scenePrompt(k, total) {
       const sel = currentSel();
       const setting = LATAR_EN[sel.latar] || `in this setting: ${sel.latar}`;
+      const hasBrand = k === 1 && brandB64;
       const branding = sel.branding
-        ? `A backdrop sign/wall text behind the person reads EXACTLY "${sel.branding}" — spell it perfectly letter by letter; this is the ONLY readable text in the scene.`
-        : 'No readable text anywhere in the scene.';
-      return `Photorealistic 9:16 vertical photo from a multi-cam podcast setup. CAMERA ANGLE — THE MOST IMPORTANT RULE, the composition MUST clearly show it: ${angleFor(k, total)}. The subject: the EXACT same person as the reference photo (same face, same hair/hijab, same modest outfit), a social-media content creator mid-speech, ${setting}. ${branding} Half-body framing, ${POSES[(k - 1) % POSES.length]}. Warm inviting light, sharp focus on the face, softly blurred background, high-end social media content quality, 8k.`;
+        ? `A backdrop sign/wall text behind the person reads EXACTLY "${sel.branding}" — spell it perfectly letter by letter; ${hasBrand ? 'apart from the sponsor logo prop, this is the only other readable text in the scene.' : 'this is the ONLY readable text in the scene.'}`
+        : (hasBrand ? 'No readable text anywhere in the scene except the sponsor logo prop.' : 'No readable text anywhere in the scene.');
+      const productLine = (k === 1 && products.length)
+        ? ' PRODUCTS: the person WEARS/USES the exact products from the additional product reference photos, worn or held naturally and clearly visible — if a product replaces part of the outfit (clothing, shoes), wear the product version; same design, color and material.'
+        : '';
+      const brandLine = hasBrand
+        ? ' SPONSOR (MANDATORY — this prop MUST be visible in the frame): a set prop displaying the sponsor brand is REQUIRED — a small tablet screen or acrylic sign standing on the table (or a small standing banner in the background if there is no table) showing the EXACT logo/artwork from the sponsor reference photo. NEVER omit this prop: it stays clearly visible and readable even when a backdrop name/text is also present — the backdrop text and the sponsor prop are two SEPARATE elements that BOTH appear. The person does NOT wear or hold it.'
+        : '';
+      return `Photorealistic 9:16 vertical photo from a multi-cam podcast setup. CAMERA ANGLE — THE MOST IMPORTANT RULE, the composition MUST clearly show it: ${angleFor(k, total)}. The subject: the EXACT same person as the reference photo (same face, same hair/hijab, same modest outfit), a social-media content creator mid-speech, ${setting}. ${branding}${productLine}${brandLine} Half-body framing, ${POSES[(k - 1) % POSES.length]}. Warm inviting light, sharp focus on the face, softly blurred background, high-end social media content quality, 8k.`;
     }
 
     function cardImgB64(card) {
@@ -4762,9 +5017,13 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
           let refText = `REFERENCE PHOTO 1 (CRITICAL): the FIRST attached image is the person — copy their face, hair/hijab and overall identity EXACTLY.`;
-          if (anchor) refText += ` REFERENCE PHOTO 2 (CRITICAL): the SECOND attached image is clip 1 of this SAME video — copy its outfit, setting, backdrop text, lighting and color grade EXACTLY; only the pose/gesture, expression and CAMERA ANGLE may differ. IGNORE the camera angle of both reference photos — compose this scene STRICTLY from the CAMERA ANGLE described below (multi-cam setup, same room and seat), do NOT copy the frontal composition of the references.`;
+          if (anchor) refText += ` REFERENCE PHOTO 2 (CRITICAL): the SECOND attached image is clip 1 of this SAME video — copy its outfit, setting, backdrop text, sponsor logo prop (if present), lighting and color grade EXACTLY; only the pose/gesture, expression and CAMERA ANGLE may differ. IGNORE the camera angle of both reference photos — compose this scene STRICTLY from the CAMERA ANGLE described below (multi-cam setup, same room and seat), do NOT copy the frontal composition of the references.`;
+          if (id === 1 && products.length) refText += ` PRODUCT REFERENCE PHOTOS (CRITICAL): the ${products.length} additional attached image(s) after the person are products the person WEARS/USES in this scene (clothing worn on the body, shoes on the feet, bag/accessory held or clearly visible) — copy each product's design, color, material and logo EXACTLY; do NOT invent different products.`;
+          if (id === 1 && brandB64) refText += ` SPONSOR BRAND REFERENCE PHOTO (CRITICAL, MANDATORY): the LAST attached image is a sponsor logo/brand — it MUST appear in the frame as a natural set prop (tablet screen or acrylic sign on the table, or a small standing banner in the background), copying the logo's shapes, colors and text EXACTLY. NEVER omit it: even if a backdrop sign/name text is also requested, BOTH must appear — the backdrop text behind the person AND the sponsor logo prop on the table are separate elements. Do NOT change or reinterpret the logo; the person does NOT wear or hold it.`;
           const parts = [{ text: `${refText}\n\nSCENE TO RENDER: ${prompt}` }, { inlineData: { mimeType: modelMime || 'image/png', data: modelBase64 } }];
           if (anchor) parts.push({ inlineData: { mimeType: 'image/png', data: anchor } });
+          if (id === 1) products.forEach(pr => parts.push({ inlineData: { mimeType: pr.mime || 'image/png', data: pr.b64 } }));
+          if (id === 1 && brandB64) parts.push({ inlineData: { mimeType: brandMime || 'image/png', data: brandB64 } });
           const payload = {
             contents: [{ parts }],
             generationConfig: { responseModalities: ['TEXT', 'IMAGE'], imageConfig: { aspectRatio: '9:16' } },
@@ -5096,6 +5355,64 @@ OUTPUT: generate ONLY the actual scene — the person from the reference photo s
       } catch (e) { console.error('syncModels:', e); }
       document.dispatchEvent(new CustomEvent('ssp-models-changed'));
     };
+    window.productCloud = {
+      _q(action, extra) {
+        const email = localStorage.getItem('ssp_email') || '';
+        return `${LOGIN_CFG.SCRIPT_URL}?action=${action}&email=${encodeURIComponent(email)}&token=${encodeURIComponent(deviceToken)}&app_secret=${encodeURIComponent(LOGIN_CFG.APP_SECRET)}${extra || ''}`;
+      },
+      async list() {
+        const d = await fetch(this._q('product_list')).then(r => r.json());
+        return d.status === 'SUKSES' ? (d.products || []) : null;
+      },
+      async get(id) {
+        const d = await fetch(this._q('product_get', `&id=${encodeURIComponent(id)}`)).then(r => r.json());
+        return d.status === 'SUKSES' ? d.base64 : null;
+      },
+      async del(id) {
+        try {
+          const d = await fetch(this._q('product_del', `&id=${encodeURIComponent(id)}`)).then(r => r.json());
+          return d.status === 'SUKSES';
+        } catch (e) { return false; }
+      },
+      async upload(rec) {
+        const body = JSON.stringify({
+          ssp_action: 'product_upload',
+          app_secret: LOGIN_CFG.APP_SECRET,
+          email: localStorage.getItem('ssp_email') || '',
+          token: deviceToken,
+          id: rec.id, name: rec.name, base64: rec.base64
+        });
+        const d = await fetch(LOGIN_CFG.SCRIPT_URL, { method: 'POST', body }).then(r => r.json());
+        return d.status === 'SUKSES';
+      }
+    };
+    window.syncProducts = async function () {
+      if (!localStorage.getItem('ssp_email')) return;
+      try {
+        const server = await window.productCloud.list();
+        if (!server) return;
+        const serverIds = new Set(server.map(x => String(x.id)));
+        const local = await window.productDB.list();
+        const localIds = new Set(local.map(x => String(x.id)));
+        for (const m of local) {
+          if (m.cloud === true && !serverIds.has(String(m.id))) { await window.productDB.remove(m.id); continue; }
+          if (m.cloud === false) {
+            try {
+              const b64 = await window.blobToB64(m.blob);
+              const ok = await window.productCloud.upload({ id: m.id, name: m.name, base64: b64 });
+              if (ok) await window.productDB.put(Object.assign({}, m, { cloud: true }));
+            } catch (e) {}
+          }
+        }
+        await Promise.all(server.filter(s => !localIds.has(String(s.id))).map(async s => {
+          try {
+            const b64 = await window.productCloud.get(s.id);
+            if (b64) await window.productDB.put({ id: String(s.id), name: s.name, blob: window.b64ToBlob(b64, 'image/png'), mime: 'image/png', createdAt: s.createdAt, cloud: true });
+          } catch (e) {}
+        }));
+      } catch (e) { console.error('syncProducts:', e); }
+      document.dispatchEvent(new CustomEvent('ssp-products-changed'));
+    };
 
     function showError(msg) {
       errEl.textContent = msg;
@@ -5115,6 +5432,7 @@ OUTPUT: generate ONLY the actual scene — the person from the reference photo s
       document.getElementById('user-name').textContent = nama;
       if (!sesInterval) sesInterval = setInterval(jagaSesi, 10000);
       if (window.syncModels) window.syncModels();
+      if (window.syncProducts) window.syncProducts();
     }
     async function jagaSesi() {
       const email = localStorage.getItem('ssp_email');
