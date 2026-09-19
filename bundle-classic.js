@@ -209,6 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.step-brand': 'Logo/Brand Sponsor (Opsional)',
       'talk.brand-hint': 'Tampil sebagai properti set (layar/papan di meja atau banner di latar) — tidak disimpan ke akun.',
       'field.upload-click-brand': 'Klik untuk pilih logo brand',
+      'talk.step-suasana': 'Suasana',
+      'talk.step-angle': 'Angle Kamera',
       'warn.talker-script-first': 'Buat naskah dulu sebelum generate foto.',
       'warn.talker-custom-empty': 'Isi dulu teks custom-nya ya.',
       'err.talker-script': 'Gagal membuat naskah: ',
@@ -448,6 +450,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.step-brand': 'Sponsor Logo/Brand (Optional)',
       'talk.brand-hint': 'Shown as a set prop (screen/sign on the table or a backdrop banner) — not saved to your account.',
       'field.upload-click-brand': 'Click to pick a brand logo',
+      'talk.step-suasana': 'Ambience',
+      'talk.step-angle': 'Camera Angle',
       'warn.talker-script-first': 'Write the script first before generating photos.',
       'warn.talker-custom-empty': 'Fill in the custom text first.',
       'err.talker-script': 'Failed to write the script: ',
@@ -687,6 +691,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.step-brand': 'Logo/Jenama Penaja (Pilihan)',
       'talk.brand-hint': 'Dipapar sebagai prop set (skrin/papan di meja atau sepanduk latar) — tidak disimpan ke akaun.',
       'field.upload-click-brand': 'Klik untuk pilih logo jenama',
+      'talk.step-suasana': 'Suasana',
+      'talk.step-angle': 'Sudut Kamera',
       'warn.talker-script-first': 'Buat skrip dahulu sebelum jana foto.',
       'warn.talker-custom-empty': 'Isi dahulu teks custom.',
       'err.talker-script': 'Gagal membuat skrip: ',
@@ -4492,6 +4498,60 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       'Taman': 'outdoors in a green park: soft natural daylight, trees and greenery softly blurred behind'
     };
 
+    // Varian suasana terkurasi per latar — jenis lokasi tetap, atmosfer berbeda (anti-seragam antar user).
+    const SUASANA = {
+      'Studio Podcast': [
+        { label: 'Kayu Hangat Klasik', en: 'classic podcast studio ambience: warm wood-paneled walls, soft tungsten table lamps, cozy brown-amber tones' },
+        { label: 'Neon Malam', en: 'dark night studio ambience: moody purple-blue neon strip lights glowing on the back wall, sleek dark surfaces, subtle haze' },
+        { label: 'Minimalis Putih', en: 'bright minimalist studio: clean white walls, soft daylight-balanced lighting, airy modern feel with one green plant accent' },
+        { label: 'Industrial Bata', en: 'industrial loft studio: exposed red brick wall, black metal pipes, warm Edison bulbs hanging, rugged textures' },
+        { label: 'Broadcast Pro', en: 'professional broadcast studio: large soft LED panel backdrop with subtle gradient, polished desk, crisp studio lighting' },
+        { label: 'Loteng Senja', en: 'attic loft studio at golden hour: warm sunset light streaming through a large window, soft lens glow, honey tones' },
+        { label: 'Perpustakaan', en: 'library-style studio: tall bookshelves filled with books behind, warm reading lamps, scholarly cozy atmosphere' },
+        { label: 'Garasi Kreatif', en: 'creative garage studio: casual DIY vibe, acoustic foam panels, posters on the wall, warm practical lamps' }
+      ],
+      'Ruang Tamu Cozy': [
+        { label: 'Skandinavia Terang', en: 'bright Scandinavian living room: light oak furniture, white walls, soft natural daylight, airy and clean' },
+        { label: 'Senja Temaram', en: 'dim evening living room: warm low lamplight, golden glow, deep cozy shadows, relaxed intimate mood' },
+        { label: 'Boho Tanaman', en: 'bohemian living room: many lush house plants, rattan furniture, macrame wall decor, warm earthy tones' },
+        { label: 'Klasik Elegan', en: 'elegant classic living room: dark wood furniture, deep green sofa, brass lamp accents, refined warm ambience' },
+        { label: 'Apartemen Kota Malam', en: 'modern city apartment at night: large window with blurred city lights bokeh behind, mixed cool-warm lighting' },
+        { label: 'Minimalis Jepang', en: 'Japanese minimalist living room: low wooden furniture, shoji-style panels, neutral beige tones, calm zen light' },
+        { label: 'Fairy Lights', en: 'cozy living room decorated with warm fairy string lights glowing softly behind, dreamy warm bokeh' },
+        { label: 'Pagi Cerah', en: 'bright morning living room: fresh sunlight through big windows, white curtains, cheerful clean atmosphere' }
+      ],
+      'Kafe': [
+        { label: 'Kayu Klasik', en: 'classic wooden coffee shop: warm brown wood interior, shelves of coffee jars, soft pendant lamps' },
+        { label: 'Industrial', en: 'industrial cafe: concrete walls, black steel frames, hanging Edison bulbs, urban rugged feel' },
+        { label: 'Minimalis Terang', en: 'bright minimalist cafe: white and light-wood interior, large windows, soft daylight, clean modern look' },
+        { label: 'Malam Hangat', en: 'cafe at night: warm amber interior lights, dark windows with street light bokeh outside, intimate mood' },
+        { label: 'Vintage Retro', en: 'vintage retro cafe: pastel colors, old posters, retro furniture, nostalgic warm film-like tones' },
+        { label: 'Rooftop Sore', en: 'rooftop cafe in late afternoon: open air, golden hour sky behind, string lights, city skyline softly blurred' },
+        { label: 'Outdoor Taman', en: 'garden cafe outdoors: green plants around wooden tables, dappled natural daylight through leaves' },
+        { label: 'Coffee Bar Modern', en: 'modern specialty coffee bar: sleek counter with espresso machine behind, marble and matte black accents, crisp lighting' }
+      ],
+      'Dalam Mobil': [
+        { label: 'Mewah Malam Hujan', en: 'luxurious dark leather car interior at night, rain drops streaking the windows, soft cool dashboard ambient light' },
+        { label: 'SUV Siang Cerah', en: 'bright modern SUV interior on a sunny day, light grey seats, clear daylight through the windows' },
+        { label: 'Retro Golden Hour', en: 'retro classic car interior at golden hour, warm sunset light flooding in, tan leather seats, nostalgic glow' },
+        { label: 'Malam Kota Bokeh', en: 'car interior at night parked on a city street, colorful city light bokeh through the windows, cinematic mood' },
+        { label: 'Hujan Kaca Berembun', en: 'car interior on a rainy day, fogged-up windows with soft grey daylight, cozy rainy-day atmosphere' },
+        { label: 'Sport Gelap', en: 'dark sporty car interior: black alcantara seats, red stitching, subtle red-blue ambient light strips' },
+        { label: 'Pagi Parkiran Taman', en: 'car parked by a green park in the morning, fresh soft daylight, trees visible through the windows' },
+        { label: 'Senja Pantai', en: 'car parked near the beach at dusk, warm orange-pink sky through the windshield, relaxed vacation vibe' }
+      ],
+      'Taman': [
+        { label: 'Pagi Segar', en: 'fresh park morning: soft cool sunlight, dewy green grass, light mist between trees' },
+        { label: 'Golden Hour', en: 'park at golden hour: warm low sunlight through the trees, glowing rim light, long soft shadows' },
+        { label: 'Taman Bunga', en: 'flower garden: colorful blooming flower beds softly blurred behind, bright cheerful daylight' },
+        { label: 'Hutan Kota Rindang', en: 'shaded urban forest: tall leafy trees, dappled light through the canopy, deep green tones' },
+        { label: 'Tepi Danau', en: 'lakeside park: calm water shimmering behind, soft reflections, gentle open daylight' },
+        { label: 'Musim Gugur', en: 'autumn park: golden-orange leaves on the trees and ground, warm crisp seasonal light' },
+        { label: 'Mendung Lembut', en: 'overcast park: soft diffused grey light, muted calm green tones, gentle even lighting' },
+        { label: 'Taman Malam Lampu', en: 'park at night: warm garden lanterns and string lights glowing, dark blue evening sky' }
+      ]
+    };
+
     // ---- Render panel ----
     function chipGrid(key, opts, withCustom) {
       return `<div id="${p}-group-${key}" data-group="${key}" class="grid gap-2 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
@@ -4553,12 +4613,23 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-latar">Latar</h2></div>
               ${chipGrid('latar', LATAR_OPTS, true)}
+              <div id="${p}-suasana-wrap">
+                <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-suasana">Suasana</label>
+                <div id="${p}-suasana-grid" class="grid gap-2 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));"></div>
+              </div>
               <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-branding">Nama Akun di Backdrop (Opsional)</label>
               <input type="text" id="${p}-branding-input" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition" data-i18n-placeholder="ph.talk-branding" placeholder="Contoh: Ruang Bertumbuh Fatimah Zahra">
             </div>
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-gaya">Gaya Bicara</h2></div>
               ${chipGrid('gaya', GAYA_OPTS, false)}
+              <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-angle">Angle Kamera</label>
+              <div id="${p}-angle-grid" class="flex flex-wrap gap-2">
+                <button type="button" data-val="random" class="theme-chip selected"><i class="fas fa-shuffle"></i>Acak</button>
+                <button type="button" data-val="center" class="theme-chip">Tengah</button>
+                <button type="button" data-val="left" class="theme-chip">Kiri</button>
+                <button type="button" data-val="right" class="theme-chip">Kanan</button>
+              </div>
             </div>
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">5</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-duration">Platform & Durasi</h2></div>
@@ -4592,7 +4663,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       </div>`;
 
     // ---- Chip single-select (default = opsi pertama) ----
-    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0] };
+    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0], suasana: '__random__' };
     ['niche', 'latar', 'gaya'].forEach(key => {
       const gridEl = document.getElementById(`${p}-group-${key}`);
       const customEl = document.getElementById(`${p}-group-${key}-custom`);
@@ -4603,14 +4674,53 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
         if (btn.dataset.val === '__custom__' && customEl) {
           customEl.classList.remove('hidden'); customEl.focus();
           selection[key] = customEl.value.trim();
+          if (key === 'latar') renderSuasana();
         } else {
           if (customEl) customEl.classList.add('hidden');
           selection[key] = btn.dataset.val;
+          if (key === 'latar') renderSuasana();
         }
       });
       if (customEl) customEl.addEventListener('input', () => {
         if (gridEl.querySelector('.theme-chip.selected')?.dataset.val === '__custom__') selection[key] = customEl.value.trim();
       });
+    });
+
+    // ---- Suasana latar (Acak = dipilih dari kurasi SEKALI per generate) ----
+    const suasanaGrid = document.getElementById(`${p}-suasana-grid`);
+    function renderSuasana() {
+      const wrap = document.getElementById(`${p}-suasana-wrap`);
+      const list = SUASANA[selection.latar];
+      selection.suasana = '__random__';
+      if (!list) { wrap.classList.add('hidden'); return; }
+      wrap.classList.remove('hidden');
+      suasanaGrid.innerHTML = `<button type="button" data-val="__random__" class="theme-chip selected"><i class="fas fa-shuffle"></i>Acak</button>`
+        + list.map(v => `<button type="button" data-val="${window.escHtml(v.label)}" class="theme-chip">${window.escHtml(v.label)}</button>`).join('');
+    }
+    suasanaGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-val]'); if (!btn) return;
+      suasanaGrid.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
+      btn.classList.add('selected');
+      selection.suasana = btn.dataset.val;
+    });
+    renderSuasana();
+    let currentSuasana = null;
+    function resolveSuasana() {
+      const list = SUASANA[selection.latar];
+      if (!list) { currentSuasana = null; return; }
+      currentSuasana = selection.suasana === '__random__'
+        ? list[Math.floor(Math.random() * list.length)]
+        : (list.find(v => v.label === selection.suasana) || null);
+    }
+
+    // ---- Angle kamera (terkunci satu sisi, atau acak = rotasi multi-cam existing) ----
+    let angleMode = 'random';
+    const angleGrid = document.getElementById(`${p}-angle-grid`);
+    angleGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-val]'); if (!btn) return;
+      angleGrid.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
+      btn.classList.add('selected');
+      angleMode = btn.dataset.val;
     });
 
     // ---- Foto model (upload + pustaka) ----
@@ -4962,13 +5072,18 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       "CAM A — WIDE CROSS-SHOT from 45 degrees camera-LEFT: wider framing showing more of the desk and room, subject in three-quarter profile, LOOKING OFF-CAMERA toward the unseen WIDE CAM in front of them — ZERO eye contact with this lens, NOT into this side camera",
       "CAM B — TIGHT CROSS-SHOT from 45 degrees camera-RIGHT: chest-up close-up, face in three-quarter profile, LOOKING OFF-CAMERA toward the unseen WIDE CAM in front of them — ZERO eye contact with this lens, NOT into this side camera"
     ];
+    const FRONT_CAM = 'MAIN FRONT CAMERA (WIDE CAM, dead-center in front of the subject): straight-on eye-level shot, the person looks directly into this lens with warm direct eye contact';
     function angleFor(k, total) {
-      if (k === 1 || k === total) return 'MAIN FRONT CAMERA (WIDE CAM, dead-center in front of the subject): straight-on eye-level shot, the person looks directly into this lens with warm direct eye contact';
+      if (angleMode === 'center') return FRONT_CAM;
+      if (angleMode === 'left') return ANGLES[0];
+      if (angleMode === 'right') return ANGLES[1];
+      if (k === 1 || k === total) return FRONT_CAM;
       return ANGLES[(k - 2) % ANGLES.length];
     }
     function scenePrompt(k, total) {
       const sel = currentSel();
-      const setting = LATAR_EN[sel.latar] || `in this setting: ${sel.latar}`;
+      const base = LATAR_EN[sel.latar] || `in this setting: ${sel.latar}`;
+      const setting = currentSuasana ? `${base}. AMBIENCE (override the default mood of this setting with this specific atmosphere): ${currentSuasana.en}` : base;
       const hasBrand = k === 1 && brandB64;
       const branding = sel.branding
         ? `A backdrop sign/wall text behind the person reads EXACTLY "${sel.branding}" — spell it perfectly letter by letter; ${hasBrand ? 'apart from the sponsor logo prop, this is the only other readable text in the scene.' : 'this is the ONLY readable text in the scene.'}`
@@ -5068,6 +5183,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       photosBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.talker-photos')}</span>`;
       [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.add('hidden'));
       try {
+        resolveSuasana();
         buildCards(segs, pl);
         await generateSingle(1, null);
         const anc = anchorB64(); // gagal → fail-soft: klip lain jalan tanpa anchor
