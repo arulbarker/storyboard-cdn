@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hint.model-food': 'Reviewer akan tampil mencicipi makanan di semua scene',
       'field.gender': 'Gender',
       'field.age': 'Usia',
-      'field.look': 'Look',
+      'field.look': 'Negara',
       'field.hijab': 'Hijab',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Unduh Semua',
@@ -230,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniatur dari mur & kawat tembaga',
       'nav.strawcraft': 'DIY Sedotan', 'navd.strawcraft': 'Model rakitan dari sedotan plastik',
       'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara pakai app ini',
+      'tut.title': 'Pilih Video Tutorial', 'tut.basic': 'Tutorial Dasar Aplikasi', 'tut.new': 'Tutorial Terbaru',
       'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
       'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'dtk/klip', 'unit.sec': 'dtk',
       'modal.close': 'Tutup', 'modal.fail-prompt': 'Gagal membuat prompt', 'btn.save': 'Simpan', 'btn.cancel': 'Batal',
@@ -307,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hint.model-food': 'Reviewer will appear tasting the food in all scenes',
       'field.gender': 'Gender',
       'field.age': 'Age',
-      'field.look': 'Look',
+      'field.look': 'Country',
       'field.hijab': 'Hijab',
       'field.influencer.or': 'or',
       'btn.download-all': 'Download All',
@@ -471,6 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniature from nuts & copper wire',
       'nav.strawcraft': 'DIY Straw', 'navd.strawcraft': 'Model built from plastic straws',
       'nav.tutorial-app': 'App Tutorial', 'navd.tutorial-app': 'How to use this app (video)',
+      'tut.title': 'Choose a Tutorial Video', 'tut.basic': 'App Basics Tutorial', 'tut.new': 'Latest Tutorial',
       'dur.platform': 'Video platform', 'dur.story-duration': 'Story duration',
       'unit.photos': 'photos', 'unit.clips': 'clips', 'unit.sec-per-clip': 'sec/clip', 'unit.sec': 'sec',
       'modal.close': 'Close', 'modal.fail-prompt': 'Failed to create prompt', 'btn.save': 'Save', 'btn.cancel': 'Cancel',
@@ -548,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hint.model-food': 'Pengulas akan kelihatan merasa makanan di semua babak',
       'field.gender': 'Jantina',
       'field.age': 'Umur',
-      'field.look': 'Penampilan',
+      'field.look': 'Negara',
       'field.hijab': 'Hijab',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Muat Turun Semua',
@@ -712,6 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniatur dari nat & dawai tembaga',
       'nav.strawcraft': 'DIY Straw', 'navd.strawcraft': 'Model binaan dari straw plastik',
       'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara guna app ini',
+      'tut.title': 'Pilih Video Tutorial', 'tut.basic': 'Tutorial Asas Aplikasi', 'tut.new': 'Tutorial Terkini',
       'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
       'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'saat/klip', 'unit.sec': 'saat',
       'modal.close': 'Tutup', 'modal.fail-prompt': 'Gagal cipta prompt', 'btn.save': 'Simpan', 'btn.cancel': 'Batal',
@@ -923,6 +926,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'Apel': 'Apple', 'Jeruk': 'Orange', 'Anggur': 'Grapes', 'Semangka': 'Watermelon', 'Melon': 'Melon',
       'Pir': 'Pear', 'Labu': 'Pumpkin', 'Stroberi besar': 'Big Strawberry', 'Bunga & pot': 'Flowers & Pot',
       'Jepang': 'Japan', 'Barat': 'Western', 'Asia Timur': 'East Asia', 'Skandinavia': 'Scandinavian',
+      'Acak': 'Random', 'Filipina': 'Philippines', 'Arab / Timur Tengah': 'Middle East / Arab',
+      'Afrika': 'Africa', 'Barat (Eropa/Amerika)': 'Western (EU/US)',
       'Seragam sekolah': 'School Uniform', 'Hoodie kasual': 'Casual Hoodie', 'Crop top & rok': 'Crop Top & Skirt',
       'Kondangan': 'Wedding Party', 'Kombinasi': 'Combination', 'Bebas warna-warni': 'Free Colorful',
       'Warna-warni campur': 'Mixed Colorful', 'Merah': 'Red', 'Biru & putih': 'Blue & White', 'Biru semua': 'All Blue',
@@ -937,6 +942,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     ms: {
       'Tidak Ada': 'Tiada', 'Custom': 'Tersuai', 'Kejutkan aku': 'Kejutkan saya',
+      'Acak': 'Rawak', 'Jepang': 'Jepun', 'Barat (Eropa/Amerika)': 'Barat (Eropah/Amerika)',
       'Kerja Harian / Karier': 'Kerja Harian / Kerjaya', 'Keuangan': 'Kewangan', 'Kesehatan Mental': 'Kesihatan Mental',
       'Ruang Tamu Cozy': 'Ruang Tamu Selesa', 'Dalam Mobil': 'Dalam Kereta',
       'Semangat / Motivator': 'Bersemangat / Motivator',
@@ -1084,6 +1090,39 @@ document.addEventListener('DOMContentLoaded', () => {
       'AI sedang menyusun proses rakit sedotan...': 'AI sedang menyusun proses pasang straw...',
     },
   };
+
+  // === TUTORIAL VIDEOS ===
+  const TUTORIAL_VIDEOS = [
+    { key: 'tut.basic', url: 'https://youtu.be/UaSsRKmJDdg' },
+    { key: 'tut.new', url: 'https://youtu.be/rYBc1RADUwc', isNew: true }
+  ];
+  function showTutorialChoice() {
+    const modal = document.createElement('div');
+    modal.className = 'image-preview-modal';
+    const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+    modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${t('tut.title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+      <div class="space-y-2" data-choices></div>
+    </div>`;
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    const wrap = modal.querySelector('[data-choices]');
+    TUTORIAL_VIDEOS.forEach(v => {
+      const a = document.createElement('a');
+      a.href = v.url; a.target = '_blank'; a.rel = 'noopener';
+      a.className = 'w-full btn-secondary py-2.5 px-4 rounded-lg font-semibold text-sm text-left flex items-center gap-2';
+      a.innerHTML = `<i class="fab fa-youtube" style="color:#ff0033;"></i><span>${t(v.key)}</span>${v.isNew ? '<span class="badge-new">NEW</span>' : ''}`;
+      a.addEventListener('click', close);
+      wrap.appendChild(a);
+    });
+    modal.querySelector('[data-close]').addEventListener('click', close);
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('show'), 10);
+  }
+  ['tutorial-link', 'tutorial-link-top'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', (e) => { e.preventDefault(); showTutorialChoice(); });
+  });
+  // === END TUTORIAL VIDEOS ===
 
   // === TUTORIAL PANEL ===
   const GUIDE_CONTENT = {
@@ -1430,13 +1469,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // === MODEL LIBRARY ===
   // Pustaka model AI (menu AI Influencer): prompt murni + util konversi + wrapper IndexedDB.
+  window.INFLUENCER_COUNTRIES = ['indonesia', 'malaysia', 'thailand', 'vietnam', 'filipina', 'india', 'arab', 'korea', 'jepang', 'china', 'barat', 'afrika', 'latin'];
+  window.FACE_VARIETY = {
+    face: ['a soft oval face', 'a round friendly face', 'a slim heart-shaped face', 'a defined angular face with a gentle jawline', 'a gracefully square face'],
+    hairFemale: ['long straight black hair', 'shoulder-length wavy hair', 'a neat low bun', 'a high ponytail', 'short chic bob hair', 'long natural curly hair', 'long hair with soft curtain bangs'],
+    hairMale: ['short neat hair', 'a modern textured crop haircut', 'medium side-parted hair', 'a clean short undercut hairstyle', 'slightly wavy medium-length hair'],
+    feature: ['subtle dimples when smiling', 'a small beauty mark near the lip', 'naturally thick well-groomed eyebrows', 'a bright warm toothy smile', 'faint natural freckles across the nose', 'gentle monolid eyes with a warm gaze', 'expressive double-lidded eyes'],
+    tone: ['a fair natural skin tone with minimal natural makeup', 'a warm tan skin tone with natural makeup', 'a medium golden skin tone with a fresh dewy look', 'a sun-kissed skin tone with an effortless natural look']
+  };
+  window.pickFaceVariety = function (c, rnd) {
+    rnd = rnd || Math.random;
+    const pick = (arr) => arr[Math.floor(rnd() * arr.length)];
+    const v = window.FACE_VARIETY;
+    const out = { face: pick(v.face), feature: pick(v.feature), tone: pick(v.tone) };
+    const hijabOn = c && c.gender !== 'pria' && c.hijab === 'hijab';
+    if (!hijabOn) out.hair = pick(c && c.gender === 'pria' ? v.hairMale : v.hairFemale);
+    return out;
+  };
   window.buildModelPrompt = function (c) {
     c = c || {};
     const age = { remaja: 'late-teenage', '20an': 'mid-20s', '30an': 'mid-30s', '40plus': 'mid-40s' }[c.usia] || 'mid-20s';
-    const look = { indonesia: 'Indonesian', asia: 'East Asian', barat: 'Western Caucasian' }[c.look] || 'Indonesian';
+    const look = { indonesia: 'Indonesian', malaysia: 'Malaysian Malay', thailand: 'Thai', vietnam: 'Vietnamese', filipina: 'Filipino', india: 'Indian', arab: 'Middle Eastern Arab', korea: 'Korean', jepang: 'Japanese', china: 'Chinese', barat: 'Western Caucasian', afrika: 'African', latin: 'Latin American', asia: 'East Asian' }[c.look] || 'Indonesian';
     const person = c.gender === 'pria' ? 'man' : 'woman';
     const veil = (c.gender !== 'pria' && c.hijab === 'hijab') ? ', wearing a neat modern hijab' : '';
-    return `Photorealistic half-body studio portrait photo of a ${age} ${look} ${person}${veil}, facing the camera with a natural friendly smile, plain light neutral studio background, soft diffused lighting, sharp focus on the face, natural skin texture, high detail, suitable as a model reference photo. No text, no watermark.`;
+    const v = c.variety;
+    const variety = v ? `, with ${v.face}${v.hair ? ', ' + v.hair : ''}, ${v.feature}, ${v.tone}` : '';
+    return `Photorealistic half-body studio portrait photo of a ${age} ${look} ${person}${veil}${variety}, facing the camera with a natural friendly smile, plain light neutral studio background, soft diffused lighting, sharp focus on the face, natural skin texture, high detail, suitable as a model reference photo. No text, no watermark.`;
   };
   window.b64ToBlob = function (b64, mime) {
     const bin = atob(b64);
@@ -1606,7 +1664,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function generateModel() {
       genBtn.disabled = true; regenBtn.disabled = true;
       resultBox.innerHTML = '<div class="loader"></div>';
-      const prompt = window.buildModelPrompt(currentCfg());
+      const c = currentCfg();
+      if (c.look === 'acak') c.look = window.INFLUENCER_COUNTRIES[Math.floor(Math.random() * window.INFLUENCER_COUNTRIES.length)];
+      c.variety = window.pickFaceVariety(c);
+      const prompt = window.buildModelPrompt(c);
       const retries = 3; let lastError = null;
       for (let i = 0; i < retries; i++) {
         try {
@@ -3324,6 +3385,18 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       });
     });
 
+    // "Kejutkan aku" = acak betulan di sisi klien, dikunci per cerita (pola currentSuasana)
+    let resolvedRandom = {};
+    function isRandomKey(key) {
+      return document.querySelector(`#${p}-group-${key} .theme-chip.selected`)?.dataset.val === '__random__';
+    }
+    function rollRandomSel() {
+      resolvedRandom = {};
+      (cfg.chipGroups || []).forEach(g => {
+        if (isRandomKey(g.key) && g.options.length) resolvedRandom[g.key] = g.options[Math.floor(Math.random() * g.options.length)];
+      });
+    }
+
     const grid = document.getElementById(`${p}-b-roll-grid`);
     const generateBtn = document.getElementById(`${p}-generate-btn`);
     const downloadAllBtn = document.getElementById(`${p}-download-all-btn`);
@@ -3428,9 +3501,13 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
 
     // Konteks proses viral (pengganti descInput/currentTheme di mesin salinan)
     function fullSelection() {
-      if (!cfg.extraInput) return selection;
+      const base = { ...selection };
+      (cfg.chipGroups || []).forEach(g => {
+        if (isRandomKey(g.key) && resolvedRandom[g.key]) base[g.key] = resolvedRandom[g.key];
+      });
+      if (!cfg.extraInput) return base;
       const v = (document.getElementById(`${p}-extra-input`)?.value || '').trim();
-      return v ? { ...selection, [cfg.extraInput.key]: v } : selection;
+      return v ? { ...base, [cfg.extraInput.key]: v } : base;
     }
     function viralContext() {
       if (cfg.custom) return document.getElementById(`${p}-custom-input`).value.trim();
@@ -3737,6 +3814,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       if (cfg.custom && !document.getElementById(`${p}-custom-input`).value.trim()) { window.uiNotify(t('warn.viral-idea-required')); return; }
       generateBtn.disabled = true;
       hideContinueBtn();
+      rollRandomSel();
       const orig = generateBtn.innerHTML;
       generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menyusun cerita...</span>';
       downloadAllBtn.classList.add('hidden');
@@ -4446,6 +4524,21 @@ Rules:
     seedance: { label: 'Seedance',    clipSec: 15 }
   };
 
+  window.SCRIPT_ANGLES = [
+    'a deeply personal relatable story: narrate one specific vivid moment from daily life that illustrates the point',
+    'a bold contrarian take: open by challenging a popular belief about this topic, then kindly defend the unpopular truth',
+    'a letter to my younger self: frame the whole monologue as advice the speaker wishes they had received years ago',
+    'a chain of reflective questions: drive the monologue with questions aimed straight at the viewer, answering each briefly',
+    'a lesson from failure: build the monologue around one honest mistake and what it taught the speaker',
+    'the perspective of a loved one: explore how a spouse, child or close friend silently experiences this topic',
+    'myth vs reality: contrast what people commonly believe about this topic with what actually happens',
+    'the unsaid truth: talk about the part of this topic nobody dares to say out loud, with empathy',
+    'an everyday-object analogy: explain the whole topic through one simple physical object or daily activity as a metaphor',
+    'before vs after: contrast life before and after one key realization about this topic',
+    'one tiny habit: focus the entire monologue on one small practical action the viewer can start today',
+    'a social observation: start from a small everyday scene everyone recognizes, then zoom out to the deeper meaning'
+  ];
+
   window.buildTalkerScriptPrompt = function (sel, plan) {
     const L = { id: 'Bahasa Indonesia', en: 'English', ms: 'Bahasa Melayu (Malay)' };
     const lang = L[sel.lang] || L.id;
@@ -4454,7 +4547,7 @@ Rules:
 Write ONE continuous ${plan.totalSec}-second spoken monologue in ${lang} for the niche "${sel.niche}"${sel.topic ? ` about this topic: "${sel.topic}"` : ' (pick one strong specific topic yourself that fits the niche)'} then split it into ${plan.clips} consecutive segments — one per ${plan.clipSec}-second video clip.
 
 **SPEAKING STYLE:** ${sel.gaya}. Natural spoken language, warm and personal, like talking to one close friend. No bullet points, no headings — pure speech.
-**CONTINUITY LOCK (MOST IMPORTANT):** the segments are ONE flowing monologue cut into pieces. Every segment MUST end exactly at the end of a complete sentence — NEVER cut a sentence in the middle across two segments; the next segment starts a NEW sentence that continues the same train of thought. NEVER restart, NEVER greet again, NEVER re-introduce or summarize previous segments in segment 2 and onward.
+${sel.angle ? `**NARRATIVE ANGLE (follow strictly):** build the whole monologue as ${sel.angle}.\n` : ''}**CONTINUITY LOCK (MOST IMPORTANT):** the segments are ONE flowing monologue cut into pieces. Every segment MUST end exactly at the end of a complete sentence — NEVER cut a sentence in the middle across two segments; the next segment starts a NEW sentence that continues the same train of thought. NEVER restart, NEVER greet again, NEVER re-introduce or summarize previous segments in segment 2 and onward.
 **WORD BUDGET:** each segment must be ${lo}–${hi} words (≈2.3 spoken words per second) so it fits exactly in ${plan.clipSec} seconds of relaxed natural speech. Count carefully.
 **STRUCTURE:** segment 1 opens with a strong hook (a bold statement or a question — NO "hai semuanya"-style greeting). Middle segments deliver the substance with concrete, relatable moments. The final segment lands a memorable takeaway plus a soft call-to-action (save/share/follow).
 Respond ONLY with valid JSON: {"title": "short content title in ${lang}", "segments": ["segment 1 text", "segment 2 text", ...]} with EXACTLY ${plan.clips} segments.`;
@@ -4664,6 +4757,11 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
 
     // ---- Chip single-select (default = opsi pertama) ----
     const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0], suasana: '__random__' };
+    let anglePool = [];
+    function nextAngle() {
+      if (!anglePool.length) anglePool = [...window.SCRIPT_ANGLES].sort(() => Math.random() - 0.5);
+      return anglePool.pop();
+    }
     ['niche', 'latar', 'gaya'].forEach(key => {
       const gridEl = document.getElementById(`${p}-group-${key}`);
       const customEl = document.getElementById(`${p}-group-${key}-custom`);
@@ -4980,6 +5078,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     async function generateScript(triggerBtn) {
       const sel = currentSel();
       if (!sel.niche || !sel.latar) { window.uiNotify(t('warn.talker-custom-empty')); return; }
+      sel.angle = nextAngle();
       const pl = plan();
       const orig = triggerBtn.innerHTML;
       triggerBtn.disabled = true;

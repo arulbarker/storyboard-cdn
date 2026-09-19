@@ -7,7 +7,7 @@
       <button id="menu-toggle" class="hamburger" aria-label="Buka menu"><i class="fas fa-bars"></i></button>
       <div class="sidebar-logo" style="width:30px;height:30px;border-radius:9px;font-size:.75rem;">SSP</div>
       <span class="font-display text-[15px]">Storyboard Studio Pro</span>
-      <a href="https://youtu.be/UaSsRKmJDdg" target="_blank" rel="noopener" class="ml-auto" aria-label="Tutorial aplikasi" style="color:#ff0033;font-size:1.45rem;line-height:1;"><i class="fab fa-youtube"></i></a>
+      <a id="tutorial-link-top" href="https://youtu.be/UaSsRKmJDdg" target="_blank" rel="noopener" class="ml-auto" aria-label="Tutorial aplikasi" style="color:#ff0033;font-size:1.45rem;line-height:1;"><i class="fab fa-youtube"></i></a>
     </header>
     <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
@@ -51,7 +51,7 @@
         <button data-tab="strawcraft" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-wine-glass"></i></span><span><span data-i18n="nav.strawcraft">DIY Sedotan</span><small data-i18n="navd.strawcraft">Model rakitan dari sedotan plastik</small></span></button>
       </nav>
       <div class="px-3 py-2" style="border-top:1px solid rgba(255,255,255,.06);">
-        <a id="tutorial-link" href="https://youtu.be/UaSsRKmJDdg" target="_blank" rel="noopener" class="nav-item"><span class="nav-ico" style="color:#ff4d4d;"><i class="fab fa-youtube"></i></span><span><span data-i18n="nav.tutorial-app">Tutorial Aplikasi</span><small data-i18n="navd.tutorial-app">Video cara pakai app ini</small></span></a>
+        <a id="tutorial-link" href="https://youtu.be/UaSsRKmJDdg" target="_blank" rel="noopener" class="nav-item"><span class="nav-ico" style="color:#ff4d4d;"><i class="fab fa-youtube"></i></span><span><span><span data-i18n="nav.tutorial-app">Tutorial Aplikasi</span> <span class="badge-new">NEW</span></span><small data-i18n="navd.tutorial-app">Video cara pakai app ini</small></span></a>
       </div>
       <div class="px-4 py-3" style="border-top:1px solid rgba(255,255,255,.06);">
         <div class="flex items-center gap-2 rounded-xl px-3 py-2" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);">
@@ -1162,11 +1162,22 @@
                   <button type="button" data-val="30an" class="theme-chip">30-an</button>
                   <button type="button" data-val="40plus" class="theme-chip">40+</button>
                 </div>
-                <div class="text-xs font-semibold text-gray-500 mb-1" data-i18n="field.look">Look</div>
+                <div class="text-xs font-semibold text-gray-500 mb-1" data-i18n="field.look">Negara</div>
                 <div id="influencer-look-options" class="flex flex-wrap gap-2 mb-3">
+                  <button type="button" data-val="acak" class="theme-chip"><i class="fas fa-dice"></i>Acak</button>
                   <button type="button" data-val="indonesia" class="theme-chip selected">Indonesia</button>
-                  <button type="button" data-val="asia" class="theme-chip">Asia Timur</button>
-                  <button type="button" data-val="barat" class="theme-chip">Barat</button>
+                  <button type="button" data-val="malaysia" class="theme-chip">Malaysia</button>
+                  <button type="button" data-val="thailand" class="theme-chip">Thailand</button>
+                  <button type="button" data-val="vietnam" class="theme-chip">Vietnam</button>
+                  <button type="button" data-val="filipina" class="theme-chip">Filipina</button>
+                  <button type="button" data-val="india" class="theme-chip">India</button>
+                  <button type="button" data-val="arab" class="theme-chip">Arab / Timur Tengah</button>
+                  <button type="button" data-val="korea" class="theme-chip">Korea</button>
+                  <button type="button" data-val="jepang" class="theme-chip">Jepang</button>
+                  <button type="button" data-val="china" class="theme-chip">China</button>
+                  <button type="button" data-val="barat" class="theme-chip">Barat (Eropa/Amerika)</button>
+                  <button type="button" data-val="afrika" class="theme-chip">Afrika</button>
+                  <button type="button" data-val="latin" class="theme-chip">Latin</button>
                 </div>
                 <div id="influencer-hijab-group">
                   <div class="text-xs font-semibold text-gray-500 mb-1" data-i18n="field.hijab">Hijab</div>
