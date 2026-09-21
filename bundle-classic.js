@@ -229,6 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.bottlecraft': 'DIY Botol Plastik', 'navd.bottlecraft': 'Daur ulang botol jadi pajangan',
       'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniatur dari mur & kawat tembaga',
       'nav.strawcraft': 'DIY Sedotan', 'navd.strawcraft': 'Model rakitan dari sedotan plastik',
+      'menu.kids': 'Cerita Anak',
+      'nav.kidpedia': 'Ensiklopedia Anak', 'navd.kidpedia': 'Pengetahuan 1 subjek untuk anak',
+      'nav.kidcycle': 'Siklus Hidup', 'navd.kidcycle': 'Telur jadi kupu-kupu, biji jadi pohon',
       'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara pakai app ini',
       'tut.title': 'Pilih Video Tutorial', 'tut.basic': 'Tutorial Dasar Aplikasi', 'tut.new': 'Tutorial Terbaru',
       'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
@@ -471,6 +474,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.bottlecraft': 'DIY Plastic Bottle', 'navd.bottlecraft': 'Recycle bottles into decor',
       'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniature from nuts & copper wire',
       'nav.strawcraft': 'DIY Straw', 'navd.strawcraft': 'Model built from plastic straws',
+      'menu.kids': 'Kids Story',
+      'nav.kidpedia': 'Kids Encyclopedia', 'navd.kidpedia': 'One-subject knowledge for kids',
+      'nav.kidcycle': 'Life Cycle', 'navd.kidcycle': 'Egg to butterfly, seed to tree',
       'nav.tutorial-app': 'App Tutorial', 'navd.tutorial-app': 'How to use this app (video)',
       'tut.title': 'Choose a Tutorial Video', 'tut.basic': 'App Basics Tutorial', 'tut.new': 'Latest Tutorial',
       'dur.platform': 'Video platform', 'dur.story-duration': 'Story duration',
@@ -713,6 +719,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.bottlecraft': 'DIY Botol Plastik', 'navd.bottlecraft': 'Kitar semula botol jadi hiasan',
       'nav.metalcraft': 'DIY Metal Craft', 'navd.metalcraft': 'Miniatur dari nat & dawai tembaga',
       'nav.strawcraft': 'DIY Straw', 'navd.strawcraft': 'Model binaan dari straw plastik',
+      'menu.kids': 'Cerita Kanak-kanak',
+      'nav.kidpedia': 'Ensiklopedia Kanak-kanak', 'navd.kidpedia': 'Pengetahuan 1 subjek untuk kanak-kanak',
+      'nav.kidcycle': 'Kitaran Hidup', 'navd.kidcycle': 'Telur jadi rama-rama, biji jadi pokok',
       'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara guna app ini',
       'tut.title': 'Pilih Video Tutorial', 'tut.basic': 'Tutorial Asas Aplikasi', 'tut.new': 'Tutorial Terkini',
       'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
@@ -939,6 +948,12 @@ document.addEventListener('DOMContentLoaded', () => {
       'Cutting mat hijau': 'Green Cutting Mat', 'Cutting mat krem': 'Beige Cutting Mat', 'Putih studio': 'Studio White',
       'Tropis': 'Tropical', 'Piknik': 'Picnic', '20-an': '20s', '30-an': '30s',
       'Balkon': 'Balcony', 'Dokumenter': 'Documentary',
+      'Hewan darat': 'Land animals', 'Hewan laut': 'Sea animals', 'Burung': 'Birds', 'Serangga': 'Insects',
+      'Dinosaurus': 'Dinosaurs', 'Luar angkasa': 'Outer space', 'Alam': 'Nature',
+      '3D film animasi': '3D animated film', 'Ilustrasi buku cerita (cat air)': 'Storybook illustration (watercolor)',
+      'Kartun 2D ceria': 'Cheerful 2D cartoon', 'Semi-realistis lembut': 'Soft semi-realistic', 'Clay / plastisin': 'Clay / plasticine',
+      'Kupu-kupu': 'Butterfly', 'Katak': 'Frog', 'Ayam': 'Chicken', 'Kumbang': 'Beetle', 'Capung': 'Dragonfly',
+      'Nyamuk': 'Mosquito', 'Ikan': 'Fish', 'Tanaman kacang': 'Bean plant', 'Bunga matahari': 'Sunflower', 'Pohon apel': 'Apple tree',
     },
     ms: {
       'Tidak Ada': 'Tiada', 'Custom': 'Tersuai', 'Kejutkan aku': 'Kejutkan saya',
@@ -966,6 +981,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'Obstacle rintangan gila': 'Halangan Gila', 'Crash tabrakan': 'Pelanggaran', 'Balapan chaos': 'Perlumbaan Kelam-kabut',
       'Bunga & pot': 'Bunga & Pasu', 'Lampu hias': 'Lampu Hiasan', 'Rumput hijau': 'Rumput Hijau',
       'Halaman kotor': 'Laman Kotor', 'Halaman bersih': 'Laman Bersih', 'Halaman rumah': 'Laman Rumah',
+      'Hewan darat': 'Haiwan Darat', 'Hewan laut': 'Haiwan Laut', 'Luar angkasa': 'Angkasa Lepas',
+      'Kupu-kupu': 'Rama-rama', 'Pohon apel': 'Pokok Epal', 'Tanaman kacang': 'Pokok Kacang',
     },
   };
 
@@ -1029,6 +1046,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'AI sedang menyusun proses crafting botol...': 'AI is composing the bottle crafting process...',
       'AI sedang menyusun proses crafting metal...': 'AI is composing the metal crafting process...',
       'AI sedang menyusun proses rakit sedotan...': 'AI is composing the straw assembly process...',
+      'Ensiklopedia Anak': 'Kids Encyclopedia', 'Siklus Hidup': 'Life Cycle',
+      'Video pengetahuan 1 subjek untuk anak — narasi dokumenter ramah anak. Fakta dibuat AI: cek dulu sebelum diposting.': 'One-subject knowledge videos for kids — kid-friendly documentary narration. Facts are AI-generated: verify before posting.',
+      'Transformasi tahapan hidup satu subjek — telur jadi kupu-kupu, biji jadi pohon. Narasi dokumenter ramah anak.': 'One subject transforming through its life stages — egg to butterfly, seed to tree. Kid-friendly documentary narration.',
+      'Subjek Spesifik (opsional)': 'Specific Subject (optional)',
+      'Kategori Subjek': 'Subject Category', 'Gaya Visual': 'Visual Style', 'Subjek': 'Subject',
+      'Contoh: Gajah Afrika, Hiu Paus, Planet Saturnus — kosongkan biar AI pilih dari kategori': 'Example: African Elephant, Whale Shark, Planet Saturn — leave empty to let AI pick from the category',
+      'AI sedang menyusun cerita pengetahuan...': 'AI is composing the knowledge story...',
+      'AI sedang menyusun tahapan siklus hidup...': 'AI is composing the life-cycle stages...',
     },
     ms: {
       'Generator Video Cetakan Buah': 'Penjana Video Acuan Buah',
@@ -1088,6 +1113,12 @@ document.addEventListener('DOMContentLoaded', () => {
       'AI sedang menyusun proses crafting botol...': 'AI sedang menyusun proses kraf botol...',
       'AI sedang menyusun proses crafting metal...': 'AI sedang menyusun proses kraf logam...',
       'AI sedang menyusun proses rakit sedotan...': 'AI sedang menyusun proses pasang straw...',
+      'Ensiklopedia Anak': 'Ensiklopedia Kanak-kanak', 'Siklus Hidup': 'Kitaran Hidup',
+      'Video pengetahuan 1 subjek untuk anak — narasi dokumenter ramah anak. Fakta dibuat AI: cek dulu sebelum diposting.': 'Video pengetahuan 1 subjek untuk kanak-kanak — narasi dokumentari mesra kanak-kanak. Fakta dijana AI: semak dahulu sebelum muat naik.',
+      'Transformasi tahapan hidup satu subjek — telur jadi kupu-kupu, biji jadi pohon. Narasi dokumenter ramah anak.': 'Transformasi peringkat hidup satu subjek — telur jadi rama-rama, biji jadi pokok. Narasi dokumentari mesra kanak-kanak.',
+      'Subjek Spesifik (opsional)': 'Subjek Spesifik (pilihan)',
+      'Contoh: Gajah Afrika, Hiu Paus, Planet Saturnus — kosongkan biar AI pilih dari kategori': 'Contoh: Gajah Afrika, Yu Paus, Planet Zuhal — biar kosong supaya AI pilih dari kategori',
+      'AI sedang menyusun tahapan siklus hidup...': 'AI sedang menyusun peringkat kitaran hidup...',
     },
   };
 
@@ -1141,6 +1172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '12. Ekspor Storyboard', h: '<p>Gabung foto scene + prompt video jadi <b>1 gambar per klip</b> — tekan <b>Ekspor Storyboard</b> di header atau <b>Storyboard</b> di tiap pembatas klip.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (musik + SFX saja).</li><li>Kalau hasil kurang pas, tekan Regenerate atau Edit Prompt.</li></ul>' },
       { t: '14. Influencer Bicara', h: '<p>Buat konten <b>talking-head per niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya bicara → <b>Buat Naskah</b> (AI menulis monolog utuh, bisa diedit per klip) → <b>Generate Foto</b> (1 foto per klip).</p><p><b>Naskah nyambung antar klip</b> — prompt video tiap klip berisi kata-kata persis segmen itu. Generate video per klip di platform luar (Kling/Veo), lalu satukan di CapCut jadi satu monolog utuh (mis. 6 klip × 10 dtk = 60 dtk).</p>' },
+      { t: '15. Cerita Anak', h: '<p>Kategori konten edukasi anak — <b>narasi narator, subjek tidak bicara</b> (gaya dokumenter/dongeng).</p><ul><li><b>Ensiklopedia Anak</b> — pengetahuan 1 subjek (mis. Gajah Afrika): pilih kategori + gaya visual, atau ketik subjek spesifik. Scene mengalir: kenalan → habitat → makanan → keunikan → fakta seru → rekap.</li><li><b>Siklus Hidup</b> — tahapan hidup 1 subjek (telur → ulat → kepompong → kupu-kupu) urut maju, scene akhir bentuk dewasa.</li></ul><p>Gaya audio default <b>Voiceover</b> — prompt video berisi narasi ramah anak. <b>Fakta dibuat AI: cek dulu sebelum diposting.</b></p>' },
     ],
     en: [
       { t: '1. Quick Start', h: '<p>This app turns product photos/ideas into <b>storyboard photos</b> (scene 1→N) for you to turn into video.</p><ul><li>Sign in with your <b>purchase email</b>.</li><li>Pick a feature on the left, fill the inputs, hit <b>Generate</b>.</li><li>Each result card can Regenerate, Edit Prompt, grab a <b>Video Prompt</b>, and download.</li></ul><p>Note: the app produces <b>photos + prompt text</b>. Turning photos into video is done on external platforms (Runway/Pika/Kling/Veo).</p>' },
@@ -1157,6 +1189,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '12. Export Storyboard', h: '<p>Combine scene photos + video prompts into <b>1 image per clip</b> — tap <b>Export Storyboard</b> in the header or <b>Storyboard</b> on each clip divider.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>The app only outputs <b>photos + prompt text</b> — make the video on Runway/Pika/Kling/Veo.</li><li>ASMR/Cinematic/Timelapse are intentionally <b>without human speech</b> (music + SFX only).</li><li>If a result is off, hit Regenerate or Edit Prompt.</li></ul>' },
       { t: '14. Talking Influencer', h: '<p>Create <b>niche talking-head content</b> (wisdom, Islamic, parenting, etc.): pick a model photo (required), niche, setting, speaking style → <b>Write Script</b> (AI writes one full monologue, editable per clip) → <b>Generate Photos</b> (1 photo per clip).</p><p><b>The script flows across clips</b> — each clip\'s video prompt contains that exact segment. Generate each clip on an external platform (Kling/Veo), then join them in CapCut into one full monologue (e.g. 6 clips × 10 s = 60 s).</p>' },
+      { t: '15. Kids Story', h: '<p>Kids educational content category — <b>narrator voiceover, the subject never talks</b> (documentary/fairy-tale style).</p><ul><li><b>Kids Encyclopedia</b> — one-subject knowledge (e.g. African Elephant): pick a category + visual style, or type a specific subject. Scenes flow: intro → habitat → food → uniqueness → fun facts → recap.</li><li><b>Life Cycle</b> — one subject through its life stages (egg → caterpillar → chrysalis → butterfly) in strict forward order, final scene is the adult form.</li></ul><p>Default audio style is <b>Voiceover</b> — video prompts carry kid-friendly narration. <b>Facts are AI-generated: verify before posting.</b></p>' },
     ],
     ms: [
       { t: '1. Mula Pantas', h: '<p>Aplikasi ini menukar foto produk/idea menjadi <b>foto storyboard</b> (adegan 1→N) untuk kamu jadikan video.</p><ul><li>Log masuk dengan <b>e-mel pembelian</b> kamu.</li><li>Pilih ciri di menu kiri, isi input, tekan <b>Generate</b>.</li><li>Setiap kad hasil boleh Regenerate, Edit Prompt, ambil <b>Prompt Video</b>, dan muat turun.</li></ul><p>Penting: app menghasilkan <b>foto + teks prompt</b>. Proses foto→video dibuat di platform luar (Runway/Pika/Kling/Veo).</p>' },
@@ -1173,6 +1206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '12. Eksport Storyboard', h: '<p>Gabung foto adegan + prompt video jadi <b>1 imej per klip</b> — tekan <b>Eksport Storyboard</b> di pengepala atau <b>Storyboard</b> pada setiap pembahagi klip.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (muzik + SFX sahaja).</li><li>Jika hasil kurang tepat, tekan Regenerate atau Edit Prompt.</li></ul>' },
       { t: '14. Influencer Bercakap', h: '<p>Buat <b>kandungan talking-head ikut niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya percakapan → <b>Buat Skrip</b> (AI menulis satu monolog penuh, boleh diedit per klip) → <b>Jana Foto</b> (1 foto per klip).</p><p><b>Skrip bersambung antara klip</b> — prompt video setiap klip mengandungi kata-kata tepat segmen itu. Jana video per klip di platform luaran (Kling/Veo), kemudian gabungkan di CapCut jadi satu monolog penuh (cth. 6 klip × 10 saat = 60 saat).</p>' },
+      { t: '15. Cerita Kanak-kanak', h: '<p>Kategori kandungan pendidikan kanak-kanak — <b>narasi perawi, subjek tidak bercakap</b> (gaya dokumentari/dongeng).</p><ul><li><b>Ensiklopedia Kanak-kanak</b> — pengetahuan 1 subjek (cth. Gajah Afrika): pilih kategori + gaya visual, atau taip subjek spesifik. Adegan mengalir: kenalan → habitat → makanan → keunikan → fakta menarik → rekap.</li><li><b>Kitaran Hidup</b> — peringkat hidup 1 subjek (telur → ulat → kepompong → rama-rama) urutan ke hadapan, adegan akhir bentuk dewasa.</li></ul><p>Gaya audio lalai <b>Voiceover</b> — prompt video membawa narasi mesra kanak-kanak. <b>Fakta dijana AI: semak dahulu sebelum muat naik.</b></p>' },
     ],
   };
   function renderGuide() {
@@ -3286,6 +3320,66 @@ ${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : 
 Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
   };
 
+  window.buildKidPediaPrompt = function (cfg, sel, { count, showcase: forcedShowcase }) {
+    const subject = (sel['subjek spesifik'] || '').trim();
+    const picks = Object.entries(sel)
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    const showcase = forcedShowcase !== undefined ? forcedShowcase : (count > 5 ? 1 : 0);
+    return `You are an expert children's educational storyboard artist. Create a **${count}-scene visual KIDS ENCYCLOPEDIA story** (storyboard) about ONE subject, documentary style for children aged 3-8, for a narrated short video.
+
+**THE SUBJECT:** ${subject ? `${subject} (use EXACTLY this subject)` : `pick ONE popular, instantly recognizable, kid-friendly subject that fits the chosen category`}.
+${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : ''}
+**SUBJECT DESIGN SHEET (DO THIS FIRST):** Before writing any scene, write ONE fixed reusable description of the subject: species/type, size impression, the exact colors of every part, its most distinctive features, plus ONE fixed rendering description of the chosen visual style and color palette. You will repeat BOTH descriptions word-for-word in every scene so separately generated images look like one continuous video.
+
+**SUBJECT LOCK (CRITICAL):** The SAME single subject with the same design sheet and the same art style appears in ALL ${count} scenes. Backgrounds may change per chapter (habitat, feeding place) but the subject's design and the art style NEVER change.
+
+**EDUCATIONAL CHAPTERS:** Spread these chapters evenly and strictly in this order across scenes 1–${count - showcase} (a chapter may span more than one scene, never go back to a finished chapter): ${cfg.arc}.
+
+${showcase ? `**CLOSING RECAP:** the last ${showcase} scene(s) are a cheerful closing — the subject in its most iconic beautiful pose, warm goodbye mood, NO new educational chapters.
+` : ''}
+
+**CHILD-SAFE LOCK (CRITICAL):** bright cheerful colors, warm soft lighting, cute friendly expressions, wholesome mood in every scene. NEVER scary, dark, bloody, violent or distressing imagery; predators or dangers are NEVER shown hunting, fighting or gory.
+
+**NARRATION LOCK (CRITICAL):** This is narrator-voiceover content. The subject NEVER talks — NO speech bubbles, NO open-mouth talking pose toward the camera, NO human presenter, NO lip-sync. The subject simply lives naturally while an unseen narrator explains.
+
+**NO TEXT LOCK (CRITICAL):** absolutely NO written text, letters, numbers, labels, captions, subtitles, speech bubbles, logos or watermarks anywhere inside the image. Never put narration sentences, quotes or facts inside a scene prompt — anything written in the prompt as display text WILL get drawn into the image.
+
+Art style: follow the chosen visual style described generically — NEVER name a real studio or franchise.
+
+**STRUCTURE:** ${count} scenes in strict chapter order. For each scene provide a short Indonesian title (e.g. 'Scene 1: Kenalan dengan Gajah') and a CONCISE English prompt for an AI image generator that always repeats the locked subject design sheet + art style description word-for-word, states the chapter moment, and ends with this exact sentence: "Absolutely no text, no letters, no numbers, no words, no captions anywhere in the image."
+Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
+  };
+
+  window.buildLifeCyclePrompt = function (cfg, sel, { count, showcase: forcedShowcase }) {
+    const picks = Object.entries(sel)
+      .filter(([, v]) => v)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(', ');
+    const showcase = forcedShowcase !== undefined ? forcedShowcase : (count > 5 ? 1 : 0);
+    return `You are an expert children's educational storyboard artist. Create a **${count}-scene visual LIFE CYCLE story** (storyboard) showing the scientifically CORRECT life cycle of ONE subject, documentary style for children aged 3-8, for a narrated short video.
+
+**THE SUBJECT:** ${cfg.subject}.
+${picks ? `**USER CHOICES:** ${picks}. Honor these exactly in every scene.\n` : ''}
+**SUBJECT DESIGN SHEET (DO THIS FIRST):** Before writing any scene, fix ONE reusable description: the species identity, its signature color palette at every stage, ONE consistent natural habitat backdrop, and ONE rendering description of the chosen visual style. Repeat ALL of it word-for-word in every scene — the body SHAPE changes per stage, but the species identity, palette, habitat and art style NEVER change.
+
+**STAGE LOCK (CRITICAL):** First determine the real scientific life-cycle stages of the subject (e.g. butterfly: egg → caterpillar → chrysalis → adult butterfly; frog: egg → tadpole → froglet → adult frog; bean plant: seed → sprout → seedling → mature plant with flowers/pods). Map the stages evenly across scenes 1–${count - showcase} in strict forward order — NEVER go backward, NEVER skip a stage then return, NEVER repeat a finished stage. Scene ${count - showcase} shows the fully mature adult/final form.${showcase ? `
+
+**ADULT SHOWCASE:** the last ${showcase} scene(s) show the finished adult/final form being celebrated — beautiful proud poses in its habitat from new flattering angles, warm joyful mood, NO new life-cycle stages.` : ''}
+
+**CHILD-SAFE LOCK (CRITICAL):** bright cheerful colors, warm soft lighting, cute friendly rendering, wholesome mood. NEVER scary, dark, bloody, violent or distressing imagery.
+
+**NARRATION LOCK (CRITICAL):** narrator-voiceover content. The subject NEVER talks — NO speech bubbles, NO talking pose toward camera, NO human presenter, NO lip-sync.
+
+**NO TEXT LOCK (CRITICAL):** absolutely NO written text, letters, numbers, labels, captions, subtitles, speech bubbles, logos or watermarks anywhere inside the image. Never put narration sentences, quotes or facts inside a scene prompt — anything written in the prompt as display text WILL get drawn into the image.
+
+Art style: follow the chosen visual style described generically — NEVER name a real studio or franchise.
+
+**STRUCTURE:** ${count} scenes in strict stage order. For each scene provide a short Indonesian title (e.g. 'Scene 1: Telur di Daun') and a CONCISE English prompt for an AI image generator that always repeats the locked design sheet word-for-word, names the exact stage, and ends with this exact sentence: "Absolutely no text, no letters, no numbers, no words, no captions anywhere in the image."
+Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "prompt", in sequential story order.`;
+  };
+
   function createViralTab(cfg) {
     const p = cfg.prefix;
     const apiKey = "";
@@ -3395,6 +3489,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       (cfg.chipGroups || []).forEach(g => {
         if (isRandomKey(g.key) && g.options.length) resolvedRandom[g.key] = g.options[Math.floor(Math.random() * g.options.length)];
       });
+      if (cfg.onRoll) cfg.onRoll();
     }
 
     const grid = document.getElementById(`${p}-b-roll-grid`);
@@ -3505,9 +3600,12 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       (cfg.chipGroups || []).forEach(g => {
         if (isRandomKey(g.key) && resolvedRandom[g.key]) base[g.key] = resolvedRandom[g.key];
       });
-      if (!cfg.extraInput) return base;
-      const v = (document.getElementById(`${p}-extra-input`)?.value || '').trim();
-      return v ? { ...base, [cfg.extraInput.key]: v } : base;
+      let out = base;
+      if (cfg.extraInput) {
+        const v = (document.getElementById(`${p}-extra-input`)?.value || '').trim();
+        if (v) out = { ...base, [cfg.extraInput.key]: v };
+      }
+      return cfg.mapSelection ? cfg.mapSelection(out) : out;
     }
     function viralContext() {
       if (cfg.custom) return document.getElementById(`${p}-custom-input`).value.trim();
@@ -4513,6 +4611,66 @@ Rules:
       { key: 'warna sedotan', label: 'Warna Sedotan', options: ['Merah', 'Warna-warni campur', 'Biru & putih', 'Hitam & kuning', 'Pastel'] },
       { key: 'latar meja', label: 'Latar Meja', options: ['Cutting mat krem', 'Meja putih studio', 'Meja kayu craft', 'Cutting mat hijau'] },
       { key: 'gaya', label: 'Gaya Video', options: ['Stop-motion cepat', 'Tutorial cepat (fast-paced)', 'Satisfying santai', 'Timelapse'] },
+    ],
+  });
+
+  // === KIDPEDIA SUBJECT VARIETY ===
+  // Subjek diacak client-side saat kolom subjek spesifik kosong (pola variasi-generate):
+  // shuffle-bag per kategori (tak terulang sampai daftar habis), dikunci per cerita — Lanjutkan Cerita tidak ganti subjek.
+  window.KIDPEDIA_SUBJECTS = {
+    'Hewan darat': ['Gajah Afrika', 'Singa', 'Jerapah', 'Harimau Sumatra', 'Panda', 'Kanguru', 'Beruang kutub', 'Zebra', 'Badak Jawa', 'Koala'],
+    'Hewan laut': ['Hiu paus', 'Lumba-lumba', 'Paus biru', 'Penyu hijau', 'Gurita', 'Kuda laut', 'Ubur-ubur', 'Pari manta', 'Anjing laut', 'Bintang laut'],
+    'Burung': ['Elang', 'Burung hantu', 'Penguin', 'Merak', 'Kolibri', 'Flamingo', 'Kakatua', 'Burung unta', 'Pelikan', 'Cendrawasih'],
+    'Serangga': ['Kupu-kupu', 'Lebah madu', 'Semut', 'Kumbang tanduk', 'Belalang sembah', 'Kunang-kunang', 'Capung', 'Kepik', 'Jangkrik', 'Rayap'],
+    'Dinosaurus': ['Tyrannosaurus rex', 'Triceratops', 'Brachiosaurus', 'Stegosaurus', 'Velociraptor', 'Pteranodon', 'Ankylosaurus', 'Spinosaurus', 'Diplodocus', 'Parasaurolophus'],
+    'Luar angkasa': ['Planet Saturnus', 'Planet Mars', 'Bulan', 'Matahari', 'Planet Jupiter', 'Komet', 'Meteor / bintang jatuh', 'Galaksi Bima Sakti', 'Astronot', 'Roket luar angkasa'],
+    'Kendaraan': ['Pesawat terbang', 'Kereta api cepat', 'Kapal selam', 'Truk pemadam kebakaran', 'Excavator', 'Helikopter', 'Kapal layar', 'Bus tingkat', 'Traktor', 'Mobil balap'],
+    'Alam': ['Gunung berapi', 'Pelangi', 'Air terjun', 'Hutan hujan', 'Gurun pasir', 'Sungai', 'Aurora', 'Salju', 'Terumbu karang', 'Gua'],
+  };
+  (function () {
+    const pools = {};
+    let locked = '';
+    window.__kidpediaRoll = false;
+    window.kidPediaSubjectSel = function (sel) {
+      const out = Object.assign({}, sel);
+      if ((out['subjek spesifik'] || '').trim()) return out;
+      const cat = out['kategori'];
+      const list = window.KIDPEDIA_SUBJECTS[cat] || [];
+      if (!list.length) return out;
+      if (window.__kidpediaRoll || !locked) {
+        if (!pools[cat] || !pools[cat].length) pools[cat] = list.slice().sort(() => Math.random() - 0.5);
+        locked = pools[cat].pop();
+        window.__kidpediaRoll = false;
+      }
+      out['subjek spesifik'] = locked;
+      return out;
+    };
+  })();
+  // === END KIDPEDIA SUBJECT VARIETY ===
+
+  createViralTab({
+    prefix: 'kidpedia', title: 'Ensiklopedia Anak', subtitle: 'Video pengetahuan 1 subjek untuk anak — narasi dokumenter ramah anak. Fakta dibuat AI: cek dulu sebelum diposting.',
+    filenamePrefix: 'ensiklopedia_anak', analyzingMsg: 'AI sedang menyusun cerita pengetahuan...', defaultAudio: 'voiceover',
+    promptFn: window.buildKidPediaPrompt,
+    onRoll: () => { window.__kidpediaRoll = true; },
+    mapSelection: (sel) => window.kidPediaSubjectSel(sel),
+    subject: 'ONE kid-friendly encyclopedia subject presented documentary-style for children, narrator voiceover only',
+    arc: 'perkenalan subjek (hero shot pose khas) → habitat asli → makanan & cara makan → kemampuan/keunikan tubuh → fakta seru tambahan → penutup rekap ceria',
+    extraInput: { key: 'subjek spesifik', label: 'Subjek Spesifik (opsional)', placeholder: 'Contoh: Gajah Afrika, Hiu Paus, Planet Saturnus — kosongkan biar AI pilih dari kategori' },
+    chipGroups: [
+      { key: 'kategori', label: 'Kategori Subjek', options: ['Hewan darat', 'Hewan laut', 'Burung', 'Serangga', 'Dinosaurus', 'Luar angkasa', 'Kendaraan', 'Alam'] },
+      { key: 'gaya visual', label: 'Gaya Visual', options: ['3D film animasi', 'Ilustrasi buku cerita (cat air)', 'Kartun 2D ceria', 'Semi-realistis lembut', 'Clay / plastisin'] },
+    ],
+  });
+
+  createViralTab({
+    prefix: 'kidcycle', title: 'Siklus Hidup', subtitle: 'Transformasi tahapan hidup satu subjek — telur jadi kupu-kupu, biji jadi pohon. Narasi dokumenter ramah anak.',
+    filenamePrefix: 'siklus_hidup', analyzingMsg: 'AI sedang menyusun tahapan siklus hidup...', defaultAudio: 'voiceover',
+    promptFn: window.buildLifeCyclePrompt,
+    subject: 'the scientifically correct life cycle of ONE kid-friendly subject shown stage by stage, narrator voiceover only',
+    chipGroups: [
+      { key: 'subjek', label: 'Subjek', options: ['Kupu-kupu', 'Katak', 'Ayam', 'Kumbang', 'Capung', 'Nyamuk', 'Ikan', 'Tanaman kacang', 'Bunga matahari', 'Pohon apel'] },
+      { key: 'gaya visual', label: 'Gaya Visual', options: ['3D film animasi', 'Ilustrasi buku cerita (cat air)', 'Kartun 2D ceria', 'Semi-realistis lembut', 'Clay / plastisin'] },
     ],
   });
   // === END VIRAL STUDIO ===
