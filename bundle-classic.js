@@ -4064,7 +4064,8 @@ Create a detailed cinematic English prompt for an AI image-to-video generator (R
 ${durState.on ? `2. DURATION: this scene covers EXACTLY ~2 seconds in the final video — describe ONE clear, simple motion beat that reads fully within 2 seconds (no multi-step actions).\n` : ''}3. Keep visual style, color grading, lighting mood, and pacing CONSISTENT with the rest of the sequence.
 4. Design camera motion for continuity: ${prevTitle ? `begin in a way that flows on from the previous scene ("${prevTitle}")` : 'this is the OPENING scene — start with an inviting establishing motion'}, and ${nextTitle ? `end in a way that leads into the next scene ("${nextTitle}")` : 'this is the FINAL scene — end on a satisfying reveal / closing beat'}.
 5. Add subtle dynamic elements suited to the scene (soft light shifts, gentle particles, growth/build motion, steam/liquid motion if relevant).
-6. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
+6. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}${cfg.voicePersona ? `
+6b. NARRATOR VOICE LOCK (CRITICAL): the whole video has ONE single narrator — ${cfg.voicePersona}. Copy this exact narrator voice description word-for-word into the prompt; the voice must NEVER change gender, age, tone, pace or accent between scenes.` : ''}
 7. ${window.audioSpeechRule(audioStyle, audioLang)}
 8. Be optimized for image-to-video AI, under 200 words, highly detailed.
 Output ONLY the video prompt for this scene, nothing else.`;
@@ -4104,7 +4105,8 @@ Write ONE cinematic English prompt describing the FULL ${plan.clipSec}-second cl
 2. Keep the subject identity EXACTLY as shown in the photos. ONE consistent visual style, color grade, and lighting mood across the whole clip.
 3. ${prevBridge ? `OPENING: flow on smoothly from the previous clip (which ended at "${prevBridge}").` : 'OPENING: this is the FIRST clip — start with an inviting establishing motion.'}
 4. ${nextBridge ? `ENDING: end on a camera motion that bridges into the next clip (which starts at "${nextBridge}").` : 'ENDING: this is the FINAL clip — close on a satisfying reveal beat.'}
-5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
+5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}${cfg.voicePersona ? `
+5b. NARRATOR VOICE LOCK (CRITICAL): the whole video has ONE single narrator — ${cfg.voicePersona}. Copy this exact narrator voice description word-for-word into the prompt; the voice must NEVER change gender, age, tone, pace or accent between clips or scenes.` : ''}
 6. ${window.audioSpeechRule(audioStyle, audioLang)}
 7. Under 250 words, optimized for image-to-video AI (Runway, Pika, Kling, Veo, Seedance).
 Output ONLY the video prompt, nothing else.`;
@@ -4614,6 +4616,9 @@ Rules:
     ],
   });
 
+  // Persona narator kids DIKUNCI satu suara (tanpa ini tiap scene AI mengarang suara beda → video hasil I2V ganti-ganti narator)
+  const KIDS_VOICE = 'a warm, gentle female storyteller voice for young children: calm, cheerful, slow-paced and friendly, like a kindergarten teacher reading a picture book aloud';
+
   // === KIDPEDIA SUBJECT VARIETY ===
   // Subjek diacak client-side saat kolom subjek spesifik kosong (pola variasi-generate):
   // shuffle-bag per kategori (tak terulang sampai daftar habis), dikunci per cerita — Lanjutkan Cerita tidak ganti subjek.
@@ -4651,7 +4656,7 @@ Rules:
   createViralTab({
     prefix: 'kidpedia', title: 'Ensiklopedia Anak', subtitle: 'Video pengetahuan 1 subjek untuk anak — narasi dokumenter ramah anak. Fakta dibuat AI: cek dulu sebelum diposting.',
     filenamePrefix: 'ensiklopedia_anak', analyzingMsg: 'AI sedang menyusun cerita pengetahuan...', defaultAudio: 'voiceover',
-    promptFn: window.buildKidPediaPrompt,
+    promptFn: window.buildKidPediaPrompt, voicePersona: KIDS_VOICE,
     onRoll: () => { window.__kidpediaRoll = true; },
     mapSelection: (sel) => window.kidPediaSubjectSel(sel),
     subject: 'ONE kid-friendly encyclopedia subject presented documentary-style for children, narrator voiceover only',
@@ -4666,7 +4671,7 @@ Rules:
   createViralTab({
     prefix: 'kidcycle', title: 'Siklus Hidup', subtitle: 'Transformasi tahapan hidup satu subjek — telur jadi kupu-kupu, biji jadi pohon. Narasi dokumenter ramah anak.',
     filenamePrefix: 'siklus_hidup', analyzingMsg: 'AI sedang menyusun tahapan siklus hidup...', defaultAudio: 'voiceover',
-    promptFn: window.buildLifeCyclePrompt,
+    promptFn: window.buildLifeCyclePrompt, voicePersona: KIDS_VOICE,
     subject: 'the scientifically correct life cycle of ONE kid-friendly subject shown stage by stage, narrator voiceover only',
     chipGroups: [
       { key: 'subjek', label: 'Subjek', options: ['Kupu-kupu', 'Katak', 'Ayam', 'Kumbang', 'Capung', 'Nyamuk', 'Ikan', 'Tanaman kacang', 'Bunga matahari', 'Pohon apel'] },
