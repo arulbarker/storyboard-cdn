@@ -1355,8 +1355,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const n = scenes.length;
     const cols = meta.cols || (n <= 4 ? Math.max(1, n) : n <= 8 ? 4 : n <= 15 ? 5 : n <= 24 ? 6 : 7);
     const pad = 40, gutter = 24, innerPad = 22, bannerH = 150;
-    const cardW = 540, maxPhotoH = 980; // foto isi lebar kartu; cap tinggi utk jaga-jaga rasio ekstrem
-    const numSize = 32, titleSize = 30, metaSize = 24, promptSize = 28, lineH = 38; // font prompt diperbesar biar terbaca
+    const oneCol = (meta.cols || 0) === 1; // per-klip render 1 kolom → kartu lebih lebar & teks besar
+    const cardW = oneCol ? 900 : 560, maxPhotoH = oneCol ? 1200 : 980; // foto isi lebar kartu; cap tinggi utk jaga-jaga rasio ekstrem
+    const numSize = 36, titleSize = oneCol ? 44 : 34, metaSize = oneCol ? 34 : 28, promptSize = oneCol ? 42 : 32, lineH = oneCol ? 56 : 44; // font diperbesar biar terbaca — lebih besar lagi di mode 1 kolom
     const innerW = cardW - innerPad * 2;
     const W = pad * 2 + cols * cardW + (cols - 1) * gutter;
     const font = (s, w) => `${w ? w + ' ' : ''}${s}px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`;
@@ -2014,7 +2015,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const jobFor = (k) => {
           const s = (k - 1) * plan.perClip;
           const cards = allCards.slice(s, s + plan.perClip);
-          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
+          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: 1 };
         };
         if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
@@ -3716,7 +3717,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         const jobFor = (k) => {
           const s = (k - 1) * plan.perClip;
           const cards = allCards.slice(s, s + plan.perClip);
-          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
+          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: 1 };
         };
         if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
@@ -4064,16 +4065,16 @@ Create a detailed cinematic English prompt for an AI image-to-video generator (R
 ${durState.on ? `2. DURATION: this scene covers EXACTLY ~2 seconds in the final video — describe ONE clear, simple motion beat that reads fully within 2 seconds (no multi-step actions).\n` : ''}3. Keep visual style, color grading, lighting mood, and pacing CONSISTENT with the rest of the sequence.
 4. Design camera motion for continuity: ${prevTitle ? `begin in a way that flows on from the previous scene ("${prevTitle}")` : 'this is the OPENING scene — start with an inviting establishing motion'}, and ${nextTitle ? `end in a way that leads into the next scene ("${nextTitle}")` : 'this is the FINAL scene — end on a satisfying reveal / closing beat'}.
 5. Add subtle dynamic elements suited to the scene (soft light shifts, gentle particles, growth/build motion, steam/liquid motion if relevant).
-6. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}${cfg.voicePersona ? `
-6b. NARRATOR VOICE LOCK (CRITICAL): the whole video has ONE single narrator — ${cfg.voicePersona}. Copy this exact narrator voice description word-for-word into the prompt; the voice must NEVER change gender, age, tone, pace or accent between scenes.` : ''}
+6. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
 7. ${window.audioSpeechRule(audioStyle, audioLang)}
 8. Be optimized for image-to-video AI, under 200 words, highly detailed.
 Output ONLY the video prompt for this scene, nothing else.`;
       const userText = `Scene ${sceneNum}/${total} — "${title}". Process/subject context: "${desc}". Audio style: ${audioStyle}. Spoken language: ${LANG_LABEL[audioLang]}. Write the continuous-story image-to-video prompt for this scene so it connects with the scene before and after.`;
       const payload = { contents: [{ parts: [{ text: userText }, { inlineData: { mimeType: 'image/png', data: base64 } }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
       const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
-      const vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+      let vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
       if (!vp) throw new Error('Prompt kosong dari API.');
+      if (cfg.voicePersona && !NO_SPEECH_STYLES.includes(audioStyle)) vp += `\n\nNARRATOR VOICE LOCK (identical in every scene): ${cfg.voicePersona}. Keep this exact narrator voice — same gender, age, tone, pace and accent — for the entire video; the narrator voice must NEVER change between scenes.`;
       cache[cacheKey] = vp;
       card.dataset.videoPromptCache = JSON.stringify(cache);
       return { sceneNum, total, title, vp, imageUrl: img.src };
@@ -4105,16 +4106,16 @@ Write ONE cinematic English prompt describing the FULL ${plan.clipSec}-second cl
 2. Keep the subject identity EXACTLY as shown in the photos. ONE consistent visual style, color grade, and lighting mood across the whole clip.
 3. ${prevBridge ? `OPENING: flow on smoothly from the previous clip (which ended at "${prevBridge}").` : 'OPENING: this is the FIRST clip — start with an inviting establishing motion.'}
 4. ${nextBridge ? `ENDING: end on a camera motion that bridges into the next clip (which starts at "${nextBridge}").` : 'ENDING: this is the FINAL clip — close on a satisfying reveal beat.'}
-5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}${cfg.voicePersona ? `
-5b. NARRATOR VOICE LOCK (CRITICAL): the whole video has ONE single narrator — ${cfg.voicePersona}. Copy this exact narrator voice description word-for-word into the prompt; the voice must NEVER change gender, age, tone, pace or accent between clips or scenes.` : ''}
+5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
 6. ${window.audioSpeechRule(audioStyle, audioLang)}
 7. Under 250 words, optimized for image-to-video AI (Runway, Pika, Kling, Veo, Seedance).
 Output ONLY the video prompt, nothing else.`;
       const userText = `Clip ${clipIdx}/${totalClips}. Process/subject context: "${viralContext()}". Audio style: ${audioStyle}. Spoken language: ${LANG_LABEL[audioLang]}.`;
       const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
       const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
-      const vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+      let vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
       if (!vp) throw new Error('Prompt kosong dari API.');
+      if (cfg.voicePersona && !NO_SPEECH_STYLES.includes(audioStyle)) vp += `\n\nNARRATOR VOICE LOCK (identical in every clip and scene): ${cfg.voicePersona}. Keep this exact narrator voice — same gender, age, tone, pace and accent — for the entire video; the narrator voice must NEVER change between clips or scenes.`;
       cache[cacheKey] = vp;
       if (header) header.dataset.clipPromptCache = JSON.stringify(cache);
       return { clipIdx, vp, cards };
