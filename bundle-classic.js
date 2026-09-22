@@ -1354,10 +1354,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Layout GRID VERTIKAL: foto atas + prompt bawah. Dipanggil PER KLIP (sedikit scene) → grid pendek & prompt jelas.
     const n = scenes.length;
     const cols = meta.cols || (n <= 4 ? Math.max(1, n) : n <= 8 ? 4 : n <= 15 ? 5 : n <= 24 ? 6 : 7);
-    const pad = 40, gutter = 24, innerPad = 22, bannerH = 150;
-    const oneCol = (meta.cols || 0) === 1; // per-klip render 1 kolom → kartu lebih lebar & teks besar
-    const cardW = oneCol ? 900 : 560, maxPhotoH = oneCol ? 1200 : 980; // foto isi lebar kartu; cap tinggi utk jaga-jaga rasio ekstrem
-    const numSize = 36, titleSize = oneCol ? 44 : 34, metaSize = oneCol ? 34 : 28, promptSize = oneCol ? 42 : 32, lineH = oneCol ? 56 : 44; // font diperbesar biar terbaca — lebih besar lagi di mode 1 kolom
+    const pad = 40, gutter = 24, innerPad = 24, bannerH = 150;
+    const cardW = 720, maxPhotoH = 1100; // kartu diperlebar (layout tetap horizontal) biar foto & teks besar
+    const numSize = 40, titleSize = 46, metaSize = 36, promptSize = 44, lineH = 60; // font diperbesar semua — terutama prompt biar terbaca besar
     const innerW = cardW - innerPad * 2;
     const W = pad * 2 + cols * cardW + (cols - 1) * gutter;
     const font = (s, w) => `${w ? w + ' ' : ''}${s}px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`;
@@ -2015,7 +2014,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const jobFor = (k) => {
           const s = (k - 1) * plan.perClip;
           const cards = allCards.slice(s, s + plan.perClip);
-          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: 1 };
+          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
         };
         if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
@@ -3717,7 +3716,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         const jobFor = (k) => {
           const s = (k - 1) * plan.perClip;
           const cards = allCards.slice(s, s + plan.perClip);
-          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: 1 };
+          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
         };
         if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
