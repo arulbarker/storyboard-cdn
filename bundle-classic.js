@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Unduh Semua',
+      'opt.natural-photo': 'Foto Natural (anti-plastik)', 'opt.natural-photo-hint': 'Kurangi kesan AI/CGI — kulit & pencahayaan lebih realistis.',
       'btn.sheet': 'Ekspor Storyboard',
       'loading.sheet': 'Membuat prompt...',
       'warn.no-scene-sheet': 'Belum ada foto scene untuk digabung.',
@@ -319,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'or',
       'btn.download-all': 'Download All',
+      'opt.natural-photo': 'Natural Photo (less plastic)', 'opt.natural-photo-hint': 'Reduces the AI/CGI look — more realistic skin & lighting.',
       'btn.sheet': 'Export Storyboard',
       'loading.sheet': 'Generating prompts...',
       'warn.no-scene-sheet': 'No scene photos to merge yet.',
@@ -568,6 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.hijab': 'Hijab',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Muat Turun Semua',
+      'opt.natural-photo': 'Foto Natural (kurang plastik)', 'opt.natural-photo-hint': 'Kurangkan kesan AI/CGI — kulit & pencahayaan lebih realistik.',
       'btn.sheet': 'Ekspor Storyboard',
       'loading.sheet': 'Membuat prompt...',
       'warn.no-scene-sheet': 'Belum ada foto scene untuk digabung.',
@@ -1295,6 +1298,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) { console.error('copy gagal', e); return false; }
   };
 
+  // === FOTO NATURAL (anti AI-slop) ===
+  // Fragmen prompt yang ditempel ke generate GAMBAR saat checkbox dicentang.
+  window.NATURAL_PHOTO_HINT = ' PHOTOREALISM (VERY IMPORTANT): render this as a REAL candid photo taken on a phone or mirrorless camera, NOT an AI render. Natural human skin with visible pores, fine texture, tiny natural blemishes, flyaway hairs and slightly uneven skin tone; absolutely NO smooth plastic, waxy or airbrushed CGI skin. Natural imperfect lighting with soft real shadows, realistic shallow depth of field, subtle lens/sensor noise and a faint film grain, natural colors that are not oversaturated. Avoid the glossy over-perfect "AI look".';
+  window.naturalToggleHTML = function (id) {
+    return `<label class="flex items-start gap-3 cursor-pointer select-none mb-4 p-3 bg-violet-50 border-2 border-violet-100 rounded-xl">
+      <input type="checkbox" id="${id}" class="mt-0.5 w-5 h-5 accent-violet-600 shrink-0">
+      <span class="text-sm leading-snug"><span class="font-semibold text-gray-700" data-i18n="opt.natural-photo">Foto Natural (anti-plastik)</span><span class="block text-xs text-gray-400 mt-0.5" data-i18n="opt.natural-photo-hint">Kurangi kesan AI/CGI — kulit &amp; pencahayaan lebih realistis.</span></span>
+    </label>`;
+  };
+  window.naturalHint = function (id) { return document.getElementById(id)?.checked ? window.NATURAL_PHOTO_HINT : ''; };
+
   // === Helper simpan foto iOS → langsung ke Galeri (bukan Files) ===
   // iPadOS 13+ menyamar sebagai "Mac" — cek touchPoints
   window.__isIOS = function () {
@@ -1673,6 +1687,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (function initInfluencerStudio() {
     const genBtn = document.getElementById('influencer-generate-btn');
     if (!genBtn) return;
+    genBtn.insertAdjacentHTML('beforebegin', window.naturalToggleHTML('influencer-natural'));
     const apiKey = "";
     const resultBox = document.getElementById('influencer-result-box');
     const saveRow = document.getElementById('influencer-save-row');
@@ -1713,7 +1728,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const c = currentCfg();
       if (c.look === 'acak') c.look = window.INFLUENCER_COUNTRIES[Math.floor(Math.random() * window.INFLUENCER_COUNTRIES.length)];
       c.variety = window.pickFaceVariety(c);
-      const prompt = window.buildModelPrompt(c);
+      const prompt = window.buildModelPrompt(c) + window.naturalHint('influencer-natural');
       const retries = 3; let lastError = null;
       for (let i = 0; i < retries; i++) {
         try {
@@ -1870,6 +1885,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById(`${p}-b-roll-grid`);
     const downloadAllBtn = document.getElementById(`${p}-download-all-btn`);
     const countGrid = document.getElementById(`${p}-count-selection-grid`);
+    generateBtn.insertAdjacentHTML('beforebegin', window.naturalToggleHTML(`${p}-natural`));
 
     // Lanjutkan Cerita: perpanjang story +1 klip dari scene terakhir (Mode Durasi, maks window.MAX_STORY_CLIPS)
     const continueBtn = document.createElement('button');
@@ -2280,7 +2296,7 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let i = 0; i < retries; i++) {
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
-          const finalPrompt = cfg.imageSuffix(!!modelBase64, prompt);
+          const finalPrompt = cfg.imageSuffix(!!modelBase64, prompt) + window.naturalHint(`${p}-natural`);
           const parts = [{ text: finalPrompt }];
           images.forEach(img => parts.push({ inlineData: { mimeType: img.mimeType, data: img.base64 } }));
           if (modelBase64) parts.push({ inlineData: { mimeType: modelMime, data: modelBase64 } });
@@ -5253,6 +5269,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     const scriptBtn = document.getElementById(`${p}-script-btn`);
     const rescriptBtn = document.getElementById(`${p}-rescript-btn`);
     const photosBtn = document.getElementById(`${p}-photos-btn`);
+    photosBtn.insertAdjacentHTML('beforebegin', window.naturalToggleHTML(`${p}-natural`));
     const scriptCard = document.getElementById(`${p}-script-card`);
     const scriptList = document.getElementById(`${p}-script-list`);
     const captionCard = document.getElementById(`${p}-caption-card`);
@@ -5507,7 +5524,7 @@ Rules:
           if (anchor) refText += ` REFERENCE PHOTO 2 (CRITICAL): the SECOND attached image is clip 1 of this SAME video — copy its outfit, setting, backdrop text, sponsor logo prop (if present), lighting and color grade EXACTLY; only the pose/gesture, expression and CAMERA ANGLE may differ. IGNORE the camera angle of both reference photos — compose this scene STRICTLY from the CAMERA ANGLE described below (multi-cam setup, same room and seat), do NOT copy the frontal composition of the references.`;
           if (id === 1 && products.length) refText += ` PRODUCT REFERENCE PHOTOS (CRITICAL): the ${products.length} additional attached image(s) after the person are products the person WEARS/USES in this scene (clothing worn on the body, shoes on the feet, bag/accessory held or clearly visible) — copy each product's design, color, material and logo EXACTLY; do NOT invent different products.`;
           if (id === 1 && brandB64) refText += ` SPONSOR BRAND REFERENCE PHOTO (CRITICAL, MANDATORY): the LAST attached image is a sponsor logo/brand — it MUST appear in the frame as a natural set prop (tablet screen or acrylic sign on the table, or a small standing banner in the background), copying the logo's shapes, colors and text EXACTLY. NEVER omit it: even if a backdrop sign/name text is also requested, BOTH must appear — the backdrop text behind the person AND the sponsor logo prop on the table are separate elements. Do NOT change or reinterpret the logo; the person does NOT wear or hold it.`;
-          const parts = [{ text: `${refText}\n\nSCENE TO RENDER: ${prompt}` }, { inlineData: { mimeType: modelMime || 'image/png', data: modelBase64 } }];
+          const parts = [{ text: `${refText}\n\nSCENE TO RENDER: ${prompt}${window.naturalHint(`${p}-natural`)}` }, { inlineData: { mimeType: modelMime || 'image/png', data: modelBase64 } }];
           if (anchor) parts.push({ inlineData: { mimeType: 'image/png', data: anchor } });
           if (id === 1) products.forEach(pr => parts.push({ inlineData: { mimeType: pr.mime || 'image/png', data: pr.b64 } }));
           if (id === 1 && brandB64) parts.push({ inlineData: { mimeType: brandMime || 'image/png', data: brandB64 } });
