@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.btn-script': 'Buat Naskah', 'talk.btn-rescript': 'Buat Ulang Naskah', 'talk.btn-photos': 'Generate Foto',
       'talk.script-title': 'Naskah per Klip (bisa diedit)', 'talk.result': 'Hasil Klip', 'talk.btn-copy': 'Salin Semua',
       'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Tombol 📋 = salin prompt siap-pakai untuk Flow/Veo (gambar storyboard dibaca AI, lembarannya tidak ikut ke video).',
-      'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bicara bersama Arul',
+      'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bicara bersama Arul', 'ph.talk-suasana-custom': 'Tulis suasana sendiri, cth: studio gelap dengan lampu neon merah',
       'warn.talker-model-required': 'Pilih foto model dulu (upload atau dari Pustaka Model).',
       'talk.step-product': 'Foto Produk (Opsional, maks 5)',
       'talk.product-hint': 'Baju, sepatu, tas, dll — influencer akan memakainya di foto (cocok untuk affiliate).',
@@ -214,6 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.talker-script-first': 'Buat naskah dulu sebelum generate foto.',
       'warn.talker-custom-empty': 'Isi dulu teks custom-nya ya.',
       'err.talker-script': 'Gagal membuat naskah: ',
+      'talk.caption-title': 'Caption & Hashtag', 'talk.btn-recaption': 'Buat Ulang Caption',
+      'talk.caption-hint': 'Caption otomatis dari naskah — edit naskah lalu tekan Buat Ulang Caption kalau berubah.',
+      'cap.short': 'Caption Pendek', 'cap.long': 'Caption Panjang', 'cap.hashtag': 'Hashtag',
+      'loading.talker-caption': 'AI sedang menulis caption...', 'err.talker-caption': 'Gagal membuat caption: ',
       'loading.talker-script': 'AI sedang menulis naskah...', 'loading.talker-photos': 'Membuat foto klip...',
       'navd.product-review': 'Foto review produk afiliasi', 'navd.skincare-review': 'Scene review skincare',
       'navd.fashion': 'OOTD & fashion story', 'navd.unboxing': 'Story buka paket produk',
@@ -437,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.btn-script': 'Write Script', 'talk.btn-rescript': 'Rewrite Script', 'talk.btn-photos': 'Generate Photos',
       'talk.script-title': 'Script per Clip (editable)', 'talk.result': 'Clip Results', 'talk.btn-copy': 'Copy All',
       'talk.flow-copy': 'Copy Flow Prompt', 'talk.flow-hint': 'The 📋 button copies a ready-to-use prompt for Flow/Veo (the AI reads the storyboard image; the sheet itself will not appear in the video).',
-      'ph.talk-topic': 'e.g. finding peace through hard times', 'ph.talk-branding': 'e.g. Ruang Bertumbuh Fatimah Zahra',
+      'ph.talk-topic': 'e.g. finding peace through hard times', 'ph.talk-branding': 'e.g. Ruang Bertumbuh Fatimah Zahra', 'ph.talk-suasana-custom': 'Describe your own mood, e.g. dark studio with red neon lights',
       'warn.talker-model-required': 'Pick a model photo first (upload or from the Model Library).',
       'talk.step-product': 'Product Photos (Optional, max 5)',
       'talk.product-hint': 'Clothes, shoes, bags, etc — the influencer will wear/use them in the photos (great for affiliate).',
@@ -459,6 +463,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.talker-script-first': 'Write the script first before generating photos.',
       'warn.talker-custom-empty': 'Fill in the custom text first.',
       'err.talker-script': 'Failed to write the script: ',
+      'talk.caption-title': 'Caption & Hashtags', 'talk.btn-recaption': 'Regenerate Caption',
+      'talk.caption-hint': 'Caption auto-generated from the script — edit the script then tap Regenerate Caption if it changes.',
+      'cap.short': 'Short Caption', 'cap.long': 'Long Caption', 'cap.hashtag': 'Hashtags',
+      'loading.talker-caption': 'AI is writing the caption...', 'err.talker-caption': 'Failed to write the caption: ',
       'loading.talker-script': 'AI is writing the script...', 'loading.talker-photos': 'Generating clip photos...',
       'navd.product-review': 'Affiliate product review photos', 'navd.skincare-review': 'Skincare review scenes',
       'navd.fashion': 'OOTD & fashion story', 'navd.unboxing': 'Product unboxing story',
@@ -682,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.btn-script': 'Buat Skrip', 'talk.btn-rescript': 'Buat Semula Skrip', 'talk.btn-photos': 'Jana Foto',
       'talk.script-title': 'Skrip per Klip (boleh diedit)', 'talk.result': 'Hasil Klip', 'talk.btn-copy': 'Salin Semua',
       'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Butang 📋 = salin prompt sedia-guna untuk Flow/Veo (imej storyboard dibaca AI, helaiannya tidak masuk ke video).',
-      'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bertumbuh Fatimah Zahra',
+      'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bertumbuh Fatimah Zahra', 'ph.talk-suasana-custom': 'Tulis suasana sendiri, cth: studio gelap dengan lampu neon merah',
       'warn.talker-model-required': 'Pilih foto model dahulu (muat naik atau dari Pustaka Model).',
       'talk.step-product': 'Foto Produk (Pilihan, maks 5)',
       'talk.product-hint': 'Baju, kasut, beg, dll — influencer akan memakainya dalam foto (sesuai untuk affiliate).',
@@ -704,6 +712,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.talker-script-first': 'Buat skrip dahulu sebelum jana foto.',
       'warn.talker-custom-empty': 'Isi dahulu teks custom.',
       'err.talker-script': 'Gagal membuat skrip: ',
+      'talk.caption-title': 'Kapsyen & Hashtag', 'talk.btn-recaption': 'Jana Semula Kapsyen',
+      'talk.caption-hint': 'Kapsyen auto daripada skrip — sunting skrip kemudian tekan Jana Semula Kapsyen jika berubah.',
+      'cap.short': 'Kapsyen Pendek', 'cap.long': 'Kapsyen Panjang', 'cap.hashtag': 'Hashtag',
+      'loading.talker-caption': 'AI sedang menulis kapsyen...', 'err.talker-caption': 'Gagal membuat kapsyen: ',
       'loading.talker-script': 'AI sedang menulis skrip...', 'loading.talker-photos': 'Menjana foto klip...',
       'navd.product-review': 'Foto ulasan produk afiliat', 'navd.skincare-review': 'Babak ulasan penjagaan kulit',
       'navd.fashion': 'Kisah OOTD & fesyen', 'navd.unboxing': 'Kisah buka bungkusan produk',
@@ -4872,6 +4884,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
               <div id="${p}-suasana-wrap">
                 <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-suasana">Suasana</label>
                 <div id="${p}-suasana-grid" class="grid gap-2 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));"></div>
+                <input type="text" id="${p}-suasana-custom" class="hidden w-full mt-2 p-3 bg-white border-2 border-violet-300 rounded-xl text-sm focus:border-violet-500 transition" data-i18n-placeholder="ph.talk-suasana-custom" placeholder="Tulis suasana sendiri, cth: studio gelap dengan lampu neon merah">
               </div>
               <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-branding">Nama Akun di Backdrop (Opsional)</label>
               <input type="text" id="${p}-branding-input" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition" data-i18n-placeholder="ph.talk-branding" placeholder="Contoh: Ruang Bertumbuh Fatimah Zahra">
@@ -4902,6 +4915,14 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
               <div id="${p}-script-list" class="space-y-3"></div>
               <button type="button" id="${p}-rescript-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3"><i class="fas fa-rotate mr-1"></i><span data-i18n="talk.btn-rescript">Buat Ulang Naskah</span></button>
             </div>
+            <div id="${p}-caption-card" class="card p-6 hidden">
+              <div class="flex items-center justify-between mb-1">
+                <h2 class="text-lg font-semibold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i><span data-i18n="talk.caption-title">Caption & Hashtag</span></h2>
+                <button type="button" id="${p}-recaption-btn" class="btn-secondary text-sm font-semibold py-2 px-3 rounded-lg"><i class="fas fa-rotate mr-1"></i><span data-i18n="talk.btn-recaption">Buat Ulang Caption</span></button>
+              </div>
+              <p class="text-xs text-gray-400 mb-3" data-i18n="talk.caption-hint">Caption otomatis dari naskah — edit naskah lalu tekan Buat Ulang Caption kalau berubah.</p>
+              <div id="${p}-caption-body" class="space-y-3"></div>
+            </div>
             <button type="button" id="${p}-photos-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg" disabled><i class="fas fa-bolt mr-2"></i><span data-i18n="talk.btn-photos">Generate Foto</span></button>
           </div>
           <div class="lg:col-span-2">
@@ -4919,7 +4940,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       </div>`;
 
     // ---- Chip single-select (default = opsi pertama) ----
-    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0], suasana: '__random__' };
+    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0], suasana: '__random__', suasanaCustom: '' };
     let anglePool = [];
     function nextAngle() {
       if (!anglePool.length) anglePool = [...window.SCRIPT_ANGLES].sort(() => Math.random() - 0.5);
@@ -4949,26 +4970,44 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
 
     // ---- Suasana latar (Acak = dipilih dari kurasi SEKALI per generate) ----
     const suasanaGrid = document.getElementById(`${p}-suasana-grid`);
+    const suasanaCustomEl = document.getElementById(`${p}-suasana-custom`);
     function renderSuasana() {
       const wrap = document.getElementById(`${p}-suasana-wrap`);
       const list = SUASANA[selection.latar];
       selection.suasana = '__random__';
+      selection.suasanaCustom = '';
+      suasanaCustomEl.value = '';
+      suasanaCustomEl.classList.add('hidden');
       if (!list) { wrap.classList.add('hidden'); return; }
       wrap.classList.remove('hidden');
       suasanaGrid.innerHTML = `<button type="button" data-val="__random__" class="theme-chip selected"><i class="fas fa-shuffle"></i>Acak</button>`
-        + list.map(v => `<button type="button" data-val="${window.escHtml(v.label)}" class="theme-chip">${window.escHtml(v.label)}</button>`).join('');
+        + list.map(v => `<button type="button" data-val="${window.escHtml(v.label)}" class="theme-chip">${window.escHtml(v.label)}</button>`).join('')
+        + `<button type="button" data-val="__custom__" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>`;
     }
     suasanaGrid.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-val]'); if (!btn) return;
       suasanaGrid.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
       btn.classList.add('selected');
       selection.suasana = btn.dataset.val;
+      if (btn.dataset.val === '__custom__') {
+        suasanaCustomEl.classList.remove('hidden'); suasanaCustomEl.focus();
+        selection.suasanaCustom = suasanaCustomEl.value.trim();
+      } else {
+        suasanaCustomEl.classList.add('hidden');
+      }
+    });
+    suasanaCustomEl.addEventListener('input', () => {
+      if (selection.suasana === '__custom__') selection.suasanaCustom = suasanaCustomEl.value.trim();
     });
     renderSuasana();
     let currentSuasana = null;
     function resolveSuasana() {
       const list = SUASANA[selection.latar];
       if (!list) { currentSuasana = null; return; }
+      if (selection.suasana === '__custom__') {
+        currentSuasana = selection.suasanaCustom ? { label: 'Custom', en: selection.suasanaCustom } : null;
+        return;
+      }
       currentSuasana = selection.suasana === '__random__'
         ? list[Math.floor(Math.random() * list.length)]
         : (list.find(v => v.label === selection.suasana) || null);
@@ -5216,6 +5255,9 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     const photosBtn = document.getElementById(`${p}-photos-btn`);
     const scriptCard = document.getElementById(`${p}-script-card`);
     const scriptList = document.getElementById(`${p}-script-list`);
+    const captionCard = document.getElementById(`${p}-caption-card`);
+    const captionBody = document.getElementById(`${p}-caption-body`);
+    const recaptionBtn = document.getElementById(`${p}-recaption-btn`);
     const videoAllBtn = document.getElementById(`${p}-video-all-btn`);
     const sheetBtn = document.getElementById(`${p}-sheet-btn`);
     const downloadAllBtn = document.getElementById(`${p}-download-all-btn`);
@@ -5224,6 +5266,8 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       script = null;
       scriptCard.classList.add('hidden');
       scriptList.innerHTML = '';
+      captionCard.classList.add('hidden');
+      captionBody.innerHTML = '';
       photosBtn.disabled = true;
       grid.innerHTML = '';
       [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.add('hidden'));
@@ -5268,6 +5312,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
         renderScript(pl);
         grid.innerHTML = '';
         [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.add('hidden'));
+        generateCaption();
       } catch (err) {
         console.error(err);
         window.uiNotify(t('err.talker-script') + err.message);
@@ -5292,6 +5337,71 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     }
     scriptBtn.addEventListener('click', () => generateScript(scriptBtn));
     rescriptBtn.addEventListener('click', () => generateScript(rescriptBtn));
+
+    // ---- Caption & Hashtag (nyambung dgn naskah) ----
+    function parseTalkerCaption(text) {
+      const secs = [
+        { key: 'short', label: t('cap.short'), re: /===\s*SHORT\s*===([\s\S]*?)(?====|$)/i },
+        { key: 'long', label: t('cap.long'), re: /===\s*LONG\s*===([\s\S]*?)(?====|$)/i },
+        { key: 'hashtag', label: t('cap.hashtag'), re: /===\s*HASHTAG\s*===([\s\S]*?)(?====|$)/i }
+      ];
+      const out = [];
+      secs.forEach(s => { const m = text.match(s.re); if (m && m[1].trim()) out.push({ key: s.key, label: s.label, body: m[1].trim() }); });
+      return out.length ? out : [{ key: 'all', label: t('cap.short'), body: text }];
+    }
+    function renderCaption(parts) {
+      captionBody.innerHTML = parts.map((s, i) => `
+        <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4">
+          <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${window.escHtml(s.label)}</span><button type="button" data-capcopy="${i}" class="text-xs bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
+          <textarea data-capbody="${i}" rows="${s.key === 'hashtag' ? 3 : 5}" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm resize-none">${window.escHtml(s.body)}</textarea>
+        </div>`).join('');
+      captionBody.querySelectorAll('[data-capcopy]').forEach(btn => btn.addEventListener('click', () => {
+        const ta = captionBody.querySelector(`[data-capbody="${btn.dataset.capcopy}"]`);
+        const ok = ta && window.copyText(ta.value);
+        if (!ok && ta) { ta.focus(); ta.select(); }
+        btn.innerHTML = ok ? `<i class="fas fa-check mr-1 pointer-events-none"></i>${t('msg.copied')}` : `<i class="fas fa-i-cursor mr-1 pointer-events-none"></i>${t('msg.press-ctrl-c')}`;
+        setTimeout(() => { btn.innerHTML = `<i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}`; }, 2000);
+      }));
+    }
+    async function generateCaption() {
+      if (!script) return;
+      const segs = readSegments();
+      const monologue = segs.join(' ');
+      const langName = LANG_LABEL[talkerLang] || 'Indonesian';
+      captionCard.classList.remove('hidden');
+      captionBody.innerHTML = `<div class="flex items-center justify-center py-6"><div class="loader"></div><span class="ml-2 text-sm text-gray-500">${t('loading.talker-caption')}</span></div>`;
+      recaptionBtn.disabled = true;
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        const systemPrompt = `You are a social media copywriter for short-form talking-head video (TikTok, Instagram Reels, YouTube Shorts). Based on the monologue script below, write ready-to-post captions in ${langName} for ONE final vertical video.
+
+Output EXACTLY this structure, using these exact delimiter lines:
+
+=== SHORT ===
+(a punchy caption: strong hook line + 1-2 short lines that capture the core message + a soft CTA like save/follow/share; tasteful emoji allowed)
+=== LONG ===
+(a longer reflective caption: hook line, then 3-5 short lines that expand the message of the monologue, end with a gentle CTA and an invitation to comment)
+=== HASHTAG ===
+(one line: 10-15 relevant hashtags matching the topic/niche, mix specific and popular ones)
+
+Rules:
+1. The caption MUST clearly reflect the theme and message of the monologue — same topic, same emotional tone.
+2. Do NOT quote the monologue word-for-word; rephrase it as a caption that makes people want to watch.
+3. Output ONLY the structure above — no explanations, no extra markdown.`;
+        const userText = `Video title: "${script.title || ''}".\nMonologue script (spoken in the video, in order):\n${monologue}`;
+        const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
+        const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
+        const text = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+        if (!text) throw new Error('Caption kosong dari API.');
+        renderCaption(parseTalkerCaption(text));
+      } catch (err) {
+        console.error(err);
+        captionBody.innerHTML = `<p class="text-sm text-red-500">${t('err.talker-caption')}${window.escHtml(err.message)}</p>`;
+      } finally {
+        recaptionBtn.disabled = false;
+      }
+    }
+    recaptionBtn.addEventListener('click', () => generateCaption());
 
     // showChoiceModal lokal (pola factory — fungsi ini function-scoped di factory lain, tidak global)
     function showChoiceModal(title, choices) {
