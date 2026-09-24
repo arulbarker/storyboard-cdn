@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.talker': 'Influencer Bicara', 'navd.talker': 'Konten bicara per niche',
       'hdr.talker.title': 'AI Influencer Bicara', 'hdr.talker.sub': 'Naskah nyambung antar klip — satukan di CapCut jadi satu monolog utuh.',
       'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Opsional)',
+      'talk.islami-note': 'Naskah dakwah dibuat AI — hindari mengutip ayat/hadits, tinjau sendiri sebelum posting.',
       'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Bicara', 'talk.step-branding': 'Nama Akun di Backdrop (Opsional)',
       'talk.step-duration': 'Platform & Durasi', 'talk.script-lang': 'Bahasa naskah',
       'talk.btn-script': 'Buat Naskah', 'talk.btn-rescript': 'Buat Ulang Naskah', 'talk.btn-photos': 'Generate Foto',
@@ -438,6 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.talker': 'Talking Influencer', 'navd.talker': 'Niche talking-head content',
       'hdr.talker.title': 'AI Talking Influencer', 'hdr.talker.sub': 'The script flows across clips — join them in CapCut into one full monologue.',
       'talk.step-model': 'Model Photo (Required)', 'talk.step-niche': 'Pick a Niche', 'talk.step-topic': 'Topic (Optional)',
+      'talk.islami-note': 'AI-written reminder script — avoid quoting verses/hadith; review it yourself before posting.',
       'talk.step-latar': 'Setting', 'talk.step-gaya': 'Speaking Style', 'talk.step-branding': 'Account Name on Backdrop (Optional)',
       'talk.step-duration': 'Platform & Duration', 'talk.script-lang': 'Script language',
       'talk.btn-script': 'Write Script', 'talk.btn-rescript': 'Rewrite Script', 'talk.btn-photos': 'Generate Photos',
@@ -688,6 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.talker': 'Influencer Bercakap', 'navd.talker': 'Kandungan bercakap ikut niche',
       'hdr.talker.title': 'AI Influencer Bercakap', 'hdr.talker.sub': 'Skrip bersambung antara klip — gabungkan di CapCut jadi satu monolog penuh.',
       'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Pilihan)',
+      'talk.islami-note': 'Skrip tazkirah ditulis AI — elak memetik ayat/hadis; semak sendiri sebelum menyiarkan.',
       'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Percakapan', 'talk.step-branding': 'Nama Akaun di Latar (Pilihan)',
       'talk.step-duration': 'Platform & Tempoh', 'talk.script-lang': 'Bahasa skrip',
       'talk.btn-script': 'Buat Skrip', 'talk.btn-rescript': 'Buat Semula Skrip', 'talk.btn-photos': 'Jana Foto',
@@ -4734,11 +4737,12 @@ Rules:
     const L = { id: 'Bahasa Indonesia', en: 'English', ms: 'Bahasa Melayu (Malay)' };
     const lang = L[sel.lang] || L.id;
     const lo = Math.round(plan.clipSec * 2.2), hi = Math.round(plan.clipSec * 2.6);
+    const islami = sel.niche === 'Islami' ? `**ISLAMIC CONTENT SAFETY (STRICT — applies to this niche only):** This is a gentle Indonesian-style reminder/tausiyah. You MAY use everyday Muslim expressions naturally (Alhamdulillah, InsyaAllah, Masya Allah, Bismillah, Subhanallah). You MUST NEVER quote Quran verses (neither Arabic script NOR Latin transliteration), NEVER quote hadith text, and NEVER cite any source or attribution (no "HR. Bukhari", no "QS. Al-Baqarah:...", no hadith numbers, no narrator names). Keep it to sincere moral reflection and heartfelt du'a expressed ONLY in the meaning, in ${lang}. If a religious point is needed, phrase it as general reflection ("mari kita renungkan...", "semoga Allah...") — never as a quoted proof.\n` : '';
     return `You are an expert scriptwriter for short-form social-media talking-head videos (wisdom quotes, life advice, niche monologues).
 Write ONE continuous ${plan.totalSec}-second spoken monologue in ${lang} for the niche "${sel.niche}"${sel.topic ? ` about this topic: "${sel.topic}"` : ' (pick one strong specific topic yourself that fits the niche)'} then split it into ${plan.clips} consecutive segments — one per ${plan.clipSec}-second video clip.
 
 **SPEAKING STYLE:** ${sel.gaya}. Natural spoken language, warm and personal, like talking to one close friend. No bullet points, no headings — pure speech.
-${sel.angle ? `**NARRATIVE ANGLE (follow strictly):** build the whole monologue as ${sel.angle}.\n` : ''}**CONTINUITY LOCK (MOST IMPORTANT):** the segments are ONE flowing monologue cut into pieces. Every segment MUST end exactly at the end of a complete sentence — NEVER cut a sentence in the middle across two segments; the next segment starts a NEW sentence that continues the same train of thought. NEVER restart, NEVER greet again, NEVER re-introduce or summarize previous segments in segment 2 and onward.
+${sel.angle ? `**NARRATIVE ANGLE (follow strictly):** build the whole monologue as ${sel.angle}.\n` : ''}${islami}**CONTINUITY LOCK (MOST IMPORTANT):** the segments are ONE flowing monologue cut into pieces. Every segment MUST end exactly at the end of a complete sentence — NEVER cut a sentence in the middle across two segments; the next segment starts a NEW sentence that continues the same train of thought. NEVER restart, NEVER greet again, NEVER re-introduce or summarize previous segments in segment 2 and onward.
 **WORD BUDGET:** each segment must be ${lo}–${hi} words (≈2.3 spoken words per second) so it fits exactly in ${plan.clipSec} seconds of relaxed natural speech. Count carefully.
 **STRUCTURE:** segment 1 opens with a strong hook (a bold statement or a question — NO "hai semuanya"-style greeting). Middle segments deliver the substance with concrete, relatable moments. The final segment lands a memorable takeaway plus a soft call-to-action (save/share/follow).
 Respond ONLY with valid JSON: {"title": "short content title in ${lang}", "segments": ["segment 1 text", "segment 2 text", ...]} with EXACTLY ${plan.clips} segments.`;
@@ -4893,6 +4897,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
               ${chipGrid('niche', NICHE_OPTS, true)}
               <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-topic">Topik (Opsional)</label>
               <textarea id="${p}-topic-input" rows="2" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" data-i18n-placeholder="ph.talk-topic" placeholder="Contoh: ikhlas menghadapi ujian hidup"></textarea>
+              <p id="${p}-islami-note" class="hidden text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-2 mt-3" data-i18n="talk.islami-note">Naskah dakwah dibuat AI — hindari mengutip ayat/hadits, tinjau sendiri sebelum posting.</p>
             </div>
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-latar">Latar</h2></div>
@@ -4978,11 +4983,18 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
           selection[key] = btn.dataset.val;
           if (key === 'latar') renderSuasana();
         }
+        if (key === 'niche') updateIslamiNote();
       });
       if (customEl) customEl.addEventListener('input', () => {
         if (gridEl.querySelector('.theme-chip.selected')?.dataset.val === '__custom__') selection[key] = customEl.value.trim();
       });
     });
+
+    const islamiNoteEl = document.getElementById(`${p}-islami-note`);
+    function updateIslamiNote() {
+      if (islamiNoteEl) islamiNoteEl.classList.toggle('hidden', selection.niche !== 'Islami');
+    }
+    updateIslamiNote();
 
     // ---- Suasana latar (Acak = dipilih dari kurasi SEKALI per generate) ----
     const suasanaGrid = document.getElementById(`${p}-suasana-grid`);
