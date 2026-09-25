@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.talker': 'Influencer Bicara', 'navd.talker': 'Konten bicara per niche',
       'hdr.talker.title': 'AI Influencer Bicara', 'hdr.talker.sub': 'Naskah nyambung antar klip — satukan di CapCut jadi satu monolog utuh.',
       'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Opsional)',
+      'talk.step-mode': 'Mode', 'talk.mode-tausiyah': 'Tausiyah', 'talk.mode-doa': 'Doa', 'talk.step-doa': 'Pilih Doa', 'ph.talk-doa-custom': 'Tulis doamu sendiri, cth: mohon dijauhkan dari sifat sombong', 'talk.doa-note': 'Doa dibuat AI — tinjau dulu sebelum posting; hindari mengutip ayat/hadits.',
       'talk.islami-note': 'Naskah dakwah dibuat AI — hindari mengutip ayat/hadits, tinjau sendiri sebelum posting.',
       'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Bicara', 'talk.step-branding': 'Nama Akun di Backdrop (Opsional)',
       'talk.step-duration': 'Platform & Durasi', 'talk.script-lang': 'Bahasa naskah',
@@ -439,6 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.talker': 'Talking Influencer', 'navd.talker': 'Niche talking-head content',
       'hdr.talker.title': 'AI Talking Influencer', 'hdr.talker.sub': 'The script flows across clips — join them in CapCut into one full monologue.',
       'talk.step-model': 'Model Photo (Required)', 'talk.step-niche': 'Pick a Niche', 'talk.step-topic': 'Topic (Optional)',
+      'talk.step-mode': 'Mode', 'talk.mode-tausiyah': 'Reminder', 'talk.mode-doa': 'Prayer', 'talk.step-doa': 'Pick a Prayer', 'ph.talk-doa-custom': 'Write your own prayer, e.g. asking to be kept from arrogance', 'talk.doa-note': 'AI-generated prayer — review it before posting; avoid quoting verses/hadith.',
       'talk.islami-note': 'AI-written reminder script — avoid quoting verses/hadith; review it yourself before posting.',
       'talk.step-latar': 'Setting', 'talk.step-gaya': 'Speaking Style', 'talk.step-branding': 'Account Name on Backdrop (Optional)',
       'talk.step-duration': 'Platform & Duration', 'talk.script-lang': 'Script language',
@@ -690,6 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.talker': 'Influencer Bercakap', 'navd.talker': 'Kandungan bercakap ikut niche',
       'hdr.talker.title': 'AI Influencer Bercakap', 'hdr.talker.sub': 'Skrip bersambung antara klip — gabungkan di CapCut jadi satu monolog penuh.',
       'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Pilihan)',
+      'talk.step-mode': 'Mod', 'talk.mode-tausiyah': 'Tausiah', 'talk.mode-doa': 'Doa', 'talk.step-doa': 'Pilih Doa', 'ph.talk-doa-custom': 'Tulis doa anda sendiri, cth: mohon dijauhkan daripada sifat sombong', 'talk.doa-note': 'Doa dijana AI — semak dahulu sebelum posting; elak memetik ayat/hadis.',
       'talk.islami-note': 'Skrip tazkirah ditulis AI — elak memetik ayat/hadis; semak sendiri sebelum menyiarkan.',
       'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Percakapan', 'talk.step-branding': 'Nama Akaun di Latar (Pilihan)',
       'talk.step-duration': 'Platform & Tempoh', 'talk.script-lang': 'Bahasa skrip',
@@ -4739,6 +4742,20 @@ Rules:
     const lo = Math.round(plan.clipSec * 2.0), hi = Math.round(plan.clipSec * 2.3);
     const maxChars = Math.round(plan.clipSec * 16);
     const islami = sel.niche === 'Islami' ? `**ISLAMIC CONTENT SAFETY (STRICT — applies to this niche only):** This is a gentle Indonesian-style reminder/tausiyah. You MAY use everyday Muslim expressions naturally (Alhamdulillah, InsyaAllah, Masya Allah, Bismillah, Subhanallah). You MUST NEVER quote Quran verses (neither Arabic script NOR Latin transliteration), NEVER quote hadith text, and NEVER cite any source or attribution (no "HR. Bukhari", no "QS. Al-Baqarah:...", no hadith numbers, no narrator names). Keep it to sincere moral reflection and heartfelt du'a expressed ONLY in the meaning, in ${lang}. If a religious point is needed, phrase it as general reflection ("mari kita renungkan...", "semoga Allah...") — never as a quoted proof.\n` : '';
+    if (sel.niche === 'Islami' && sel.mode === 'doa') {
+      const doaTheme = sel.doaTopic
+        ? `The prayer is specifically about: "${sel.doaTopic}".`
+        : 'Choose one strong, universally relatable prayer theme yourself (seeking forgiveness, sustenance, health, ease of affairs, or peace of heart).';
+      return `You are writing a sincere, heartfelt personal prayer (du'a / munajat) spoken aloud by one person in a short-form talking-head video, in ${lang}.
+Write ONE continuous ${plan.totalSec}-second spoken prayer in ${lang}, then split it into ${plan.clips} consecutive segments — one per ${plan.clipSec}-second video clip. ${doaTheme}
+
+**FORM (MOST IMPORTANT):** this is a PRIVATE PRAYER addressed to Allah in the FIRST PERSON ("aku"/"hamba"), NOT an influencer monologue and NOT advice to the audience. Speak directly TO Allah ("Ya Allah, ...") from the heart. Do NOT open with an audience hook like "Pernahkah kamu..." / "Have you ever...". Do NOT address or talk about the viewer.
+**SPEAKING STYLE:** humble, calm, sincere and prayerful — like a quiet whispered munajat. Natural spoken language, no bullet points, no headings — pure heartfelt speech.
+${islami}**CONTINUITY LOCK (MOST IMPORTANT):** the segments are ONE flowing prayer cut into pieces. Every segment MUST end exactly at the end of a complete sentence — NEVER cut a sentence in the middle across two segments; the next segment starts a NEW sentence that continues the same plea. NEVER restart, NEVER greet again, NEVER re-introduce or summarize previous segments in segment 2 and onward.
+**LENGTH BUDGET (CRITICAL — get this right):** each segment must be ${lo}–${hi} words AND at most ${maxChars} characters (≈2 relaxed spoken words per second). AIM for the FULL range — a good segment is close to ${hi} words / near ${maxChars} characters. Do NOT undershoot. Only trim if a segment goes OVER ${maxChars} characters. The sentence should finish COMFORTABLY, landing a beat before the ${plan.clipSec}-second clip ends, because the video model needs a small breath at the start and end. Use natural, everyday phrasing.
+**PRAYER STRUCTURE (adab):** segment 1 OPENS by praising or calling upon Allah (e.g. "Ya Allah, Yang Maha Pengampun...") and begins the plea — NO greeting to the audience. The MIDDLE segments pour out specific, concrete and relatable requests that fit the theme. The FINAL segment closes with hope and ends with "aamiin" — NO call-to-action, do NOT say "save/share/follow", and do NOT ask viewers to comment or type amin.
+Respond ONLY with valid JSON: {"title": "short prayer title in ${lang}", "segments": ["segment 1 text", "segment 2 text", ...]} with EXACTLY ${plan.clips} segments.`;
+    }
     return `You are an expert scriptwriter for short-form social-media talking-head videos (wisdom quotes, life advice, niche monologues).
 Write ONE continuous ${plan.totalSec}-second spoken monologue in ${lang} for the niche "${sel.niche}"${sel.topic ? ` about this topic: "${sel.topic}"` : ' (pick one strong specific topic yourself that fits the niche)'} then split it into ${plan.clips} consecutive segments — one per ${plan.clipSec}-second video clip.
 
@@ -4753,6 +4770,9 @@ Respond ONLY with valid JSON: {"title": "short content title in ${lang}", "segme
     const L = { id: 'Bahasa Indonesia', en: 'English', ms: 'Bahasa Melayu (Malay)' };
     const lang = L[sel.lang] || L.id;
     const isFirst = idx === 0, isLast = idx === plan.clips - 1;
+    const delivery = sel.mode === 'doa'
+      ? 'praying with deep humility, calm sincere devotion (khusyuk), eyes softly focused'
+      : sel.gaya;
     const open = isFirst
       ? 'This is the OPENING clip: the person starts speaking with confident hook energy from the very first frame.'
       : `This clip CONTINUES one ongoing monologue (clip ${idx + 1} of ${plan.clips}): the person is ALREADY mid-talk — NO greeting, NO restart, NO long pause at the start; they begin a new sentence that continues the ongoing train of thought from the previous clip.`;
@@ -4764,7 +4784,7 @@ Respond ONLY with valid JSON: {"title": "short content title in ${lang}", "segme
 SPEECH — the person speaks these EXACT words in ${lang}, nothing more, nothing less:
 "${segment}"
 
-DELIVERY: ${sel.gaya}. ${open} ${end}
+DELIVERY: ${delivery}. ${open} ${end}
 CAMERA & MOTION: static podcast-style framing, subtle micro-movements only — natural blinks, small head tilts, light hand gestures; identity, outfit, background and lighting stay EXACTLY as in the image. The camera angle stays EXACTLY as in the image (multi-cam podcast setup): if the image shows a side angle, the person still speaks toward the main front camera, NOT into this lens.
 AUDIO: the person's clear voice only, soft room tone; NO music, NO other voices.
 ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the background stays as is).`;
@@ -4779,6 +4799,16 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     const NICHE_OPTS = ['Kata Bijak / Motivasi', 'Islami', 'Parenting', 'Kerja Harian / Karier', 'Keuangan', 'Cinta / Hubungan', 'Kesehatan Mental'];
     const LATAR_OPTS = ['Studio Podcast', 'Ruang Tamu Cozy', 'Kafe', 'Dalam Mobil', 'Taman'];
     const GAYA_OPTS = ['Tenang / Reflektif', 'Semangat / Motivator', 'Storytelling', 'Ceramah Lembut'];
+    const DOA_OPTS = [
+      { label: 'Mohon Ampunan & Taubat', val: 'memohon ampunan dan taubat atas dosa-dosa' },
+      { label: 'Dilancarkan Rezeki', val: 'memohon rezeki yang halal, lancar dan berkah' },
+      { label: 'Kesehatan & Kesembuhan', val: 'memohon kesehatan dan kesembuhan' },
+      { label: 'Dimudahkan Urusan', val: 'memohon dimudahkan segala urusan dan dijauhkan dari kesulitan' },
+      { label: 'Ketenangan Hati', val: 'memohon ketenangan hati dan ketenteraman jiwa' },
+      { label: 'Kebaikan untuk Keluarga', val: 'memohon kebaikan, perlindungan dan keberkahan untuk keluarga' },
+      { label: 'Jodoh & Rumah Tangga', val: 'memohon jodoh yang baik dan rumah tangga yang sakinah' },
+      { label: 'Dikuatkan Iman', val: 'memohon dikuatkan iman dan diteguhkan dalam ketaatan' }
+    ];
     const LATAR_EN = {
       'Studio Podcast': 'in a cozy professional podcast studio: seated at a dark wooden table with a large broadcast microphone on a boom arm in front, warm wood-panel wall and soft warm lamps softly blurred behind',
       'Ruang Tamu Cozy': 'in a warm cozy living room: seated on a sofa with soft cushions, a warm lamp and house plants softly blurred behind',
@@ -4896,8 +4926,22 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">2</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-niche">Pilih Niche</h2></div>
               ${chipGrid('niche', NICHE_OPTS, true)}
-              <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-topic">Topik (Opsional)</label>
-              <textarea id="${p}-topic-input" rows="2" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" data-i18n-placeholder="ph.talk-topic" placeholder="Contoh: ikhlas menghadapi ujian hidup"></textarea>
+              <div id="${p}-mode-wrap" class="hidden mt-4">
+                <label class="block text-sm font-semibold text-gray-600 mb-1" data-i18n="talk.step-mode">Mode</label>
+                <div id="${p}-mode-grid" class="flex flex-wrap gap-2">
+                  <button type="button" data-val="tausiyah" class="theme-chip selected" data-i18n="talk.mode-tausiyah">Tausiyah</button>
+                  <button type="button" data-val="doa" class="theme-chip" data-i18n="talk.mode-doa">Doa</button>
+                </div>
+              </div>
+              <div id="${p}-doa-wrap" class="hidden mt-4">
+                <label class="block text-sm font-semibold text-gray-600 mb-1" data-i18n="talk.step-doa">Pilih Doa</label>
+                <div id="${p}-doa-grid" class="grid gap-2 p-2 border-2 border-gray-100 rounded-xl" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));"></div>
+                <input type="text" id="${p}-doa-custom" class="hidden w-full mt-2 p-3 bg-white border-2 border-violet-300 rounded-xl text-sm focus:border-violet-500 transition" data-i18n-placeholder="ph.talk-doa-custom" placeholder="Tulis doamu sendiri, cth: mohon dijauhkan dari sifat sombong">
+              </div>
+              <div id="${p}-topic-wrap">
+                <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-topic">Topik (Opsional)</label>
+                <textarea id="${p}-topic-input" rows="2" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl focus:border-violet-500 transition resize-none" data-i18n-placeholder="ph.talk-topic" placeholder="Contoh: ikhlas menghadapi ujian hidup"></textarea>
+              </div>
               <p id="${p}-islami-note" class="hidden text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-2 mt-3" data-i18n="talk.islami-note">Naskah dakwah dibuat AI — hindari mengutip ayat/hadits, tinjau sendiri sebelum posting.</p>
             </div>
             <div class="card p-6">
@@ -4962,7 +5006,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       </div>`;
 
     // ---- Chip single-select (default = opsi pertama) ----
-    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0], suasana: '__random__', suasanaCustom: '' };
+    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0], suasana: '__random__', suasanaCustom: '', mode: 'tausiyah', doaTopic: '' };
     let anglePool = [];
     function nextAngle() {
       if (!anglePool.length) anglePool = [...window.SCRIPT_ANGLES].sort(() => Math.random() - 0.5);
@@ -4992,9 +5036,69 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     });
 
     const islamiNoteEl = document.getElementById(`${p}-islami-note`);
-    function updateIslamiNote() {
-      if (islamiNoteEl) islamiNoteEl.classList.toggle('hidden', selection.niche !== 'Islami');
+    const modeWrap = document.getElementById(`${p}-mode-wrap`);
+    const modeGrid = document.getElementById(`${p}-mode-grid`);
+    const topicWrap = document.getElementById(`${p}-topic-wrap`);
+    const doaWrap = document.getElementById(`${p}-doa-wrap`);
+    const doaGrid = document.getElementById(`${p}-doa-grid`);
+    const doaCustomEl = document.getElementById(`${p}-doa-custom`);
+    let doaRendered = false;
+
+    function renderDoa() {
+      doaGrid.innerHTML = DOA_OPTS.map((o, i) => `<button type="button" data-val="${window.escHtml(o.val)}" class="theme-chip${i === 0 ? ' selected' : ''}">${window.escHtml(o.label)}</button>`).join('')
+        + `<button type="button" data-val="__custom__" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>`;
+      selection.doaTopic = DOA_OPTS[0].val;
+      doaCustomEl.value = '';
+      doaCustomEl.classList.add('hidden');
+      doaRendered = true;
     }
+
+    function setModeChip(val) {
+      modeGrid.querySelectorAll('.theme-chip').forEach(x => x.classList.toggle('selected', x.dataset.val === val));
+    }
+
+    function updateIslamiNote() {
+      const isIslami = selection.niche === 'Islami';
+      if (modeWrap) modeWrap.classList.toggle('hidden', !isIslami);
+      if (!isIslami) { selection.mode = 'tausiyah'; setModeChip('tausiyah'); }
+      const isDoa = isIslami && selection.mode === 'doa';
+      if (isDoa && !doaRendered) renderDoa();
+      if (doaWrap) doaWrap.classList.toggle('hidden', !isDoa);
+      if (topicWrap) topicWrap.classList.toggle('hidden', isDoa);
+      if (islamiNoteEl) {
+        islamiNoteEl.classList.toggle('hidden', !isIslami);
+        const noteKey = isDoa ? 'talk.doa-note' : 'talk.islami-note';
+        islamiNoteEl.setAttribute('data-i18n', noteKey);
+        islamiNoteEl.textContent = t(noteKey);
+      }
+    }
+
+    modeGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-val]'); if (!btn) return;
+      setModeChip(btn.dataset.val);
+      selection.mode = btn.dataset.val;
+      updateIslamiNote();
+      resetOutputs();
+    });
+
+    doaGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-val]'); if (!btn) return;
+      doaGrid.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
+      btn.classList.add('selected');
+      if (btn.dataset.val === '__custom__') {
+        doaCustomEl.classList.remove('hidden'); doaCustomEl.focus();
+        selection.doaTopic = doaCustomEl.value.trim();
+      } else {
+        doaCustomEl.classList.add('hidden');
+        selection.doaTopic = btn.dataset.val;
+      }
+      resetOutputs();
+    });
+
+    doaCustomEl.addEventListener('input', () => {
+      if (doaGrid.querySelector('.theme-chip.selected')?.dataset.val === '__custom__') selection.doaTopic = doaCustomEl.value.trim();
+    });
+
     updateIslamiNote();
 
     // ---- Suasana latar (Acak = dipilih dari kurasi SEKALI per generate) ----
@@ -5304,8 +5408,11 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     }
 
     function currentSel() {
+      const isDoa = selection.niche === 'Islami' && selection.mode === 'doa';
       return {
         niche: selection.niche, topic: document.getElementById(`${p}-topic-input`).value.trim(),
+        mode: selection.niche === 'Islami' ? selection.mode : 'tausiyah',
+        doaTopic: isDoa ? (selection.doaTopic || '') : '',
         latar: selection.latar, gaya: selection.gaya,
         branding: document.getElementById(`${p}-branding-input`).value.trim(), lang: talkerLang
       };
