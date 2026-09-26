@@ -189,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hdr.talker.title': 'AI Influencer Bicara', 'hdr.talker.sub': 'Naskah nyambung antar klip — satukan di CapCut jadi satu monolog utuh.',
       'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Opsional)',
       'talk.step-mode': 'Mode', 'talk.mode-tausiyah': 'Tausiyah', 'talk.mode-doa': 'Doa', 'talk.step-doa': 'Pilih Doa', 'ph.talk-doa-custom': 'Tulis doamu sendiri, cth: mohon dijauhkan dari sifat sombong', 'talk.doa-note': 'Doa dibuat AI — tinjau dulu sebelum posting; hindari mengutip ayat/hadits.',
+      'talk.step-format': 'Format Sesi', 'talk.format-solo': '1 Orang', 'talk.format-duet': '2 Orang (Tanya-Jawab)', 'talk.host-title': 'Foto Host (Penanya)', 'field.upload-click-host': 'Klik untuk pilih foto host', 'talk.model-role-hint': 'Ini narasumber yang menjawab.', 'warn.talker-host-required': 'Upload foto host dulu untuk mode 2 orang.',
       'talk.islami-note': 'Naskah dakwah dibuat AI — hindari mengutip ayat/hadits, tinjau sendiri sebelum posting.',
       'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Bicara', 'talk.step-branding': 'Nama Akun di Backdrop (Opsional)',
       'talk.step-duration': 'Platform & Durasi', 'talk.script-lang': 'Bahasa naskah',
@@ -441,6 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hdr.talker.title': 'AI Talking Influencer', 'hdr.talker.sub': 'The script flows across clips — join them in CapCut into one full monologue.',
       'talk.step-model': 'Model Photo (Required)', 'talk.step-niche': 'Pick a Niche', 'talk.step-topic': 'Topic (Optional)',
       'talk.step-mode': 'Mode', 'talk.mode-tausiyah': 'Reminder', 'talk.mode-doa': 'Prayer', 'talk.step-doa': 'Pick a Prayer', 'ph.talk-doa-custom': 'Write your own prayer, e.g. asking to be kept from arrogance', 'talk.doa-note': 'AI-generated prayer — review it before posting; avoid quoting verses/hadith.',
+      'talk.step-format': 'Session Format', 'talk.format-solo': '1 Person', 'talk.format-duet': '2 People (Q&A)', 'talk.host-title': 'Host Photo (Asker)', 'field.upload-click-host': 'Click to pick host photo', 'talk.model-role-hint': 'This is the expert who answers.', 'warn.talker-host-required': 'Upload the host photo first for 2-person mode.',
       'talk.islami-note': 'AI-written reminder script — avoid quoting verses/hadith; review it yourself before posting.',
       'talk.step-latar': 'Setting', 'talk.step-gaya': 'Speaking Style', 'talk.step-branding': 'Account Name on Backdrop (Optional)',
       'talk.step-duration': 'Platform & Duration', 'talk.script-lang': 'Script language',
@@ -693,6 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hdr.talker.title': 'AI Influencer Bercakap', 'hdr.talker.sub': 'Skrip bersambung antara klip — gabungkan di CapCut jadi satu monolog penuh.',
       'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Pilihan)',
       'talk.step-mode': 'Mod', 'talk.mode-tausiyah': 'Tausiah', 'talk.mode-doa': 'Doa', 'talk.step-doa': 'Pilih Doa', 'ph.talk-doa-custom': 'Tulis doa anda sendiri, cth: mohon dijauhkan daripada sifat sombong', 'talk.doa-note': 'Doa dijana AI — semak dahulu sebelum posting; elak memetik ayat/hadis.',
+      'talk.step-format': 'Format Sesi', 'talk.format-solo': '1 Orang', 'talk.format-duet': '2 Orang (Soal-Jawab)', 'talk.host-title': 'Foto Hos (Penyoal)', 'field.upload-click-host': 'Klik untuk pilih foto hos', 'talk.model-role-hint': 'Ini narasumber yang menjawab.', 'warn.talker-host-required': 'Muat naik foto hos dahulu untuk mod 2 orang.',
       'talk.islami-note': 'Skrip tazkirah ditulis AI — elak memetik ayat/hadis; semak sendiri sebelum menyiarkan.',
       'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Percakapan', 'talk.step-branding': 'Nama Akaun di Latar (Pilihan)',
       'talk.step-duration': 'Platform & Tempoh', 'talk.script-lang': 'Bahasa skrip',
@@ -4742,6 +4745,21 @@ Rules:
     const lo = Math.round(plan.clipSec * 2.0), hi = Math.round(plan.clipSec * 2.3);
     const maxChars = Math.round(plan.clipSec * 16);
     const islami = sel.niche === 'Islami' ? `**ISLAMIC CONTENT SAFETY (STRICT — applies to this niche only):** This is a gentle Indonesian-style reminder/tausiyah. You MAY use everyday Muslim expressions naturally (Alhamdulillah, InsyaAllah, Masya Allah, Bismillah, Subhanallah). You MUST NEVER quote Quran verses (neither Arabic script NOR Latin transliteration), NEVER quote hadith text, and NEVER cite any source or attribution (no "HR. Bukhari", no "QS. Al-Baqarah:...", no hadith numbers, no narrator names). Keep it to sincere moral reflection and heartfelt du'a expressed ONLY in the meaning, in ${lang}. If a religious point is needed, phrase it as general reflection ("mari kita renungkan...", "semoga Allah...") — never as a quoted proof.\n` : '';
+    if (sel.duet) {
+      const answerClips = plan.clips - 1;
+      return `You are scripting a short-form talking-head INTERVIEW in ${lang} for the niche "${sel.niche}"${sel.topic ? ` about this topic: "${sel.topic}"` : ' (pick one strong specific topic yourself that fits the niche)'}.
+There are TWO speakers across ${plan.clips} consecutive ${plan.clipSec}-second clips: a HOST who asks, and an EXPERT who answers.
+
+**SEGMENT ROLES (STRICT):**
+- Segment 1 = the HOST's QUESTION only: one punchy, natural spoken question that sets up the topic and makes viewers curious. It stands alone as a hook question — it is NOT an answer and must NOT start answering.
+- Segments 2..${plan.clips} = the EXPERT's ANSWER: directly answer the host's question, delivered as ONE flowing response split across ${answerClips} clip(s).
+
+**SPEAKING STYLE:** ${sel.gaya}. Natural spoken language, warm and personal. No bullet points, no headings — pure speech.
+${sel.angle ? `**NARRATIVE ANGLE for the answer (follow strictly):** frame the expert's answer as ${sel.angle}.\n` : ''}${islami}**CONTINUITY LOCK (answer only):** segments 2 onward are ONE flowing answer cut into pieces. Every segment MUST end exactly at the end of a complete sentence — NEVER cut a sentence in the middle across two segments. Segment 2 starts the answer directly (no greeting, no "thanks for the question"), and later answer segments continue the same train of thought WITHOUT restarting. The QUESTION (segment 1) is independent and does not need to connect grammatically to segment 2.
+**LENGTH BUDGET (CRITICAL — get this right):** each segment must be ${lo}–${hi} words AND at most ${maxChars} characters (≈2 relaxed spoken words per second). AIM for the FULL range — a good segment is close to ${hi} words / near ${maxChars} characters. Do NOT undershoot. Only trim if a segment goes OVER ${maxChars} characters. Each sentence should finish COMFORTABLY, landing a beat before the ${plan.clipSec}-second clip ends.
+**STRUCTURE:** the question is specific and engaging; the answer gives concrete, relatable value and the final segment lands a memorable takeaway (NO save/share/follow call-to-action).
+Respond ONLY with valid JSON: {"title": "short interview title in ${lang}", "segments": ["host question", "answer part 1", ...]} with EXACTLY ${plan.clips} segments.`;
+    }
     if (sel.niche === 'Islami' && sel.mode === 'doa') {
       const doaTheme = sel.doaTopic
         ? `The prayer is specifically about: "${sel.doaTopic}".`
@@ -4770,10 +4788,18 @@ Respond ONLY with valid JSON: {"title": "short content title in ${lang}", "segme
     const L = { id: 'Bahasa Indonesia', en: 'English', ms: 'Bahasa Melayu (Malay)' };
     const lang = L[sel.lang] || L.id;
     const isFirst = idx === 0, isLast = idx === plan.clips - 1;
-    const delivery = sel.mode === 'doa'
+    const isHostAsk = sel.duet && isFirst;
+    const isFirstAnswer = sel.duet && idx === 1;
+    const delivery = isHostAsk
+      ? 'a friendly, curious interviewer asking a question'
+      : sel.mode === 'doa'
       ? 'praying with deep humility, calm sincere devotion (khusyuk), eyes softly focused'
       : sel.gaya;
-    const open = isFirst
+    const open = isHostAsk
+      ? 'This is the OPENING clip: a HOST/interviewer speaks a question directly to camera with curious, engaging energy — this person is ASKING, not answering.'
+      : isFirstAnswer
+      ? `This clip is the interviewee ANSWERING the host's question (clip ${idx + 1} of ${plan.clips}): they begin their answer directly to camera — NO greeting, NO restart, NO new intro, just start responding.`
+      : isFirst
       ? 'This is the OPENING clip: the person starts speaking with confident hook energy from the very first frame.'
       : `This clip CONTINUES one ongoing monologue (clip ${idx + 1} of ${plan.clips}): the person is ALREADY mid-talk — NO greeting, NO restart, NO long pause at the start; they begin a new sentence that continues the ongoing train of thought from the previous clip.`;
     const end = isLast
@@ -4889,6 +4915,13 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
           <div class="lg:col-span-1 space-y-6">
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">1</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-model">Foto Model (Wajib)</h2></div>
+              <div id="${p}-format-wrap" class="mb-4">
+                <label class="block text-sm font-semibold text-gray-600 mb-1" data-i18n="talk.step-format">Format Sesi</label>
+                <div id="${p}-format-grid" class="flex flex-wrap gap-2">
+                  <button type="button" data-val="solo" class="theme-chip selected" data-i18n="talk.format-solo">1 Orang</button>
+                  <button type="button" data-val="duet" class="theme-chip" data-i18n="talk.format-duet">2 Orang (Tanya-Jawab)</button>
+                </div>
+              </div>
               <div id="${p}-model-image-upload-area">
                 <label for="${p}-model-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
                   <i class="fas fa-user text-3xl mb-2"></i><span class="font-medium" data-i18n="field.upload-click-model">Klik untuk pilih foto model</span>
@@ -4900,6 +4933,21 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
                 <button id="${p}-model-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
               </div>
               <button type="button" id="${p}-library-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden"><i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span></button>
+              <p id="${p}-model-role-hint" class="hidden text-xs text-violet-600 mt-2" data-i18n="talk.model-role-hint">Ini narasumber yang menjawab.</p>
+              <div id="${p}-host-wrap" class="hidden mt-4 pt-4 border-t border-gray-100">
+                <div class="text-sm font-semibold text-gray-700 mb-2" data-i18n="talk.host-title">Foto Host (Penanya)</div>
+                <div id="${p}-host-image-upload-area">
+                  <label for="${p}-host-image-input" class="file-input-label rounded-xl p-6 text-center text-gray-500 flex flex-col items-center justify-center min-h-[120px]">
+                    <i class="fas fa-user-tie text-3xl mb-2"></i><span class="font-medium" data-i18n="field.upload-click-host">Klik untuk pilih foto host</span>
+                  </label>
+                  <input type="file" id="${p}-host-image-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+                </div>
+                <div id="${p}-host-image-preview-container" class="hidden mt-2 relative">
+                  <img id="${p}-host-image-preview" src="#" alt="Host" class="rounded-xl w-full h-auto object-contain">
+                  <button id="${p}-host-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
+                </div>
+                <button type="button" id="${p}-host-library-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden"><i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span></button>
+              </div>
             </div>
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">1b</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-product">Foto Produk (Opsional, maks 5)</h2></div>
@@ -5006,7 +5054,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       </div>`;
 
     // ---- Chip single-select (default = opsi pertama) ----
-    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0], suasana: '__random__', suasanaCustom: '', mode: 'tausiyah', doaTopic: '' };
+    const selection = { niche: NICHE_OPTS[0], latar: LATAR_OPTS[0], gaya: GAYA_OPTS[0], suasana: '__random__', suasanaCustom: '', mode: 'tausiyah', doaTopic: '', duet: false };
     let anglePool = [];
     function nextAngle() {
       if (!anglePool.length) anglePool = [...window.SCRIPT_ANGLES].sort(() => Math.random() - 0.5);
@@ -5196,6 +5244,61 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     document.addEventListener('ssp-models-changed', refreshLibBtn);
     refreshLibBtn();
 
+    // ---- Slot foto host (penanya, hanya mode 2 orang) ----
+    let hostBase64 = null, hostMime = null;
+    const hostInput = document.getElementById(`${p}-host-image-input`);
+    const hostUploadArea = document.getElementById(`${p}-host-image-upload-area`);
+    const hostPreviewContainer = document.getElementById(`${p}-host-image-preview-container`);
+    const hostPreview = document.getElementById(`${p}-host-image-preview`);
+    function setHost(b64, mime, srcUrl) {
+      hostBase64 = b64; hostMime = mime;
+      hostPreview.src = srcUrl;
+      hostUploadArea.classList.add('hidden');
+      hostPreviewContainer.classList.remove('hidden');
+    }
+    hostInput.addEventListener('change', async () => {
+      const file = hostInput.files && hostInput.files[0]; if (!file) return;
+      try {
+        const { base64, mimeType } = await window.compressImage(file);
+        setHost(base64, mimeType, `data:${mimeType};base64,${base64}`);
+      } catch (err) { window.uiNotify(t('warn.file-unreadable')); }
+    });
+    document.getElementById(`${p}-host-remove-btn`).addEventListener('click', () => {
+      hostBase64 = null; hostMime = null; hostInput.value = '';
+      hostUploadArea.classList.remove('hidden'); hostPreviewContainer.classList.add('hidden');
+    });
+    const hostLibBtn = document.getElementById(`${p}-host-library-btn`);
+    hostLibBtn.addEventListener('click', async () => {
+      let list = [];
+      try { list = await window.modelDB.list(); } catch (err) { console.error(err); }
+      if (!list.length) { window.uiNotify(t('warn.no-models')); return; }
+      showChoiceModal(t('btn.pick-model-library'), list.map(m => ({
+        label: `<span class="flex items-center gap-3"><img src="${URL.createObjectURL(m.blob)}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span>`,
+        onPick: async () => setHost(await window.blobToB64(m.blob), m.mime, URL.createObjectURL(m.blob))
+      })));
+    });
+    function refreshHostLibBtn() {
+      if (!selection.duet) { hostLibBtn.classList.add('hidden'); return; }
+      window.modelDB.list().then(l => hostLibBtn.classList.toggle('hidden', !l.length)).catch(() => hostLibBtn.classList.add('hidden'));
+    }
+    document.addEventListener('ssp-models-changed', refreshHostLibBtn);
+
+    // ---- Toggle Format Sesi (1 orang / 2 orang) ----
+    const formatGrid = document.getElementById(`${p}-format-grid`);
+    const hostWrap = document.getElementById(`${p}-host-wrap`);
+    const modelRoleHint = document.getElementById(`${p}-model-role-hint`);
+    formatGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-val]'); if (!btn) return;
+      formatGrid.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
+      btn.classList.add('selected');
+      selection.duet = btn.dataset.val === 'duet';
+      hostWrap.classList.toggle('hidden', !selection.duet);
+      modelRoleHint.classList.toggle('hidden', !selection.duet);
+      refreshHostLibBtn();
+      renderDurPanel();
+      resetOutputs();
+    });
+
     // ---- Foto produk (opsional, maks 5) — influencer memakainya, cocok untuk affiliate ----
     const PRODUCT_MAX = 5;
     const products = []; // {b64, mime, name, cloudId} — cloudId terisi = sudah di pustaka akun
@@ -5350,7 +5453,8 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     }
     function renderDurPanel() {
       const pf = window.TALKER_PLATFORMS[state.platform];
-      const opts = []; for (let s = pf.clipSec; s <= 60; s += pf.clipSec) opts.push(s);
+      const minSec = selection.duet ? pf.clipSec * 2 : pf.clipSec;
+      const opts = []; for (let s = minSec; s <= 60; s += pf.clipSec) opts.push(s);
       if (!opts.includes(state.totalSec)) state.totalSec = opts[opts.length - 1];
       const pl = plan();
       durPanel.innerHTML = `
@@ -5414,7 +5518,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
         mode: selection.niche === 'Islami' ? selection.mode : 'tausiyah',
         doaTopic: isDoa ? (selection.doaTopic || '') : '',
         latar: selection.latar, gaya: selection.gaya,
-        branding: document.getElementById(`${p}-branding-input`).value.trim(), lang: talkerLang
+        branding: document.getElementById(`${p}-branding-input`).value.trim(), lang: talkerLang, duet: selection.duet
       };
     }
 
@@ -5586,24 +5690,29 @@ Rules:
       if (angleMode === 'center') return FRONT_CAM;
       if (angleMode === 'left') return ANGLES[0];
       if (angleMode === 'right') return ANGLES[1];
-      if (k === 1 || k === total) return FRONT_CAM;
-      return ANGLES[(k - 2) % ANGLES.length];
+      const fsc = selection.duet ? 2 : 1;
+      if (k === 1 || k === fsc || k === total) return FRONT_CAM;
+      return ANGLES[(k - fsc - 1) % ANGLES.length];
     }
     function scenePrompt(k, total) {
       const sel = currentSel();
       const base = LATAR_EN[sel.latar] || `in this setting: ${sel.latar}`;
       const setting = currentSuasana ? `${base}. AMBIENCE (override the default mood of this setting with this specific atmosphere): ${currentSuasana.en}` : base;
-      const hasBrand = k === 1 && brandB64;
-      const branding = sel.branding
-        ? `A backdrop sign/wall text behind the person reads EXACTLY "${sel.branding}" — spell it perfectly letter by letter; ${hasBrand ? 'apart from the sponsor logo prop, this is the only other readable text in the scene.' : 'this is the ONLY readable text in the scene.'}`
-        : (hasBrand ? 'No readable text anywhere in the scene except the sponsor logo prop.' : 'No readable text anywhere in the scene.');
-      const productLine = (k === 1 && products.length)
+      const fsc = selection.duet ? 2 : 1;
+      const isHost = selection.duet && k === 1;
+      const hasBrand = k === fsc && brandB64;
+      const branding = isHost
+        ? 'No readable text anywhere in the scene.'
+        : (sel.branding
+          ? `A backdrop sign/wall text behind the person reads EXACTLY "${sel.branding}" — spell it perfectly letter by letter; ${hasBrand ? 'apart from the sponsor logo prop, this is the only other readable text in the scene.' : 'this is the ONLY readable text in the scene.'}`
+          : (hasBrand ? 'No readable text anywhere in the scene except the sponsor logo prop.' : 'No readable text anywhere in the scene.'));
+      const productLine = (k === fsc && products.length)
         ? ' PRODUCTS: the person WEARS/USES the exact products from the additional product reference photos, worn or held naturally and clearly visible — if a product replaces part of the outfit (clothing, shoes), wear the product version; same design, color and material.'
         : '';
       const brandLine = hasBrand
         ? ' SPONSOR (MANDATORY — this prop MUST be visible in the frame): a set prop displaying the sponsor brand is REQUIRED — a small tablet screen or acrylic sign standing on the table (or a small standing banner in the background if there is no table) showing the EXACT logo/artwork from the sponsor reference photo. NEVER omit this prop: it stays clearly visible and readable even when a backdrop name/text is also present — the backdrop text and the sponsor prop are two SEPARATE elements that BOTH appear. The person does NOT wear or hold it.'
         : '';
-      return `Photorealistic 9:16 vertical photo from a multi-cam podcast setup. CAMERA ANGLE — THE MOST IMPORTANT RULE, the composition MUST clearly show it: ${angleFor(k, total)}. The subject: the EXACT same person as the reference photo (same face, same hair/hijab, same modest outfit), a social-media content creator mid-speech, ${setting}. ${branding}${productLine}${brandLine} Half-body framing, ${POSES[(k - 1) % POSES.length]}. Warm inviting light, sharp focus on the face, softly blurred background, high-end social media content quality, 8k.`;
+      return `Photorealistic 9:16 vertical photo from a multi-cam podcast setup. CAMERA ANGLE — THE MOST IMPORTANT RULE, the composition MUST clearly show it: ${angleFor(k, total)}. The subject: the EXACT same person as the reference photo (same face, same hair/hijab, same modest outfit), ${isHost ? 'a friendly interviewer/host mid-question, looking at the camera' : 'a social-media content creator mid-speech'}, ${setting}. ${branding}${productLine}${brandLine} Half-body framing, ${POSES[(k - 1) % POSES.length]}. Warm inviting light, sharp focus on the face, softly blurred background, high-end social media content quality, 8k.`;
     }
 
     function cardImgB64(card) {
@@ -5611,6 +5720,14 @@ Rules:
       return m ? m[1] : null;
     }
     function anchorB64() { return cardImgB64(document.getElementById(`${p}-card-1`)); }
+    function personFor(id) {
+      return (selection.duet && id === 1) ? { b64: hostBase64, mime: hostMime } : { b64: modelBase64, mime: modelMime };
+    }
+    function anchorFor(id) {
+      if (!selection.duet) return id === 1 ? null : anchorB64();
+      if (id <= 2) return null;
+      return cardImgB64(document.getElementById(`${p}-card-2`));
+    }
 
     function retryPlaceholder(id) {
       return `<div class="text-center p-3"><p class="text-xs text-red-500 mb-2">${t('msg.scene-failed')}</p><button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-4 py-2 rounded-lg text-sm font-semibold"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>${t('btn.retry')}</button></div>`;
@@ -5631,23 +5748,26 @@ Rules:
       });
     }
 
-    async function generateSingle(id, anchor) {
+    async function generateSingle(id) {
       const card = document.getElementById(`${p}-card-${id}`); if (!card) return;
       const out = card.querySelector(`.${p}-output-container`);
       out.innerHTML = '<div class="loader"></div>';
       const prompt = card.dataset.prompt;
+      const anchor = anchorFor(id);
+      const person = personFor(id);
+      const fsc = selection.duet ? 2 : 1;
       const retries = 3; let lastError = null;
       for (let i = 0; i < retries; i++) {
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
           let refText = `REFERENCE PHOTO 1 (CRITICAL): the FIRST attached image is the person — copy their face, hair/hijab and overall identity EXACTLY.`;
           if (anchor) refText += ` REFERENCE PHOTO 2 (CRITICAL): the SECOND attached image is clip 1 of this SAME video — copy its outfit, setting, backdrop text, sponsor logo prop (if present), lighting and color grade EXACTLY; only the pose/gesture, expression and CAMERA ANGLE may differ. IGNORE the camera angle of both reference photos — compose this scene STRICTLY from the CAMERA ANGLE described below (multi-cam setup, same room and seat), do NOT copy the frontal composition of the references.`;
-          if (id === 1 && products.length) refText += ` PRODUCT REFERENCE PHOTOS (CRITICAL): the ${products.length} additional attached image(s) after the person are products the person WEARS/USES in this scene (clothing worn on the body, shoes on the feet, bag/accessory held or clearly visible) — copy each product's design, color, material and logo EXACTLY; do NOT invent different products.`;
-          if (id === 1 && brandB64) refText += ` SPONSOR BRAND REFERENCE PHOTO (CRITICAL, MANDATORY): the LAST attached image is a sponsor logo/brand — it MUST appear in the frame as a natural set prop (tablet screen or acrylic sign on the table, or a small standing banner in the background), copying the logo's shapes, colors and text EXACTLY. NEVER omit it: even if a backdrop sign/name text is also requested, BOTH must appear — the backdrop text behind the person AND the sponsor logo prop on the table are separate elements. Do NOT change or reinterpret the logo; the person does NOT wear or hold it.`;
-          const parts = [{ text: `${refText}\n\nSCENE TO RENDER: ${prompt}${window.naturalHint(`${p}-natural`)}` }, { inlineData: { mimeType: modelMime || 'image/png', data: modelBase64 } }];
+          if (id === fsc && products.length) refText += ` PRODUCT REFERENCE PHOTOS (CRITICAL): the ${products.length} additional attached image(s) after the person are products the person WEARS/USES in this scene (clothing worn on the body, shoes on the feet, bag/accessory held or clearly visible) — copy each product's design, color, material and logo EXACTLY; do NOT invent different products.`;
+          if (id === fsc && brandB64) refText += ` SPONSOR BRAND REFERENCE PHOTO (CRITICAL, MANDATORY): the LAST attached image is a sponsor logo/brand — it MUST appear in the frame as a natural set prop (tablet screen or acrylic sign on the table, or a small standing banner in the background), copying the logo's shapes, colors and text EXACTLY. NEVER omit it: even if a backdrop sign/name text is also requested, BOTH must appear — the backdrop text behind the person AND the sponsor logo prop on the table are separate elements. Do NOT change or reinterpret the logo; the person does NOT wear or hold it.`;
+          const parts = [{ text: `${refText}\n\nSCENE TO RENDER: ${prompt}${window.naturalHint(`${p}-natural`)}` }, { inlineData: { mimeType: person.mime || 'image/png', data: person.b64 } }];
           if (anchor) parts.push({ inlineData: { mimeType: 'image/png', data: anchor } });
-          if (id === 1) products.forEach(pr => parts.push({ inlineData: { mimeType: pr.mime || 'image/png', data: pr.b64 } }));
-          if (id === 1 && brandB64) parts.push({ inlineData: { mimeType: brandMime || 'image/png', data: brandB64 } });
+          if (id === fsc) products.forEach(pr => parts.push({ inlineData: { mimeType: pr.mime || 'image/png', data: pr.b64 } }));
+          if (id === fsc && brandB64) parts.push({ inlineData: { mimeType: brandMime || 'image/png', data: brandB64 } });
           const payload = {
             contents: [{ parts }],
             generationConfig: { responseModalities: ['TEXT', 'IMAGE'], imageConfig: { aspectRatio: '9:16' } },
@@ -5684,6 +5804,7 @@ Rules:
     // ---- Generate Foto (klip 1 dulu → anchor → sisanya paralel) ----
     photosBtn.addEventListener('click', async () => {
       if (!modelBase64) { window.uiNotify(t('warn.talker-model-required')); return; }
+      if (selection.duet && !hostBase64) { window.uiNotify(t('warn.talker-host-required')); return; }
       if (!script) { window.uiNotify(t('warn.talker-script-first')); return; }
       const segs = readSegments();
       const pl = plan();
@@ -5694,9 +5815,14 @@ Rules:
       try {
         resolveSuasana();
         buildCards(segs, pl);
-        await generateSingle(1, null);
-        const anc = anchorB64(); // gagal → fail-soft: klip lain jalan tanpa anchor
-        await Promise.allSettled(segs.slice(1).map((_, j) => generateSingle(j + 2, anc)));
+        if (selection.duet) {
+          await generateSingle(1); // host bertanya
+          await generateSingle(2); // narasumber → jadi anchor
+          await Promise.allSettled(segs.slice(2).map((_, j) => generateSingle(j + 3)));
+        } else {
+          await generateSingle(1);
+          await Promise.allSettled(segs.slice(1).map((_, j) => generateSingle(j + 2)));
+        }
         const success = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.querySelector('img')).length;
         if (!success) window.uiNotify(t('warn.google-limit'));
         else [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.remove('hidden'));
@@ -5765,7 +5891,7 @@ Rules:
       const img = card?.querySelector('img');
       if (btn.dataset.action === `${p}-download` && img) window.downloadDataURINew(img.src, btn.dataset.filename);
       else if (btn.dataset.action === `${p}-preview` && img) openPreview(img.src);
-      else if (btn.dataset.action === `${p}-regenerate` && card) generateSingle(id, id === 1 ? null : anchorB64());
+      else if (btn.dataset.action === `${p}-regenerate` && card) generateSingle(id);
       else if (btn.dataset.action === `${p}-editprompt` && card) editPromptModal(id);
       else if (btn.dataset.action === `${p}-video` && card) videoPromptModal(id);
     });
