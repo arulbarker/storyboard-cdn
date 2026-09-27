@@ -186,6 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'menu.guide': '⭐ Mulai Di Sini', 'nav.guide': 'Panduan Aplikasi', 'navd.guide': 'Cara pakai semua fitur', 'hdr.guide.title': 'Panduan Aplikasi', 'hdr.guide.sub': 'Klik tiap bagian untuk membuka penjelasannya.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Buat & simpan model AI',
       'nav.talker': 'Influencer Bicara', 'navd.talker': 'Konten bicara per niche',
+      'nav.dailyphoto': 'Foto Harian', 'navd.dailyphoto': 'Foto natural model AI',
+      'hdr.dailyphoto.title': 'Foto Harian', 'hdr.dailyphoto.sub': 'Foto natural sehari-hari untuk feed AI influencer kamu.',
+      'dp.step-model': 'Pilih Model (Wajib)', 'dp.step-activity': 'Aktivitas & Suasana',
+      'dp.step-bg': 'Referensi Background (Opsional)', 'dp.bg-hint': 'Upload foto tempat — lokasi foto akan mengikuti suasana foto ini. Aktivitas tetap dari chip.',
+      'dp.step-ratio': 'Rasio Foto', 'dp.result-empty': 'Belum ada foto — pilih model & aktivitas lalu klik "Buat Foto Harian".',
+      'btn.generate.dailyphoto': 'Buat Foto Harian', 'dp.download': 'Download',
+      'field.upload-click-bg': 'Klik untuk pilih foto tempat',
+      'ph.dp-activity-custom': 'Tulis aktivitasnya, mis. nongkrong di rooftop bar malam hari...',
       'hdr.talker.title': 'AI Influencer Bicara', 'hdr.talker.sub': 'Naskah nyambung antar klip — satukan di CapCut jadi satu monolog utuh.',
       'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Opsional)',
       'talk.step-mode': 'Mode', 'talk.mode-tausiyah': 'Tausiyah', 'talk.mode-doa': 'Doa', 'talk.step-doa': 'Pilih Doa', 'ph.talk-doa-custom': 'Tulis doamu sendiri, cth: mohon dijauhkan dari sifat sombong', 'talk.doa-note': 'Doa dibuat AI — tinjau dulu sebelum posting; hindari mengutip ayat/hadits.',
@@ -439,6 +447,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'menu.guide': '⭐ Start Here', 'nav.guide': 'App Guide', 'navd.guide': 'How to use every feature', 'hdr.guide.title': 'App Guide', 'hdr.guide.sub': 'Tap each section to expand its explanation.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Create & save AI models',
       'nav.talker': 'Talking Influencer', 'navd.talker': 'Niche talking-head content',
+      'nav.dailyphoto': 'Daily Photos', 'navd.dailyphoto': 'Natural AI model photos',
+      'hdr.dailyphoto.title': 'Daily Photos', 'hdr.dailyphoto.sub': 'Natural everyday photos for your AI influencer feed.',
+      'dp.step-model': 'Pick a Model (Required)', 'dp.step-activity': 'Activity & Vibe',
+      'dp.step-bg': 'Background Reference (Optional)', 'dp.bg-hint': 'Upload a place photo — the photo location will follow its vibe. The activity still comes from the chips.',
+      'dp.step-ratio': 'Photo Ratio', 'dp.result-empty': 'No photo yet — pick a model & activity then hit "Create Daily Photo".',
+      'btn.generate.dailyphoto': 'Create Daily Photo', 'dp.download': 'Download',
+      'field.upload-click-bg': 'Click to pick a place photo',
+      'ph.dp-activity-custom': 'Describe the activity, e.g. hanging out at a rooftop bar at night...',
       'hdr.talker.title': 'AI Talking Influencer', 'hdr.talker.sub': 'The script flows across clips — join them in CapCut into one full monologue.',
       'talk.step-model': 'Model Photo (Required)', 'talk.step-niche': 'Pick a Niche', 'talk.step-topic': 'Topic (Optional)',
       'talk.step-mode': 'Mode', 'talk.mode-tausiyah': 'Reminder', 'talk.mode-doa': 'Prayer', 'talk.step-doa': 'Pick a Prayer', 'ph.talk-doa-custom': 'Write your own prayer, e.g. asking to be kept from arrogance', 'talk.doa-note': 'AI-generated prayer — review it before posting; avoid quoting verses/hadith.',
@@ -692,6 +708,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'menu.guide': '⭐ Mula Di Sini', 'nav.guide': 'Panduan Aplikasi', 'navd.guide': 'Cara guna semua ciri', 'hdr.guide.title': 'Panduan Aplikasi', 'hdr.guide.sub': 'Ketik setiap bahagian untuk buka penjelasannya.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Cipta & simpan model AI',
       'nav.talker': 'Influencer Bercakap', 'navd.talker': 'Kandungan bercakap ikut niche',
+      'nav.dailyphoto': 'Foto Harian', 'navd.dailyphoto': 'Foto natural model AI',
+      'hdr.dailyphoto.title': 'Foto Harian', 'hdr.dailyphoto.sub': 'Foto natural harian untuk feed AI influencer kamu.',
+      'dp.step-model': 'Pilih Model (Wajib)', 'dp.step-activity': 'Aktiviti & Suasana',
+      'dp.step-bg': 'Rujukan Latar (Pilihan)', 'dp.bg-hint': 'Muat naik foto tempat — lokasi foto akan ikut suasana foto ini. Aktiviti tetap dari cip.',
+      'dp.step-ratio': 'Nisbah Foto', 'dp.result-empty': 'Belum ada foto — pilih model & aktiviti kemudian tekan "Buat Foto Harian".',
+      'btn.generate.dailyphoto': 'Buat Foto Harian', 'dp.download': 'Muat Turun',
+      'field.upload-click-bg': 'Klik untuk pilih foto tempat',
+      'ph.dp-activity-custom': 'Tulis aktivitinya, cth. melepak di rooftop bar waktu malam...',
       'hdr.talker.title': 'AI Influencer Bercakap', 'hdr.talker.sub': 'Skrip bersambung antara klip — gabungkan di CapCut jadi satu monolog penuh.',
       'talk.step-model': 'Foto Model (Wajib)', 'talk.step-niche': 'Pilih Niche', 'talk.step-topic': 'Topik (Pilihan)',
       'talk.step-mode': 'Mod', 'talk.mode-tausiyah': 'Tausiah', 'talk.mode-doa': 'Doa', 'talk.step-doa': 'Pilih Doa', 'ph.talk-doa-custom': 'Tulis doa anda sendiri, cth: mohon dijauhkan daripada sifat sombong', 'talk.doa-note': 'Doa dijana AI — semak dahulu sebelum posting; elak memetik ayat/hadis.',
@@ -1197,6 +1221,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (musik + SFX saja).</li><li>Kalau hasil kurang pas, tekan Regenerate atau Edit Prompt.</li></ul>' },
       { t: '14. Influencer Bicara', h: '<p>Buat konten <b>talking-head per niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya bicara → <b>Buat Naskah</b> (AI menulis monolog utuh, bisa diedit per klip) → <b>Generate Foto</b> (1 foto per klip).</p><p><b>Naskah nyambung antar klip</b> — prompt video tiap klip berisi kata-kata persis segmen itu. Generate video per klip di platform luar (Kling/Veo), lalu satukan di CapCut jadi satu monolog utuh (mis. 6 klip × 10 dtk = 60 dtk).</p>' },
       { t: '15. Cerita Anak', h: '<p>Kategori konten edukasi anak — <b>narasi narator, subjek tidak bicara</b> (gaya dokumenter/dongeng).</p><ul><li><b>Ensiklopedia Anak</b> — pengetahuan 1 subjek (mis. Gajah Afrika): pilih kategori + gaya visual, atau ketik subjek spesifik. Scene mengalir: kenalan → habitat → makanan → keunikan → fakta seru → rekap.</li><li><b>Siklus Hidup</b> — tahapan hidup 1 subjek (telur → ulat → kepompong → kupu-kupu) urut maju, scene akhir bentuk dewasa.</li></ul><p>Gaya audio default <b>Voiceover</b> — prompt video berisi narasi ramah anak. <b>Fakta dibuat AI: cek dulu sebelum diposting.</b></p>' },
+      { t: '16. Foto Harian', h: '<p>Buat <b>foto natural sehari-hari</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau upload), pilih chip <b>aktivitas</b> (ngopi, gym, OOTD, dll — atau Acak/Custom), pilih rasio, lalu Generate — 1 foto per klik.</p><p><b>Referensi Background (opsional):</b> upload foto tempat, maka lokasi foto akan mengikuti suasana foto itu (mirip, bukan tempel persis) — aktivitas tetap dari chip. Gaya natural anti-plastik sudah otomatis aktif. Hasil langsung di-download, tidak masuk Pustaka Model.</p>' },
     ],
     en: [
       { t: '1. Quick Start', h: '<p>This app turns product photos/ideas into <b>storyboard photos</b> (scene 1→N) for you to turn into video.</p><ul><li>Sign in with your <b>purchase email</b>.</li><li>Pick a feature on the left, fill the inputs, hit <b>Generate</b>.</li><li>Each result card can Regenerate, Edit Prompt, grab a <b>Video Prompt</b>, and download.</li></ul><p>Note: the app produces <b>photos + prompt text</b>. Turning photos into video is done on external platforms (Runway/Pika/Kling/Veo).</p>' },
@@ -1214,6 +1239,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '13. Tips & FAQ', h: '<ul><li>The app only outputs <b>photos + prompt text</b> — make the video on Runway/Pika/Kling/Veo.</li><li>ASMR/Cinematic/Timelapse are intentionally <b>without human speech</b> (music + SFX only).</li><li>If a result is off, hit Regenerate or Edit Prompt.</li></ul>' },
       { t: '14. Talking Influencer', h: '<p>Create <b>niche talking-head content</b> (wisdom, Islamic, parenting, etc.): pick a model photo (required), niche, setting, speaking style → <b>Write Script</b> (AI writes one full monologue, editable per clip) → <b>Generate Photos</b> (1 photo per clip).</p><p><b>The script flows across clips</b> — each clip\'s video prompt contains that exact segment. Generate each clip on an external platform (Kling/Veo), then join them in CapCut into one full monologue (e.g. 6 clips × 10 s = 60 s).</p>' },
       { t: '15. Kids Story', h: '<p>Kids educational content category — <b>narrator voiceover, the subject never talks</b> (documentary/fairy-tale style).</p><ul><li><b>Kids Encyclopedia</b> — one-subject knowledge (e.g. African Elephant): pick a category + visual style, or type a specific subject. Scenes flow: intro → habitat → food → uniqueness → fun facts → recap.</li><li><b>Life Cycle</b> — one subject through its life stages (egg → caterpillar → chrysalis → butterfly) in strict forward order, final scene is the adult form.</li></ul><p>Default audio style is <b>Voiceover</b> — video prompts carry kid-friendly narration. <b>Facts are AI-generated: verify before posting.</b></p>' },
+      { t: '16. Daily Photos', h: '<p>Create <b>natural everyday photos</b> for your AI influencer feed: pick a model from the Library (or upload), pick an <b>activity</b> chip (coffee, gym, OOTD, etc. — or Random/Custom), pick a ratio, then Generate — 1 photo per click.</p><p><b>Background Reference (optional):</b> upload a place photo and the photo location will follow its vibe (similar, not an exact paste) — the activity still comes from the chips. The natural anti-plastic style is always on. Results are downloaded directly, they do not enter the Model Library.</p>' },
     ],
     ms: [
       { t: '1. Mula Pantas', h: '<p>Aplikasi ini menukar foto produk/idea menjadi <b>foto storyboard</b> (adegan 1→N) untuk kamu jadikan video.</p><ul><li>Log masuk dengan <b>e-mel pembelian</b> kamu.</li><li>Pilih ciri di menu kiri, isi input, tekan <b>Generate</b>.</li><li>Setiap kad hasil boleh Regenerate, Edit Prompt, ambil <b>Prompt Video</b>, dan muat turun.</li></ul><p>Penting: app menghasilkan <b>foto + teks prompt</b>. Proses foto→video dibuat di platform luar (Runway/Pika/Kling/Veo).</p>' },
@@ -1231,6 +1257,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (muzik + SFX sahaja).</li><li>Jika hasil kurang tepat, tekan Regenerate atau Edit Prompt.</li></ul>' },
       { t: '14. Influencer Bercakap', h: '<p>Buat <b>kandungan talking-head ikut niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya percakapan → <b>Buat Skrip</b> (AI menulis satu monolog penuh, boleh diedit per klip) → <b>Jana Foto</b> (1 foto per klip).</p><p><b>Skrip bersambung antara klip</b> — prompt video setiap klip mengandungi kata-kata tepat segmen itu. Jana video per klip di platform luaran (Kling/Veo), kemudian gabungkan di CapCut jadi satu monolog penuh (cth. 6 klip × 10 saat = 60 saat).</p>' },
       { t: '15. Cerita Kanak-kanak', h: '<p>Kategori kandungan pendidikan kanak-kanak — <b>narasi perawi, subjek tidak bercakap</b> (gaya dokumentari/dongeng).</p><ul><li><b>Ensiklopedia Kanak-kanak</b> — pengetahuan 1 subjek (cth. Gajah Afrika): pilih kategori + gaya visual, atau taip subjek spesifik. Adegan mengalir: kenalan → habitat → makanan → keunikan → fakta menarik → rekap.</li><li><b>Kitaran Hidup</b> — peringkat hidup 1 subjek (telur → ulat → kepompong → rama-rama) urutan ke hadapan, adegan akhir bentuk dewasa.</li></ul><p>Gaya audio lalai <b>Voiceover</b> — prompt video membawa narasi mesra kanak-kanak. <b>Fakta dijana AI: semak dahulu sebelum muat naik.</b></p>' },
+      { t: '16. Foto Harian', h: '<p>Buat <b>foto natural harian</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau muat naik), pilih cip <b>aktiviti</b> (kopi, gim, OOTD, dll — atau Rawak/Custom), pilih nisbah, kemudian Generate — 1 foto setiap klik.</p><p><b>Rujukan Latar (pilihan):</b> muat naik foto tempat, lokasi foto akan ikut suasana foto itu (serupa, bukan tampal tepat) — aktiviti tetap dari cip. Gaya natural anti-plastik sentiasa aktif. Hasil terus dimuat turun, tidak masuk Pustaka Model.</p>' },
     ],
   };
   function renderGuide() {
@@ -1860,6 +1887,198 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('ssp-models-changed', renderLibrary);
   })();
   // === END INFLUENCER STUDIO ===
+
+  // === DAILY PHOTO (Foto Harian — foto natural sehari-hari model AI) ===
+  // Fungsi murni: rakit prompt image-to-image. REFERENCE PHOTO 1 = model (wajib), 2 = background (opsional).
+  window.buildDailyPhotoPrompt = function (sel) {
+    const place = sel.hasBg
+      ? 'LOCATION: match the location, environment and atmosphere of REFERENCE PHOTO 2 — recreate a similar place with the same mood, lighting direction and color palette (a similar place, NOT a pixel-perfect composite of that exact photo).'
+      : 'LOCATION: pick a fitting everyday location that naturally matches the activity.';
+    return `Generate ONE casual everyday lifestyle photo of the person in REFERENCE PHOTO 1.
+IDENTITY LOCK (VERY IMPORTANT): the face, hairstyle, skin tone and distinctive features MUST be IDENTICAL to the person in REFERENCE PHOTO 1 — the exact same person, instantly recognizable. Do NOT change their identity, age or ethnicity.
+ACTIVITY: ${sel.activity}.
+${place}
+STYLE: candid social-media lifestyle photo, as if a friend snapped it or a casual phone self-timer shot — relaxed natural pose, genuine expression, everyday outfit that fits the activity, NOT a studio photoshoot, NOT a professional modeling pose.${window.NATURAL_PHOTO_HINT}
+Absolutely no text, no words, no letters, no watermark anywhere in the image. NEVER show a real brand name or franchise logo.`;
+  };
+
+  (function initDailyPhoto() {
+    const genBtn = document.getElementById('dailyphoto-generate-btn');
+    if (!genBtn) return;
+    const apiKey = "";
+    const resultBox = document.getElementById('dailyphoto-result-box');
+    const actionRow = document.getElementById('dailyphoto-action-row');
+    const regenBtn = document.getElementById('dailyphoto-regen-btn');
+    const dlBtn = document.getElementById('dailyphoto-download-btn');
+    let dpModelB64 = null, dpModelMime = null;
+    let dpBgB64 = null, dpBgMime = null;
+    let lastB64 = null;
+
+    function showChoiceModal(title, choices) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="space-y-2" data-choices></div>
+      </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      const wrap = modal.querySelector('[data-choices]');
+      choices.forEach(c => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'w-full btn-secondary py-2.5 px-4 rounded-lg font-semibold text-sm text-left';
+        b.innerHTML = c.label;
+        b.addEventListener('click', () => { close(); c.onPick(); });
+        wrap.appendChild(b);
+      });
+      modal.querySelector('[data-close]').addEventListener('click', close);
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    // ---- Slot foto model (upload + pustaka) ----
+    const modelInput = document.getElementById('dailyphoto-model-image-input');
+    const modelUploadArea = document.getElementById('dailyphoto-model-image-upload-area');
+    const modelPreviewContainer = document.getElementById('dailyphoto-model-image-preview-container');
+    const modelPreview = document.getElementById('dailyphoto-model-image-preview');
+    function setModel(b64, mime, srcUrl) {
+      dpModelB64 = b64; dpModelMime = mime;
+      modelPreview.src = srcUrl;
+      modelUploadArea.classList.add('hidden');
+      modelPreviewContainer.classList.remove('hidden');
+    }
+    modelInput.addEventListener('change', async () => {
+      const file = modelInput.files && modelInput.files[0]; if (!file) return;
+      try {
+        const { base64, mimeType } = await window.compressImage(file);
+        setModel(base64, mimeType, `data:${mimeType};base64,${base64}`);
+      } catch (err) { window.uiNotify(t('warn.file-unreadable')); }
+    });
+    document.getElementById('dailyphoto-model-remove-btn').addEventListener('click', () => {
+      dpModelB64 = null; dpModelMime = null; modelInput.value = '';
+      modelUploadArea.classList.remove('hidden'); modelPreviewContainer.classList.add('hidden');
+    });
+    const libBtn = document.getElementById('dailyphoto-library-btn');
+    libBtn.addEventListener('click', async () => {
+      let list = [];
+      try { list = await window.modelDB.list(); } catch (err) { console.error(err); }
+      if (!list.length) { window.uiNotify(t('warn.no-models')); return; }
+      showChoiceModal(t('btn.pick-model-library'), list.map(m => ({
+        label: `<span class="flex items-center gap-3"><img src="${URL.createObjectURL(m.blob)}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span>`,
+        onPick: async () => setModel(await window.blobToB64(m.blob), m.mime, URL.createObjectURL(m.blob))
+      })));
+    });
+    async function refreshLibBtn() {
+      try { libBtn.classList.toggle('hidden', !(await window.modelDB.list()).length); }
+      catch { libBtn.classList.add('hidden'); }
+    }
+    document.addEventListener('ssp-models-changed', refreshLibBtn);
+    refreshLibBtn();
+
+    // ---- Slot foto background (opsional, tanpa pustaka) ----
+    const bgInput = document.getElementById('dailyphoto-bg-input');
+    const bgUploadArea = document.getElementById('dailyphoto-bg-upload-area');
+    const bgPreviewContainer = document.getElementById('dailyphoto-bg-preview-container');
+    const bgPreview = document.getElementById('dailyphoto-bg-preview');
+    bgInput.addEventListener('change', async () => {
+      const file = bgInput.files && bgInput.files[0]; if (!file) return;
+      try {
+        const { base64, mimeType } = await window.compressImage(file);
+        dpBgB64 = base64; dpBgMime = mimeType;
+        bgPreview.src = `data:${mimeType};base64,${base64}`;
+        bgUploadArea.classList.add('hidden');
+        bgPreviewContainer.classList.remove('hidden');
+      } catch (err) { window.uiNotify(t('warn.file-unreadable')); }
+    });
+    document.getElementById('dailyphoto-bg-remove-btn').addEventListener('click', () => {
+      dpBgB64 = null; dpBgMime = null; bgInput.value = '';
+      bgUploadArea.classList.remove('hidden'); bgPreviewContainer.classList.add('hidden');
+    });
+
+    // ---- Chip aktivitas (Acak / preset / Custom) & rasio ----
+    const actGrid = document.getElementById('dailyphoto-activity-options');
+    const customContainer = document.getElementById('dailyphoto-activity-custom-container');
+    const customInput = document.getElementById('dailyphoto-activity-custom');
+    const dpPresetVals = [...actGrid.querySelectorAll('[data-val]')].map(b => b.dataset.val).filter(v => v !== '__random__' && v !== '__custom__');
+    actGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-val]'); if (!btn) return;
+      actGrid.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
+      btn.classList.add('selected');
+      customContainer.classList.toggle('hidden', btn.dataset.val !== '__custom__');
+    });
+    const ratioGrid = document.getElementById('dailyphoto-ratio-options');
+    ratioGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-val]'); if (!btn) return;
+      ratioGrid.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+    function dpRatio() { return ratioGrid.querySelector('.theme-chip.selected')?.dataset.val || '3:4'; }
+    function dpActivity() {
+      const v = actGrid.querySelector('.theme-chip.selected')?.dataset.val || '__random__';
+      if (v === '__custom__') {
+        const c = customInput.value.trim();
+        if (c) return c;
+      }
+      if (v === '__random__' || v === '__custom__') return dpPresetVals[Math.floor(Math.random() * dpPresetVals.length)];
+      return v;
+    }
+
+    // ---- Generate ----
+    async function generateDailyPhoto() {
+      if (!dpModelB64) { window.uiNotify(t('warn.model-required')); return; }
+      const activity = dpActivity();
+      genBtn.disabled = true; regenBtn.disabled = true;
+      resultBox.innerHTML = '<div class="loader"></div>';
+      const prompt = window.buildDailyPhotoPrompt({ activity, hasBg: !!dpBgB64 });
+      const parts = [{ text: prompt }, { inlineData: { mimeType: dpModelMime, data: dpModelB64 } }];
+      if (dpBgB64) parts.push({ inlineData: { mimeType: dpBgMime, data: dpBgB64 } });
+      const retries = 3; let lastError = null;
+      for (let i = 0; i < retries; i++) {
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
+          const payload = {
+            contents: [{ parts }],
+            generationConfig: { responseModalities: ['TEXT', 'IMAGE'], imageConfig: { aspectRatio: dpRatio() } },
+            safetySettings: [
+              { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+              { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+            ]
+          };
+          const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const result = await res.json();
+          const b64 = result?.candidates?.[0]?.content?.parts?.find(x => x.inlineData)?.inlineData?.data;
+          if (!b64) throw new Error('No image data received');
+          lastB64 = b64;
+          resultBox.innerHTML = `<img src="data:image/png;base64,${b64}" class="rounded-xl max-h-[520px] w-auto mx-auto" alt="Foto harian">`;
+          actionRow.classList.remove('hidden');
+          genBtn.disabled = false; regenBtn.disabled = false;
+          return;
+        } catch (err) {
+          lastError = err; console.error(`Daily photo attempt ${i + 1} failed:`, err);
+          if (i < retries - 1) await new Promise(rz => setTimeout(rz, 1000 * Math.pow(2, i)));
+        }
+      }
+      if (lastError) resultBox.innerHTML = '<p class="text-sm text-red-500 p-4">Gagal membuat foto — coba lagi.</p>';
+      genBtn.disabled = false; regenBtn.disabled = false;
+    }
+    genBtn.addEventListener('click', generateDailyPhoto);
+    regenBtn.addEventListener('click', generateDailyPhoto);
+
+    // ---- Download ----
+    dlBtn.addEventListener('click', () => {
+      if (!lastB64) return;
+      const blob = window.b64ToBlob(lastB64, 'image/png');
+      const fn = `dailyphoto_${Date.now()}.png`;
+      if (window.__isIOS && window.__isIOS()) { window.__iosShareOrSaveImage(blob, fn); return; }
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = fn;
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  })();
+  // === END DAILY PHOTO ===
 
   // === FACTORY: satu tab review = satu pemanggilan createReviewTab(cfg) ===
   function createReviewTab(cfg) {
