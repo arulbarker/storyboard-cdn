@@ -876,8 +876,40 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '2.1';
+  window.APP_VERSION = '3.0';
   window.CHANGELOG = [
+    { version: '3.0', date: '29 Sep 2026', changes: [
+      { id: 'Fitur baru: Influencer Bicara — model AI bicara ke kamera dengan naskah otomatis yang pas durasi klip, sudut kamera bergantian, plus caption & hashtag otomatis',
+        en: 'New: Talking Influencer — an AI model speaks to camera with an auto script that fits the clip duration, rotating camera angles, plus automatic captions & hashtags',
+        ms: 'Baharu: Influencer Bercakap — model AI bercakap ke kamera dengan skrip automatik yang muat durasi klip, sudut kamera bergilir, serta kapsyen & hashtag automatik' },
+      { id: 'Influencer Bicara: format Tanya-Jawab 2 orang (host + narasumber) dan Mode Doa untuk konten Islami',
+        en: 'Talking Influencer: two-person Q&A format (host + guest) and Prayer Mode for Islamic content',
+        ms: 'Influencer Bercakap: format Soal-Jawab 2 orang (hos + tetamu) dan Mod Doa untuk kandungan Islami' },
+      { id: 'Influencer Bicara: upload foto produk (maks 5) + logo sponsor — cocok untuk konten affiliate & endorse',
+        en: 'Talking Influencer: upload product photos (max 5) + sponsor logo — great for affiliate & sponsored content',
+        ms: 'Influencer Bercakap: muat naik foto produk (maks 5) + logo penaja — sesuai untuk kandungan affiliate & tajaan' },
+      { id: 'Kategori baru: Cerita Anak — Ensiklopedia Anak & Siklus Hidup, video edukasi ramah anak dengan narator',
+        en: 'New category: Kids Stories — Kids Encyclopedia & Life Cycle, child-friendly educational videos with a narrator',
+        ms: 'Kategori baharu: Cerita Kanak-kanak — Ensiklopedia & Kitaran Hidup, video pendidikan mesra kanak-kanak dengan narator' },
+      { id: 'Fitur baru: Foto Harian — bikin foto natural sehari-hari dari model AI tersimpan (pilih aktivitas + rasio, background opsional)',
+        en: 'New: Daily Photo — create natural everyday photos from your saved AI model (pick an activity + ratio, optional background)',
+        ms: 'Baharu: Foto Harian — hasilkan foto harian semula jadi daripada model AI tersimpan (pilih aktiviti + nisbah, latar pilihan)' },
+      { id: 'Ucapan di prompt video kini otomatis pas durasi klip — tidak lagi kepotong atau kependekan saat dijadikan video',
+        en: 'Spoken lines in video prompts now automatically fit the clip duration — no more cut-off or too-short narration in your videos',
+        ms: 'Ucapan dalam prompt video kini automatik muat durasi klip — tiada lagi narasi terpotong atau terlalu pendek' },
+      { id: 'Ceklis "Foto Natural" — hasil foto lebih realistis seperti jepretan kamera, tidak terlihat seperti buatan AI',
+        en: '"Natural Photo" checkbox — more realistic camera-like photos that do not look AI-generated',
+        ms: 'Kotak "Foto Natural" — foto lebih realistik seperti gambar kamera, tidak kelihatan seperti janaan AI' },
+      { id: 'Ekspor Storyboard: gabungkan foto + prompt jadi 1 gambar per klip, siap dibaca saat proses video',
+        en: 'Storyboard Export: combine photos + prompts into one image per clip, ready to reference while making your video',
+        ms: 'Eksport Papan Cerita: gabung foto + prompt jadi satu imej setiap klip, sedia dirujuk semasa membuat video' },
+      { id: 'Model Studio: pilihan 13 negara + variasi wajah otomatis tiap generate',
+        en: 'Model Studio: 13 country options + automatic face variety on every generate',
+        ms: 'Studio Model: pilihan 13 negara + variasi wajah automatik setiap penjanaan' },
+      { id: 'Panduan lengkap "Mulai Di Sini" di sidebar + 2 video tutorial (dasar & terbaru)',
+        en: 'Full "Start Here" guide in the sidebar + 2 video tutorials (basics & latest)',
+        ms: 'Panduan penuh "Mula Di Sini" di sidebar + 2 video tutorial (asas & terkini)' },
+    ] },
     { version: '2.1', date: '13 Sep 2026', changes: [
       { id: 'Antarmuka 3 bahasa (English/Melayu/Indonesia) + deteksi otomatis & pemilih bahasa di sidebar',
         en: 'Trilingual interface (English/Malay/Indonesian) + auto-detect & language switcher in the sidebar',
@@ -1537,10 +1569,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const LANG_LABEL = { id: 'Indonesian', en: 'English', ms: 'Malay' };
   // Gaya audio TANPA suara orang bicara sama sekali (musik + SFX saja)
   const NO_SPEECH_STYLES = ['asmr', 'cinematic', 'timelapse'];
-  window.audioSpeechRule = function (audioStyle, audioLang) {
-    return NO_SPEECH_STYLES.includes(audioStyle)
-      ? 'STRICTLY NO human speech, voiceover, dialogue, or narration of any kind — nobody talks at all. The audio is ONLY music and sound effects. Any product name, slogan, or tagline may appear ONLY as on-screen text/graphics, never spoken.'
-      : `Any spoken words (dialogue or narration) MUST be written in ${LANG_LABEL[audioLang] || 'Indonesian'}, wrapped in double quotes. Auto-extract the product name and any slogan/tagline from the context and weave them into the speech naturally (place the slogan on the final/CTA beat).`;
+  window.audioSpeechRule = function (audioStyle, audioLang, seconds) {
+    if (NO_SPEECH_STYLES.includes(audioStyle)) return 'STRICTLY NO human speech, voiceover, dialogue, or narration of any kind — nobody talks at all. The audio is ONLY music and sound effects. Any product name, slogan, or tagline may appear ONLY as on-screen text/graphics, never spoken.';
+    let rule = `Any spoken words (dialogue or narration) MUST be written in ${LANG_LABEL[audioLang] || 'Indonesian'}, wrapped in double quotes. Auto-extract the product name and any slogan/tagline from the context and weave them into the speech naturally (place the slogan on the final/CTA beat).`;
+    if (seconds) {
+      const lo = Math.round(seconds * 2.0), hi = Math.round(seconds * 2.3), maxChars = Math.round(seconds * 16);
+      rule += ` SPEECH LENGTH BUDGET (CRITICAL): total spoken words in this ${seconds}-second segment MUST be ${lo}–${hi} words and at most ${maxChars} characters (≈2 relaxed spoken words per second). The speech must finish comfortably a beat BEFORE the segment ends — never cram or rush.`;
+    }
+    return rule;
   };
 
   // === DURATION ENGINE ===
@@ -2712,7 +2748,7 @@ Create a detailed cinematic English prompt for an AI image-to-video generator (R
 3. Design camera motion for continuity: ${prevTitle ? `begin in a way that flows on from the previous scene ("${prevTitle}")` : 'this is the OPENING scene — start with an inviting establishing motion'}, and ${nextTitle ? `end in a way that leads into the next scene ("${nextTitle}")` : 'this is the FINAL scene — end on a confident closing / call-to-action beat'}.
 4. Add subtle dynamic elements suited to the scene (soft light shifts, gentle particles, product rotation, steam/liquid motion if relevant).
 5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
-6. ${window.audioSpeechRule(audioStyle, audioLang)}
+6. ${window.audioSpeechRule(audioStyle, audioLang, 2)}
 7. Be optimized for image-to-video AI, under 200 words, highly detailed.
 Output ONLY the video prompt for this scene, nothing else.`;
       const userText = `Scene ${sceneNum}/${total} — "${title}". Product/subject context: "${desc}". Audio style: ${audioStyle}. Spoken language: ${LANG_LABEL[audioLang]}. Write the continuous-story image-to-video prompt for this scene so it connects with the scene before and after.`;
@@ -2752,7 +2788,7 @@ Write ONE cinematic English prompt describing the FULL ${plan.clipSec}-second cl
 3. ${prevBridge ? `OPENING: flow on smoothly from the previous clip (which ended at "${prevBridge}").` : 'OPENING: this is the FIRST clip — start with an inviting establishing motion.'}
 4. ${nextBridge ? `ENDING: end on a camera motion that bridges into the next clip (which starts at "${nextBridge}").` : 'ENDING: this is the FINAL clip — close on a confident CTA beat.'}
 5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
-6. ${window.audioSpeechRule(audioStyle, audioLang)}
+6. ${window.audioSpeechRule(audioStyle, audioLang, plan.clipSec)}
 7. Under 250 words, optimized for image-to-video AI (Runway, Pika, Kling, Veo, Seedance).
 Output ONLY the video prompt, nothing else.`;
       const userText = `Clip ${clipIdx}/${totalClips}. Product/subject context: "${descInput.value.trim()}". Audio style: ${audioStyle}. Spoken language: ${LANG_LABEL[audioLang]}.`;
@@ -4321,7 +4357,7 @@ ${durState.on ? `2. DURATION: this scene covers EXACTLY ~2 seconds in the final 
 4. Design camera motion for continuity: ${prevTitle ? `begin in a way that flows on from the previous scene ("${prevTitle}")` : 'this is the OPENING scene — start with an inviting establishing motion'}, and ${nextTitle ? `end in a way that leads into the next scene ("${nextTitle}")` : 'this is the FINAL scene — end on a satisfying reveal / closing beat'}.
 5. Add subtle dynamic elements suited to the scene (soft light shifts, gentle particles, growth/build motion, steam/liquid motion if relevant).
 6. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
-7. ${window.audioSpeechRule(audioStyle, audioLang)}
+7. ${window.audioSpeechRule(audioStyle, audioLang, 2)}
 8. Be optimized for image-to-video AI, under 200 words, highly detailed.
 Output ONLY the video prompt for this scene, nothing else.`;
       const userText = `Scene ${sceneNum}/${total} — "${title}". Process/subject context: "${desc}". Audio style: ${audioStyle}. Spoken language: ${LANG_LABEL[audioLang]}. Write the continuous-story image-to-video prompt for this scene so it connects with the scene before and after.`;
@@ -4362,7 +4398,7 @@ Write ONE cinematic English prompt describing the FULL ${plan.clipSec}-second cl
 3. ${prevBridge ? `OPENING: flow on smoothly from the previous clip (which ended at "${prevBridge}").` : 'OPENING: this is the FIRST clip — start with an inviting establishing motion.'}
 4. ${nextBridge ? `ENDING: end on a camera motion that bridges into the next clip (which starts at "${nextBridge}").` : 'ENDING: this is the FINAL clip — close on a satisfying reveal beat.'}
 5. ${AUDIO_DIRECTIONS[audioStyle] || AUDIO_DIRECTIONS.voiceover}
-6. ${window.audioSpeechRule(audioStyle, audioLang)}
+6. ${window.audioSpeechRule(audioStyle, audioLang, plan.clipSec)}
 7. Under 250 words, optimized for image-to-video AI (Runway, Pika, Kling, Veo, Seedance).
 Output ONLY the video prompt, nothing else.`;
       const userText = `Clip ${clipIdx}/${totalClips}. Process/subject context: "${viralContext()}". Audio style: ${audioStyle}. Spoken language: ${LANG_LABEL[audioLang]}.`;
