@@ -249,6 +249,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.kidpedia': 'Ensiklopedia Anak', 'navd.kidpedia': 'Pengetahuan 1 subjek untuk anak',
       'nav.kidcycle': 'Siklus Hidup', 'navd.kidcycle': 'Telur jadi kupu-kupu, biji jadi pohon',
       'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara pakai app ini',
+      'nav.cs': 'Hubungi Admin', 'navd.cs': 'Butuh bantuan? Chat via WhatsApp',
+      'cs.wa-msg': 'Halo Admin Storyboard Studio Pro, saya butuh bantuan:',
       'tut.title': 'Pilih Video Tutorial', 'tut.basic': 'Tutorial Dasar Aplikasi', 'tut.new': 'Tutorial Terbaru',
       'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
       'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'dtk/klip', 'unit.sec': 'dtk',
@@ -510,6 +512,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.kidpedia': 'Kids Encyclopedia', 'navd.kidpedia': 'One-subject knowledge for kids',
       'nav.kidcycle': 'Life Cycle', 'navd.kidcycle': 'Egg to butterfly, seed to tree',
       'nav.tutorial-app': 'App Tutorial', 'navd.tutorial-app': 'How to use this app (video)',
+      'nav.cs': 'Contact Admin', 'navd.cs': 'Need help? Chat on WhatsApp',
+      'cs.wa-msg': 'Hello Storyboard Studio Pro Admin, I need help with:',
       'tut.title': 'Choose a Tutorial Video', 'tut.basic': 'App Basics Tutorial', 'tut.new': 'Latest Tutorial',
       'dur.platform': 'Video platform', 'dur.story-duration': 'Story duration',
       'unit.photos': 'photos', 'unit.clips': 'clips', 'unit.sec-per-clip': 'sec/clip', 'unit.sec': 'sec',
@@ -771,6 +775,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.kidpedia': 'Ensiklopedia Kanak-kanak', 'navd.kidpedia': 'Pengetahuan 1 subjek untuk kanak-kanak',
       'nav.kidcycle': 'Kitaran Hidup', 'navd.kidcycle': 'Telur jadi rama-rama, biji jadi pokok',
       'nav.tutorial-app': 'Tutorial Aplikasi', 'navd.tutorial-app': 'Video cara guna app ini',
+      'nav.cs': 'Hubungi Admin', 'navd.cs': 'Perlukan bantuan? Sembang di WhatsApp',
+      'cs.wa-msg': 'Hai Admin Storyboard Studio Pro, saya perlukan bantuan:',
       'tut.title': 'Pilih Video Tutorial', 'tut.basic': 'Tutorial Asas Aplikasi', 'tut.new': 'Tutorial Terkini',
       'dur.platform': 'Platform video', 'dur.story-duration': 'Durasi story',
       'unit.photos': 'foto', 'unit.clips': 'klip', 'unit.sec-per-clip': 'saat/klip', 'unit.sec': 'saat',
@@ -876,8 +882,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.0';
+  window.APP_VERSION = '3.1';
   window.CHANGELOG = [
+    { version: '3.1', date: '2 Okt 2026', changes: [
+      { id: 'Baru: tombol Hubungi Admin via WhatsApp di menu samping & pojok atas — butuh bantuan tinggal klik',
+        en: 'New: Contact Admin via WhatsApp button in the side menu & top corner — need help? Just tap',
+        ms: 'Baharu: butang Hubungi Admin melalui WhatsApp di menu sisi & penjuru atas — perlukan bantuan? Tekan sahaja' }
+    ] },
     { version: '3.0', date: '29 Sep 2026', changes: [
       { id: 'Fitur baru: Influencer Bicara — model AI bicara ke kamera dengan naskah otomatis yang pas durasi klip, sudut kamera bergantian, plus caption & hashtag otomatis',
         en: 'New: Talking Influencer — an AI model speaks to camera with an auto script that fits the clip duration, rotating camera angles, plus automatic captions & hashtags',
@@ -1234,6 +1245,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) el.addEventListener('click', (e) => { e.preventDefault(); showTutorialChoice(); });
   });
   // === END TUTORIAL VIDEOS ===
+
+  // === CS WHATSAPP ===
+  const CS_WA_NUMBER = '6285157914468';
+  ['cs-link', 'cs-link-top'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => {
+      el.href = `https://wa.me/${CS_WA_NUMBER}?text=${encodeURIComponent(t('cs.wa-msg'))}`;
+    });
+  });
+  // === END CS WHATSAPP ===
 
   // === TUTORIAL PANEL ===
   const GUIDE_CONTENT = {
