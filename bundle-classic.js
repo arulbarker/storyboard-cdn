@@ -882,8 +882,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.1';
+  window.APP_VERSION = '3.2';
   window.CHANGELOG = [
+    { version: '3.2', date: '3 Okt 2026', changes: [
+      { id: 'Tampilan HP lebih rapi: semua menu fitur kini terlihat & bisa di-scroll, menu samping lebih lebar dengan tombol tutup ✕, judul halaman lebih ringkas',
+        en: 'Cleaner mobile view: every feature in the menu is now visible & scrollable, wider side menu with a ✕ close button, more compact page titles',
+        ms: 'Paparan telefon lebih kemas: semua menu ciri kini kelihatan & boleh ditatal, menu sisi lebih lebar dengan butang tutup ✕, tajuk halaman lebih ringkas' }
+    ] },
     { version: '3.1', date: '2 Okt 2026', changes: [
       { id: 'Baru: tombol Hubungi Admin via WhatsApp di menu samping & pojok atas — butuh bantuan tinggal klik',
         en: 'New: Contact Admin via WhatsApp button in the side menu & top corner — need help? Just tap',
