@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.age': 'Usia',
       'field.look': 'Negara',
       'field.hijab': 'Hijab',
+      'field.model-extra': 'Ciri Tambahan', 'ph.model-extra': 'Contoh: rambut pirang panjang, berkacamata, badan berisi, keturunan Turki',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Unduh Semua',
       'opt.natural-photo': 'Foto Natural (anti-plastik)', 'opt.natural-photo-hint': 'Kurangi kesan AI/CGI — kulit & pencahayaan lebih realistis.',
@@ -205,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.script-title': 'Naskah per Klip (bisa diedit)', 'talk.script-keep-photo': 'Ganti atau edit naskah tidak menghapus foto — foto tidak perlu digenerate ulang.', 'talk.result': 'Hasil Klip', 'talk.btn-copy': 'Salin Semua',
       'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Tombol 📋 = salin prompt siap-pakai untuk Flow/Veo (gambar storyboard dibaca AI, lembarannya tidak ikut ke video).',
       'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bicara bersama Arul', 'ph.talk-suasana-custom': 'Tulis suasana sendiri, cth: studio gelap dengan lampu neon merah',
+      'ph.talk-niche-custom': 'Tulis niche sendiri, cth: Tips Bisnis Kuliner', 'ph.talk-latar-custom': 'Tulis latar sendiri, cth: Dapur Rumah', 'ph.talk-gaya-custom': 'Tulis gaya bicara sendiri, cth: santai dan lucu seperti ngobrol dengan sahabat',
       'warn.talker-model-required': 'Pilih foto model dulu (upload atau dari Pustaka Model).',
       'talk.step-product': 'Foto Produk (Opsional, maks 5)',
       'talk.product-hint': 'Baju, sepatu, tas, dll — influencer akan memakainya di foto (cocok untuk affiliate).',
@@ -331,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.age': 'Age',
       'field.look': 'Country',
       'field.hijab': 'Hijab',
+      'field.model-extra': 'Extra Traits', 'ph.model-extra': 'e.g. long blonde hair, glasses, curvy build, Turkish descent',
       'field.influencer.or': 'or',
       'btn.download-all': 'Download All',
       'opt.natural-photo': 'Natural Photo (less plastic)', 'opt.natural-photo-hint': 'Reduces the AI/CGI look — more realistic skin & lighting.',
@@ -468,6 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.script-title': 'Script per Clip (editable)', 'talk.script-keep-photo': 'Rewriting or editing the script keeps your photos — no need to regenerate them.', 'talk.result': 'Clip Results', 'talk.btn-copy': 'Copy All',
       'talk.flow-copy': 'Copy Flow Prompt', 'talk.flow-hint': 'The 📋 button copies a ready-to-use prompt for Flow/Veo (the AI reads the storyboard image; the sheet itself will not appear in the video).',
       'ph.talk-topic': 'e.g. finding peace through hard times', 'ph.talk-branding': 'e.g. Ruang Bertumbuh Fatimah Zahra', 'ph.talk-suasana-custom': 'Describe your own mood, e.g. dark studio with red neon lights',
+      'ph.talk-niche-custom': 'Type your own niche, e.g. Food Business Tips', 'ph.talk-latar-custom': 'Type your own setting, e.g. Home Kitchen', 'ph.talk-gaya-custom': 'Type your own speaking style, e.g. relaxed and funny, like chatting with a best friend',
       'warn.talker-model-required': 'Pick a model photo first (upload or from the Model Library).',
       'talk.step-product': 'Product Photos (Optional, max 5)',
       'talk.product-hint': 'Clothes, shoes, bags, etc — the influencer will wear/use them in the photos (great for affiliate).',
@@ -594,6 +598,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'field.age': 'Umur',
       'field.look': 'Negara',
       'field.hijab': 'Hijab',
+      'field.model-extra': 'Ciri Tambahan', 'ph.model-extra': 'Contoh: rambut perang panjang, berkaca mata, badan berisi, keturunan Turki',
       'field.influencer.or': 'atau',
       'btn.download-all': 'Muat Turun Semua',
       'opt.natural-photo': 'Foto Natural (kurang plastik)', 'opt.natural-photo-hint': 'Kurangkan kesan AI/CGI — kulit & pencahayaan lebih realistik.',
@@ -731,6 +736,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.script-title': 'Skrip per Klip (boleh diedit)', 'talk.script-keep-photo': 'Menukar atau mengedit skrip tidak memadam foto — foto tidak perlu dijana semula.', 'talk.result': 'Hasil Klip', 'talk.btn-copy': 'Salin Semua',
       'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Butang 📋 = salin prompt sedia-guna untuk Flow/Veo (imej storyboard dibaca AI, helaiannya tidak masuk ke video).',
       'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bertumbuh Fatimah Zahra', 'ph.talk-suasana-custom': 'Tulis suasana sendiri, cth: studio gelap dengan lampu neon merah',
+      'ph.talk-niche-custom': 'Tulis niche sendiri, cth: Tip Perniagaan Makanan', 'ph.talk-latar-custom': 'Tulis latar sendiri, cth: Dapur Rumah', 'ph.talk-gaya-custom': 'Tulis gaya bercakap sendiri, cth: santai dan lucu seperti berbual dengan kawan baik',
       'warn.talker-model-required': 'Pilih foto model dahulu (muat naik atau dari Pustaka Model).',
       'talk.step-product': 'Foto Produk (Pilihan, maks 5)',
       'talk.product-hint': 'Baju, kasut, beg, dll — influencer akan memakainya dalam foto (sesuai untuk affiliate).',
@@ -883,8 +889,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.3';
+  window.APP_VERSION = '3.4';
   window.CHANGELOG = [
+    { version: '3.4', date: '17 Okt 2026', changes: [
+      { id: 'Influencer Bicara: Gaya Bicara kini punya pilihan Custom — tulis gaya bicaramu sendiri. Kolom Custom Niche, Latar & Gaya juga kini ada contoh isian',
+        en: 'Talking Influencer: Speaking Style now has a Custom option — write your own style. The Custom fields for Niche, Setting & Style now show example text too',
+        ms: 'Influencer Bercakap: Gaya Percakapan kini ada pilihan Custom — tulis gaya bercakap sendiri. Ruangan Custom Niche, Latar & Gaya juga kini ada contoh isian' },
+      { id: 'Model Studio: kolom baru "Ciri Tambahan" — minta rambut, kacamata, bentuk badan, atau negara yang tidak ada di pilihan (cth: rambut pirang, berkacamata, keturunan Turki)',
+        en: 'Model Studio: new "Extra Traits" field — ask for hair, glasses, body type, or a country not in the list (e.g. blonde hair, glasses, Turkish descent)',
+        ms: 'Model Studio: ruangan baharu "Ciri Tambahan" — minta rambut, cermin mata, bentuk badan, atau negara yang tiada dalam pilihan (cth: rambut perang, berkaca mata, keturunan Turki)' }
+    ] },
     { version: '3.3', date: '13 Okt 2026', changes: [
       { id: 'Influencer Bicara: Buat Ulang Naskah kini tidak menghapus foto — ganti naskah sepuasnya, foto yang sudah bagus tetap dipakai',
         en: 'Talking Influencer: Rewrite Script no longer deletes your photos — change the script as often as you like and keep the photos you love',
@@ -1661,7 +1675,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const veil = (c.gender !== 'pria' && c.hijab === 'hijab') ? ', wearing a neat modern hijab' : '';
     const v = c.variety;
     const variety = v ? `, with ${v.face}${v.hair ? ', ' + v.hair : ''}, ${v.feature}, ${v.tone}` : '';
-    return `Photorealistic half-body studio portrait photo of a ${age} ${look} ${person}${veil}${variety}, facing the camera with a natural friendly smile, plain light neutral studio background, soft diffused lighting, sharp focus on the face, natural skin texture, high detail, suitable as a model reference photo. No text, no watermark.`;
+    const extra = String(c.extra || '').trim();
+    const traits = extra ? ` ADDITIONAL TRAITS (user request, follow strictly — these override any conflicting face, hair or appearance detail above): "${extra}".` : '';
+    return `Photorealistic half-body studio portrait photo of a ${age} ${look} ${person}${veil}${variety}, facing the camera with a natural friendly smile, plain light neutral studio background, soft diffused lighting, sharp focus on the face, natural skin texture, high detail, suitable as a model reference photo.${traits} No text, no watermark.`;
   };
   window.b64ToBlob = function (b64, mime) {
     const bin = atob(b64);
@@ -1825,7 +1841,8 @@ document.addEventListener('DOMContentLoaded', () => {
         gender: pickedVal('influencer-gender-options'),
         usia: pickedVal('influencer-age-options'),
         look: pickedVal('influencer-look-options'),
-        hijab: pickedVal('influencer-hijab-options')
+        hijab: pickedVal('influencer-hijab-options'),
+        extra: document.getElementById('influencer-extra-input').value.trim()
       };
     }
 
@@ -5295,7 +5312,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
             </div>
             <div class="card p-6">
               <div class="flex items-center gap-2 mb-3"><div class="step-num">4</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="talk.step-gaya">Gaya Bicara</h2></div>
-              ${chipGrid('gaya', GAYA_OPTS, false)}
+              ${chipGrid('gaya', GAYA_OPTS, true)}
               <label class="block text-sm font-semibold text-gray-600 mt-4 mb-1" data-i18n="talk.step-angle">Angle Kamera</label>
               <div id="${p}-angle-grid" class="flex flex-wrap gap-2">
                 <button type="button" data-val="random" class="theme-chip selected"><i class="fas fa-shuffle"></i>Acak</button>
@@ -5361,6 +5378,10 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     ['niche', 'latar', 'gaya'].forEach(key => {
       const gridEl = document.getElementById(`${p}-group-${key}`);
       const customEl = document.getElementById(`${p}-group-${key}-custom`);
+      if (customEl) {
+        customEl.setAttribute('data-i18n-placeholder', `ph.talk-${key}-custom`);
+        customEl.placeholder = t(`ph.talk-${key}-custom`);
+      }
       gridEl.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-val]'); if (!btn) return;
         gridEl.querySelectorAll('.theme-chip').forEach(x => x.classList.remove('selected'));
@@ -5838,7 +5859,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     // ---- Buat Naskah ----
     async function generateScript(triggerBtn) {
       const sel = currentSel();
-      if (!sel.niche || !sel.latar) { window.uiNotify(t('warn.talker-custom-empty')); return; }
+      if (!sel.niche || !sel.latar || !sel.gaya) { window.uiNotify(t('warn.talker-custom-empty')); return; }
       sel.angle = nextAngle();
       const pl = plan();
       const orig = triggerBtn.innerHTML;
