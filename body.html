@@ -1246,6 +1246,16 @@
                 <button type="button" id="dailyphoto-library-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden"><i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span></button>
               </div>
               <div class="card p-6">
+                <div class="flex items-center gap-2 mb-3"><div class="step-num">1b</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="dp.step-product">Foto Produk (Opsional, maks 5)</h2></div>
+                <p class="text-xs text-gray-400 mb-3" data-i18n="dp.product-hint">Baju, celana, sepatu, tas, aksesoris, dll — model akan memakai/memegang produk ini di foto.</p>
+                <div id="dailyphoto-product-slots" class="grid grid-cols-3 gap-2 mb-3"></div>
+                <div class="flex gap-2">
+                  <button type="button" id="dailyphoto-product-add-btn" class="btn-secondary flex-1 text-sm font-semibold py-2 px-3 rounded-lg"><i class="fas fa-plus mr-1"></i><span data-i18n="btn.upload-product">Upload Produk</span></button>
+                  <button type="button" id="dailyphoto-product-library-btn" class="btn-secondary flex-1 text-sm font-semibold py-2 px-3 rounded-lg hidden"><i class="fas fa-box-open mr-1"></i><span data-i18n="btn.pick-product-library">Pustaka Produk</span></button>
+                </div>
+                <input type="file" id="dailyphoto-product-input" class="hidden" accept="image/png, image/jpeg, image/webp">
+              </div>
+              <div class="card p-6">
                 <div class="flex items-center gap-2 mb-3"><div class="step-num">3</div><h2 class="text-lg font-semibold text-gray-800" data-i18n="dp.step-bg">Referensi Background (Opsional)</h2></div>
                 <p class="text-xs text-gray-400 mb-3" data-i18n="dp.bg-hint">Upload foto tempat — lokasi foto akan mengikuti suasana foto ini. Aktivitas tetap dari chip.</p>
                 <div id="dailyphoto-bg-upload-area">

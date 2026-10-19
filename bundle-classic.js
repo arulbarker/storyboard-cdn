@@ -190,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.dailyphoto': 'Foto Harian', 'navd.dailyphoto': 'Foto natural model AI',
       'hdr.dailyphoto.title': 'Foto Harian', 'hdr.dailyphoto.sub': 'Foto natural sehari-hari untuk feed AI influencer kamu.',
       'dp.step-model': 'Pilih Model (Wajib)', 'dp.step-activity': 'Aktivitas & Suasana',
+      'dp.step-product': 'Foto Produk (Opsional, maks 5)', 'dp.product-hint': 'Baju, celana, sepatu, tas, aksesoris, dll — model akan memakai/memegang produk ini di foto.',
       'dp.step-bg': 'Referensi Background (Opsional)', 'dp.bg-hint': 'Upload foto tempat — lokasi foto akan mengikuti suasana foto ini. Aktivitas tetap dari chip.',
       'dp.step-ratio': 'Rasio Foto', 'dp.result-empty': 'Belum ada foto — pilih model & aktivitas lalu klik "Buat Foto Harian".',
       'btn.generate.dailyphoto': 'Buat Foto Harian', 'dp.download': 'Download',
@@ -215,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'btn.save-product': 'Simpan ke akun',
       'badge.product-saved': 'Tersimpan',
       'modal.product-name': 'Nama produk',
-      'warn.product-limit': 'Maksimal 5 produk per video.',
+      'warn.product-limit': 'Maksimal 5 produk.',
       'warn.product-name-required': 'Isi nama produk dulu.',
       'warn.product-library-full': 'Pustaka produk penuh (maksimal 5 produk).',
       'warn.no-products': 'Belum ada produk tersimpan.',
@@ -455,6 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.dailyphoto': 'Daily Photos', 'navd.dailyphoto': 'Natural AI model photos',
       'hdr.dailyphoto.title': 'Daily Photos', 'hdr.dailyphoto.sub': 'Natural everyday photos for your AI influencer feed.',
       'dp.step-model': 'Pick a Model (Required)', 'dp.step-activity': 'Activity & Vibe',
+      'dp.step-product': 'Product Photos (Optional, max 5)', 'dp.product-hint': 'Tops, pants, shoes, bags, accessories, etc — the model will wear/hold these products in the photo.',
       'dp.step-bg': 'Background Reference (Optional)', 'dp.bg-hint': 'Upload a place photo — the photo location will follow its vibe. The activity still comes from the chips.',
       'dp.step-ratio': 'Photo Ratio', 'dp.result-empty': 'No photo yet — pick a model & activity then hit "Create Daily Photo".',
       'btn.generate.dailyphoto': 'Create Daily Photo', 'dp.download': 'Download',
@@ -480,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'btn.save-product': 'Save to account',
       'badge.product-saved': 'Saved',
       'modal.product-name': 'Product name',
-      'warn.product-limit': 'Maximum 5 products per video.',
+      'warn.product-limit': 'Maximum 5 products.',
       'warn.product-name-required': 'Enter a product name first.',
       'warn.product-library-full': 'Product library is full (max 5 products).',
       'warn.no-products': 'No saved products yet.',
@@ -720,6 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.dailyphoto': 'Foto Harian', 'navd.dailyphoto': 'Foto natural model AI',
       'hdr.dailyphoto.title': 'Foto Harian', 'hdr.dailyphoto.sub': 'Foto natural harian untuk feed AI influencer kamu.',
       'dp.step-model': 'Pilih Model (Wajib)', 'dp.step-activity': 'Aktiviti & Suasana',
+      'dp.step-product': 'Foto Produk (Pilihan, maks 5)', 'dp.product-hint': 'Baju, seluar, kasut, beg, aksesori, dll — model akan memakai/memegang produk ini dalam foto.',
       'dp.step-bg': 'Rujukan Latar (Pilihan)', 'dp.bg-hint': 'Muat naik foto tempat — lokasi foto akan ikut suasana foto ini. Aktiviti tetap dari cip.',
       'dp.step-ratio': 'Nisbah Foto', 'dp.result-empty': 'Belum ada foto — pilih model & aktiviti kemudian tekan "Buat Foto Harian".',
       'btn.generate.dailyphoto': 'Buat Foto Harian', 'dp.download': 'Muat Turun',
@@ -745,7 +748,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'btn.save-product': 'Simpan ke akaun',
       'badge.product-saved': 'Tersimpan',
       'modal.product-name': 'Nama produk',
-      'warn.product-limit': 'Maksimum 5 produk setiap video.',
+      'warn.product-limit': 'Maksimum 5 produk.',
       'warn.product-name-required': 'Isi nama produk dahulu.',
       'warn.product-library-full': 'Pustaka produk penuh (maksimum 5 produk).',
       'warn.no-products': 'Belum ada produk tersimpan.',
@@ -889,8 +892,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.4';
+  window.APP_VERSION = '3.5';
   window.CHANGELOG = [
+    { version: '3.5', date: '19 Okt 2026', changes: [
+      { id: 'Foto Harian: kini bisa tambah sampai 5 Foto Produk (baju, celana, sepatu, tas, aksesoris, dll) — model akan memakai/memegang produk itu di foto. Bisa upload atau ambil dari Pustaka Produk',
+        en: 'Daily Photos: you can now add up to 5 Product Photos (tops, pants, shoes, bags, accessories, etc) — the model will wear/hold them in the photo. Upload or pick from the Product Library',
+        ms: 'Foto Harian: kini boleh tambah sehingga 5 Foto Produk (baju, seluar, kasut, beg, aksesori, dll) — model akan memakai/memegang produk itu dalam foto. Muat naik atau pilih dari Pustaka Produk' }
+    ] },
     { version: '3.4', date: '17 Okt 2026', changes: [
       { id: 'Influencer Bicara: Gaya Bicara kini punya pilihan Custom — tulis gaya bicaramu sendiri. Kolom Custom Niche, Latar & Gaya juga kini ada contoh isian',
         en: 'Talking Influencer: Speaking Style now has a Custom option — write your own style. The Custom fields for Niche, Setting & Style now show example text too',
@@ -1302,7 +1310,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (musik + SFX saja).</li><li>Kalau hasil kurang pas, tekan Regenerate atau Edit Prompt.</li></ul>' },
       { t: '14. Influencer Bicara', h: '<p>Buat konten <b>talking-head per niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya bicara → <b>Buat Naskah</b> (AI menulis monolog utuh, bisa diedit per klip) → <b>Generate Foto</b> (1 foto per klip).</p><p><b>Naskah nyambung antar klip</b> — prompt video tiap klip berisi kata-kata persis segmen itu. Generate video per klip di platform luar (Kling/Veo), lalu satukan di CapCut jadi satu monolog utuh (mis. 6 klip × 10 dtk = 60 dtk).</p><p><b>Mau ganti naskah saja?</b> Klik <b>Buat Ulang Naskah</b> atau edit langsung di kotak naskah — foto yang sudah jadi tidak terhapus, prompt video & caption ikut naskah baru.</p><p><b>Ajakan di akhir (CTA)</b> seperti "jangan lupa simpan video ini" kini opsional — default <b>Tanpa CTA</b>; pilih <b>Pakai CTA</b> di kartu Gaya Bicara kalau mau (khusus format 1 orang, bukan Mode Doa).</p>' },
       { t: '15. Cerita Anak', h: '<p>Kategori konten edukasi anak — <b>narasi narator, subjek tidak bicara</b> (gaya dokumenter/dongeng).</p><ul><li><b>Ensiklopedia Anak</b> — pengetahuan 1 subjek (mis. Gajah Afrika): pilih kategori + gaya visual, atau ketik subjek spesifik. Scene mengalir: kenalan → habitat → makanan → keunikan → fakta seru → rekap.</li><li><b>Siklus Hidup</b> — tahapan hidup 1 subjek (telur → ulat → kepompong → kupu-kupu) urut maju, scene akhir bentuk dewasa.</li></ul><p>Gaya audio default <b>Voiceover</b> — prompt video berisi narasi ramah anak. <b>Fakta dibuat AI: cek dulu sebelum diposting.</b></p>' },
-      { t: '16. Foto Harian', h: '<p>Buat <b>foto natural sehari-hari</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau upload), pilih chip <b>aktivitas</b> (ngopi, gym, OOTD, dll — atau Acak/Custom), pilih rasio, lalu Generate — 1 foto per klik.</p><p><b>Referensi Background (opsional):</b> upload foto tempat, maka lokasi foto akan mengikuti suasana foto itu (mirip, bukan tempel persis) — aktivitas tetap dari chip. Gaya natural anti-plastik sudah otomatis aktif. Hasil langsung di-download, tidak masuk Pustaka Model.</p>' },
+      { t: '16. Foto Harian', h: '<p>Buat <b>foto natural sehari-hari</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau upload), pilih chip <b>aktivitas</b> (ngopi, gym, OOTD, dll — atau Acak/Custom), pilih rasio, lalu Generate — 1 foto per klik.</p><p><b>Referensi Background (opsional):</b> upload foto tempat, maka lokasi foto akan mengikuti suasana foto itu (mirip, bukan tempel persis) — aktivitas tetap dari chip.</p><p><b>Foto Produk (opsional, maks 5):</b> upload foto baju, celana, sepatu, tas, aksesoris, atau barang apa pun (atau ambil dari Pustaka Produk) — model akan memakai/memegang produk itu di foto, cocok untuk konten affiliate. Gaya natural anti-plastik sudah otomatis aktif. Hasil langsung di-download, tidak masuk Pustaka Model.</p>' },
     ],
     en: [
       { t: '1. Quick Start', h: '<p>This app turns product photos/ideas into <b>storyboard photos</b> (scene 1→N) for you to turn into video.</p><ul><li>Sign in with your <b>purchase email</b>.</li><li>Pick a feature on the left, fill the inputs, hit <b>Generate</b>.</li><li>Each result card can Regenerate, Edit Prompt, grab a <b>Video Prompt</b>, and download.</li></ul><p>Note: the app produces <b>photos + prompt text</b>. Turning photos into video is done on external platforms (Runway/Pika/Kling/Veo).</p>' },
@@ -1320,7 +1328,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '13. Tips & FAQ', h: '<ul><li>The app only outputs <b>photos + prompt text</b> — make the video on Runway/Pika/Kling/Veo.</li><li>ASMR/Cinematic/Timelapse are intentionally <b>without human speech</b> (music + SFX only).</li><li>If a result is off, hit Regenerate or Edit Prompt.</li></ul>' },
       { t: '14. Talking Influencer', h: '<p>Create <b>niche talking-head content</b> (wisdom, Islamic, parenting, etc.): pick a model photo (required), niche, setting, speaking style → <b>Write Script</b> (AI writes one full monologue, editable per clip) → <b>Generate Photos</b> (1 photo per clip).</p><p><b>The script flows across clips</b> — each clip\'s video prompt contains that exact segment. Generate each clip on an external platform (Kling/Veo), then join them in CapCut into one full monologue (e.g. 6 clips × 10 s = 60 s).</p><p><b>Only want a new script?</b> Click <b>Rewrite Script</b> or edit the script boxes directly — your finished photos stay, and the video prompts & captions follow the new script.</p><p>The <b>closing call-to-action (CTA)</b> such as "save this video" is now optional — <b>No CTA</b> by default; pick <b>Use CTA</b> in the Speaking Style card if you want it (1-person format only, not Prayer Mode).</p>' },
       { t: '15. Kids Story', h: '<p>Kids educational content category — <b>narrator voiceover, the subject never talks</b> (documentary/fairy-tale style).</p><ul><li><b>Kids Encyclopedia</b> — one-subject knowledge (e.g. African Elephant): pick a category + visual style, or type a specific subject. Scenes flow: intro → habitat → food → uniqueness → fun facts → recap.</li><li><b>Life Cycle</b> — one subject through its life stages (egg → caterpillar → chrysalis → butterfly) in strict forward order, final scene is the adult form.</li></ul><p>Default audio style is <b>Voiceover</b> — video prompts carry kid-friendly narration. <b>Facts are AI-generated: verify before posting.</b></p>' },
-      { t: '16. Daily Photos', h: '<p>Create <b>natural everyday photos</b> for your AI influencer feed: pick a model from the Library (or upload), pick an <b>activity</b> chip (coffee, gym, OOTD, etc. — or Random/Custom), pick a ratio, then Generate — 1 photo per click.</p><p><b>Background Reference (optional):</b> upload a place photo and the photo location will follow its vibe (similar, not an exact paste) — the activity still comes from the chips. The natural anti-plastic style is always on. Results are downloaded directly, they do not enter the Model Library.</p>' },
+      { t: '16. Daily Photos', h: '<p>Create <b>natural everyday photos</b> for your AI influencer feed: pick a model from the Library (or upload), pick an <b>activity</b> chip (coffee, gym, OOTD, etc. — or Random/Custom), pick a ratio, then Generate — 1 photo per click.</p><p><b>Background Reference (optional):</b> upload a place photo and the photo location will follow its vibe (similar, not an exact paste) — the activity still comes from the chips.</p><p><b>Product Photos (optional, max 5):</b> upload photos of tops, pants, shoes, bags, accessories, or any item (or pick from the Product Library) — the model will wear/hold them in the photo, great for affiliate content. The natural anti-plastic style is always on. Results are downloaded directly, they do not enter the Model Library.</p>' },
     ],
     ms: [
       { t: '1. Mula Pantas', h: '<p>Aplikasi ini menukar foto produk/idea menjadi <b>foto storyboard</b> (adegan 1→N) untuk kamu jadikan video.</p><ul><li>Log masuk dengan <b>e-mel pembelian</b> kamu.</li><li>Pilih ciri di menu kiri, isi input, tekan <b>Generate</b>.</li><li>Setiap kad hasil boleh Regenerate, Edit Prompt, ambil <b>Prompt Video</b>, dan muat turun.</li></ul><p>Penting: app menghasilkan <b>foto + teks prompt</b>. Proses foto→video dibuat di platform luar (Runway/Pika/Kling/Veo).</p>' },
@@ -1338,7 +1346,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (muzik + SFX sahaja).</li><li>Jika hasil kurang tepat, tekan Regenerate atau Edit Prompt.</li></ul>' },
       { t: '14. Influencer Bercakap', h: '<p>Buat <b>kandungan talking-head ikut niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya percakapan → <b>Buat Skrip</b> (AI menulis satu monolog penuh, boleh diedit per klip) → <b>Jana Foto</b> (1 foto per klip).</p><p><b>Skrip bersambung antara klip</b> — prompt video setiap klip mengandungi kata-kata tepat segmen itu. Jana video per klip di platform luaran (Kling/Veo), kemudian gabungkan di CapCut jadi satu monolog penuh (cth. 6 klip × 10 saat = 60 saat).</p><p><b>Hanya mahu tukar skrip?</b> Klik <b>Buat Semula Skrip</b> atau edit terus di kotak skrip — foto yang sudah siap tidak dipadam, prompt video & kapsyen ikut skrip baharu.</p><p><b>Ajakan di akhir (CTA)</b> seperti "jangan lupa simpan video ini" kini pilihan — lalai <b>Tanpa CTA</b>; pilih <b>Guna CTA</b> di kad Gaya Percakapan jika mahu (format 1 orang sahaja, bukan Mod Doa).</p>' },
       { t: '15. Cerita Kanak-kanak', h: '<p>Kategori kandungan pendidikan kanak-kanak — <b>narasi perawi, subjek tidak bercakap</b> (gaya dokumentari/dongeng).</p><ul><li><b>Ensiklopedia Kanak-kanak</b> — pengetahuan 1 subjek (cth. Gajah Afrika): pilih kategori + gaya visual, atau taip subjek spesifik. Adegan mengalir: kenalan → habitat → makanan → keunikan → fakta menarik → rekap.</li><li><b>Kitaran Hidup</b> — peringkat hidup 1 subjek (telur → ulat → kepompong → rama-rama) urutan ke hadapan, adegan akhir bentuk dewasa.</li></ul><p>Gaya audio lalai <b>Voiceover</b> — prompt video membawa narasi mesra kanak-kanak. <b>Fakta dijana AI: semak dahulu sebelum muat naik.</b></p>' },
-      { t: '16. Foto Harian', h: '<p>Buat <b>foto natural harian</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau muat naik), pilih cip <b>aktiviti</b> (kopi, gim, OOTD, dll — atau Rawak/Custom), pilih nisbah, kemudian Generate — 1 foto setiap klik.</p><p><b>Rujukan Latar (pilihan):</b> muat naik foto tempat, lokasi foto akan ikut suasana foto itu (serupa, bukan tampal tepat) — aktiviti tetap dari cip. Gaya natural anti-plastik sentiasa aktif. Hasil terus dimuat turun, tidak masuk Pustaka Model.</p>' },
+      { t: '16. Foto Harian', h: '<p>Buat <b>foto natural harian</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau muat naik), pilih cip <b>aktiviti</b> (kopi, gim, OOTD, dll — atau Rawak/Custom), pilih nisbah, kemudian Generate — 1 foto setiap klik.</p><p><b>Rujukan Latar (pilihan):</b> muat naik foto tempat, lokasi foto akan ikut suasana foto itu (serupa, bukan tampal tepat) — aktiviti tetap dari cip.</p><p><b>Foto Produk (pilihan, maks 5):</b> muat naik foto baju, seluar, kasut, beg, aksesori, atau apa-apa barang (atau pilih dari Pustaka Produk) — model akan memakai/memegang produk itu dalam foto, sesuai untuk kandungan affiliate. Gaya natural anti-plastik sentiasa aktif. Hasil terus dimuat turun, tidak masuk Pustaka Model.</p>' },
     ],
   };
   function renderGuide() {
@@ -1977,17 +1985,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // === END INFLUENCER STUDIO ===
 
   // === DAILY PHOTO (Foto Harian — foto natural sehari-hari model AI) ===
-  // Fungsi murni: rakit prompt image-to-image. REFERENCE PHOTO 1 = model (wajib), 2 = background (opsional).
+  // Fungsi murni: rakit prompt image-to-image. REFERENCE PHOTO 1 = model (wajib), 2 = background (opsional),
+  // lalu foto produk (opsional, maks 5) — nomornya bergeser mengikuti ada/tidaknya background.
   window.buildDailyPhotoPrompt = function (sel) {
     const place = sel.hasBg
       ? 'LOCATION: match the location, environment and atmosphere of REFERENCE PHOTO 2 — recreate a similar place with the same mood, lighting direction and color palette (a similar place, NOT a pixel-perfect composite of that exact photo).'
       : 'LOCATION: pick a fitting everyday location that naturally matches the activity.';
+    const n = sel.productCount || 0;
+    const first = sel.hasBg ? 3 : 2;
+    const refs = n === 1 ? `REFERENCE PHOTO ${first}` : `REFERENCE PHOTOS ${first}–${first + n - 1}`;
+    const products = n
+      ? `\nPRODUCTS (MANDATORY): ${refs} ${n === 1 ? 'shows a product' : 'show products'} only. The person WEARS/USES ${n === 1 ? 'this exact product' : 'ALL of these exact products'}, clearly visible in the frame — clothing, shoes, hats, bags and accessories are worn as part of the outfit (replacing the matching outfit piece); other items are held or used naturally for the activity. Keep the same design, color, pattern, material and logo/print of each product. Ignore any person, mannequin, hanger or background inside the product photos — take ONLY the products.`
+      : '';
+    const outfit = n ? 'an outfit built around the products' : 'everyday outfit that fits the activity';
+    const brandRule = n
+      ? 'Apart from logos/prints that are part of the products themselves, NEVER show any other real brand name or franchise logo.'
+      : 'NEVER show a real brand name or franchise logo.';
     return `Generate ONE casual everyday lifestyle photo of the person in REFERENCE PHOTO 1.
 IDENTITY LOCK (VERY IMPORTANT): the face, hairstyle, skin tone and distinctive features MUST be IDENTICAL to the person in REFERENCE PHOTO 1 — the exact same person, instantly recognizable. Do NOT change their identity, age or ethnicity.
 ACTIVITY: ${sel.activity}.
-${place}
-STYLE: candid social-media lifestyle photo, as if a friend snapped it or a casual phone self-timer shot — relaxed natural pose, genuine expression, everyday outfit that fits the activity, NOT a studio photoshoot, NOT a professional modeling pose.${window.NATURAL_PHOTO_HINT}
-Absolutely no text, no words, no letters, no watermark anywhere in the image. NEVER show a real brand name or franchise logo.`;
+${place}${products}
+STYLE: candid social-media lifestyle photo, as if a friend snapped it or a casual phone self-timer shot — relaxed natural pose, genuine expression, ${outfit}, NOT a studio photoshoot, NOT a professional modeling pose.${window.NATURAL_PHOTO_HINT}
+Absolutely no text, no words, no letters, no watermark anywhere in the image. ${brandRule}`;
   };
 
   (function initDailyPhoto() {
@@ -2084,6 +2103,57 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. NE
       bgUploadArea.classList.remove('hidden'); bgPreviewContainer.classList.add('hidden');
     });
 
+    // ---- Foto produk (opsional, maks 5) — upload atau ambil dari Pustaka Produk ----
+    const DP_PRODUCT_MAX = 5;
+    const dpProducts = []; // {b64, mime, name}
+    const prodSlots = document.getElementById('dailyphoto-product-slots');
+    const prodAddBtn = document.getElementById('dailyphoto-product-add-btn');
+    const prodLibBtn = document.getElementById('dailyphoto-product-library-btn');
+    const prodInput = document.getElementById('dailyphoto-product-input');
+    function renderProducts() {
+      prodSlots.innerHTML = dpProducts.map((pr, i) => `
+        <div class="relative rounded-xl border-2 border-gray-100 overflow-hidden bg-white">
+          <img src="data:${pr.mime};base64,${pr.b64}" class="w-full aspect-square object-cover" alt="${window.escHtml(pr.name || 'Produk')}">
+          <button type="button" data-prod-remove="${i}" class="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full text-xs"><i class="fas fa-times pointer-events-none"></i></button>
+        </div>`).join('');
+      prodAddBtn.classList.toggle('hidden', dpProducts.length >= DP_PRODUCT_MAX);
+    }
+    prodAddBtn.addEventListener('click', () => prodInput.click());
+    prodInput.addEventListener('change', async () => {
+      const file = prodInput.files && prodInput.files[0];
+      prodInput.value = '';
+      if (!file) return;
+      if (dpProducts.length >= DP_PRODUCT_MAX) { window.uiNotify(t('warn.product-limit')); return; }
+      try {
+        const { base64, mimeType } = await window.compressImage(file);
+        dpProducts.push({ b64: base64, mime: mimeType, name: '' });
+        renderProducts();
+      } catch (err) { window.uiNotify(t('warn.file-unreadable')); }
+    });
+    prodSlots.addEventListener('click', (e) => {
+      const rm = e.target.closest('[data-prod-remove]');
+      if (rm) { dpProducts.splice(parseInt(rm.dataset.prodRemove, 10), 1); renderProducts(); }
+    });
+    prodLibBtn.addEventListener('click', async () => {
+      let list = [];
+      try { list = await window.productDB.list(); } catch (err) { console.error(err); }
+      if (!list.length) { window.uiNotify(t('warn.no-products')); return; }
+      showChoiceModal(t('btn.pick-product-library'), list.map(m => ({
+        label: `<span class="flex items-center gap-3"><img src="${URL.createObjectURL(m.blob)}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span>`,
+        onPick: async () => {
+          if (dpProducts.length >= DP_PRODUCT_MAX) { window.uiNotify(t('warn.product-limit')); return; }
+          dpProducts.push({ b64: await window.blobToB64(m.blob), mime: m.mime, name: m.name });
+          renderProducts();
+        }
+      })));
+    });
+    async function refreshProdLibBtn() {
+      try { prodLibBtn.classList.toggle('hidden', !(await window.productDB.list()).length); }
+      catch { prodLibBtn.classList.add('hidden'); }
+    }
+    document.addEventListener('ssp-products-changed', refreshProdLibBtn);
+    refreshProdLibBtn();
+
     // ---- Chip aktivitas (Acak / preset / Custom) & rasio ----
     const actGrid = document.getElementById('dailyphoto-activity-options');
     const customContainer = document.getElementById('dailyphoto-activity-custom-container');
@@ -2118,9 +2188,10 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. NE
       const activity = dpActivity();
       genBtn.disabled = true; regenBtn.disabled = true;
       resultBox.innerHTML = '<div class="loader"></div>';
-      const prompt = window.buildDailyPhotoPrompt({ activity, hasBg: !!dpBgB64 });
+      const prompt = window.buildDailyPhotoPrompt({ activity, hasBg: !!dpBgB64, productCount: dpProducts.length });
       const parts = [{ text: prompt }, { inlineData: { mimeType: dpModelMime, data: dpModelB64 } }];
       if (dpBgB64) parts.push({ inlineData: { mimeType: dpBgMime, data: dpBgB64 } });
+      dpProducts.forEach(pr => parts.push({ inlineData: { mimeType: pr.mime || 'image/png', data: pr.b64 } }));
       const retries = 3; let lastError = null;
       for (let i = 0; i < retries; i++) {
         try {
