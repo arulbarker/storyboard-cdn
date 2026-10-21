@@ -26,6 +26,7 @@
       <nav class="sidebar-nav">
         <div class="nav-section" data-i18n="menu.guide">⭐ Mulai Di Sini</div>
         <button data-tab="guide" class="nav-item main-tab-btn"><span class="nav-ico" style="color:var(--brand-yellow);"><i class="fas fa-star"></i></span><span><span data-i18n="nav.guide">Panduan Aplikasi</span> <span class="guide-star-dot"></span><small data-i18n="navd.guide">Cara pakai semua fitur</small></span></button>
+        <button data-tab="history" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-clock-rotate-left"></i></span><span><span data-i18n="nav.history">Riwayat Hasil</span><small data-i18n="navd.history">Hasil generate tersimpan otomatis</small></span></button>
         <div class="nav-section" data-i18n="menu.model-studio">Model Studio</div>
         <button data-tab="influencer" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-user-astronaut"></i></span><span><span data-i18n="nav.influencer">AI Influencer</span><small data-i18n="navd.influencer">Buat & simpan model AI</small></span></button>
         <button data-tab="talker" class="nav-item main-tab-btn"><span class="nav-ico"><i class="fas fa-microphone-lines"></i></span><span><span data-i18n="nav.talker">Influencer Bicara</span><small data-i18n="navd.talker">Konten bicara per niche</small></span></button>
@@ -1146,6 +1147,13 @@
           <h1 class="text-2xl font-bold mb-1" style="color:#4c1d95;"><i class="fas fa-star mr-2" style="color:var(--brand-yellow);"></i><span data-i18n="hdr.guide.title">Panduan Aplikasi</span></h1>
           <p class="text-sm mb-5" style="color:#64748b;" data-i18n="hdr.guide.sub">Klik tiap bagian untuk membuka penjelasannya.</p>
           <div id="guide-accordion"></div>
+        </div>
+      </div>
+      <div id="content-history" class="main-content-panel hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+          <h1 class="text-2xl font-bold mb-1" style="color:#4c1d95;"><i class="fas fa-clock-rotate-left mr-2" style="color:#6d28d9;"></i><span data-i18n="hdr.history.title">Riwayat Hasil</span></h1>
+          <p class="text-sm mb-5" style="color:#64748b;" data-i18n="hdr.history.sub">Semua hasil generate tersimpan otomatis di perangkat ini (20 cerita terbaru). Aman walau halaman tertutup atau di-refresh.</p>
+          <div id="history-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </div>
       </div>
       <div id="content-influencer" class="main-content-panel hidden">

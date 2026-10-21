@@ -184,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.file-unreadable': 'File tidak bisa dibaca — pastikan itu file gambar (JPG/PNG/HEIC).',
       'warn.session-ended': 'Sesi berakhir. Akun ini login di perangkat lain.',
       'menu.model-studio': 'Model Studio', 'menu.viral': 'Video Short Viral', 'nav.logout': 'Keluar',
+      'nav.history': 'Riwayat Hasil', 'navd.history': 'Hasil generate tersimpan otomatis', 'hdr.history.title': 'Riwayat Hasil', 'hdr.history.sub': 'Semua hasil generate tersimpan otomatis di perangkat ini (20 cerita terbaru). Aman walau halaman tertutup atau di-refresh.', 'hist.empty': 'Belum ada riwayat. Hasil generate dari fitur mana pun akan otomatis muncul di sini.', 'hist.view': 'Lihat', 'hist.download-all': 'Unduh Semua', 'hist.copy-prompt': 'Salin Prompt', 'hist.copy-video': 'Salin Prompt Video', 'hist.copy-script': 'Salin Naskah', 'hist.confirm-delete': 'Hapus riwayat ini dari perangkat? Foto yang belum kamu unduh akan hilang.', 'hist.copied': 'Tersalin', 'hist.photos': 'foto',
       'menu.guide': '⭐ Mulai Di Sini', 'nav.guide': 'Panduan Aplikasi', 'navd.guide': 'Cara pakai semua fitur', 'hdr.guide.title': 'Panduan Aplikasi', 'hdr.guide.sub': 'Klik tiap bagian untuk membuka penjelasannya.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Buat & simpan model AI',
       'nav.talker': 'Influencer Bicara', 'navd.talker': 'Konten bicara per niche',
@@ -450,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.file-unreadable': "File can't be read — make sure it's an image (JPG/PNG/HEIC).",
       'warn.session-ended': 'Session ended. This account is signed in on another device.',
       'menu.model-studio': 'Model Studio', 'menu.viral': 'Viral Short Video', 'nav.logout': 'Log Out',
+      'nav.history': 'Result History', 'navd.history': 'Results saved automatically', 'hdr.history.title': 'Result History', 'hdr.history.sub': 'Every generated result is saved automatically on this device (latest 20 stories). Safe even if the page closes or refreshes.', 'hist.empty': 'No history yet. Results from any feature will automatically show up here.', 'hist.view': 'View', 'hist.download-all': 'Download All', 'hist.copy-prompt': 'Copy Prompt', 'hist.copy-video': 'Copy Video Prompt', 'hist.copy-script': 'Copy Script', 'hist.confirm-delete': 'Delete this history from the device? Photos you have not downloaded will be lost.', 'hist.copied': 'Copied', 'hist.photos': 'photos',
       'menu.guide': '⭐ Start Here', 'nav.guide': 'App Guide', 'navd.guide': 'How to use every feature', 'hdr.guide.title': 'App Guide', 'hdr.guide.sub': 'Tap each section to expand its explanation.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Create & save AI models',
       'nav.talker': 'Talking Influencer', 'navd.talker': 'Niche talking-head content',
@@ -716,6 +718,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.file-unreadable': 'Fail tidak dapat dibaca — pastikan ia fail imej (JPG/PNG/HEIC).',
       'warn.session-ended': 'Sesi tamat. Akaun ini log masuk di peranti lain.',
       'menu.model-studio': 'Studio Model', 'menu.viral': 'Video Pendek Viral', 'nav.logout': 'Log Keluar',
+      'nav.history': 'Sejarah Hasil', 'navd.history': 'Hasil disimpan secara automatik', 'hdr.history.title': 'Sejarah Hasil', 'hdr.history.sub': 'Semua hasil generate disimpan secara automatik di peranti ini (20 cerita terkini). Selamat walaupun halaman ditutup atau dimuat semula.', 'hist.empty': 'Belum ada sejarah. Hasil daripada mana-mana ciri akan muncul di sini secara automatik.', 'hist.view': 'Lihat', 'hist.download-all': 'Muat Turun Semua', 'hist.copy-prompt': 'Salin Prompt', 'hist.copy-video': 'Salin Prompt Video', 'hist.copy-script': 'Salin Skrip', 'hist.confirm-delete': 'Padam sejarah ini daripada peranti? Foto yang belum dimuat turun akan hilang.', 'hist.copied': 'Disalin', 'hist.photos': 'foto',
       'menu.guide': '⭐ Mula Di Sini', 'nav.guide': 'Panduan Aplikasi', 'navd.guide': 'Cara guna semua ciri', 'hdr.guide.title': 'Panduan Aplikasi', 'hdr.guide.sub': 'Ketik setiap bahagian untuk buka penjelasannya.',
       'nav.influencer': 'AI Influencer', 'navd.influencer': 'Cipta & simpan model AI',
       'nav.talker': 'Influencer Bercakap', 'navd.talker': 'Kandungan bercakap ikut niche',
@@ -892,8 +895,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.5';
+  window.APP_VERSION = '3.6';
   window.CHANGELOG = [
+    { version: '3.6', date: '21 Okt 2026', changes: [
+      { id: 'Menu baru Riwayat Hasil: semua foto hasil generate kini tersimpan otomatis di perangkat (20 cerita terbaru) — tidak hilang lagi walau halaman tertutup atau di-refresh. Bisa dilihat ulang, diunduh, dan salin prompt-nya',
+        en: 'New Result History menu: every generated photo is now saved automatically on your device (latest 20 stories) — no more losing work when the page closes or refreshes. View again, download, and copy the prompts',
+        ms: 'Menu baharu Sejarah Hasil: semua foto hasil generate kini disimpan secara automatik di peranti (20 cerita terkini) — tidak hilang lagi walaupun halaman ditutup atau dimuat semula. Boleh dilihat semula, dimuat turun, dan salin prompt' },
+      { id: 'Unduh lebih andal: foto besar tidak gagal lagi, dan Unduh Semua kini mengunduh satu per satu dengan urutan nomor scene sehingga tidak diblokir browser',
+        en: 'More reliable downloads: large photos no longer fail, and Download All now saves files one by one in scene order so the browser does not block them',
+        ms: 'Muat turun lebih stabil: foto besar tidak gagal lagi, dan Muat Turun Semua kini memuat turun satu demi satu mengikut nombor scene supaya tidak disekat pelayar' }
+    ] },
     { version: '3.5', date: '19 Okt 2026', changes: [
       { id: 'Foto Harian: kini bisa tambah sampai 5 Foto Produk (baju, celana, sepatu, tas, aksesoris, dll) — model akan memakai/memegang produk itu di foto. Bisa upload atau ambil dari Pustaka Produk',
         en: 'Daily Photos: you can now add up to 5 Product Photos (tops, pants, shoes, bags, accessories, etc) — the model will wear/hold them in the photo. Upload or pick from the Product Library',
@@ -1311,6 +1322,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '14. Influencer Bicara', h: '<p>Buat konten <b>talking-head per niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya bicara → <b>Buat Naskah</b> (AI menulis monolog utuh, bisa diedit per klip) → <b>Generate Foto</b> (1 foto per klip).</p><p><b>Naskah nyambung antar klip</b> — prompt video tiap klip berisi kata-kata persis segmen itu. Generate video per klip di platform luar (Kling/Veo), lalu satukan di CapCut jadi satu monolog utuh (mis. 6 klip × 10 dtk = 60 dtk).</p><p><b>Mau ganti naskah saja?</b> Klik <b>Buat Ulang Naskah</b> atau edit langsung di kotak naskah — foto yang sudah jadi tidak terhapus, prompt video & caption ikut naskah baru.</p><p><b>Ajakan di akhir (CTA)</b> seperti "jangan lupa simpan video ini" kini opsional — default <b>Tanpa CTA</b>; pilih <b>Pakai CTA</b> di kartu Gaya Bicara kalau mau (khusus format 1 orang, bukan Mode Doa).</p>' },
       { t: '15. Cerita Anak', h: '<p>Kategori konten edukasi anak — <b>narasi narator, subjek tidak bicara</b> (gaya dokumenter/dongeng).</p><ul><li><b>Ensiklopedia Anak</b> — pengetahuan 1 subjek (mis. Gajah Afrika): pilih kategori + gaya visual, atau ketik subjek spesifik. Scene mengalir: kenalan → habitat → makanan → keunikan → fakta seru → rekap.</li><li><b>Siklus Hidup</b> — tahapan hidup 1 subjek (telur → ulat → kepompong → kupu-kupu) urut maju, scene akhir bentuk dewasa.</li></ul><p>Gaya audio default <b>Voiceover</b> — prompt video berisi narasi ramah anak. <b>Fakta dibuat AI: cek dulu sebelum diposting.</b></p>' },
       { t: '16. Foto Harian', h: '<p>Buat <b>foto natural sehari-hari</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau upload), pilih chip <b>aktivitas</b> (ngopi, gym, OOTD, dll — atau Acak/Custom), pilih rasio, lalu Generate — 1 foto per klik.</p><p><b>Referensi Background (opsional):</b> upload foto tempat, maka lokasi foto akan mengikuti suasana foto itu (mirip, bukan tempel persis) — aktivitas tetap dari chip.</p><p><b>Foto Produk (opsional, maks 5):</b> upload foto baju, celana, sepatu, tas, aksesoris, atau barang apa pun (atau ambil dari Pustaka Produk) — model akan memakai/memegang produk itu di foto, cocok untuk konten affiliate. Gaya natural anti-plastik sudah otomatis aktif. Hasil langsung di-download, tidak masuk Pustaka Model.</p>' },
+      { t: '17. Riwayat Hasil', h: '<p>Setiap kali kamu generate (fitur Review, Viral, Cerita Anak, Influencer Bicara, Foto Harian), hasilnya <b>tersimpan otomatis</b> di menu <b>Riwayat Hasil</b> — termasuk foto yang di-Regenerate dan klip Lanjutkan Cerita.</p><ul><li><b>Lihat</b> — buka semua foto cerita itu, unduh per foto, salin prompt gambar, prompt video (kalau sudah pernah dibuat), atau naskah (Influencer Bicara).</li><li><b>Unduh Semua</b> — unduh semua foto cerita itu sekaligus.</li><li><b>Hapus</b> — buang riwayat yang tidak dipakai.</li></ul><p>Riwayat disimpan <b>di perangkat/browser ini saja</b> (maks 20 cerita terbaru — yang paling lama otomatis terhapus). Unduh foto yang penting supaya aman.</p>' },
     ],
     en: [
       { t: '1. Quick Start', h: '<p>This app turns product photos/ideas into <b>storyboard photos</b> (scene 1→N) for you to turn into video.</p><ul><li>Sign in with your <b>purchase email</b>.</li><li>Pick a feature on the left, fill the inputs, hit <b>Generate</b>.</li><li>Each result card can Regenerate, Edit Prompt, grab a <b>Video Prompt</b>, and download.</li></ul><p>Note: the app produces <b>photos + prompt text</b>. Turning photos into video is done on external platforms (Runway/Pika/Kling/Veo).</p>' },
@@ -1329,6 +1341,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '14. Talking Influencer', h: '<p>Create <b>niche talking-head content</b> (wisdom, Islamic, parenting, etc.): pick a model photo (required), niche, setting, speaking style → <b>Write Script</b> (AI writes one full monologue, editable per clip) → <b>Generate Photos</b> (1 photo per clip).</p><p><b>The script flows across clips</b> — each clip\'s video prompt contains that exact segment. Generate each clip on an external platform (Kling/Veo), then join them in CapCut into one full monologue (e.g. 6 clips × 10 s = 60 s).</p><p><b>Only want a new script?</b> Click <b>Rewrite Script</b> or edit the script boxes directly — your finished photos stay, and the video prompts & captions follow the new script.</p><p>The <b>closing call-to-action (CTA)</b> such as "save this video" is now optional — <b>No CTA</b> by default; pick <b>Use CTA</b> in the Speaking Style card if you want it (1-person format only, not Prayer Mode).</p>' },
       { t: '15. Kids Story', h: '<p>Kids educational content category — <b>narrator voiceover, the subject never talks</b> (documentary/fairy-tale style).</p><ul><li><b>Kids Encyclopedia</b> — one-subject knowledge (e.g. African Elephant): pick a category + visual style, or type a specific subject. Scenes flow: intro → habitat → food → uniqueness → fun facts → recap.</li><li><b>Life Cycle</b> — one subject through its life stages (egg → caterpillar → chrysalis → butterfly) in strict forward order, final scene is the adult form.</li></ul><p>Default audio style is <b>Voiceover</b> — video prompts carry kid-friendly narration. <b>Facts are AI-generated: verify before posting.</b></p>' },
       { t: '16. Daily Photos', h: '<p>Create <b>natural everyday photos</b> for your AI influencer feed: pick a model from the Library (or upload), pick an <b>activity</b> chip (coffee, gym, OOTD, etc. — or Random/Custom), pick a ratio, then Generate — 1 photo per click.</p><p><b>Background Reference (optional):</b> upload a place photo and the photo location will follow its vibe (similar, not an exact paste) — the activity still comes from the chips.</p><p><b>Product Photos (optional, max 5):</b> upload photos of tops, pants, shoes, bags, accessories, or any item (or pick from the Product Library) — the model will wear/hold them in the photo, great for affiliate content. The natural anti-plastic style is always on. Results are downloaded directly, they do not enter the Model Library.</p>' },
+      { t: '17. Result History', h: '<p>Every time you generate (Review, Viral, Kids Stories, Talking Influencer, Daily Photos), the results are <b>saved automatically</b> in the <b>Result History</b> menu — including Regenerated photos and Continue Story clips.</p><ul><li><b>View</b> — open every photo of that story, download each photo, copy the image prompt, the video prompt (if you made one), or the script (Talking Influencer).</li><li><b>Download All</b> — download every photo of that story at once.</li><li><b>Delete</b> — remove history you no longer need.</li></ul><p>History is stored <b>on this device/browser only</b> (latest 20 stories — the oldest is removed automatically). Download important photos to keep them safe.</p>' },
     ],
     ms: [
       { t: '1. Mula Pantas', h: '<p>Aplikasi ini menukar foto produk/idea menjadi <b>foto storyboard</b> (adegan 1→N) untuk kamu jadikan video.</p><ul><li>Log masuk dengan <b>e-mel pembelian</b> kamu.</li><li>Pilih ciri di menu kiri, isi input, tekan <b>Generate</b>.</li><li>Setiap kad hasil boleh Regenerate, Edit Prompt, ambil <b>Prompt Video</b>, dan muat turun.</li></ul><p>Penting: app menghasilkan <b>foto + teks prompt</b>. Proses foto→video dibuat di platform luar (Runway/Pika/Kling/Veo).</p>' },
@@ -1347,6 +1360,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '14. Influencer Bercakap', h: '<p>Buat <b>kandungan talking-head ikut niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya percakapan → <b>Buat Skrip</b> (AI menulis satu monolog penuh, boleh diedit per klip) → <b>Jana Foto</b> (1 foto per klip).</p><p><b>Skrip bersambung antara klip</b> — prompt video setiap klip mengandungi kata-kata tepat segmen itu. Jana video per klip di platform luaran (Kling/Veo), kemudian gabungkan di CapCut jadi satu monolog penuh (cth. 6 klip × 10 saat = 60 saat).</p><p><b>Hanya mahu tukar skrip?</b> Klik <b>Buat Semula Skrip</b> atau edit terus di kotak skrip — foto yang sudah siap tidak dipadam, prompt video & kapsyen ikut skrip baharu.</p><p><b>Ajakan di akhir (CTA)</b> seperti "jangan lupa simpan video ini" kini pilihan — lalai <b>Tanpa CTA</b>; pilih <b>Guna CTA</b> di kad Gaya Percakapan jika mahu (format 1 orang sahaja, bukan Mod Doa).</p>' },
       { t: '15. Cerita Kanak-kanak', h: '<p>Kategori kandungan pendidikan kanak-kanak — <b>narasi perawi, subjek tidak bercakap</b> (gaya dokumentari/dongeng).</p><ul><li><b>Ensiklopedia Kanak-kanak</b> — pengetahuan 1 subjek (cth. Gajah Afrika): pilih kategori + gaya visual, atau taip subjek spesifik. Adegan mengalir: kenalan → habitat → makanan → keunikan → fakta menarik → rekap.</li><li><b>Kitaran Hidup</b> — peringkat hidup 1 subjek (telur → ulat → kepompong → rama-rama) urutan ke hadapan, adegan akhir bentuk dewasa.</li></ul><p>Gaya audio lalai <b>Voiceover</b> — prompt video membawa narasi mesra kanak-kanak. <b>Fakta dijana AI: semak dahulu sebelum muat naik.</b></p>' },
       { t: '16. Foto Harian', h: '<p>Buat <b>foto natural harian</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau muat naik), pilih cip <b>aktiviti</b> (kopi, gim, OOTD, dll — atau Rawak/Custom), pilih nisbah, kemudian Generate — 1 foto setiap klik.</p><p><b>Rujukan Latar (pilihan):</b> muat naik foto tempat, lokasi foto akan ikut suasana foto itu (serupa, bukan tampal tepat) — aktiviti tetap dari cip.</p><p><b>Foto Produk (pilihan, maks 5):</b> muat naik foto baju, seluar, kasut, beg, aksesori, atau apa-apa barang (atau pilih dari Pustaka Produk) — model akan memakai/memegang produk itu dalam foto, sesuai untuk kandungan affiliate. Gaya natural anti-plastik sentiasa aktif. Hasil terus dimuat turun, tidak masuk Pustaka Model.</p>' },
+      { t: '17. Sejarah Hasil', h: '<p>Setiap kali kamu generate (ciri Review, Viral, Cerita Anak, Influencer Bercakap, Foto Harian), hasilnya <b>disimpan secara automatik</b> di menu <b>Sejarah Hasil</b> — termasuk foto yang di-Regenerate dan klip Sambung Cerita.</p><ul><li><b>Lihat</b> — buka semua foto cerita itu, muat turun setiap foto, salin prompt gambar, prompt video (jika sudah dibuat), atau skrip (Influencer Bercakap).</li><li><b>Muat Turun Semua</b> — muat turun semua foto cerita itu sekali gus.</li><li><b>Padam</b> — buang sejarah yang tidak digunakan.</li></ul><p>Sejarah disimpan <b>di peranti/pelayar ini sahaja</b> (maks 20 cerita terkini — yang paling lama dipadam secara automatik). Muat turun foto penting supaya selamat.</p>' },
     ],
   };
   function renderGuide() {
@@ -1491,9 +1505,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       return;
     }
+    // data URI besar (foto Gemini) bisa gagal di Chrome ("Kesalahan jaringan") → ubah dulu ke Blob URL
+    let href = dataURI, tmpUrl = null;
+    if (/^data:[^,]*;base64,/i.test(dataURI)) {
+      const head = dataURI.slice(0, dataURI.indexOf(','));
+      const mime = (head.match(/data:([^;]+)/) || [])[1] || 'application/octet-stream';
+      try { tmpUrl = URL.createObjectURL(window.b64ToBlob(dataURI.slice(dataURI.indexOf(',') + 1), mime)); href = tmpUrl; } catch (e) { tmpUrl = null; }
+    }
     const a = document.createElement('a');
-    a.href = dataURI; a.download = name;
+    a.href = href; a.download = name;
     document.body.appendChild(a); a.click(); a.remove();
+    if (tmpUrl) setTimeout(() => URL.revokeObjectURL(tmpUrl), 4000);
+  };
+  // Unduh banyak file berjeda — Chrome memblokir klik download beruntun tanpa jeda
+  window.downloadQueue = async function (list) {
+    for (let i = 0; i < list.length; i++) {
+      window.downloadDataURINew(list[i].src, list[i].name);
+      if (i < list.length - 1) await new Promise(r => setTimeout(r, 350));
+    }
   };
 
   // === STORYBOARD SHEET (gabung semua scene + prompt jadi 1 foto) ===
@@ -1813,6 +1842,187 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   // === END UI DIALOGS ===
+
+  // === RIWAYAT HASIL (auto-save hasil generate ke IndexedDB perangkat) ===
+  // === HISTORY ENGINE ===
+  window.HISTORY_MAX = 20;
+  window.HISTORY_ITEM_MAX = 40;
+  window.historyPickVideo = function (cacheStr) {
+    try { const v = Object.values(JSON.parse(cacheStr || '{}') || {}); return v.length ? String(v[v.length - 1]) : ''; } catch (e) { return ''; }
+  };
+  window.historyPrune = function (records, max) {
+    return records.slice().sort((a, b) => b.updatedAt - a.updatedAt).slice(max).map(r => r.id);
+  };
+  window.historyDataURIParts = function (uri) {
+    const m = /^data:([^;,]+);base64,/i.exec(uri || '');
+    return m ? { mime: m[1], b64: uri.slice(m[0].length) } : null;
+  };
+  // === END HISTORY ENGINE ===
+  window.historyDB = {
+    _open() {
+      return new Promise((res, rej) => {
+        const rq = indexedDB.open('ssp_history', 1);
+        rq.onupgradeneeded = () => rq.result.createObjectStore('stories', { keyPath: 'id' });
+        rq.onsuccess = () => res(rq.result);
+        rq.onerror = () => rej(rq.error);
+      });
+    },
+    async _tx(mode, fn) {
+      const db = await this._open();
+      return new Promise((res, rej) => {
+        const tx = db.transaction('stories', mode);
+        const out = fn(tx.objectStore('stories'));
+        tx.oncomplete = () => res(out && 'result' in out ? out.result : undefined);
+        tx.onerror = () => rej(tx.error);
+        tx.onabort = () => rej(tx.error);
+      });
+    },
+    get(id) { return this._tx('readonly', s => s.get(id)); },
+    async list() { return ((await this._tx('readonly', s => s.getAll())) || []).sort((a, b) => b.updatedAt - a.updatedAt); },
+    async remove(id) { await this._tx('readwrite', s => s.delete(id)); document.dispatchEvent(new CustomEvent('ssp-history-changed')); },
+    async put(rec) {
+      try { await this._tx('readwrite', s => s.put(rec)); }
+      catch (e) { // penyimpanan penuh → buang 3 cerita terlama lalu coba sekali lagi
+        const all = await this.list();
+        for (const r of all.filter(r => r.id !== rec.id).slice(-3)) await this._tx('readwrite', s => s.delete(r.id));
+        await this._tx('readwrite', s => s.put(rec));
+      }
+      const all = await this.list();
+      for (const id of window.historyPrune(all, window.HISTORY_MAX)) await this._tx('readwrite', s => s.delete(id));
+      document.dispatchEvent(new CustomEvent('ssp-history-changed'));
+    }
+  };
+  (function initHistory() {
+    const sessions = {}, timers = {};
+    window.historyNewSession = function (key) { sessions[key] = { id: `${key}-${Date.now()}`, createdAt: Date.now(), tab: '' }; };
+    window.historyTouch = function (key, grid) {
+      const s = sessions[key]; if (!s || !grid) return;
+      clearTimeout(timers[key]);
+      timers[key] = setTimeout(() => saveGrid(s, grid).catch(e => console.warn('Riwayat gagal disimpan:', e)), 1500);
+    };
+    async function saveGrid(s, grid) {
+      if (!s.tab) { const panel = grid.closest('.main-content-panel'); s.tab = panel ? panel.id.replace('content-', '') : ''; }
+      const items = [];
+      grid.querySelectorAll('.result-card').forEach(c => {
+        const parts = window.historyDataURIParts(c.querySelector('img')?.src); if (!parts) return;
+        items.push({ n: parseInt(c.id.split('-card-')[1], 10) || items.length + 1, title: c.dataset.title || '', prompt: c.dataset.prompt || '', video: window.historyPickVideo(c.dataset.videoPromptCache), note: c.dataset.seg || '', blob: window.b64ToBlob(parts.b64, parts.mime) });
+      });
+      if (!items.length) return;
+      await window.historyDB.put({ id: s.id, tab: s.tab, createdAt: s.createdAt, updatedAt: Date.now(), items: items.slice(0, window.HISTORY_ITEM_MAX) });
+    }
+    // Foto satuan (Foto Harian): dikumpulkan 1 entri per hari
+    window.historyAppend = async function (tab, item) {
+      try {
+        const d = new Date();
+        const id = `${tab}-${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
+        const rec = (await window.historyDB.get(id)) || { id, tab, createdAt: Date.now(), items: [] };
+        rec.items.push({ n: rec.items.length + 1, title: item.title || '', prompt: item.prompt || '', video: '', note: '', blob: window.b64ToBlob(item.b64, item.mime || 'image/png') });
+        rec.items = rec.items.slice(-window.HISTORY_ITEM_MAX);
+        rec.updatedAt = Date.now();
+        await window.historyDB.put(rec);
+      } catch (e) { console.warn('Riwayat gagal disimpan:', e); }
+    };
+
+    const list = document.getElementById('history-list');
+    if (!list) return;
+    let urls = [];
+    const freeUrls = () => { urls.forEach(u => URL.revokeObjectURL(u)); urls = []; };
+    const mkUrl = (b) => { const u = URL.createObjectURL(b); urls.push(u); return u; };
+    const fmtDate = (ts) => {
+      const loc = { en: 'en-GB', ms: 'ms-MY' }[getLang()] || 'id-ID';
+      try { return new Date(ts).toLocaleString(loc, { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }); } catch (e) { return new Date(ts).toLocaleString(); }
+    };
+    const tabName = (tab) => { const k = `nav.${tab}`; const v = t(k); return v === k ? tab : v; };
+    const fileName = (rec, it) => {
+      const safe = (it.title || 'scene').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+      const ext = /jpe?g/i.test(it.blob.type) ? 'jpg' : 'png';
+      return `${rec.tab}_${it.n}_${safe}.${ext}`;
+    };
+    function flash(btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = `<i class="fas fa-check mr-1"></i>${t('hist.copied')}`;
+      setTimeout(() => { btn.innerHTML = orig; }, 1200);
+    }
+
+    async function render() {
+      if (document.getElementById('content-history').classList.contains('hidden')) return;
+      let recs = [];
+      try { recs = await window.historyDB.list(); } catch (e) { console.warn(e); }
+      freeUrls();
+      if (!recs.length) {
+        list.innerHTML = `<div class="card p-8 text-center col-span-full"><i class="fas fa-clock-rotate-left text-3xl mb-3" style="color:#a78bfa;"></i><p class="text-sm" style="color:#334155;">${t('hist.empty')}</p></div>`;
+        return;
+      }
+      list.innerHTML = '';
+      recs.forEach(rec => {
+        const el = document.createElement('div');
+        el.className = 'card p-3 flex gap-3 items-center';
+        el.innerHTML = `<img alt="" class="w-20 h-20 rounded-lg object-cover bg-gray-100 shrink-0">
+          <div class="min-w-0 flex-1">
+            <div class="font-semibold truncate" style="color:var(--ink);"></div>
+            <div class="text-xs mt-0.5" style="color:#64748b;"></div>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <button type="button" data-hv class="btn-primary text-xs font-semibold px-3 py-1.5 rounded-lg"><i class="fas fa-eye mr-1"></i>${t('hist.view')}</button>
+              <button type="button" data-hd class="btn-secondary text-xs font-semibold px-3 py-1.5 rounded-lg"><i class="fas fa-download mr-1"></i>${t('hist.download-all')}</button>
+              <button type="button" data-hx class="text-xs font-semibold px-3 py-1.5 rounded-lg" style="color:#dc2626;border:1px solid #fecaca;background:#fff;" title="${t('btn.delete')}"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>`;
+        if (rec.items[0]) el.querySelector('img').src = mkUrl(rec.items[0].blob);
+        el.querySelector('.font-semibold.truncate').textContent = tabName(rec.tab);
+        el.querySelector('.text-xs').textContent = `${fmtDate(rec.updatedAt)} · ${rec.items.length} ${t('hist.photos')}`;
+        el.querySelector('[data-hv]').addEventListener('click', () => openStory(rec));
+        el.querySelector('[data-hd]').addEventListener('click', () => window.downloadQueue(rec.items.map(it => ({ src: mkUrl(it.blob), name: fileName(rec, it) }))));
+        el.querySelector('[data-hx]').addEventListener('click', async () => {
+          if (await window.uiConfirm(t('hist.confirm-delete'))) await window.historyDB.remove(rec.id);
+        });
+        list.appendChild(el);
+      });
+    }
+
+    function openStory(rec) {
+      const modal = document.createElement('div');
+      modal.className = 'image-preview-modal';
+      const own = [];
+      const close = () => { modal.classList.remove('show'); setTimeout(() => { modal.remove(); own.forEach(u => URL.revokeObjectURL(u)); }, 200); };
+      modal.innerHTML = `<div class="bg-white rounded-xl p-4 sm:p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-4 gap-3"><h3 class="text-base font-bold" style="color:var(--ink);" data-title></h3><button type="button" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" data-items></div>
+      </div>`;
+      modal.querySelector('[data-title]').textContent = `${tabName(rec.tab)} · ${fmtDate(rec.updatedAt)}`;
+      const wrap = modal.querySelector('[data-items]');
+      rec.items.forEach(it => {
+        const u = URL.createObjectURL(it.blob); own.push(u);
+        const box = document.createElement('div');
+        box.className = 'border rounded-lg p-2 flex flex-col gap-2';
+        box.style.borderColor = 'var(--line)';
+        box.innerHTML = `<img alt="" class="w-full rounded-md object-contain bg-gray-100" style="max-height:260px;">
+          <div class="text-xs font-semibold" style="color:#334155;"></div>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" data-dl class="bg-cyan-600 text-white text-[11px] font-semibold px-2 py-1 rounded-md"><i class="fas fa-download"></i></button>
+            ${it.prompt ? `<button type="button" data-cp class="btn-secondary text-[11px] font-semibold px-2 py-1 rounded-md">${t('hist.copy-prompt')}</button>` : ''}
+            ${it.video ? `<button type="button" data-cv class="btn-secondary text-[11px] font-semibold px-2 py-1 rounded-md">${t('hist.copy-video')}</button>` : ''}
+            ${it.note ? `<button type="button" data-cn class="btn-secondary text-[11px] font-semibold px-2 py-1 rounded-md">${t('hist.copy-script')}</button>` : ''}
+          </div>`;
+        box.querySelector('img').src = u;
+        box.querySelector('.text-xs').textContent = `${it.n}. ${it.title}`;
+        box.querySelector('[data-dl]').addEventListener('click', () => window.downloadDataURINew(u, fileName(rec, it)));
+        [['[data-cp]', it.prompt], ['[data-cv]', it.video], ['[data-cn]', it.note]].forEach(([sel, txt]) => {
+          const b = box.querySelector(sel);
+          if (b) b.addEventListener('click', () => { if (window.copyText(txt)) flash(b); });
+        });
+        wrap.appendChild(box);
+      });
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      modal.querySelector('[data-close]').addEventListener('click', close);
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    document.querySelectorAll('[data-tab="history"]').forEach(b => b.addEventListener('click', () => setTimeout(render, 0)));
+    document.addEventListener('ssp-history-changed', render);
+    document.addEventListener('ssp-lang-changed', render);
+  })();
+  // === END RIWAYAT HASIL ===
 
   // === INFLUENCER STUDIO ===
   (function initInfluencerStudio() {
@@ -2211,6 +2421,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
           const b64 = result?.candidates?.[0]?.content?.parts?.find(x => x.inlineData)?.inlineData?.data;
           if (!b64) throw new Error('No image data received');
           lastB64 = b64;
+          window.historyAppend('dailyphoto', { title: activity, prompt, b64 });
           resultBox.innerHTML = `<img src="data:image/png;base64,${b64}" class="rounded-xl max-h-[520px] w-auto mx-auto" alt="Foto harian">`;
           actionRow.classList.remove('hidden');
           genBtn.disabled = false; regenBtn.disabled = false;
@@ -2713,6 +2924,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
               <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
             </div>
           </div>`;
+          window.historyTouch(p, grid);
           return;
         } catch (err) {
           lastError = err; console.error(`Attempt ${i + 1} card ${id} failed:`, err);
@@ -2727,6 +2939,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       if (cfg.requireModel && !modelBase64) { window.uiNotify(t('warn.model-required')); return; }
       generateBtn.disabled = true;
       hideContinueBtn();
+      window.historyNewSession(p);
       const orig = generateBtn.innerHTML;
       generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menganalisa...</span>';
       downloadAllBtn.classList.add('hidden');
@@ -2795,11 +3008,14 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
     });
 
     function downloadCards(cards) {
+      const list = [];
       cards.forEach(card => {
         const img = card.querySelector('img'); if (!img) return;
         const safe = (card.dataset.title || 'scene').replace(/[^a-z0-9]/gi, '_').toLowerCase();
-        window.downloadDataURINew(img.src, `${cfg.filenamePrefix}_${safe}.png`);
+        const n = card.id.replace(`${p}-card-`, '');
+        list.push({ src: img.src, name: `${cfg.filenamePrefix}_${n}_${safe}.png` });
       });
+      window.downloadQueue(list);
     }
     downloadAllBtn.addEventListener('click', () => {
       const all = Array.from(grid.querySelectorAll('.result-card'));
@@ -2881,6 +3097,7 @@ Output ONLY the video prompt for this scene, nothing else.`;
       if (!vp) throw new Error('Prompt kosong dari API.');
       cache[cacheKey] = vp;
       card.dataset.videoPromptCache = JSON.stringify(cache); // simpan cache per gaya+bahasa
+      window.historyTouch(p, grid);
       return { sceneNum, total, title, vp, imageUrl: img.src };
     }
 
@@ -4289,6 +4506,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
               <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
             </div>
           </div>`;
+          window.historyTouch(p, grid);
           return;
         } catch (err) {
           lastError = err; console.error(`Attempt ${i + 1} card ${id} failed:`, err);
@@ -4328,6 +4546,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       generateBtn.disabled = true;
       hideContinueBtn();
       rollRandomSel();
+      window.historyNewSession(p);
       const orig = generateBtn.innerHTML;
       generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menyusun cerita...</span>';
       downloadAllBtn.classList.add('hidden');
@@ -4404,11 +4623,14 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     });
 
     function downloadCards(cards) {
+      const list = [];
       cards.forEach(card => {
         const img = card.querySelector('img'); if (!img) return;
         const safe = (card.dataset.title || 'scene').replace(/[^a-z0-9]/gi, '_').toLowerCase();
-        window.downloadDataURINew(img.src, `${cfg.filenamePrefix}_${safe}.png`);
+        const n = card.id.replace(`${p}-card-`, '');
+        list.push({ src: img.src, name: `${cfg.filenamePrefix}_${n}_${safe}.png` });
       });
+      window.downloadQueue(list);
     }
     downloadAllBtn.addEventListener('click', () => {
       const all = Array.from(grid.querySelectorAll('.result-card'));
@@ -4491,6 +4713,7 @@ Output ONLY the video prompt for this scene, nothing else.`;
       if (cfg.voicePersona && !NO_SPEECH_STYLES.includes(audioStyle)) vp += `\n\nNARRATOR VOICE LOCK (identical in every scene): ${cfg.voicePersona}. Keep this exact narrator voice — same gender, age, tone, pace and accent — for the entire video; the narrator voice must NEVER change between scenes.`;
       cache[cacheKey] = vp;
       card.dataset.videoPromptCache = JSON.stringify(cache);
+      window.historyTouch(p, grid);
       return { sceneNum, total, title, vp, imageUrl: img.src };
     }
 
@@ -6207,6 +6430,7 @@ Rules:
               <button data-action="${p}-download" data-scene-id="${id}" data-filename="talker_klip${id}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
             </div>
           </div>`;
+          window.historyTouch(p, grid);
           return;
         } catch (err) {
           lastError = err; console.error(`Attempt ${i + 1} klip ${id} failed:`, err);
@@ -6227,6 +6451,7 @@ Rules:
       photosBtn.disabled = true;
       photosBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.talker-photos')}</span>`;
       [videoAllBtn, sheetBtn, downloadAllBtn].forEach(b => b.classList.add('hidden'));
+      window.historyNewSession(p);
       try {
         resolveSuasana();
         buildCards(segs, pl);
@@ -6427,11 +6652,13 @@ OUTPUT: generate ONLY the actual scene — the person from the reference photo s
     }
 
     downloadAllBtn.addEventListener('click', () => {
+      const list = [];
       grid.querySelectorAll('.result-card').forEach(card => {
         const img = card.querySelector('img'); if (!img) return;
         const k = parseInt(card.id.replace(`${p}-card-`, ''), 10);
-        window.downloadDataURINew(img.src, `talker_klip${k}.png`);
+        list.push({ src: img.src, name: `talker_klip${k}.png` });
       });
+      window.downloadQueue(list);
     });
   })();
   // === END TALKING INFLUENCER ===
