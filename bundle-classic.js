@@ -269,6 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'lib.empty': 'Belum ada model — racik di atas lalu Simpan.', 'ios.save-hint': 'Tekan dan <b>tahan</b> foto di bawah, lalu pilih <b>"Simpan ke Foto"</b> atau <b>"Tambahkan ke Foto"</b>.',
       'whatsnew.title': 'Yang Baru', 'whatsnew.empty': 'Belum ada catatan perubahan.',
       'btn.delete': 'Hapus', 'confirm.delete-model': 'Hapus model "%N"?',
+      'unit.clip-title': 'Klip', 'unit.clip': 'klip', 'clip.header': 'Klip %K — Scene %A–%B · %S dtk', 'btn.download': 'Unduh', 'btn.clip-prompt': 'Prompt Klip',
+      'btn.continue-story': 'Lanjutkan Cerita (+1 klip · %S dtk) — Klip %N/%M', 'vp.choose-title': 'Prompt video bentuk apa?', 'vp.choose-clip-title': 'Prompt Klip %K bentuk apa?',
+      'vp.opt-per-scene': 'Per Scene — %N prompt (1 foto = 1 generate video)', 'vp.opt-per-clip': 'Per Klip — %N prompt (%F foto = 1 klip %S dtk)',
+      'err.desc-failed': 'Gagal membuat deskripsi. Coba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada scene — generate story dulu.',
     },
     en: {
       'menu.review': 'Review Generator',
@@ -536,6 +540,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'lib.empty': 'No models yet — create one above then Save.', 'ios.save-hint': 'Press and <b>hold</b> the photo below, then choose <b>"Save to Photos"</b> or <b>"Add to Photos"</b>.',
       'whatsnew.title': "What's New", 'whatsnew.empty': 'No changelog yet.',
       'btn.delete': 'Delete', 'confirm.delete-model': 'Delete model "%N"?',
+      'unit.clip-title': 'Clip', 'unit.clip': 'clips', 'clip.header': 'Clip %K — Scenes %A–%B · %S sec', 'btn.download': 'Download', 'btn.clip-prompt': 'Clip Prompt',
+      'btn.continue-story': 'Continue Story (+1 clip · %S sec) — Clip %N/%M', 'vp.choose-title': 'Which video prompt format?', 'vp.choose-clip-title': 'Clip %K prompt — which format?',
+      'vp.opt-per-scene': 'Per Scene — %N prompts (1 photo = 1 video generation)', 'vp.opt-per-clip': 'Per Clip — %N prompts (%F photos = 1 clip of %S sec)',
+      'err.desc-failed': 'Failed to create the description. Please try again.', 'err.failed-prefix': 'Failed: ', 'err.no-scene-yet': 'No scenes yet — generate a story first.',
     },
     ms: {
       'menu.review': 'Penjana Ulasan',
@@ -803,6 +811,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'lib.empty': 'Belum ada model — cipta di atas kemudian Simpan.', 'ios.save-hint': 'Tekan dan <b>tahan</b> foto di bawah, kemudian pilih <b>"Simpan ke Foto"</b> atau <b>"Tambah ke Foto"</b>.',
       'whatsnew.title': 'Apa yang Baru', 'whatsnew.empty': 'Belum ada catatan perubahan.',
       'btn.delete': 'Padam', 'confirm.delete-model': 'Padam model "%N"?',
+      'unit.clip-title': 'Klip', 'unit.clip': 'klip', 'clip.header': 'Klip %K — Babak %A–%B · %S saat', 'btn.download': 'Muat Turun', 'btn.clip-prompt': 'Prompt Klip',
+      'btn.continue-story': 'Sambung Cerita (+1 klip · %S saat) — Klip %N/%M', 'vp.choose-title': 'Pilih bentuk prompt video', 'vp.choose-clip-title': 'Prompt Klip %K — pilih bentuk',
+      'vp.opt-per-scene': 'Setiap Babak — %N prompt (1 foto = 1 jana video)', 'vp.opt-per-clip': 'Setiap Klip — %N prompt (%F foto = 1 klip %S saat)',
+      'err.desc-failed': 'Gagal mencipta deskripsi. Cuba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada babak — jana cerita dahulu.',
     },
   };
   function detectLang() {
@@ -895,8 +907,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.6';
+  window.APP_VERSION = '3.6.1';
   window.CHANGELOG = [
+    { version: '3.6.1', date: '27 Okt 2026', changes: [
+      { id: 'Tampilan bahasa Inggris & Melayu lebih lengkap: tombol Lanjutkan Cerita, judul tiap klip (Unduh / Prompt Klip), dan menu pilihan Per Scene / Per Klip kini ikut bahasa aplikasi',
+        en: 'Better English & Malay display: the Continue Story button, each clip header (Download / Clip Prompt), and the Per Scene / Per Clip choice menu now follow the app language',
+        ms: 'Paparan Bahasa Inggeris & Melayu lebih lengkap: butang Sambung Cerita, tajuk setiap klip (Muat Turun / Prompt Klip), dan menu pilihan Setiap Babak / Setiap Klip kini ikut bahasa aplikasi' },
+      { id: 'Perbaikan judul jendela Prompt Per Scene per klip yang sebelumnya menampilkan teks aneh "unit.clip-title"',
+        en: 'Fixed the per-clip Per-Scene Prompts window title that used to show the odd text "unit.clip-title"',
+        ms: 'Membaiki tajuk tetingkap Prompt Setiap Babak per klip yang sebelum ini memaparkan teks pelik "unit.clip-title"' }
+    ] },
     { version: '3.6', date: '21 Okt 2026', changes: [
       { id: 'Menu baru Riwayat Hasil: semua foto hasil generate kini tersimpan otomatis di perangkat (20 cerita terbaru) — tidak hilang lagi walau halaman tertutup atau di-refresh. Bisa dilihat ulang, diunduh, dan salin prompt-nya',
         en: 'New Result History menu: every generated photo is now saved automatically on your device (latest 20 stories) — no more losing work when the page closes or refreshes. View again, download, and copy the prompts',
@@ -2499,7 +2519,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       const plan = window.clipPlan(durState.platform, durState.duration);
       const clips = Math.ceil(n / plan.perClip);
       if (clips >= window.MAX_STORY_CLIPS) { hideContinueBtn(); return; }
-      continueBtn.innerHTML = `<i class="fas fa-forward mr-2"></i>Lanjutkan Cerita (+1 klip · ${plan.clipSec} dtk) — Klip ${clips + 1}/${window.MAX_STORY_CLIPS}`;
+      continueBtn.innerHTML = `<i class="fas fa-forward mr-2"></i>${t('btn.continue-story').replace('%S', plan.clipSec).replace('%N', clips + 1).replace('%M', window.MAX_STORY_CLIPS)}`;
       continueBtn.classList.remove('hidden');
       continueBtn.classList.add('flex');
     }
@@ -2553,9 +2573,9 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
         if (!durState.on) { generateAllVideoPrompts(); return; }
         const plan = window.clipPlan(durState.platform, durState.duration);
         const n = grid.querySelectorAll('.result-card').length;
-        showChoiceModal('Prompt video bentuk apa?', [
-          { label: `<i class="fas fa-image mr-2"></i>Per Scene — ${n} prompt (1 foto = 1 generate video)`, onPick: generateAllVideoPrompts },
-          { label: `<i class="fas fa-clapperboard mr-2"></i>Per Klip — ${Math.ceil(n / plan.perClip)} prompt (${plan.perClip} foto = 1 klip ${plan.clipSec} dtk)`, onPick: generateAllClipPrompts }
+        showChoiceModal(t('vp.choose-title'), [
+          { label: `<i class="fas fa-image mr-2"></i>${t('vp.opt-per-scene').replace('%N', n)}`, onPick: generateAllVideoPrompts },
+          { label: `<i class="fas fa-clapperboard mr-2"></i>${t('vp.opt-per-clip').replace('%N', Math.ceil(n / plan.perClip)).replace('%F', plan.perClip).replace('%S', plan.clipSec)}`, onPick: generateAllClipPrompts }
         ]);
       });
 
@@ -2619,7 +2639,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
           const timing = plan ? `${Math.round(j * persec)}-${Math.round((j + 1) * persec)}s` : '';
           return { num: gi + 1, title: c.dataset.title || `Scene ${gi + 1}`, timing, prompt: vps[j], img: c.querySelector('img').src };
         });
-        const sub = [clipLabel, plan ? `${plan.clipSec} dtk` : '', `${scenes.length} scene`, fmt ? `Format: ${fmt}` : ''].filter(Boolean).join('  ·  ');
+        const sub = [clipLabel, plan ? `${plan.clipSec} ${t('unit.sec')}` : '', `${scenes.length} scene`, fmt ? `Format: ${fmt}` : ''].filter(Boolean).join('  ·  ');
         return window.buildStoryboardSheet(scenes, { title: cfg.sheetTitle || 'Storyboard', sub, cols });
       }
       async function runJobs(jobs) {
@@ -2640,7 +2660,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
         const jobFor = (k) => {
           const s = (k - 1) * plan.perClip;
           const cards = allCards.slice(s, s + plan.perClip);
-          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
+          return { cards, startIdx: s, label: `${t('unit.clip-title')} ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
         };
         if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
@@ -2822,7 +2842,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
         const result = await res.json();
         descInput.value = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
         updateBtn();
-      } catch (err) { console.error(err); descInput.value = 'Gagal membuat deskripsi. Coba lagi.'; }
+      } catch (err) { console.error(err); descInput.value = t('err.desc-failed'); }
       finally { descBtn.innerHTML = orig; descBtn.disabled = false; }
     });
 
@@ -2868,7 +2888,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
           const h = document.createElement('div');
           h.className = 'clip-divider';
           h.id = `${p}-clip-${clipIdx}`;
-          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${gi + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button><button type="button" data-action="${p}-clip-sheet" data-clip="${clipIdx}" class="action-btn bg-violet-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-images mr-1 pointer-events-none"></i>Storyboard</button></span>`;
+          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>${t('clip.header').replace('%K', clipIdx).replace('%A', gi + 1).replace('%B', end).replace('%S', plan.clipSec)}</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>${t('btn.download')}</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>${t('btn.clip-prompt')}</button><button type="button" data-action="${p}-clip-sheet" data-clip="${clipIdx}" class="action-btn bg-violet-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-images mr-1 pointer-events-none"></i>Storyboard</button></span>`;
           grid.appendChild(h);
         }
         const card = document.createElement('div');
@@ -2980,9 +3000,9 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
         const k = parseInt(btn.dataset.clip, 10);
         const plan = window.clipPlan(durState.platform, durState.duration);
         const n = Math.min(plan.perClip, grid.querySelectorAll('.result-card').length - (k - 1) * plan.perClip);
-        showChoiceModal(`Prompt Klip ${k} bentuk apa?`, [
-          { label: `<i class="fas fa-image mr-2"></i>Per Scene — ${n} prompt (1 foto = 1 generate video)`, onPick: () => generateAllVideoPrompts(k) },
-          { label: `<i class="fas fa-clapperboard mr-2"></i>Per Klip — 1 prompt (${n} foto = 1 klip ${plan.clipSec} dtk)`, onPick: () => generateClipPrompt(k) }
+        showChoiceModal(t('vp.choose-clip-title').replace('%K', k), [
+          { label: `<i class="fas fa-image mr-2"></i>${t('vp.opt-per-scene').replace('%N', n)}`, onPick: () => generateAllVideoPrompts(k) },
+          { label: `<i class="fas fa-clapperboard mr-2"></i>${t('vp.opt-per-clip').replace('%N', 1).replace('%F', n).replace('%S', plan.clipSec)}`, onPick: () => generateClipPrompt(k) }
         ]);
         return;
       }
@@ -3144,7 +3164,7 @@ Output ONLY the video prompt, nothing else.`;
     // === CAPTION ===
     async function requestCaption() {
       const cards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.dataset.title);
-      if (!cards.length) throw new Error('Belum ada scene — generate story dulu.');
+      if (!cards.length) throw new Error(t('err.no-scene-yet'));
       const cacheKey = audioLang;
       let cache = {};
       try { cache = JSON.parse(grid.dataset.captionCache || '{}'); } catch (e) { cache = {}; }
@@ -3399,7 +3419,7 @@ Rules:
           resultsByIdx[i] = { no: sceneNo(card), title: card.dataset.title || `Scene ${i + 1}`, vp: r.vp };
           st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
-          ta.value = 'Gagal: ' + err.message;
+          ta.value = t('err.failed-prefix') + err.message;
           resultsByIdx[i] = null;
           st.innerHTML = '<i class="fas fa-xmark text-red-500"></i>';
           retryBtn.classList.remove('hidden');
@@ -3484,7 +3504,7 @@ Rules:
           resultsByIdx[i] = { vp: r.vp };
           st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
-          ta.value = 'Gagal: ' + err.message;
+          ta.value = t('err.failed-prefix') + err.message;
           resultsByIdx[i] = null;
           st.innerHTML = '<i class="fas fa-xmark text-red-500"></i>';
           retryBtn.classList.remove('hidden');
@@ -4189,7 +4209,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       const plan = window.clipPlan(durState.platform, durState.duration);
       const clips = Math.ceil(n / plan.perClip);
       if (clips >= window.MAX_STORY_CLIPS) { hideContinueBtn(); return; }
-      continueBtn.innerHTML = `<i class="fas fa-forward mr-2"></i>Lanjutkan Cerita (+1 klip · ${plan.clipSec} dtk) — Klip ${clips + 1}/${window.MAX_STORY_CLIPS}`;
+      continueBtn.innerHTML = `<i class="fas fa-forward mr-2"></i>${t('btn.continue-story').replace('%S', plan.clipSec).replace('%N', clips + 1).replace('%M', window.MAX_STORY_CLIPS)}`;
       continueBtn.classList.remove('hidden');
       continueBtn.classList.add('flex');
     }
@@ -4263,9 +4283,9 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         if (!durState.on) { generateAllVideoPrompts(); return; }
         const plan = window.clipPlan(durState.platform, durState.duration);
         const n = grid.querySelectorAll('.result-card').length;
-        showChoiceModal('Prompt video bentuk apa?', [
-          { label: `<i class="fas fa-image mr-2"></i>Per Scene — ${n} prompt (1 foto = 1 generate video)`, onPick: generateAllVideoPrompts },
-          { label: `<i class="fas fa-clapperboard mr-2"></i>Per Klip — ${Math.ceil(n / plan.perClip)} prompt (${plan.perClip} foto = 1 klip ${plan.clipSec} dtk)`, onPick: generateAllClipPrompts }
+        showChoiceModal(t('vp.choose-title'), [
+          { label: `<i class="fas fa-image mr-2"></i>${t('vp.opt-per-scene').replace('%N', n)}`, onPick: generateAllVideoPrompts },
+          { label: `<i class="fas fa-clapperboard mr-2"></i>${t('vp.opt-per-clip').replace('%N', Math.ceil(n / plan.perClip)).replace('%F', plan.perClip).replace('%S', plan.clipSec)}`, onPick: generateAllClipPrompts }
         ]);
       });
 
@@ -4327,7 +4347,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           const timing = plan ? `${Math.round(j * persec)}-${Math.round((j + 1) * persec)}s` : '';
           return { num: gi + 1, title: c.dataset.title || `Scene ${gi + 1}`, timing, prompt: vps[j], img: c.querySelector('img').src };
         });
-        const sub = [clipLabel, plan ? `${plan.clipSec} dtk` : '', `${scenes.length} scene`, fmt ? `Format: ${fmt}` : ''].filter(Boolean).join('  ·  ');
+        const sub = [clipLabel, plan ? `${plan.clipSec} ${t('unit.sec')}` : '', `${scenes.length} scene`, fmt ? `Format: ${fmt}` : ''].filter(Boolean).join('  ·  ');
         return window.buildStoryboardSheet(scenes, { title: cfg.sheetTitle || 'Storyboard', sub, cols });
       }
       async function runJobs(jobs) {
@@ -4348,7 +4368,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         const jobFor = (k) => {
           const s = (k - 1) * plan.perClip;
           const cards = allCards.slice(s, s + plan.perClip);
-          return { cards, startIdx: s, label: `Klip ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
+          return { cards, startIdx: s, label: `${t('unit.clip-title')} ${k}/${totalClips}`, fname: `${cfg.filenamePrefix}_klip${k}.jpg`, cols: cards.length };
         };
         if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
@@ -4440,7 +4460,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           const h = document.createElement('div');
           h.className = 'clip-divider';
           h.id = `${p}-clip-${clipIdx}`;
-          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>Klip ${clipIdx} — Scene ${gi + 1}–${end} · ${plan.clipSec} dtk</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>Unduh</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>Prompt Klip</button><button type="button" data-action="${p}-clip-sheet" data-clip="${clipIdx}" class="action-btn bg-violet-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-images mr-1 pointer-events-none"></i>Storyboard</button></span>`;
+          h.innerHTML = `<span><i class="fas fa-clapperboard mr-1"></i>${t('clip.header').replace('%K', clipIdx).replace('%A', gi + 1).replace('%B', end).replace('%S', plan.clipSec)}</span><span class="flex items-center gap-2"><button type="button" data-action="${p}-clip-download" data-clip="${clipIdx}" class="action-btn bg-cyan-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-download mr-1 pointer-events-none"></i>${t('btn.download')}</button><button type="button" data-action="${p}-clip-prompt" data-clip="${clipIdx}" class="action-btn bg-fuchsia-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-film mr-1 pointer-events-none"></i>${t('btn.clip-prompt')}</button><button type="button" data-action="${p}-clip-sheet" data-clip="${clipIdx}" class="action-btn bg-violet-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold"><i class="fas fa-images mr-1 pointer-events-none"></i>Storyboard</button></span>`;
           grid.appendChild(h);
         }
         const card = document.createElement('div');
@@ -4595,9 +4615,9 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         const k = parseInt(btn.dataset.clip, 10);
         const plan = window.clipPlan(durState.platform, durState.duration);
         const n = Math.min(plan.perClip, grid.querySelectorAll('.result-card').length - (k - 1) * plan.perClip);
-        showChoiceModal(`Prompt Klip ${k} bentuk apa?`, [
-          { label: `<i class="fas fa-image mr-2"></i>Per Scene — ${n} prompt (1 foto = 1 generate video)`, onPick: () => generateAllVideoPrompts(k) },
-          { label: `<i class="fas fa-clapperboard mr-2"></i>Per Klip — 1 prompt (${n} foto = 1 klip ${plan.clipSec} dtk)`, onPick: () => generateClipPrompt(k) }
+        showChoiceModal(t('vp.choose-clip-title').replace('%K', k), [
+          { label: `<i class="fas fa-image mr-2"></i>${t('vp.opt-per-scene').replace('%N', n)}`, onPick: () => generateAllVideoPrompts(k) },
+          { label: `<i class="fas fa-clapperboard mr-2"></i>${t('vp.opt-per-clip').replace('%N', 1).replace('%F', n).replace('%S', plan.clipSec)}`, onPick: () => generateClipPrompt(k) }
         ]);
         return;
       }
@@ -4761,7 +4781,7 @@ Output ONLY the video prompt, nothing else.`;
     // === CAPTION ===
     async function requestCaption() {
       const cards = Array.from(grid.querySelectorAll('.result-card')).filter(c => c.dataset.title);
-      if (!cards.length) throw new Error('Belum ada scene — generate story dulu.');
+      if (!cards.length) throw new Error(t('err.no-scene-yet'));
       const cacheKey = audioLang;
       let cache = {};
       try { cache = JSON.parse(grid.dataset.captionCache || '{}'); } catch (e) { cache = {}; }
@@ -5016,7 +5036,7 @@ Rules:
           resultsByIdx[i] = { no: sceneNo(card), title: card.dataset.title || `Scene ${i + 1}`, vp: r.vp };
           st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
-          ta.value = 'Gagal: ' + err.message;
+          ta.value = t('err.failed-prefix') + err.message;
           resultsByIdx[i] = null;
           st.innerHTML = '<i class="fas fa-xmark text-red-500"></i>';
           retryBtn.classList.remove('hidden');
@@ -5101,7 +5121,7 @@ Rules:
           resultsByIdx[i] = { vp: r.vp };
           st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
-          ta.value = 'Gagal: ' + err.message;
+          ta.value = t('err.failed-prefix') + err.message;
           resultsByIdx[i] = null;
           st.innerHTML = '<i class="fas fa-xmark text-red-500"></i>';
           retryBtn.classList.remove('hidden');
