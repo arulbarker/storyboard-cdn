@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Klip', 'unit.clip': 'klip', 'clip.header': 'Klip %K — Scene %A–%B · %S dtk', 'btn.download': 'Unduh', 'btn.clip-prompt': 'Prompt Klip',
       'btn.continue-story': 'Lanjutkan Cerita (+1 klip · %S dtk) — Klip %N/%M', 'vp.choose-title': 'Prompt video bentuk apa?', 'vp.choose-clip-title': 'Prompt Klip %K bentuk apa?',
       'vp.opt-per-scene': 'Per Scene — %N prompt (1 foto = 1 generate video)', 'vp.opt-per-clip': 'Per Klip — %N prompt (%F foto = 1 klip %S dtk)',
-      'err.desc-failed': 'Gagal membuat deskripsi. Coba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada scene — generate story dulu.',
+      'err.desc-failed': 'Gagal membuat deskripsi. Coba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada scene — generate story dulu.', 'err.model-gen-retry': 'Gagal membuat model — coba lagi.', 'err.photo-gen-retry': 'Gagal membuat foto — coba lagi.', 'modal.fail-caption': 'Gagal membuat caption', 'modal.fail-clip-prompt': 'Gagal membuat prompt klip', 'err.no-scene-image': 'Tidak ada gambar pada scene ini.', 'clip.prompt-block': 'Klip %K/%T — Scene %A–%B',
     },
     en: {
       'menu.review': 'Review Generator',
@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Clip', 'unit.clip': 'clips', 'clip.header': 'Clip %K — Scenes %A–%B · %S sec', 'btn.download': 'Download', 'btn.clip-prompt': 'Clip Prompt',
       'btn.continue-story': 'Continue Story (+1 clip · %S sec) — Clip %N/%M', 'vp.choose-title': 'Which video prompt format?', 'vp.choose-clip-title': 'Clip %K prompt — which format?',
       'vp.opt-per-scene': 'Per Scene — %N prompts (1 photo = 1 video generation)', 'vp.opt-per-clip': 'Per Clip — %N prompts (%F photos = 1 clip of %S sec)',
-      'err.desc-failed': 'Failed to create the description. Please try again.', 'err.failed-prefix': 'Failed: ', 'err.no-scene-yet': 'No scenes yet — generate a story first.',
+      'err.desc-failed': 'Failed to create the description. Please try again.', 'err.failed-prefix': 'Failed: ', 'err.no-scene-yet': 'No scenes yet — generate a story first.', 'err.model-gen-retry': 'Failed to create the model — please try again.', 'err.photo-gen-retry': 'Failed to create the photo — please try again.', 'modal.fail-caption': 'Failed to create the caption', 'modal.fail-clip-prompt': 'Failed to create the clip prompt', 'err.no-scene-image': 'This scene has no image.', 'clip.prompt-block': 'Clip %K/%T — Scenes %A–%B',
     },
     ms: {
       'menu.review': 'Penjana Ulasan',
@@ -814,7 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Klip', 'unit.clip': 'klip', 'clip.header': 'Klip %K — Babak %A–%B · %S saat', 'btn.download': 'Muat Turun', 'btn.clip-prompt': 'Prompt Klip',
       'btn.continue-story': 'Sambung Cerita (+1 klip · %S saat) — Klip %N/%M', 'vp.choose-title': 'Pilih bentuk prompt video', 'vp.choose-clip-title': 'Prompt Klip %K — pilih bentuk',
       'vp.opt-per-scene': 'Setiap Babak — %N prompt (1 foto = 1 jana video)', 'vp.opt-per-clip': 'Setiap Klip — %N prompt (%F foto = 1 klip %S saat)',
-      'err.desc-failed': 'Gagal mencipta deskripsi. Cuba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada babak — jana cerita dahulu.',
+      'err.desc-failed': 'Gagal mencipta deskripsi. Cuba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada babak — jana cerita dahulu.', 'err.model-gen-retry': 'Gagal mencipta model — cuba lagi.', 'err.photo-gen-retry': 'Gagal mencipta foto — cuba lagi.', 'modal.fail-caption': 'Gagal mencipta kapsyen', 'modal.fail-clip-prompt': 'Gagal mencipta prompt klip', 'err.no-scene-image': 'Tiada gambar pada babak ini.', 'clip.prompt-block': 'Klip %K/%T — Babak %A–%B',
     },
   };
   function detectLang() {
@@ -907,8 +907,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.6.1';
+  window.APP_VERSION = '3.6.2';
   window.CHANGELOG = [
+    { version: '3.6.2', date: '28 Okt 2026', changes: [
+      { id: 'Pesan gagal dan tombol Coba Lagi kini ikut bahasa aplikasi (Inggris/Melayu): di kartu scene gagal, jendela Caption, Prompt Klip, Semua Prompt Video, Model Studio, dan Foto Harian',
+        en: 'Error messages and the Retry button now follow the app language (English/Malay): on failed scene cards, the Caption, Clip Prompt and All Video Prompts windows, Model Studio, and Daily Photo',
+        ms: 'Mesej gagal dan butang Cuba Lagi kini ikut bahasa aplikasi (Inggeris/Melayu): pada kad babak gagal, tetingkap Kapsyen, Prompt Klip, Semua Prompt Video, Model Studio, dan Foto Harian' }
+    ] },
     { version: '3.6.1', date: '27 Okt 2026', changes: [
       { id: 'Tampilan bahasa Inggris & Melayu lebih lengkap: tombol Lanjutkan Cerita, judul tiap klip (Unduh / Prompt Klip), dan menu pilihan Per Scene / Per Klip kini ikut bahasa aplikasi',
         en: 'Better English & Malay display: the Continue Story button, each clip header (Download / Clip Prompt), and the Per Scene / Per Clip choice menu now follow the app language',
@@ -2119,7 +2124,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (i < retries - 1) await new Promise(rz => setTimeout(rz, 1000 * Math.pow(2, i)));
         }
       }
-      if (lastError) resultBox.innerHTML = '<p class="text-sm text-red-500 p-4">Gagal membuat model — coba lagi.</p>';
+      if (lastError) resultBox.innerHTML = `<p class="text-sm text-red-500 p-4">${t('err.model-gen-retry')}</p>`;
       genBtn.disabled = false; regenBtn.disabled = false;
     }
     genBtn.addEventListener('click', generateModel);
@@ -2451,7 +2456,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
           if (i < retries - 1) await new Promise(rz => setTimeout(rz, 1000 * Math.pow(2, i)));
         }
       }
-      if (lastError) resultBox.innerHTML = '<p class="text-sm text-red-500 p-4">Gagal membuat foto — coba lagi.</p>';
+      if (lastError) resultBox.innerHTML = `<p class="text-sm text-red-500 p-4">${t('err.photo-gen-retry')}</p>`;
       genBtn.disabled = false; regenBtn.disabled = false;
     }
     genBtn.addEventListener('click', generateDailyPhoto);
@@ -3082,7 +3087,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
     }
 
     async function requestVideoPrompt(card) {
-      const img = card.querySelector('img'); if (!img) throw new Error('Tidak ada gambar pada scene ini.');
+      const img = card.querySelector('img'); if (!img) throw new Error(t('err.no-scene-image'));
       const title = card.dataset.title || 'Scene';
       const allCards = Array.from(grid.querySelectorAll('.result-card'));
       const idx = allCards.indexOf(card);
@@ -3262,7 +3267,7 @@ Rules:
           });
         } catch (err) {
           console.error('caption error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat caption</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-caption')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>${t('btn.retry')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -3306,7 +3311,7 @@ Rules:
           });
         } catch (err) {
           console.error('clip prompt error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt klip</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-clip-prompt')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>${t('btn.retry')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -3348,7 +3353,7 @@ Rules:
         });
         } catch (err) {
           console.error('video prompt error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-prompt')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-prompt')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>${t('btn.retry')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -3432,7 +3437,7 @@ Rules:
         const title = card.dataset.title || `Scene ${i + 1}`;
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>${t('btn.retry')}</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
@@ -3515,7 +3520,7 @@ Rules:
       for (let i = 0; i < totalClips; i++) {
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Klip ${i + 1}/${totalClips} — Scene ${i * plan.perClip + 1}–${Math.min((i + 1) * plan.perClip, all.length)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">${t('clip.prompt-block').replace('%K', i + 1).replace('%T', totalClips).replace('%A', i * plan.perClip + 1).replace('%B', Math.min((i + 1) * plan.perClip, all.length))}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>${t('btn.retry')}</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
@@ -4697,7 +4702,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     }
 
     async function requestVideoPrompt(card) {
-      const img = card.querySelector('img'); if (!img) throw new Error('Tidak ada gambar pada scene ini.');
+      const img = card.querySelector('img'); if (!img) throw new Error(t('err.no-scene-image'));
       const title = card.dataset.title || 'Scene';
       const allCards = Array.from(grid.querySelectorAll('.result-card'));
       const idx = allCards.indexOf(card);
@@ -4879,7 +4884,7 @@ Rules:
           });
         } catch (err) {
           console.error('caption error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat caption</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-caption')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>${t('btn.retry')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -4923,7 +4928,7 @@ Rules:
           });
         } catch (err) {
           console.error('clip prompt error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>Gagal membuat prompt klip</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-clip-prompt')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>${t('btn.retry')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -4965,7 +4970,7 @@ Rules:
         });
         } catch (err) {
           console.error('video prompt error', err);
-          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-prompt')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>Coba Lagi</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
+          modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full" onclick="event.stopPropagation()"><h3 class="text-lg font-bold mb-3 text-red-600"><i class="fas fa-triangle-exclamation mr-2"></i>${t('modal.fail-prompt')}</h3><p class="text-gray-700 text-sm mb-4">${window.escHtml(err.message)}</p><div class="flex gap-2"><button data-retry class="flex-1 btn-primary py-2 rounded-lg font-semibold"><i class="fas fa-rotate-right mr-1"></i>${t('btn.retry')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold">${t('modal.close')}</button></div></div>`;
           modal.querySelector('[data-close]').addEventListener('click', close);
           modal.querySelector('[data-retry]').addEventListener('click', run);
         }
@@ -5049,7 +5054,7 @@ Rules:
         const title = card.dataset.title || `Scene ${i + 1}`;
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Scene ${sceneNo(card)}/${sceneTotal}: ${window.escHtml(title)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>${t('btn.retry')}</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="5" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
@@ -5132,7 +5137,7 @@ Rules:
       for (let i = 0; i < totalClips; i++) {
         const block = document.createElement('div');
         block.className = 'bg-gray-50 border border-gray-200 rounded-lg p-3';
-        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">Klip ${i + 1}/${totalClips} — Scene ${i * plan.perClip + 1}–${Math.min((i + 1) * plan.perClip, all.length)}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>Coba Lagi</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
+        block.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="text-sm font-semibold text-gray-700">${t('clip.prompt-block').replace('%K', i + 1).replace('%T', totalClips).replace('%A', i * plan.perClip + 1).replace('%B', Math.min((i + 1) * plan.perClip, all.length))}</span><span class="flex items-center gap-2"><button data-copyone class="text-xs bg-violet-500 hover:bg-violet-600 text-white px-2 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button><button data-retry class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-2 py-1 rounded-full hidden"><i class="fas fa-rotate-right mr-1 pointer-events-none"></i>${t('btn.retry')}</button><span data-st><span class="loader !w-4 !h-4 !border-2 inline-block"></span></span></span></div><textarea rows="6" readonly class="w-full p-2 border border-gray-300 rounded bg-white text-gray-800 text-xs font-mono resize-none" data-ta></textarea>`;
         listEl.appendChild(block);
         const ta = block.querySelector('[data-ta]'), st = block.querySelector('[data-st]'), retryBtn = block.querySelector('[data-retry]');
         const copyOne = block.querySelector('[data-copyone]');
