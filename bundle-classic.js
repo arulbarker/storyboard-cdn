@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.video': 'Buat Prompt Video',
       'title.download': 'Unduh',
       'loading.visual': 'Membuat Visual...',
+      'loading.story': 'Menyusun cerita...', 'btn.generate.viral': 'Buat Storyboard Viral',
       'loading.continue': 'Melanjutkan cerita...',
       'loading.caption': 'Membuat Caption...',
       'loading.clip-prompt': 'Membuat Prompt Klip',
@@ -423,6 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.video': 'Make Video Prompt',
       'title.download': 'Download',
       'loading.visual': 'Creating visuals...',
+      'loading.story': 'Building the story...', 'btn.generate.viral': 'Create Viral Storyboard',
       'loading.continue': 'Continuing story...',
       'loading.caption': 'Creating caption...',
       'loading.clip-prompt': 'Creating clip prompt',
@@ -694,6 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.video': 'Jana Prompt Video',
       'title.download': 'Muat Turun',
       'loading.visual': 'Menjana visual...',
+      'loading.story': 'Menyusun cerita...', 'btn.generate.viral': 'Jana Storyboard Viral',
       'loading.continue': 'Menyambung cerita...',
       'loading.caption': 'Menjana kapsyen...',
       'loading.clip-prompt': 'Menjana Prompt Klip',
@@ -907,8 +910,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.6.2';
+  window.APP_VERSION = '3.6.3';
   window.CHANGELOG = [
+    { version: '3.6.3', date: '29 Okt 2026', changes: [
+      { id: 'Tampilan bahasa Inggris & Melayu makin lengkap: tombol utama semua fitur Video Short Viral & Cerita Anak, pilihan aktivitas Foto Harian, dan pilihan Suasana di Influencer Bicara kini ikut bahasa aplikasi',
+        en: 'More complete English & Malay display: the main button of every Viral Short Video & Kids Story feature, the Daily Photos activity choices, and the Ambience choices in Talking Influencer now follow the app language',
+        ms: 'Paparan Bahasa Inggeris & Melayu lebih lengkap: butang utama semua ciri Video Pendek Viral & Cerita Kanak-kanak, pilihan aktiviti Foto Harian, dan pilihan Suasana dalam Influencer Bercakap kini ikut bahasa aplikasi' }
+    ] },
     { version: '3.6.2', date: '28 Okt 2026', changes: [
       { id: 'Pesan gagal dan tombol Coba Lagi kini ikut bahasa aplikasi (Inggris/Melayu): di kartu scene gagal, jendela Caption, Prompt Klip, Semua Prompt Video, Model Studio, dan Foto Harian',
         en: 'Error messages and the Retry button now follow the app language (English/Malay): on failed scene cards, the Caption, Clip Prompt and All Video Prompts windows, Model Studio, and Daily Photo',
@@ -1043,6 +1051,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // EN dibuat komprehensif; MS hanya yang beda dari Indonesia (ID≈MS).
   window.CHIP_LABELS = {
     en: {
+      'Ngopi di kafe': 'Coffee at a cafe', 'Rooftop sore': 'Rooftop at golden hour', 'Jalan pagi': 'Morning walk', 'Santai di kamar': 'Chilling in the bedroom', 'Olahraga di gym': 'Gym workout', 'Masak di dapur': 'Cooking in the kitchen', 'Belanja di mall': 'Mall shopping', 'Di pantai': 'At the beach', 'Baca buku di taman': 'Reading in the park', 'Kulineran': 'Street food hunt', 'Naik motor': 'Scooter ride',
+      'Kerja di laptop': 'Working on a laptop', 'Nonton di sofa': 'Watching TV on the sofa', 'Foto OOTD': 'OOTD photo', 'Belanja groceries': 'Grocery run', 'Main sama kucing': 'Playing with a cat', 'Sepedaan': 'Bike ride',
+      'Hujan estetik': 'Aesthetic rain', '1:1 Kotak': '1:1 Square', 'Kendaraan': 'Vehicles', 'Kayu Hangat Klasik': 'Classic Warm Wood', 'Neon Malam': 'Night Neon', 'Minimalis Putih': 'White Minimalist',
+      'Industrial Bata': 'Industrial Brick', 'Loteng Senja': 'Sunset Loft', 'Perpustakaan': 'Library', 'Garasi Kreatif': 'Creative Garage', 'Skandinavia Terang': 'Bright Scandinavian', 'Senja Temaram': 'Dim Dusk',
+      'Boho Tanaman': 'Boho Plants', 'Klasik Elegan': 'Elegant Classic', 'Apartemen Kota Malam': 'City Apartment at Night', 'Minimalis Jepang': 'Japanese Minimalist', 'Pagi Cerah': 'Bright Morning', 'Kayu Klasik': 'Classic Wood',
+      'Minimalis Terang': 'Bright Minimalist', 'Malam Hangat': 'Warm Night', 'Rooftop Sore': 'Afternoon Rooftop', 'Outdoor Taman': 'Garden Outdoor', 'Mewah Malam Hujan': 'Luxury Rainy Night', 'SUV Siang Cerah': 'Sunny Day SUV',
+      'Malam Kota Bokeh': 'City Night Bokeh', 'Hujan Kaca Berembun': 'Rainy Foggy Windows', 'Sport Gelap': 'Dark Sporty', 'Pagi Parkiran Taman': 'Morning by the Park', 'Senja Pantai': 'Beach Sunset', 'Pagi Segar': 'Fresh Morning',
+      'Taman Bunga': 'Flower Garden', 'Hutan Kota Rindang': 'Shady City Forest', 'Tepi Danau': 'Lakeside', 'Musim Gugur': 'Autumn', 'Mendung Lembut': 'Soft Overcast', 'Taman Malam Lampu': 'Park Lights at Night',
       'Tidak Ada': 'None', 'Custom': 'Custom', 'Kejutkan aku': 'Surprise me',
       'Kata Bijak / Motivasi': 'Wisdom / Motivation', 'Islami': 'Islamic', 'Kerja Harian / Karier': 'Daily Work / Career',
       'Keuangan': 'Finance', 'Cinta / Hubungan': 'Love / Relationships', 'Kesehatan Mental': 'Mental Health',
@@ -1119,6 +1135,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Nyamuk': 'Mosquito', 'Ikan': 'Fish', 'Tanaman kacang': 'Bean plant', 'Bunga matahari': 'Sunflower', 'Pohon apel': 'Apple tree',
     },
     ms: {
+      'Kendaraan': 'Kenderaan', '1:1 Kotak': '1:1 Segi Empat',
       'Tidak Ada': 'Tiada', 'Custom': 'Tersuai', 'Kejutkan aku': 'Kejutkan saya',
       'Acak': 'Rawak', 'Jepang': 'Jepun', 'Barat (Eropa/Amerika)': 'Barat (Eropah/Amerika)',
       'Kerja Harian / Karier': 'Kerja Harian / Kerjaya', 'Keuangan': 'Kewangan', 'Kesehatan Mental': 'Kesihatan Mental',
@@ -1179,6 +1196,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Bentuk Model': 'Model Shape', 'Warna Sedotan': 'Straw Color',
       'Deskripsi Karakter (opsional)': 'Character Description (optional)', 'Deskripsi Pajangan (opsional)': 'Decor Description (optional)',
       'Deskripsi Figur (opsional)': 'Figure Description (optional)', 'Deskripsi Model (opsional)': 'Model Description (optional)',
+      'Contoh: sabun batangan diukir pelan-pelan jadi bentuk mawar, lalu dibungkus cantik untuk dijual': 'Example: a bar of soap slowly carved into a rose shape, then wrapped beautifully for sale',
       'Ceritakan proses viralmu': 'Tell your viral process',
       'Tulis dari awal sampai hasil akhir — AI yang memecah jadi scene.': 'Write from start to final result — the AI splits it into scenes.',
       'Opsional — kosongkan biar AI berkreasi dari pilihan chip.': 'Optional — leave empty to let AI create from the chip choices.',
@@ -4100,7 +4118,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
                 <button type="button" data-count="3">3</button><button type="button" data-count="4">4</button><button type="button" data-count="5" class="selected">5</button><button type="button" data-count="6">6</button><button type="button" data-count="7">7</button><button type="button" data-count="8">8</button><button type="button" data-count="9">9</button><button type="button" data-count="10">10</button>
               </div>
             </div>
-            <button type="button" id="${p}-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg"><i class="fas fa-bolt mr-2"></i><span>Buat Storyboard Viral</span></button>
+            <button type="button" id="${p}-generate-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg"><i class="fas fa-bolt mr-2"></i><span data-i18n="btn.generate.viral">Buat Storyboard Viral</span></button>
           </div>
           <div class="lg:col-span-2">
             <div class="flex items-center justify-between mb-4">
@@ -4573,7 +4591,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       rollRandomSel();
       window.historyNewSession(p);
       const orig = generateBtn.innerHTML;
-      generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menyusun cerita...</span>';
+      generateBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.story')}</span>`;
       downloadAllBtn.classList.add('hidden');
       if (videoAllBtn) videoAllBtn.classList.add('hidden');
       if (captionBtn) captionBtn.classList.add('hidden');
@@ -5803,6 +5821,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       suasanaGrid.innerHTML = `<button type="button" data-val="__random__" class="theme-chip selected"><i class="fas fa-shuffle"></i>Acak</button>`
         + list.map(v => `<button type="button" data-val="${window.escHtml(v.label)}" class="theme-chip">${window.escHtml(v.label)}</button>`).join('')
         + `<button type="button" data-val="__custom__" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>`;
+      if (window.__applyLanguage) window.__applyLanguage();
     }
     suasanaGrid.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-val]'); if (!btn) return;
