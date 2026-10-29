@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.download': 'Unduh',
       'loading.visual': 'Membuat Visual...',
       'loading.story': 'Menyusun cerita...', 'btn.generate.viral': 'Buat Storyboard Viral',
+      'loading.analyzing': 'Menganalisa...', 'loading.read-photo': 'Membaca foto...',
       'loading.continue': 'Melanjutkan cerita...',
       'loading.caption': 'Membuat Caption...',
       'loading.clip-prompt': 'Membuat Prompt Klip',
@@ -425,6 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.download': 'Download',
       'loading.visual': 'Creating visuals...',
       'loading.story': 'Building the story...', 'btn.generate.viral': 'Create Viral Storyboard',
+      'loading.analyzing': 'Analyzing...', 'loading.read-photo': 'Reading photo...',
       'loading.continue': 'Continuing story...',
       'loading.caption': 'Creating caption...',
       'loading.clip-prompt': 'Creating clip prompt',
@@ -697,6 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.download': 'Muat Turun',
       'loading.visual': 'Menjana visual...',
       'loading.story': 'Menyusun cerita...', 'btn.generate.viral': 'Jana Storyboard Viral',
+      'loading.analyzing': 'Menganalisis...', 'loading.read-photo': 'Membaca foto...',
       'loading.continue': 'Menyambung cerita...',
       'loading.caption': 'Menjana kapsyen...',
       'loading.clip-prompt': 'Menjana Prompt Klip',
@@ -844,6 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function t(key) { return tr(getLang(), key) || key; }
   window.__t = t;
   window.__dynT = (txt) => dynTr(getLang(), txt);
+  window.describeLangName = (lang) => ({ id: 'Bahasa Indonesia', en: 'English', ms: 'Bahasa Melayu' })[lang] || 'Bahasa Indonesia';
 
   function applyLanguage() {
     const lang = getLang();
@@ -910,8 +914,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.6.3';
+  window.APP_VERSION = '3.6.4';
   window.CHANGELOG = [
+    { version: '3.6.4', date: '30 Okt 2026', changes: [
+      { id: 'Tulisan "Menganalisa..." saat membuat storyboard di 10 fitur Review dan "Membaca foto..." kini ikut bahasa aplikasi (Inggris/Melayu)',
+        en: 'The "Analyzing..." text while creating a storyboard in the 10 Review features and "Reading photo..." now follow the app language (English/Malay)',
+        ms: 'Tulisan "Menganalisis..." semasa menjana storyboard dalam 10 ciri Ulasan dan "Membaca foto..." kini ikut bahasa aplikasi (Inggeris/Melayu)' },
+      { id: 'Tombol "Ambil ciri dari Foto" (DIY Boneka, Botol, Metal, Sedotan) kini menulis deskripsi dalam bahasa aplikasi, bukan selalu Bahasa Indonesia',
+        en: 'The "Get features from Photo" button (DIY Doll, Bottle, Metal, Straw) now writes the description in the app language instead of always in Indonesian',
+        ms: 'Butang "Ambil ciri dari Foto" (DIY Anak Patung, Botol, Logam, Straw) kini menulis penerangan dalam bahasa aplikasi, bukan sentiasa Bahasa Indonesia' }
+    ] },
     { version: '3.6.3', date: '29 Okt 2026', changes: [
       { id: 'Tampilan bahasa Inggris & Melayu makin lengkap: tombol utama semua fitur Video Short Viral & Cerita Anak, pilihan aktivitas Foto Harian, dan pilihan Suasana di Influencer Bicara kini ikut bahasa aplikasi',
         en: 'More complete English & Malay display: the main button of every Viral Short Video & Kids Story feature, the Daily Photos activity choices, and the Ambience choices in Talking Influencer now follow the app language',
@@ -2984,7 +2996,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       hideContinueBtn();
       window.historyNewSession(p);
       const orig = generateBtn.innerHTML;
-      generateBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Menganalisa...</span>';
+      generateBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.analyzing')}</span>`;
       downloadAllBtn.classList.add('hidden');
       if (videoAllBtn) videoAllBtn.classList.add('hidden');
       if (captionBtn) captionBtn.classList.add('hidden');
@@ -4194,10 +4206,10 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         if (!file) return;
         const orig = imgBtn.innerHTML;
         imgBtn.disabled = true;
-        imgBtn.innerHTML = '<div class="loader"></div><span class="ml-2">Membaca foto...</span>';
+        imgBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.read-photo')}</span>`;
         try {
           const { base64, mimeType } = await window.compressImage(file);
-          const describe = cfg.extraInput.imageDescribe || "Describe this character's visual appearance in Bahasa Indonesia as ONE short paragraph for a doll maker: jenis (cewek/cowok/hewan/robot dll), warna & gaya rambut, ciri wajah, SETIAP potong pakaian dengan warna persisnya, dan aksesori. JANGAN sebut nama karakter, orang, atau franchise. Balas deskripsinya saja.";
+          const describe = (cfg.extraInput.imageDescribe || "Describe this character's visual appearance in Bahasa Indonesia as ONE short paragraph for a doll maker: jenis (cewek/cowok/hewan/robot dll), warna & gaya rambut, ciri wajah, SETIAP potong pakaian dengan warna persisnya, dan aksesori. JANGAN sebut nama karakter, orang, atau franchise. Balas deskripsinya saja.").replace('in Bahasa Indonesia', 'in ' + window.describeLangName(getLang()));
           const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ contents: [{ parts: [{ text: describe }, { inlineData: { mimeType, data: base64 } }] }] })
