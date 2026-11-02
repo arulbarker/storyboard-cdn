@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'result.heading.daily': 'Hasil Day in My Life',
       'result.heading.testi': 'Hasil Story Testimoni',
       'result.heading.grwm': 'Hasil Story GRWM',
+      'result.heading.viral': 'Hasil Storyboard', 'dl.choose-title': 'Unduh foto yang mana?', 'dl.opt-all': 'Semua foto (%N)', 'dl.opt-clip': 'Klip %K — Scene %A–%B (%N foto)', 'sheet.choose-title': 'Storyboard klip yang mana?', 'sheet.opt-all': 'Semua klip (%N gambar)', 'sheet.opt-clip': 'Klip %K — Scene %A–%B',
       'hint.theme-generic': 'Pilih konsep tempat & mood untuk seluruh scene. "Tidak Ada" = biar AI yang tentukan.',
       'hint.theme-fashion': 'Pilih konsep tempat & gaya untuk seluruh scene OOTD. "Tidak Ada" = biar AI yang tentukan.',
       'hint.theme-ads': 'Pilih konsep tempat & mood untuk seluruh scene iklan. "Tidak Ada" = biar AI yang tentukan.',
@@ -373,6 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'result.heading.daily': 'Day in My Life Results',
       'result.heading.testi': 'Testimonial Story Results',
       'result.heading.grwm': 'GRWM Story Results',
+      'result.heading.viral': 'Storyboard Results', 'dl.choose-title': 'Which photos to download?', 'dl.opt-all': 'All photos (%N)', 'dl.opt-clip': 'Clip %K — Scenes %A–%B (%N photos)', 'sheet.choose-title': 'Which clip storyboard?', 'sheet.opt-all': 'All clips (%N images)', 'sheet.opt-clip': 'Clip %K — Scenes %A–%B',
       'hint.theme-generic': 'Choose a place concept & mood for all scenes. "None" = let AI decide.',
       'hint.theme-fashion': 'Choose a place concept & style for all OOTD scenes. "None" = let AI decide.',
       'hint.theme-ads': 'Choose a place concept & mood for all ad scenes. "None" = let AI decide.',
@@ -647,6 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'result.heading.daily': 'Keputusan Day in My Life',
       'result.heading.testi': 'Keputusan Kisah Testimoni',
       'result.heading.grwm': 'Keputusan Kisah GRWM',
+      'result.heading.viral': 'Keputusan Storyboard', 'dl.choose-title': 'Muat turun foto yang mana?', 'dl.opt-all': 'Semua foto (%N)', 'dl.opt-clip': 'Klip %K — Babak %A–%B (%N foto)', 'sheet.choose-title': 'Storyboard klip yang mana?', 'sheet.opt-all': 'Semua klip (%N gambar)', 'sheet.opt-clip': 'Klip %K — Babak %A–%B',
       'hint.theme-generic': 'Pilih konsep tempat & mood untuk semua babak. "Tiada" = biar AI yang tentukan.',
       'hint.theme-fashion': 'Pilih konsep tempat & gaya untuk semua babak OOTD. "Tiada" = biar AI yang tentukan.',
       'hint.theme-ads': 'Pilih konsep tempat & mood untuk semua babak iklan. "Tiada" = biar AI yang tentukan.',
@@ -917,8 +920,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.0';
+  window.APP_VERSION = '3.7.1';
   window.CHANGELOG = [
+    { version: '3.7.1', date: '3 Nov 2026', changes: [
+      { id: 'Judul "Hasil Storyboard" di menu Video Viral & Cerita Anak, serta menu pilihan Unduh Semua, Ekspor Storyboard dan Pustaka Model kini ikut bahasa aplikasi (Inggris/Melayu)',
+        en: 'The "Storyboard Results" title in Viral Video & Kids Story menus, plus the choice menus for Download All, Export Storyboard and Model Library, now follow the app language (English/Malay)',
+        ms: 'Tajuk "Keputusan Storyboard" di menu Video Viral & Cerita Kanak-kanak, serta menu pilihan Muat Turun Semua, Eksport Storyboard dan Pustaka Model kini ikut bahasa aplikasi (Inggeris/Melayu)' },
+    ] },
     { version: '3.7.0', date: '2 Nov 2026', changes: [
       { id: 'Influencer Bicara kini bisa memakai naskah sendiri: tempel naskahmu, aplikasi memotongnya otomatis per klip dan menentukan durasinya, tanpa mengubah kata-katamu',
         en: 'Talking Influencer can now use your own script: paste it and the app splits it per clip and sets the duration automatically, without changing your words',
@@ -2710,12 +2718,12 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
         };
         if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
-        const choices = [{ label: `<i class="fas fa-images mr-2"></i>Semua klip (${totalClips} gambar)`, onPick: () => runJobs(Array.from({ length: totalClips }, (_, i) => jobFor(i + 1))) }];
+        const choices = [{ label: `<i class="fas fa-images mr-2"></i>${t('sheet.opt-all').replace('%N', totalClips)}`, onPick: () => runJobs(Array.from({ length: totalClips }, (_, i) => jobFor(i + 1))) }];
         for (let k = 1; k <= totalClips; k++) {
           const jb = jobFor(k);
-          choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>Klip ${k} — Scene ${jb.startIdx + 1}–${jb.startIdx + jb.cards.length}`, onPick: () => runJobs([jb]) });
+          choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>${t('sheet.opt-clip').replace('%K', k).replace('%A', jb.startIdx + 1).replace('%B', jb.startIdx + jb.cards.length)}`, onPick: () => runJobs([jb]) });
         }
-        showChoiceModal('Storyboard klip yang mana?', choices);
+        showChoiceModal(t('sheet.choose-title'), choices);
       } else {
         runJobs([{ cards: allCards, startIdx: 0, label: '', fname: `${cfg.filenamePrefix}_storyboard.jpg`, cols: undefined }]);
       }
@@ -2856,7 +2864,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
         let list = [];
         try { list = await window.modelDB.list(); } catch (err) { console.error(err); }
         if (!list.length) { window.uiNotify(t('warn.no-models')); return; }
-        showChoiceModal('Pilih model dari pustaka', list.map(m => ({
+        showChoiceModal(t('btn.pick-model-library'), list.map(m => ({
           label: `<span class="flex items-center gap-3"><img src="${URL.createObjectURL(m.blob)}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span>`,
           onPick: async () => {
             modelBase64 = await window.blobToB64(m.blob);
@@ -3088,12 +3096,12 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       if (!durState.on) { downloadCards(all); return; }
       const plan = window.clipPlan(durState.platform, durState.duration);
       const totalClips = Math.ceil(all.length / plan.perClip);
-      const choices = [{ label: `<i class="fas fa-download mr-2"></i>Semua foto (${all.length})`, onPick: () => downloadCards(all) }];
+      const choices = [{ label: `<i class="fas fa-download mr-2"></i>${t('dl.opt-all').replace('%N', all.length)}`, onPick: () => downloadCards(all) }];
       for (let k = 1; k <= totalClips; k++) {
         const cards = all.slice((k - 1) * plan.perClip, k * plan.perClip);
-        choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>Klip ${k} — Scene ${(k - 1) * plan.perClip + 1}–${(k - 1) * plan.perClip + cards.length} (${cards.length} foto)`, onPick: () => downloadCards(cards) });
+        choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>${t('dl.opt-clip').replace('%K', k).replace('%A', (k - 1) * plan.perClip + 1).replace('%B', (k - 1) * plan.perClip + cards.length).replace('%N', cards.length)}`, onPick: () => downloadCards(cards) });
       }
-      showChoiceModal('Unduh foto yang mana?', choices);
+      showChoiceModal(t('dl.choose-title'), choices);
     });
 
     function openPreview(src) {
@@ -4145,7 +4153,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           </div>
           <div class="lg:col-span-2">
             <div class="flex items-center justify-between mb-4">
-              <h2 class="text-xl font-bold text-gray-800">Hasil Storyboard</h2>
+              <h2 class="text-xl font-bold text-gray-800" data-i18n="result.heading.viral">Hasil Storyboard</h2>
               <button id="${p}-download-all-btn" class="btn-secondary text-sm font-semibold py-2 px-4 rounded-lg hidden"><i class="fas fa-download mr-1"></i><span data-i18n="btn.download-all">Unduh Semua</span></button>
             </div>
             <div id="${p}-b-roll-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"></div>
@@ -4418,12 +4426,12 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
         };
         if (onlyClip) { runJobs([jobFor(onlyClip)]); return; } // dipanggil dari tombol di bar klip → langsung 1 gambar klip itu
         if (totalClips <= 1) { runJobs([jobFor(1)]); return; }
-        const choices = [{ label: `<i class="fas fa-images mr-2"></i>Semua klip (${totalClips} gambar)`, onPick: () => runJobs(Array.from({ length: totalClips }, (_, i) => jobFor(i + 1))) }];
+        const choices = [{ label: `<i class="fas fa-images mr-2"></i>${t('sheet.opt-all').replace('%N', totalClips)}`, onPick: () => runJobs(Array.from({ length: totalClips }, (_, i) => jobFor(i + 1))) }];
         for (let k = 1; k <= totalClips; k++) {
           const jb = jobFor(k);
-          choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>Klip ${k} — Scene ${jb.startIdx + 1}–${jb.startIdx + jb.cards.length}`, onPick: () => runJobs([jb]) });
+          choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>${t('sheet.opt-clip').replace('%K', k).replace('%A', jb.startIdx + 1).replace('%B', jb.startIdx + jb.cards.length)}`, onPick: () => runJobs([jb]) });
         }
-        showChoiceModal('Storyboard klip yang mana?', choices);
+        showChoiceModal(t('sheet.choose-title'), choices);
       } else {
         runJobs([{ cards: allCards, startIdx: 0, label: '', fname: `${cfg.filenamePrefix}_storyboard.jpg`, cols: undefined }]);
       }
@@ -4703,12 +4711,12 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       if (!durState.on) { downloadCards(all); return; }
       const plan = window.clipPlan(durState.platform, durState.duration);
       const totalClips = Math.ceil(all.length / plan.perClip);
-      const choices = [{ label: `<i class="fas fa-download mr-2"></i>Semua foto (${all.length})`, onPick: () => downloadCards(all) }];
+      const choices = [{ label: `<i class="fas fa-download mr-2"></i>${t('dl.opt-all').replace('%N', all.length)}`, onPick: () => downloadCards(all) }];
       for (let k = 1; k <= totalClips; k++) {
         const cards = all.slice((k - 1) * plan.perClip, k * plan.perClip);
-        choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>Klip ${k} — Scene ${(k - 1) * plan.perClip + 1}–${(k - 1) * plan.perClip + cards.length} (${cards.length} foto)`, onPick: () => downloadCards(cards) });
+        choices.push({ label: `<i class="fas fa-clapperboard mr-2"></i>${t('dl.opt-clip').replace('%K', k).replace('%A', (k - 1) * plan.perClip + 1).replace('%B', (k - 1) * plan.perClip + cards.length).replace('%N', cards.length)}`, onPick: () => downloadCards(cards) });
       }
-      showChoiceModal('Unduh foto yang mana?', choices);
+      showChoiceModal(t('dl.choose-title'), choices);
     });
 
     function openPreview(src) {
