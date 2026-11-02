@@ -207,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Bicara', 'talk.step-branding': 'Nama Akun di Backdrop (Opsional)',
       'talk.step-duration': 'Platform & Durasi', 'talk.script-lang': 'Bahasa naskah',
       'talk.btn-script': 'Buat Naskah', 'talk.btn-rescript': 'Buat Ulang Naskah', 'talk.btn-photos': 'Generate Foto',
+      'talk.btn-own-script': 'Punya naskah sendiri? Tempel di sini', 'talk.own-title': 'Naskah Sendiri', 'talk.own-hint': 'Teks dipakai apa adanya, tidak diubah AI, dan dipotong otomatis per klip. Kamu yang bertanggung jawab atas isinya, termasuk kutipan. Samakan "Bahasa naskah" di atas dengan bahasa naskahmu.', 'ph.talk-own-script': 'Tempel naskah lengkapmu di sini...', 'talk.btn-own-split': 'Potong per Klip', 'talk.own-estimate': '±%W kata → %C klip · %S dtk', 'talk.own-too-long': 'Terlalu panjang: ±%W kata. Maksimal ±%M kata untuk 60 dtk — pangkas dulu naskahnya.', 'warn.talker-own-empty': 'Tempel dulu naskahmu di kotak.', 'talk.word-count': '%N/%M kata', 'talk.word-over': 'kepanjangan, ucapan bisa terpotong',
       'talk.script-title': 'Naskah per Klip (bisa diedit)', 'talk.script-keep-photo': 'Ganti atau edit naskah tidak menghapus foto — foto tidak perlu digenerate ulang.', 'talk.result': 'Hasil Klip', 'talk.btn-copy': 'Salin Semua',
       'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Tombol 📋 = salin prompt siap-pakai untuk Flow/Veo (gambar storyboard dibaca AI, lembarannya tidak ikut ke video).',
       'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bicara bersama Arul', 'ph.talk-suasana-custom': 'Tulis suasana sendiri, cth: studio gelap dengan lampu neon merah',
@@ -480,6 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.step-latar': 'Setting', 'talk.step-gaya': 'Speaking Style', 'talk.step-branding': 'Account Name on Backdrop (Optional)',
       'talk.step-duration': 'Platform & Duration', 'talk.script-lang': 'Script language',
       'talk.btn-script': 'Write Script', 'talk.btn-rescript': 'Rewrite Script', 'talk.btn-photos': 'Generate Photos',
+      'talk.btn-own-script': 'Have your own script? Paste it here', 'talk.own-title': 'Your Own Script', 'talk.own-hint': 'Your text is used as is, not changed by AI, and split per clip automatically. You are responsible for its content, including quotes. Set "Script language" above to match your script.', 'ph.talk-own-script': 'Paste your full script here...', 'talk.btn-own-split': 'Split per Clip', 'talk.own-estimate': '±%W words → %C clips · %S sec', 'talk.own-too-long': 'Too long: ±%W words. The maximum is ±%M words for 60 sec — please shorten your script.', 'warn.talker-own-empty': 'Paste your script into the box first.', 'talk.word-count': '%N/%M words', 'talk.word-over': 'too long, speech may get cut off',
       'talk.script-title': 'Script per Clip (editable)', 'talk.script-keep-photo': 'Rewriting or editing the script keeps your photos — no need to regenerate them.', 'talk.result': 'Clip Results', 'talk.btn-copy': 'Copy All',
       'talk.flow-copy': 'Copy Flow Prompt', 'talk.flow-hint': 'The 📋 button copies a ready-to-use prompt for Flow/Veo (the AI reads the storyboard image; the sheet itself will not appear in the video).',
       'ph.talk-topic': 'e.g. finding peace through hard times', 'ph.talk-branding': 'e.g. Ruang Bertumbuh Fatimah Zahra', 'ph.talk-suasana-custom': 'Describe your own mood, e.g. dark studio with red neon lights',
@@ -753,6 +755,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'talk.step-latar': 'Latar', 'talk.step-gaya': 'Gaya Percakapan', 'talk.step-branding': 'Nama Akaun di Latar (Pilihan)',
       'talk.step-duration': 'Platform & Tempoh', 'talk.script-lang': 'Bahasa skrip',
       'talk.btn-script': 'Buat Skrip', 'talk.btn-rescript': 'Buat Semula Skrip', 'talk.btn-photos': 'Jana Foto',
+      'talk.btn-own-script': 'Ada skrip sendiri? Tampal di sini', 'talk.own-title': 'Skrip Sendiri', 'talk.own-hint': 'Teks digunakan seadanya, tidak diubah AI, dan dipotong automatik mengikut klip. Anda bertanggungjawab atas kandungannya, termasuk petikan. Samakan "Bahasa skrip" di atas dengan bahasa skrip anda.', 'ph.talk-own-script': 'Tampal skrip penuh anda di sini...', 'talk.btn-own-split': 'Potong ikut Klip', 'talk.own-estimate': '±%W patah kata → %C klip · %S saat', 'talk.own-too-long': 'Terlalu panjang: ±%W patah kata. Maksimum ±%M patah kata untuk 60 saat — sila pendekkan skrip anda.', 'warn.talker-own-empty': 'Tampal skrip anda dalam kotak dahulu.', 'talk.word-count': '%N/%M patah kata', 'talk.word-over': 'terlalu panjang, ucapan mungkin terpotong',
       'talk.script-title': 'Skrip per Klip (boleh diedit)', 'talk.script-keep-photo': 'Menukar atau mengedit skrip tidak memadam foto — foto tidak perlu dijana semula.', 'talk.result': 'Hasil Klip', 'talk.btn-copy': 'Salin Semua',
       'talk.flow-copy': 'Salin Prompt Flow', 'talk.flow-hint': 'Butang 📋 = salin prompt sedia-guna untuk Flow/Veo (imej storyboard dibaca AI, helaiannya tidak masuk ke video).',
       'ph.talk-topic': 'Contoh: ikhlas menghadapi ujian hidup', 'ph.talk-branding': 'Contoh: Ruang Bertumbuh Fatimah Zahra', 'ph.talk-suasana-custom': 'Tulis suasana sendiri, cth: studio gelap dengan lampu neon merah',
@@ -914,8 +917,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.6.4';
+  window.APP_VERSION = '3.7.0';
   window.CHANGELOG = [
+    { version: '3.7.0', date: '2 Nov 2026', changes: [
+      { id: 'Influencer Bicara kini bisa memakai naskah sendiri: tempel naskahmu, aplikasi memotongnya otomatis per klip dan menentukan durasinya, tanpa mengubah kata-katamu',
+        en: 'Talking Influencer can now use your own script: paste it and the app splits it per clip and sets the duration automatically, without changing your words',
+        ms: 'Influencer Bercakap kini boleh guna skrip sendiri: tampal skrip anda, aplikasi memotongnya mengikut klip dan menetapkan durasinya secara automatik, tanpa mengubah kata-kata anda' },
+      { id: 'Kotak naskah per klip kini menampilkan jumlah kata dan memberi tanda merah kalau kepanjangan, supaya ucapan di video tidak terpotong',
+        en: 'Each clip script box now shows its word count and turns red when too long, so the speech in your video does not get cut off',
+        ms: 'Kotak skrip setiap klip kini memaparkan jumlah patah kata dan bertukar merah jika terlalu panjang, supaya ucapan dalam video tidak terpotong' }
+    ] },
     { version: '3.6.4', date: '30 Okt 2026', changes: [
       { id: 'Tulisan "Menganalisa..." saat membuat storyboard di 10 fitur Review dan "Membaca foto..." kini ikut bahasa aplikasi (Inggris/Melayu)',
         en: 'The "Analyzing..." text while creating a storyboard in the 10 Review features and "Reading photo..." now follow the app language (English/Malay)',
@@ -1374,7 +1385,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '11. Caption', h: '<p>Tombol <b>Caption</b> membuat 3 varian caption (Soft/Story/Hard-selling) + hashtag untuk video final. Bahasa ikut tombol bahasa ucapan.</p>' },
       { t: '12. Ekspor Storyboard', h: '<p>Gabung foto scene + prompt video jadi <b>1 gambar per klip</b> — tekan <b>Ekspor Storyboard</b> di header atau <b>Storyboard</b> di tiap pembatas klip.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (musik + SFX saja).</li><li>Kalau hasil kurang pas, tekan Regenerate atau Edit Prompt.</li></ul>' },
-      { t: '14. Influencer Bicara', h: '<p>Buat konten <b>talking-head per niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya bicara → <b>Buat Naskah</b> (AI menulis monolog utuh, bisa diedit per klip) → <b>Generate Foto</b> (1 foto per klip).</p><p><b>Naskah nyambung antar klip</b> — prompt video tiap klip berisi kata-kata persis segmen itu. Generate video per klip di platform luar (Kling/Veo), lalu satukan di CapCut jadi satu monolog utuh (mis. 6 klip × 10 dtk = 60 dtk).</p><p><b>Mau ganti naskah saja?</b> Klik <b>Buat Ulang Naskah</b> atau edit langsung di kotak naskah — foto yang sudah jadi tidak terhapus, prompt video & caption ikut naskah baru.</p><p><b>Ajakan di akhir (CTA)</b> seperti "jangan lupa simpan video ini" kini opsional — default <b>Tanpa CTA</b>; pilih <b>Pakai CTA</b> di kartu Gaya Bicara kalau mau (khusus format 1 orang, bukan Mode Doa).</p>' },
+      { t: '14. Influencer Bicara', h: '<p>Buat konten <b>talking-head per niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya bicara → <b>Buat Naskah</b> (AI menulis monolog utuh, bisa diedit per klip) → <b>Generate Foto</b> (1 foto per klip).</p><p><b>Naskah nyambung antar klip</b> — prompt video tiap klip berisi kata-kata persis segmen itu. Generate video per klip di platform luar (Kling/Veo), lalu satukan di CapCut jadi satu monolog utuh (mis. 6 klip × 10 dtk = 60 dtk).</p><p><b>Mau ganti naskah saja?</b> Klik <b>Buat Ulang Naskah</b> atau edit langsung di kotak naskah — foto yang sudah jadi tidak terhapus, prompt video & caption ikut naskah baru.</p><p><b>Ajakan di akhir (CTA)</b> seperti "jangan lupa simpan video ini" kini opsional — default <b>Tanpa CTA</b>; pilih <b>Pakai CTA</b> di kartu Gaya Bicara kalau mau (khusus format 1 orang, bukan Mode Doa).</p><p><b>Punya naskah sendiri?</b> Klik <b>Punya naskah sendiri? Tempel di sini</b> di bawah tombol Buat Naskah, tempel teksnya, lalu <b>Potong per Klip</b>. Aplikasi memotong per klip dan mengatur durasinya otomatis (maks 60 dtk) tanpa mengubah kata-katamu. Isi naskah jadi tanggung jawabmu, dan samakan Bahasa naskah dengan bahasa teksnya. Pilihan ini tidak tersedia di format 2 orang.</p>' },
       { t: '15. Cerita Anak', h: '<p>Kategori konten edukasi anak — <b>narasi narator, subjek tidak bicara</b> (gaya dokumenter/dongeng).</p><ul><li><b>Ensiklopedia Anak</b> — pengetahuan 1 subjek (mis. Gajah Afrika): pilih kategori + gaya visual, atau ketik subjek spesifik. Scene mengalir: kenalan → habitat → makanan → keunikan → fakta seru → rekap.</li><li><b>Siklus Hidup</b> — tahapan hidup 1 subjek (telur → ulat → kepompong → kupu-kupu) urut maju, scene akhir bentuk dewasa.</li></ul><p>Gaya audio default <b>Voiceover</b> — prompt video berisi narasi ramah anak. <b>Fakta dibuat AI: cek dulu sebelum diposting.</b></p>' },
       { t: '16. Foto Harian', h: '<p>Buat <b>foto natural sehari-hari</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau upload), pilih chip <b>aktivitas</b> (ngopi, gym, OOTD, dll — atau Acak/Custom), pilih rasio, lalu Generate — 1 foto per klik.</p><p><b>Referensi Background (opsional):</b> upload foto tempat, maka lokasi foto akan mengikuti suasana foto itu (mirip, bukan tempel persis) — aktivitas tetap dari chip.</p><p><b>Foto Produk (opsional, maks 5):</b> upload foto baju, celana, sepatu, tas, aksesoris, atau barang apa pun (atau ambil dari Pustaka Produk) — model akan memakai/memegang produk itu di foto, cocok untuk konten affiliate. Gaya natural anti-plastik sudah otomatis aktif. Hasil langsung di-download, tidak masuk Pustaka Model.</p>' },
       { t: '17. Riwayat Hasil', h: '<p>Setiap kali kamu generate (fitur Review, Viral, Cerita Anak, Influencer Bicara, Foto Harian), hasilnya <b>tersimpan otomatis</b> di menu <b>Riwayat Hasil</b> — termasuk foto yang di-Regenerate dan klip Lanjutkan Cerita.</p><ul><li><b>Lihat</b> — buka semua foto cerita itu, unduh per foto, salin prompt gambar, prompt video (kalau sudah pernah dibuat), atau naskah (Influencer Bicara).</li><li><b>Unduh Semua</b> — unduh semua foto cerita itu sekaligus.</li><li><b>Hapus</b> — buang riwayat yang tidak dipakai.</li></ul><p>Riwayat disimpan <b>di perangkat/browser ini saja</b> (maks 20 cerita terbaru — yang paling lama otomatis terhapus). Unduh foto yang penting supaya aman.</p>' },
@@ -1393,7 +1404,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '11. Caption', h: '<p>The <b>Caption</b> button creates 3 caption variants (Soft/Story/Hard-selling) + hashtags for the final video. Language follows the speech-language button.</p>' },
       { t: '12. Export Storyboard', h: '<p>Combine scene photos + video prompts into <b>1 image per clip</b> — tap <b>Export Storyboard</b> in the header or <b>Storyboard</b> on each clip divider.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>The app only outputs <b>photos + prompt text</b> — make the video on Runway/Pika/Kling/Veo.</li><li>ASMR/Cinematic/Timelapse are intentionally <b>without human speech</b> (music + SFX only).</li><li>If a result is off, hit Regenerate or Edit Prompt.</li></ul>' },
-      { t: '14. Talking Influencer', h: '<p>Create <b>niche talking-head content</b> (wisdom, Islamic, parenting, etc.): pick a model photo (required), niche, setting, speaking style → <b>Write Script</b> (AI writes one full monologue, editable per clip) → <b>Generate Photos</b> (1 photo per clip).</p><p><b>The script flows across clips</b> — each clip\'s video prompt contains that exact segment. Generate each clip on an external platform (Kling/Veo), then join them in CapCut into one full monologue (e.g. 6 clips × 10 s = 60 s).</p><p><b>Only want a new script?</b> Click <b>Rewrite Script</b> or edit the script boxes directly — your finished photos stay, and the video prompts & captions follow the new script.</p><p>The <b>closing call-to-action (CTA)</b> such as "save this video" is now optional — <b>No CTA</b> by default; pick <b>Use CTA</b> in the Speaking Style card if you want it (1-person format only, not Prayer Mode).</p>' },
+      { t: '14. Talking Influencer', h: '<p>Create <b>niche talking-head content</b> (wisdom, Islamic, parenting, etc.): pick a model photo (required), niche, setting, speaking style → <b>Write Script</b> (AI writes one full monologue, editable per clip) → <b>Generate Photos</b> (1 photo per clip).</p><p><b>The script flows across clips</b> — each clip\'s video prompt contains that exact segment. Generate each clip on an external platform (Kling/Veo), then join them in CapCut into one full monologue (e.g. 6 clips × 10 s = 60 s).</p><p><b>Only want a new script?</b> Click <b>Rewrite Script</b> or edit the script boxes directly — your finished photos stay, and the video prompts & captions follow the new script.</p><p>The <b>closing call-to-action (CTA)</b> such as "save this video" is now optional — <b>No CTA</b> by default; pick <b>Use CTA</b> in the Speaking Style card if you want it (1-person format only, not Prayer Mode).</p><p><b>Have your own script?</b> Click <b>Have your own script? Paste it here</b> below the Write Script button, paste your text, then <b>Split per Clip</b>. The app splits it per clip and sets the duration automatically (max 60 sec) without changing your words. The content is your responsibility, and Script language should match your text. This option is not available in the 2-person format.</p>' },
       { t: '15. Kids Story', h: '<p>Kids educational content category — <b>narrator voiceover, the subject never talks</b> (documentary/fairy-tale style).</p><ul><li><b>Kids Encyclopedia</b> — one-subject knowledge (e.g. African Elephant): pick a category + visual style, or type a specific subject. Scenes flow: intro → habitat → food → uniqueness → fun facts → recap.</li><li><b>Life Cycle</b> — one subject through its life stages (egg → caterpillar → chrysalis → butterfly) in strict forward order, final scene is the adult form.</li></ul><p>Default audio style is <b>Voiceover</b> — video prompts carry kid-friendly narration. <b>Facts are AI-generated: verify before posting.</b></p>' },
       { t: '16. Daily Photos', h: '<p>Create <b>natural everyday photos</b> for your AI influencer feed: pick a model from the Library (or upload), pick an <b>activity</b> chip (coffee, gym, OOTD, etc. — or Random/Custom), pick a ratio, then Generate — 1 photo per click.</p><p><b>Background Reference (optional):</b> upload a place photo and the photo location will follow its vibe (similar, not an exact paste) — the activity still comes from the chips.</p><p><b>Product Photos (optional, max 5):</b> upload photos of tops, pants, shoes, bags, accessories, or any item (or pick from the Product Library) — the model will wear/hold them in the photo, great for affiliate content. The natural anti-plastic style is always on. Results are downloaded directly, they do not enter the Model Library.</p>' },
       { t: '17. Result History', h: '<p>Every time you generate (Review, Viral, Kids Stories, Talking Influencer, Daily Photos), the results are <b>saved automatically</b> in the <b>Result History</b> menu — including Regenerated photos and Continue Story clips.</p><ul><li><b>View</b> — open every photo of that story, download each photo, copy the image prompt, the video prompt (if you made one), or the script (Talking Influencer).</li><li><b>Download All</b> — download every photo of that story at once.</li><li><b>Delete</b> — remove history you no longer need.</li></ul><p>History is stored <b>on this device/browser only</b> (latest 20 stories — the oldest is removed automatically). Download important photos to keep them safe.</p>' },
@@ -1412,7 +1423,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { t: '11. Caption', h: '<p>Butang <b>Caption</b> menghasilkan 3 varian caption (Soft/Story/Hard-selling) + hashtag untuk video akhir. Bahasa ikut butang bahasa pertuturan.</p>' },
       { t: '12. Eksport Storyboard', h: '<p>Gabung foto adegan + prompt video jadi <b>1 imej per klip</b> — tekan <b>Eksport Storyboard</b> di pengepala atau <b>Storyboard</b> pada setiap pembahagi klip.</p>' },
       { t: '13. Tips & FAQ', h: '<ul><li>App hanya keluarkan <b>foto + teks prompt</b> — buat videonya di Runway/Pika/Kling/Veo.</li><li>ASMR/Sinematik/Timelapse sengaja <b>tanpa suara orang</b> (muzik + SFX sahaja).</li><li>Jika hasil kurang tepat, tekan Regenerate atau Edit Prompt.</li></ul>' },
-      { t: '14. Influencer Bercakap', h: '<p>Buat <b>kandungan talking-head ikut niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya percakapan → <b>Buat Skrip</b> (AI menulis satu monolog penuh, boleh diedit per klip) → <b>Jana Foto</b> (1 foto per klip).</p><p><b>Skrip bersambung antara klip</b> — prompt video setiap klip mengandungi kata-kata tepat segmen itu. Jana video per klip di platform luaran (Kling/Veo), kemudian gabungkan di CapCut jadi satu monolog penuh (cth. 6 klip × 10 saat = 60 saat).</p><p><b>Hanya mahu tukar skrip?</b> Klik <b>Buat Semula Skrip</b> atau edit terus di kotak skrip — foto yang sudah siap tidak dipadam, prompt video & kapsyen ikut skrip baharu.</p><p><b>Ajakan di akhir (CTA)</b> seperti "jangan lupa simpan video ini" kini pilihan — lalai <b>Tanpa CTA</b>; pilih <b>Guna CTA</b> di kad Gaya Percakapan jika mahu (format 1 orang sahaja, bukan Mod Doa).</p>' },
+      { t: '14. Influencer Bercakap', h: '<p>Buat <b>kandungan talking-head ikut niche</b> (kata bijak, islami, parenting, dll): pilih foto model (wajib), niche, latar, gaya percakapan → <b>Buat Skrip</b> (AI menulis satu monolog penuh, boleh diedit per klip) → <b>Jana Foto</b> (1 foto per klip).</p><p><b>Skrip bersambung antara klip</b> — prompt video setiap klip mengandungi kata-kata tepat segmen itu. Jana video per klip di platform luaran (Kling/Veo), kemudian gabungkan di CapCut jadi satu monolog penuh (cth. 6 klip × 10 saat = 60 saat).</p><p><b>Hanya mahu tukar skrip?</b> Klik <b>Buat Semula Skrip</b> atau edit terus di kotak skrip — foto yang sudah siap tidak dipadam, prompt video & kapsyen ikut skrip baharu.</p><p><b>Ajakan di akhir (CTA)</b> seperti "jangan lupa simpan video ini" kini pilihan — lalai <b>Tanpa CTA</b>; pilih <b>Guna CTA</b> di kad Gaya Percakapan jika mahu (format 1 orang sahaja, bukan Mod Doa).</p><p><b>Ada skrip sendiri?</b> Klik <b>Ada skrip sendiri? Tampal di sini</b> di bawah butang Buat Skrip, tampal teks anda, kemudian <b>Potong ikut Klip</b>. Aplikasi memotongnya mengikut klip dan menetapkan durasi secara automatik (maks 60 saat) tanpa mengubah kata-kata anda. Kandungan skrip menjadi tanggungjawab anda, dan samakan Bahasa skrip dengan bahasa teks. Pilihan ini tiada dalam format 2 orang.</p>' },
       { t: '15. Cerita Kanak-kanak', h: '<p>Kategori kandungan pendidikan kanak-kanak — <b>narasi perawi, subjek tidak bercakap</b> (gaya dokumentari/dongeng).</p><ul><li><b>Ensiklopedia Kanak-kanak</b> — pengetahuan 1 subjek (cth. Gajah Afrika): pilih kategori + gaya visual, atau taip subjek spesifik. Adegan mengalir: kenalan → habitat → makanan → keunikan → fakta menarik → rekap.</li><li><b>Kitaran Hidup</b> — peringkat hidup 1 subjek (telur → ulat → kepompong → rama-rama) urutan ke hadapan, adegan akhir bentuk dewasa.</li></ul><p>Gaya audio lalai <b>Voiceover</b> — prompt video membawa narasi mesra kanak-kanak. <b>Fakta dijana AI: semak dahulu sebelum muat naik.</b></p>' },
       { t: '16. Foto Harian', h: '<p>Buat <b>foto natural harian</b> untuk feed AI influencer kamu: pilih model dari Pustaka (atau muat naik), pilih cip <b>aktiviti</b> (kopi, gim, OOTD, dll — atau Rawak/Custom), pilih nisbah, kemudian Generate — 1 foto setiap klik.</p><p><b>Rujukan Latar (pilihan):</b> muat naik foto tempat, lokasi foto akan ikut suasana foto itu (serupa, bukan tampal tepat) — aktiviti tetap dari cip.</p><p><b>Foto Produk (pilihan, maks 5):</b> muat naik foto baju, seluar, kasut, beg, aksesori, atau apa-apa barang (atau pilih dari Pustaka Produk) — model akan memakai/memegang produk itu dalam foto, sesuai untuk kandungan affiliate. Gaya natural anti-plastik sentiasa aktif. Hasil terus dimuat turun, tidak masuk Pustaka Model.</p>' },
       { t: '17. Sejarah Hasil', h: '<p>Setiap kali kamu generate (ciri Review, Viral, Cerita Anak, Influencer Bercakap, Foto Harian), hasilnya <b>disimpan secara automatik</b> di menu <b>Sejarah Hasil</b> — termasuk foto yang di-Regenerate dan klip Sambung Cerita.</p><ul><li><b>Lihat</b> — buka semua foto cerita itu, muat turun setiap foto, salin prompt gambar, prompt video (jika sudah dibuat), atau skrip (Influencer Bercakap).</li><li><b>Muat Turun Semua</b> — muat turun semua foto cerita itu sekali gus.</li><li><b>Padam</b> — buang sejarah yang tidak digunakan.</li></ul><p>Sejarah disimpan <b>di peranti/pelayar ini sahaja</b> (maks 20 cerita terkini — yang paling lama dipadam secara automatik). Muat turun foto penting supaya selamat.</p>' },
@@ -5395,6 +5406,72 @@ Rules:
     'a social observation: start from a small everyday scene everyone recognizes, then zoom out to the deeper meaning'
   ];
 
+  window.talkerClipBudget = function (clipSec) {
+    return { hi: Math.round(clipSec * 2.3), maxChars: Math.round(clipSec * 16) };
+  };
+
+  window.splitTalkerScript = function (text, clipSec, maxSec) {
+    const raw = String(text || '').trim();
+    const wc = (s) => s.split(/\s+/).filter(Boolean).length;
+    if (!raw) return { ok: false, reason: 'empty', words: 0 };
+    const { hi, maxChars } = window.talkerClipBudget(clipSec);
+    const fits = (s) => wc(s) <= hi && s.length <= maxChars;
+    const cutAfter = (s, re) => s.replace(re, '$1\u0001').split('\u0001').map(x => x.trim()).filter(Boolean);
+    const units = [];
+    raw.split(/\n+/).forEach(line => {
+      cutAfter(line, /([.!?…]+["'”’)\]]*)\s+/g).forEach(sent => {
+        if (fits(sent)) { units.push(sent.replace(/\s+/g, ' ')); return; }
+        cutAfter(sent, /([,;:—–]+)\s+/g).forEach(part => {
+          let cur = '';
+          part.split(/\s+/).forEach(word => {
+            const next = cur ? `${cur} ${word}` : word;
+            if (cur && !fits(next)) { units.push(cur); cur = word; } else cur = next;
+          });
+          if (cur) units.push(cur);
+        });
+      });
+    });
+    const words = units.reduce((n, u) => n + wc(u), 0);
+    const pack = (list) => {
+      const bins = [];
+      let buf = '';
+      list.forEach(u => {
+        const next = buf ? `${buf} ${u}` : u;
+        if (buf && !fits(next)) { bins.push(buf); buf = u; } else buf = next;
+      });
+      if (buf) bins.push(buf);
+      return bins;
+    };
+    const maxClips = Math.floor(maxSec / clipSec);
+    const joined = units.join(' ');
+    let pieces = units;
+    let tight = pack(pieces);
+    if (tight.length > maxClips) {
+      pieces = joined.split(' ');
+      tight = pack(pieces);
+    }
+    if (tight.length > maxClips) {
+      const byChars = Math.floor((maxChars * maxClips) / (joined.length / words));
+      return { ok: false, reason: 'long', words, maxWords: Math.min(hi * maxClips, byChars, words - 1) };
+    }
+    const target = words / tight.length;
+    const even = [];
+    let cur = '';
+    pieces.forEach(u => {
+      const next = cur ? `${cur} ${u}` : u;
+      const binsLeft = tight.length - even.length - 1;
+      const closer = Math.abs(wc(next) - target) > Math.abs(wc(cur) - target);
+      if (cur && binsLeft > 0 && (!fits(next) || closer)) { even.push(cur); cur = u; } else cur = next;
+    });
+    if (cur) even.push(cur);
+    const segments = even.length === tight.length && even.every(fits) ? even : tight;
+    const head = segments[0].split(/\s+/);
+    return {
+      ok: true, segments, words, clips: segments.length, totalSec: segments.length * clipSec,
+      title: head.length > 6 || segments.length > 1 ? `${head.slice(0, 6).join(' ').replace(/[.,!?;:…]+$/, '')}…` : segments[0]
+    };
+  };
+
   window.buildTalkerScriptPrompt = function (sel, plan) {
     const L = { id: 'Bahasa Indonesia', en: 'English', ms: 'Bahasa Melayu (Malay)' };
     const lang = L[sel.lang] || L.id;
@@ -5686,6 +5763,16 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
               </div>
             </div>
             <button type="button" id="${p}-script-btn" class="w-full btn-primary font-bold py-4 px-6 rounded-xl flex items-center justify-center text-lg"><i class="fas fa-pen-nib mr-2"></i><span data-i18n="talk.btn-script">Buat Naskah</span></button>
+            <div id="${p}-own-wrap">
+              <button type="button" id="${p}-own-toggle" class="btn-secondary w-full text-sm font-semibold py-3 px-3 rounded-xl"><i class="fas fa-paste mr-2"></i><span data-i18n="talk.btn-own-script">Punya naskah sendiri? Tempel di sini</span></button>
+              <div id="${p}-own-card" class="card p-6 mt-3 hidden">
+                <h2 class="text-lg font-semibold text-gray-800 mb-1" data-i18n="talk.own-title">Naskah Sendiri</h2>
+                <p class="text-xs text-gray-600 mb-3"><i class="fas fa-circle-info text-violet-600 mr-1"></i><span data-i18n="talk.own-hint">Teks dipakai apa adanya, tidak diubah AI, dan dipotong otomatis per klip. Kamu yang bertanggung jawab atas isinya, termasuk kutipan. Samakan "Bahasa naskah" di atas dengan bahasa naskahmu.</span></p>
+                <textarea id="${p}-own-input" rows="7" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl text-sm focus:border-violet-500 transition resize-none" data-i18n-placeholder="ph.talk-own-script" placeholder="Tempel naskah lengkapmu di sini..."></textarea>
+                <p id="${p}-own-estimate" class="text-xs font-semibold text-gray-600 mt-2 mb-3"></p>
+                <button type="button" id="${p}-own-split-btn" class="btn-primary w-full font-bold py-3 px-4 rounded-xl flex items-center justify-center"><i class="fas fa-scissors mr-2"></i><span data-i18n="talk.btn-own-split">Potong per Klip</span></button>
+              </div>
+            </div>
             <div id="${p}-script-card" class="card p-6 hidden">
               <h2 class="text-lg font-semibold text-gray-800 mb-1" data-i18n="talk.script-title">Naskah per Klip (bisa diedit)</h2>
               <p id="${p}-script-name" class="text-sm text-violet-700 font-semibold mb-3"></p>
@@ -5978,6 +6065,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       hostWrap.classList.toggle('hidden', !selection.duet);
       modelRoleHint.classList.toggle('hidden', !selection.duet);
       updateCtaVisibility();
+      updateOwnVisibility();
       refreshHostLibBtn();
       renderDurPanel();
       resetOutputs();
@@ -6249,9 +6337,10 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       document.getElementById(`${p}-script-name`).textContent = script.title || '';
       scriptList.innerHTML = script.segments.map((seg, i) => `
         <div>
-          <div class="text-xs font-semibold text-gray-500 mb-1">Klip ${i + 1} · ${pl.clipSec} ${t('unit.sec')}</div>
+          <div class="text-xs font-semibold text-gray-500 mb-1 flex flex-wrap justify-between gap-x-2"><span>${t('unit.clip-title')} ${i + 1} · ${pl.clipSec} ${t('unit.sec')}</span><span data-word-count="${i + 1}"></span></div>
           <textarea id="${p}-seg-${i + 1}" rows="3" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl text-sm focus:border-violet-500 transition resize-none">${window.escHtml(seg)}</textarea>
         </div>`).join('');
+      script.segments.forEach((seg, i) => paintWordCount(i + 1, seg));
       scriptCard.classList.remove('hidden');
       photosBtn.disabled = false;
     }
@@ -6268,10 +6357,71 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     function syncCardSnippets() { readSegments().forEach((seg, i) => syncCardSnippet(i + 1, seg)); }
     scriptList.addEventListener('input', (e) => {
       const m = (e.target.id || '').match(new RegExp(`^${p}-seg-(\\d+)$`));
-      if (m) syncCardSnippet(parseInt(m[1], 10), e.target.value.trim());
+      if (m) {
+        syncCardSnippet(parseInt(m[1], 10), e.target.value.trim());
+        paintWordCount(parseInt(m[1], 10), e.target.value);
+      }
     });
     scriptBtn.addEventListener('click', () => generateScript(scriptBtn));
     rescriptBtn.addEventListener('click', () => generateScript(rescriptBtn));
+
+    // ---- Naskah sendiri (tempel, dipotong lokal tanpa AI) ----
+    function paintWordCount(k, text) {
+      const el = scriptList.querySelector(`[data-word-count="${k}"]`);
+      if (!el) return;
+      const { hi, maxChars } = window.talkerClipBudget(plan().clipSec);
+      const clean = text.trim();
+      const n = clean ? clean.split(/\s+/).length : 0;
+      const over = n > hi || clean.length > maxChars;
+      el.textContent = t('talk.word-count').replace('%N', n).replace('%M', hi) + (over ? ` — ${t('talk.word-over')}` : '');
+      el.className = over ? 'text-red-600' : 'text-gray-500';
+    }
+    const ownToggle = document.getElementById(`${p}-own-toggle`);
+    const ownWrap = document.getElementById(`${p}-own-wrap`);
+    const ownCard = document.getElementById(`${p}-own-card`);
+    const ownInput = document.getElementById(`${p}-own-input`);
+    const ownEstimate = document.getElementById(`${p}-own-estimate`);
+    function ownResult() {
+      return window.splitTalkerScript(ownInput.value, plan().clipSec, 60);
+    }
+    function ownTooLongText(r) {
+      return t('talk.own-too-long').replace('%W', r.words).replace('%M', r.maxWords);
+    }
+    function renderOwnEstimate() {
+      const r = ownResult();
+      ownEstimate.textContent = r.ok
+        ? t('talk.own-estimate').replace('%W', r.words).replace('%C', r.clips).replace('%S', r.totalSec)
+        : r.reason === 'long' ? ownTooLongText(r) : '';
+      ownEstimate.className = `text-xs font-semibold mt-2 mb-3 ${r.ok ? 'text-violet-800' : 'text-red-600'}`;
+    }
+    function applyOwnScript() {
+      const sel = currentSel();
+      if (!sel.niche || !sel.latar || !sel.gaya) { window.uiNotify(t('warn.talker-custom-empty')); return; }
+      const r = ownResult();
+      if (!r.ok) { window.uiNotify(r.reason === 'long' ? ownTooLongText(r) : t('warn.talker-own-empty')); return; }
+      if (r.totalSec !== state.totalSec) {
+        state.totalSec = r.totalSec;
+        renderDurPanel();
+        resetOutputs();
+      }
+      script = { title: r.title, segments: r.segments };
+      renderScript(plan());
+      syncCardSnippets();
+      generateCaption();
+      scriptCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function updateOwnVisibility() {
+      ownWrap.classList.toggle('hidden', !!selection.duet);
+    }
+    ownToggle.addEventListener('click', () => ownCard.classList.toggle('hidden'));
+    ownInput.addEventListener('input', renderOwnEstimate);
+    document.getElementById(`${p}-own-split-btn`).addEventListener('click', applyOwnScript);
+    durPanel.addEventListener('click', renderOwnEstimate);
+    document.addEventListener('ssp-lang-changed', () => {
+      renderOwnEstimate();
+      if (script) { script.segments = readSegments(); renderScript(plan()); }
+    });
+    updateOwnVisibility();
 
     // ---- Caption & Hashtag (nyambung dgn naskah) ----
     function parseTalkerCaption(text) {
@@ -6437,7 +6587,7 @@ Rules:
         card.dataset.title = `Klip ${k}`;
         card.dataset.seg = seg;
         card.dataset.prompt = scenePrompt(k, segs.length);
-        card.innerHTML = `<div class="mb-3"><h3 class="text-base font-semibold text-gray-800">Klip ${k} · ${pl.clipSec} ${t('unit.sec')}</h3><p data-seg-snippet class="text-xs text-gray-400 mt-1">${window.escHtml(seg.length > 90 ? seg.slice(0, 90) + '…' : seg)}</p></div><div class="${p}-output-container aspect-[9/16] bg-gray-100 rounded-md flex items-center justify-center"><div class="loader"></div></div>`;
+        card.innerHTML = `<div class="mb-3"><h3 class="text-base font-semibold text-gray-800">${t('unit.clip-title')} ${k} · ${pl.clipSec} ${t('unit.sec')}</h3><p data-seg-snippet class="text-xs text-gray-400 mt-1">${window.escHtml(seg.length > 90 ? seg.slice(0, 90) + '…' : seg)}</p></div><div class="${p}-output-container aspect-[9/16] bg-gray-100 rounded-md flex items-center justify-center"><div class="loader"></div></div>`;
         grid.appendChild(card);
       });
     }
