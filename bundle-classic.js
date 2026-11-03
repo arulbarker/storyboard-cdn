@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Klip', 'unit.clip': 'klip', 'clip.header': 'Klip %K — Scene %A–%B · %S dtk', 'btn.download': 'Unduh', 'btn.clip-prompt': 'Prompt Klip',
       'btn.continue-story': 'Lanjutkan Cerita (+1 klip · %S dtk) — Klip %N/%M', 'vp.choose-title': 'Prompt video bentuk apa?', 'vp.choose-clip-title': 'Prompt Klip %K bentuk apa?',
       'vp.opt-per-scene': 'Per Scene — %N prompt (1 foto = 1 generate video)', 'vp.opt-per-clip': 'Per Klip — %N prompt (%F foto = 1 klip %S dtk)',
-      'err.desc-failed': 'Gagal membuat deskripsi. Coba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada scene — generate story dulu.', 'err.model-gen-retry': 'Gagal membuat model — coba lagi.', 'err.photo-gen-retry': 'Gagal membuat foto — coba lagi.', 'modal.fail-caption': 'Gagal membuat caption', 'modal.fail-clip-prompt': 'Gagal membuat prompt klip', 'err.no-scene-image': 'Tidak ada gambar pada scene ini.', 'clip.prompt-block': 'Klip %K/%T — Scene %A–%B',
+      'err.desc-failed': 'Gagal membuat deskripsi. Coba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada scene — generate story dulu.', 'err.model-gen-retry': 'Gagal membuat model — coba lagi.', 'err.photo-gen-retry': 'Gagal membuat foto — coba lagi.', 'modal.fail-caption': 'Gagal membuat caption', 'modal.fail-clip-prompt': 'Gagal membuat prompt klip', 'err.no-scene-image': 'Tidak ada gambar pada scene ini.', 'clip.prompt-block': 'Klip %K/%T — Scene %A–%B', 'err.clip-not-found': 'Klip tidak ditemukan.', 'err.clip-has-failed': 'Ada %N scene gagal di klip ini. Klik "Coba Lagi" pada scene yang gagal dulu supaya prompt klip utuh %P scene.', 'err.empty-result': 'AI mengirim hasil kosong — coba lagi.', 'err.talker-segments-short': 'Naskah hanya %N/%M segmen — coba lagi.',
     },
     en: {
       'menu.review': 'Review Generator',
@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Clip', 'unit.clip': 'clips', 'clip.header': 'Clip %K — Scenes %A–%B · %S sec', 'btn.download': 'Download', 'btn.clip-prompt': 'Clip Prompt',
       'btn.continue-story': 'Continue Story (+1 clip · %S sec) — Clip %N/%M', 'vp.choose-title': 'Which video prompt format?', 'vp.choose-clip-title': 'Clip %K prompt — which format?',
       'vp.opt-per-scene': 'Per Scene — %N prompts (1 photo = 1 video generation)', 'vp.opt-per-clip': 'Per Clip — %N prompts (%F photos = 1 clip of %S sec)',
-      'err.desc-failed': 'Failed to create the description. Please try again.', 'err.failed-prefix': 'Failed: ', 'err.no-scene-yet': 'No scenes yet — generate a story first.', 'err.model-gen-retry': 'Failed to create the model — please try again.', 'err.photo-gen-retry': 'Failed to create the photo — please try again.', 'modal.fail-caption': 'Failed to create the caption', 'modal.fail-clip-prompt': 'Failed to create the clip prompt', 'err.no-scene-image': 'This scene has no image.', 'clip.prompt-block': 'Clip %K/%T — Scenes %A–%B',
+      'err.desc-failed': 'Failed to create the description. Please try again.', 'err.failed-prefix': 'Failed: ', 'err.no-scene-yet': 'No scenes yet — generate a story first.', 'err.model-gen-retry': 'Failed to create the model — please try again.', 'err.photo-gen-retry': 'Failed to create the photo — please try again.', 'modal.fail-caption': 'Failed to create the caption', 'modal.fail-clip-prompt': 'Failed to create the clip prompt', 'err.no-scene-image': 'This scene has no image.', 'clip.prompt-block': 'Clip %K/%T — Scenes %A–%B', 'err.clip-not-found': 'Clip not found.', 'err.clip-has-failed': '%N scene(s) in this clip failed. Click "Retry" on the failed scene first so the clip prompt covers all %P scenes.', 'err.empty-result': 'The AI returned an empty result — please try again.', 'err.talker-segments-short': 'The script only has %N/%M segments — please try again.',
     },
     ms: {
       'menu.review': 'Penjana Ulasan',
@@ -826,7 +826,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Klip', 'unit.clip': 'klip', 'clip.header': 'Klip %K — Babak %A–%B · %S saat', 'btn.download': 'Muat Turun', 'btn.clip-prompt': 'Prompt Klip',
       'btn.continue-story': 'Sambung Cerita (+1 klip · %S saat) — Klip %N/%M', 'vp.choose-title': 'Pilih bentuk prompt video', 'vp.choose-clip-title': 'Prompt Klip %K — pilih bentuk',
       'vp.opt-per-scene': 'Setiap Babak — %N prompt (1 foto = 1 jana video)', 'vp.opt-per-clip': 'Setiap Klip — %N prompt (%F foto = 1 klip %S saat)',
-      'err.desc-failed': 'Gagal mencipta deskripsi. Cuba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada babak — jana cerita dahulu.', 'err.model-gen-retry': 'Gagal mencipta model — cuba lagi.', 'err.photo-gen-retry': 'Gagal mencipta foto — cuba lagi.', 'modal.fail-caption': 'Gagal mencipta kapsyen', 'modal.fail-clip-prompt': 'Gagal mencipta prompt klip', 'err.no-scene-image': 'Tiada gambar pada babak ini.', 'clip.prompt-block': 'Klip %K/%T — Babak %A–%B',
+      'err.desc-failed': 'Gagal mencipta deskripsi. Cuba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada babak — jana cerita dahulu.', 'err.model-gen-retry': 'Gagal mencipta model — cuba lagi.', 'err.photo-gen-retry': 'Gagal mencipta foto — cuba lagi.', 'modal.fail-caption': 'Gagal mencipta kapsyen', 'modal.fail-clip-prompt': 'Gagal mencipta prompt klip', 'err.no-scene-image': 'Tiada gambar pada babak ini.', 'clip.prompt-block': 'Klip %K/%T — Babak %A–%B', 'err.clip-not-found': 'Klip tidak dijumpai.', 'err.clip-has-failed': 'Ada %N babak gagal dalam klip ini. Klik "Cuba Lagi" pada babak yang gagal dahulu supaya prompt klip lengkap %P babak.', 'err.empty-result': 'AI menghantar hasil kosong — cuba lagi.', 'err.talker-segments-short': 'Skrip hanya %N/%M segmen — cuba lagi.',
     },
   };
   function detectLang() {
@@ -920,8 +920,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.1';
+  window.APP_VERSION = '3.7.2';
   window.CHANGELOG = [
+    { version: '3.7.2', date: '4 Nov 2026', changes: [
+      { id: 'Pesan error saat membuat Prompt Klip, caption, naskah, atau melanjutkan cerita kini ikut bahasa aplikasi (Inggris/Melayu), termasuk petunjuk "Coba Lagi" kalau ada scene yang gagal',
+        en: 'Error messages when creating Clip Prompts, captions, scripts or continuing a story now follow the app language (English/Malay), including the "Retry" hint when a scene has failed',
+        ms: 'Mesej ralat semasa mencipta Prompt Klip, kapsyen, skrip atau menyambung cerita kini ikut bahasa aplikasi (Inggeris/Melayu), termasuk petunjuk "Cuba Lagi" jika ada babak yang gagal' },
+    ] },
     { version: '3.7.1', date: '3 Nov 2026', changes: [
       { id: 'Judul "Hasil Storyboard" di menu Video Viral & Cerita Anak, serta menu pilihan Unduh Semua, Ekspor Storyboard dan Pustaka Model kini ikut bahasa aplikasi (Inggris/Melayu)',
         en: 'The "Storyboard Results" title in Viral Video & Kids Story menus, plus the choice menus for Download All, Export Storyboard and Model Library, now follow the app language (English/Malay)',
@@ -2595,7 +2600,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
           nextClip: clips + 1, plan
         });
         const batch = ideas.slice(0, plan.perClip);
-        if (!batch.length) throw new Error('Storyboard lanjutan kosong.');
+        if (!batch.length) throw new Error(t('err.empty-result'));
         const startAt = all.length;
         buildCards(batch, startAt);
         await Promise.allSettled(batch.map((idea, j) => generateSingle(startAt + j + 1, idea.title, idea.prompt)));
@@ -3168,7 +3173,7 @@ Output ONLY the video prompt for this scene, nothing else.`;
       const payload = { contents: [{ parts: [{ text: userText }, { inlineData: { mimeType: 'image/png', data: base64 } }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
       const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
       const vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
-      if (!vp) throw new Error('Prompt kosong dari API.');
+      if (!vp) throw new Error(t('err.empty-result'));
       cache[cacheKey] = vp;
       card.dataset.videoPromptCache = JSON.stringify(cache); // simpan cache per gaya+bahasa
       window.historyTouch(p, grid);
@@ -3180,9 +3185,9 @@ Output ONLY the video prompt for this scene, nothing else.`;
       const all = Array.from(grid.querySelectorAll('.result-card'));
       const start = (clipIdx - 1) * plan.perClip;
       const cards = all.slice(start, start + plan.perClip);
-      if (!cards.length) throw new Error('Klip tidak ditemukan.');
+      if (!cards.length) throw new Error(t('err.clip-not-found'));
       const failed = cards.filter(c => !c.querySelector('img'));
-      if (failed.length) throw new Error(`Ada ${failed.length} scene gagal di klip ini. Klik "Coba Lagi" pada scene yang gagal dulu supaya prompt klip utuh ${plan.perClip} scene.`);
+      if (failed.length) throw new Error(t('err.clip-has-failed').replace('%N', failed.length).replace('%P', plan.perClip));
       const header = document.getElementById(`${p}-clip-${clipIdx}`);
       const cacheKey = `${audioStyle}:${audioLang}`;
       let cache = {};
@@ -3209,7 +3214,7 @@ Output ONLY the video prompt, nothing else.`;
       const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
       const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
       const vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
-      if (!vp) throw new Error('Prompt kosong dari API.');
+      if (!vp) throw new Error(t('err.empty-result'));
       cache[cacheKey] = vp;
       if (header) header.dataset.clipPromptCache = JSON.stringify(cache);
       return { clipIdx, vp, cards };
@@ -3248,7 +3253,7 @@ Rules:
       const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
       const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
       const text = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
-      if (!text) throw new Error('Caption kosong dari API.');
+      if (!text) throw new Error(t('err.empty-result'));
       cache[cacheKey] = text;
       grid.dataset.captionCache = JSON.stringify(cache);
       return { text };
@@ -4236,7 +4241,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           if (!res.ok) throw new Error(`API error: ${res.status}`);
           const data = await res.json();
           const text = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-          if (!text) throw new Error('Deskripsi kosong');
+          if (!text) throw new Error(t('err.empty-result'));
           document.getElementById(`${p}-extra-input`).value = text;
           window.uiNotify(t('ok.features-extracted'));
         } catch (err) {
@@ -4285,7 +4290,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           nextClip: clips + 1, plan
         });
         const batch = ideas.slice(0, plan.perClip);
-        if (!batch.length) throw new Error('Storyboard lanjutan kosong.');
+        if (!batch.length) throw new Error(t('err.empty-result'));
         const startAt = all.length;
         buildCards(batch, startAt);
         const anc = storyAnchor();
@@ -4783,7 +4788,7 @@ Output ONLY the video prompt for this scene, nothing else.`;
       const payload = { contents: [{ parts: [{ text: userText }, { inlineData: { mimeType: 'image/png', data: base64 } }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
       const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
       let vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
-      if (!vp) throw new Error('Prompt kosong dari API.');
+      if (!vp) throw new Error(t('err.empty-result'));
       if (cfg.voicePersona && !NO_SPEECH_STYLES.includes(audioStyle)) vp += `\n\nNARRATOR VOICE LOCK (identical in every scene): ${cfg.voicePersona}. Keep this exact narrator voice — same gender, age, tone, pace and accent — for the entire video; the narrator voice must NEVER change between scenes.`;
       cache[cacheKey] = vp;
       card.dataset.videoPromptCache = JSON.stringify(cache);
@@ -4796,9 +4801,9 @@ Output ONLY the video prompt for this scene, nothing else.`;
       const all = Array.from(grid.querySelectorAll('.result-card'));
       const start = (clipIdx - 1) * plan.perClip;
       const cards = all.slice(start, start + plan.perClip);
-      if (!cards.length) throw new Error('Klip tidak ditemukan.');
+      if (!cards.length) throw new Error(t('err.clip-not-found'));
       const failed = cards.filter(c => !c.querySelector('img'));
-      if (failed.length) throw new Error(`Ada ${failed.length} scene gagal di klip ini. Klik "Coba Lagi" pada scene yang gagal dulu supaya prompt klip utuh ${plan.perClip} scene.`);
+      if (failed.length) throw new Error(t('err.clip-has-failed').replace('%N', failed.length).replace('%P', plan.perClip));
       const header = document.getElementById(`${p}-clip-${clipIdx}`);
       const cacheKey = `${audioStyle}:${audioLang}`;
       let cache = {};
@@ -4825,7 +4830,7 @@ Output ONLY the video prompt, nothing else.`;
       const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
       const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
       let vp = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
-      if (!vp) throw new Error('Prompt kosong dari API.');
+      if (!vp) throw new Error(t('err.empty-result'));
       if (cfg.voicePersona && !NO_SPEECH_STYLES.includes(audioStyle)) vp += `\n\nNARRATOR VOICE LOCK (identical in every clip and scene): ${cfg.voicePersona}. Keep this exact narrator voice — same gender, age, tone, pace and accent — for the entire video; the narrator voice must NEVER change between clips or scenes.`;
       cache[cacheKey] = vp;
       if (header) header.dataset.clipPromptCache = JSON.stringify(cache);
@@ -4865,7 +4870,7 @@ Rules:
       const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
       const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
       const text = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
-      if (!text) throw new Error('Caption kosong dari API.');
+      if (!text) throw new Error(t('err.empty-result'));
       cache[cacheKey] = text;
       grid.dataset.captionCache = JSON.stringify(cache);
       return { text };
@@ -6326,9 +6331,9 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
         const s = raw.indexOf('{'), e2 = raw.lastIndexOf('}');
         if (s === -1 || e2 === -1) throw new Error('No valid JSON in response.');
         const js = JSON.parse(raw.substring(s, e2 + 1));
-        if (!Array.isArray(js.segments) || !js.segments.length) throw new Error('Segments kosong.');
+        if (!Array.isArray(js.segments) || !js.segments.length) throw new Error(t('err.empty-result'));
         js.segments = js.segments.slice(0, pl.clips);
-        if (js.segments.length < pl.clips) throw new Error(`Naskah hanya ${js.segments.length}/${pl.clips} segmen — coba lagi.`);
+        if (js.segments.length < pl.clips) throw new Error(t('err.talker-segments-short').replace('%N', js.segments.length).replace('%M', pl.clips));
         script = js;
         renderScript(pl);
         syncCardSnippets();
@@ -6485,7 +6490,7 @@ Rules:
         const payload = { contents: [{ parts: [{ text: userText }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
         const result = await (await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })).json();
         const text = (result?.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
-        if (!text) throw new Error('Caption kosong dari API.');
+        if (!text) throw new Error(t('err.empty-result'));
         renderCaption(parseTalkerCaption(text));
       } catch (err) {
         console.error(err);
