@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.model-name-required': 'Kasih nama modelnya dulu ya.',
       'warn.library-full': 'Pustaka penuh (maksimal 5 model). Hapus salah satu dulu ya.',
       'warn.no-models': 'Belum ada model tersimpan — buat dulu di menu AI Influencer.',
-      'warn.google-limit': 'Akun Google ini sudah mencapai batas, silakan gunakan akun Google lain.',
+      'warn.google-limit': 'Semua foto gagal dibuat. Bisa karena koneksi internet terputus, atau jatah akun Google ini sudah habis — coba lagi sebentar, atau pakai akun Google lain.',
       'warn.file-unreadable': 'File tidak bisa dibaca — pastikan itu file gambar (JPG/PNG/HEIC).',
       'warn.session-ended': 'Sesi berakhir. Akun ini login di perangkat lain.',
       'menu.model-studio': 'Model Studio', 'menu.viral': 'Video Short Viral', 'nav.logout': 'Keluar',
@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Klip', 'unit.clip': 'klip', 'clip.header': 'Klip %K — Scene %A–%B · %S dtk', 'btn.download': 'Unduh', 'btn.clip-prompt': 'Prompt Klip',
       'btn.continue-story': 'Lanjutkan Cerita (+1 klip · %S dtk) — Klip %N/%M', 'vp.choose-title': 'Prompt video bentuk apa?', 'vp.choose-clip-title': 'Prompt Klip %K bentuk apa?',
       'vp.opt-per-scene': 'Per Scene — %N prompt (1 foto = 1 generate video)', 'vp.opt-per-clip': 'Per Klip — %N prompt (%F foto = 1 klip %S dtk)',
-      'err.desc-failed': 'Gagal membuat deskripsi. Coba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada scene — generate story dulu.', 'err.model-gen-retry': 'Gagal membuat model — coba lagi.', 'err.photo-gen-retry': 'Gagal membuat foto — coba lagi.', 'modal.fail-caption': 'Gagal membuat caption', 'modal.fail-clip-prompt': 'Gagal membuat prompt klip', 'err.no-scene-image': 'Tidak ada gambar pada scene ini.', 'clip.prompt-block': 'Klip %K/%T — Scene %A–%B', 'err.clip-not-found': 'Klip tidak ditemukan.', 'err.clip-has-failed': 'Ada %N scene gagal di klip ini. Klik "Coba Lagi" pada scene yang gagal dulu supaya prompt klip utuh %P scene.', 'err.empty-result': 'AI mengirim hasil kosong — coba lagi.', 'err.talker-segments-short': 'Naskah hanya %N/%M segmen — coba lagi.',
+      'err.desc-failed': 'Gagal membuat deskripsi. Coba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada scene — generate story dulu.', 'err.model-gen-retry': 'Gagal membuat model — coba lagi.', 'err.photo-gen-retry': 'Gagal membuat foto — coba lagi.', 'modal.fail-caption': 'Gagal membuat caption', 'modal.fail-clip-prompt': 'Gagal membuat prompt klip', 'err.no-scene-image': 'Tidak ada gambar pada scene ini.', 'clip.prompt-block': 'Klip %K/%T — Scene %A–%B', 'err.clip-not-found': 'Klip tidak ditemukan.', 'err.clip-has-failed': 'Ada %N scene gagal di klip ini. Klik "Coba Lagi" pada scene yang gagal dulu supaya prompt klip utuh %P scene.', 'err.empty-result': 'AI mengirim hasil kosong — coba lagi.', 'err.talker-segments-short': 'Naskah hanya %N/%M segmen — coba lagi.', 'err.generate-failed': 'Gagal menyusun cerita. Cek koneksi internet lalu coba lagi.', 'tip.cached': 'Diambil dari simpanan',
     },
     en: {
       'menu.review': 'Review Generator',
@@ -458,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.model-name-required': 'Give your model a name first.',
       'warn.library-full': 'Library full (max 5 models). Delete one first.',
       'warn.no-models': 'No saved models yet — create one in the AI Influencer menu.',
-      'warn.google-limit': 'This Google account has reached its limit, please use another Google account.',
+      'warn.google-limit': 'None of the photos could be created. Your internet connection may have dropped, or this Google account has run out of quota — try again in a moment, or use another Google account.',
       'warn.file-unreadable': "File can't be read — make sure it's an image (JPG/PNG/HEIC).",
       'warn.session-ended': 'Session ended. This account is signed in on another device.',
       'menu.model-studio': 'Model Studio', 'menu.viral': 'Viral Short Video', 'nav.logout': 'Log Out',
@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Clip', 'unit.clip': 'clips', 'clip.header': 'Clip %K — Scenes %A–%B · %S sec', 'btn.download': 'Download', 'btn.clip-prompt': 'Clip Prompt',
       'btn.continue-story': 'Continue Story (+1 clip · %S sec) — Clip %N/%M', 'vp.choose-title': 'Which video prompt format?', 'vp.choose-clip-title': 'Clip %K prompt — which format?',
       'vp.opt-per-scene': 'Per Scene — %N prompts (1 photo = 1 video generation)', 'vp.opt-per-clip': 'Per Clip — %N prompts (%F photos = 1 clip of %S sec)',
-      'err.desc-failed': 'Failed to create the description. Please try again.', 'err.failed-prefix': 'Failed: ', 'err.no-scene-yet': 'No scenes yet — generate a story first.', 'err.model-gen-retry': 'Failed to create the model — please try again.', 'err.photo-gen-retry': 'Failed to create the photo — please try again.', 'modal.fail-caption': 'Failed to create the caption', 'modal.fail-clip-prompt': 'Failed to create the clip prompt', 'err.no-scene-image': 'This scene has no image.', 'clip.prompt-block': 'Clip %K/%T — Scenes %A–%B', 'err.clip-not-found': 'Clip not found.', 'err.clip-has-failed': '%N scene(s) in this clip failed. Click "Retry" on the failed scene first so the clip prompt covers all %P scenes.', 'err.empty-result': 'The AI returned an empty result — please try again.', 'err.talker-segments-short': 'The script only has %N/%M segments — please try again.',
+      'err.desc-failed': 'Failed to create the description. Please try again.', 'err.failed-prefix': 'Failed: ', 'err.no-scene-yet': 'No scenes yet — generate a story first.', 'err.model-gen-retry': 'Failed to create the model — please try again.', 'err.photo-gen-retry': 'Failed to create the photo — please try again.', 'modal.fail-caption': 'Failed to create the caption', 'modal.fail-clip-prompt': 'Failed to create the clip prompt', 'err.no-scene-image': 'This scene has no image.', 'clip.prompt-block': 'Clip %K/%T — Scenes %A–%B', 'err.clip-not-found': 'Clip not found.', 'err.clip-has-failed': '%N scene(s) in this clip failed. Click "Retry" on the failed scene first so the clip prompt covers all %P scenes.', 'err.empty-result': 'The AI returned an empty result — please try again.', 'err.talker-segments-short': 'The script only has %N/%M segments — please try again.', 'err.generate-failed': 'Could not build the story. Check your internet connection and try again.', 'tip.cached': 'Loaded from saved copy',
     },
     ms: {
       'menu.review': 'Penjana Ulasan',
@@ -733,7 +733,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'warn.model-name-required': 'Beri nama model anda dahulu.',
       'warn.library-full': 'Pustaka penuh (maksimum 5 model). Padam salah satu dahulu.',
       'warn.no-models': 'Belum ada model disimpan — cipta dahulu di menu AI Influencer.',
-      'warn.google-limit': 'Akaun Google ini telah mencapai had, sila guna akaun Google lain.',
+      'warn.google-limit': 'Semua foto gagal dijana. Mungkin sambungan internet terputus, atau kuota akaun Google ini sudah habis — cuba lagi sebentar, atau guna akaun Google lain.',
       'warn.file-unreadable': 'Fail tidak dapat dibaca — pastikan ia fail imej (JPG/PNG/HEIC).',
       'warn.session-ended': 'Sesi tamat. Akaun ini log masuk di peranti lain.',
       'menu.model-studio': 'Studio Model', 'menu.viral': 'Video Pendek Viral', 'nav.logout': 'Log Keluar',
@@ -826,7 +826,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'unit.clip-title': 'Klip', 'unit.clip': 'klip', 'clip.header': 'Klip %K — Babak %A–%B · %S saat', 'btn.download': 'Muat Turun', 'btn.clip-prompt': 'Prompt Klip',
       'btn.continue-story': 'Sambung Cerita (+1 klip · %S saat) — Klip %N/%M', 'vp.choose-title': 'Pilih bentuk prompt video', 'vp.choose-clip-title': 'Prompt Klip %K — pilih bentuk',
       'vp.opt-per-scene': 'Setiap Babak — %N prompt (1 foto = 1 jana video)', 'vp.opt-per-clip': 'Setiap Klip — %N prompt (%F foto = 1 klip %S saat)',
-      'err.desc-failed': 'Gagal mencipta deskripsi. Cuba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada babak — jana cerita dahulu.', 'err.model-gen-retry': 'Gagal mencipta model — cuba lagi.', 'err.photo-gen-retry': 'Gagal mencipta foto — cuba lagi.', 'modal.fail-caption': 'Gagal mencipta kapsyen', 'modal.fail-clip-prompt': 'Gagal mencipta prompt klip', 'err.no-scene-image': 'Tiada gambar pada babak ini.', 'clip.prompt-block': 'Klip %K/%T — Babak %A–%B', 'err.clip-not-found': 'Klip tidak dijumpai.', 'err.clip-has-failed': 'Ada %N babak gagal dalam klip ini. Klik "Cuba Lagi" pada babak yang gagal dahulu supaya prompt klip lengkap %P babak.', 'err.empty-result': 'AI menghantar hasil kosong — cuba lagi.', 'err.talker-segments-short': 'Skrip hanya %N/%M segmen — cuba lagi.',
+      'err.desc-failed': 'Gagal mencipta deskripsi. Cuba lagi.', 'err.failed-prefix': 'Gagal: ', 'err.no-scene-yet': 'Belum ada babak — jana cerita dahulu.', 'err.model-gen-retry': 'Gagal mencipta model — cuba lagi.', 'err.photo-gen-retry': 'Gagal mencipta foto — cuba lagi.', 'modal.fail-caption': 'Gagal mencipta kapsyen', 'modal.fail-clip-prompt': 'Gagal mencipta prompt klip', 'err.no-scene-image': 'Tiada gambar pada babak ini.', 'clip.prompt-block': 'Klip %K/%T — Babak %A–%B', 'err.clip-not-found': 'Klip tidak dijumpai.', 'err.clip-has-failed': 'Ada %N babak gagal dalam klip ini. Klik "Cuba Lagi" pada babak yang gagal dahulu supaya prompt klip lengkap %P babak.', 'err.empty-result': 'AI menghantar hasil kosong — cuba lagi.', 'err.talker-segments-short': 'Skrip hanya %N/%M segmen — cuba lagi.', 'err.generate-failed': 'Gagal menyusun cerita. Semak sambungan internet dan cuba lagi.', 'tip.cached': 'Diambil daripada simpanan',
     },
   };
   function detectLang() {
@@ -920,8 +920,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.2';
+  window.APP_VERSION = '3.7.3';
   window.CHANGELOG = [
+    { version: '3.7.3', date: '5 Nov 2026', changes: [
+      { id: 'Kalau semua foto gagal dibuat, pesannya kini jujur: bisa karena koneksi internet terputus, bukan selalu jatah akun Google habis — jadi kamu tidak buru-buru ganti akun padahal cuma sinyal',
+        en: 'When none of the photos can be created, the message is now honest: it may be your internet connection, not always a Google account running out of quota — so you do not switch accounts when it was only the signal',
+        ms: 'Apabila semua foto gagal dijana, mesejnya kini jujur: mungkin sambungan internet, bukan selalu kuota akaun Google habis — jadi anda tidak tergesa tukar akaun sedangkan hanya isyarat' },
+      { id: 'Pesan gagal saat menyusun cerita dan tanda "diambil dari simpanan" pada Prompt Video kini ikut bahasa aplikasi (Inggris/Melayu)',
+        en: 'The failure message while building a story and the "loaded from saved copy" marker on Video Prompts now follow the app language (English/Malay)',
+        ms: 'Mesej gagal semasa menyusun cerita dan tanda "diambil daripada simpanan" pada Prompt Video kini ikut bahasa aplikasi (Inggeris/Melayu)' },
+      { id: 'Aplikasi lebih ringan saat dipakai lama: memori foto yang sudah selesai diunggah atau diunduh kini dilepas, tidak menumpuk sampai halaman terasa berat',
+        en: 'The app stays lighter during long sessions: memory from photos you have finished uploading or downloading is now released instead of piling up until the page feels heavy',
+        ms: 'Aplikasi kekal ringan dalam sesi panjang: memori foto yang selesai dimuat naik atau dimuat turun kini dilepaskan, tidak bertimbun sehingga halaman terasa berat' },
+    ] },
     { version: '3.7.2', date: '4 Nov 2026', changes: [
       { id: 'Pesan error saat membuat Prompt Klip, caption, naskah, atau melanjutkan cerita kini ikut bahasa aplikasi (Inggris/Melayu), termasuk petunjuk "Coba Lagi" kalau ada scene yang gagal',
         en: 'Error messages when creating Clip Prompts, captions, scripts or continuing a story now follow the app language (English/Malay), including the "Retry" hint when a scene has failed',
@@ -1701,6 +1712,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Promise((resolve, reject) => {
       const process = (blob) => {
         const img = new Image();
+        const srcUrl = URL.createObjectURL(blob);
+        const freeSrc = () => { try { URL.revokeObjectURL(srcUrl); } catch (e) {} };
         img.onload = () => {
           let { width, height } = img;
           if (width > height && width > maxDim) { height = height * maxDim / width; width = maxDim; }
@@ -1709,10 +1722,11 @@ document.addEventListener('DOMContentLoaded', () => {
           canvas.width = width; canvas.height = height;
           canvas.getContext('2d').drawImage(img, 0, 0, width, height);
           const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          freeSrc();
           resolve({ base64: dataUrl.split(',')[1], mimeType: 'image/jpeg', dataUrl });
         };
-        img.onerror = reject;
-        img.src = URL.createObjectURL(blob);
+        img.onerror = (e) => { freeSrc(); reject(e); };
+        img.src = srcUrl;
       };
       if (file.type === 'image/heic' || /\.heic$/i.test(file.name)) {
         window.heic2any({ blob: file, toType: 'image/jpeg', quality })
@@ -2522,9 +2536,11 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       const blob = window.b64ToBlob(lastB64, 'image/png');
       const fn = `dailyphoto_${Date.now()}.png`;
       if (window.__isIOS && window.__isIOS()) { window.__iosShareOrSaveImage(blob, fn); return; }
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob); a.download = fn;
+      a.href = url; a.download = fn;
       document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
     });
   })();
   // === END DAILY PHOTO ===
@@ -3031,7 +3047,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       try { ideas = await analyzeAndGetPrompts(); }
       catch (err) {
         console.error(err);
-        grid.innerHTML = `<div class="col-span-full text-center py-10 text-red-500">Terjadi kesalahan: ${window.escHtml(err.message)}</div>`;
+        grid.innerHTML = `<div class="col-span-full text-center py-10 text-red-500">${t('err.generate-failed')}<br><span class="text-xs text-gray-400">${window.escHtml(err.message)}</span></div>`;
         generateBtn.disabled = false; generateBtn.innerHTML = orig; return;
       }
       generateBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.visual')}</span>`;
@@ -3476,7 +3492,7 @@ Rules:
           const r = await requestVideoPrompt(card); // story-aware: baca posisi scene + prev/next dari DOM
           ta.value = r.vp;
           resultsByIdx[i] = { no: sceneNo(card), title: card.dataset.title || `Scene ${i + 1}`, vp: r.vp };
-          st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
+          st.innerHTML = r.cached ? `<i class="fas fa-bookmark text-violet-500" title="${t('tip.cached')}"></i>` : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
           ta.value = t('err.failed-prefix') + err.message;
           resultsByIdx[i] = null;
@@ -3561,7 +3577,7 @@ Rules:
           const r = await requestClipPrompt(i + 1);
           ta.value = r.vp;
           resultsByIdx[i] = { vp: r.vp };
-          st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
+          st.innerHTML = r.cached ? `<i class="fas fa-bookmark text-violet-500" title="${t('tip.cached')}"></i>` : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
           ta.value = t('err.failed-prefix') + err.message;
           resultsByIdx[i] = null;
@@ -4638,7 +4654,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       try { ideas = await analyzeAndGetPrompts(); }
       catch (err) {
         console.error(err);
-        grid.innerHTML = `<div class="col-span-full text-center py-10 text-red-500">Terjadi kesalahan: ${window.escHtml(err.message)}</div>`;
+        grid.innerHTML = `<div class="col-span-full text-center py-10 text-red-500">${t('err.generate-failed')}<br><span class="text-xs text-gray-400">${window.escHtml(err.message)}</span></div>`;
         generateBtn.disabled = false; generateBtn.innerHTML = orig; return;
       }
       generateBtn.innerHTML = `<div class="loader"></div><span class="ml-2">${t('loading.visual')}</span>`;
@@ -5093,7 +5109,7 @@ Rules:
           const r = await requestVideoPrompt(card);
           ta.value = r.vp;
           resultsByIdx[i] = { no: sceneNo(card), title: card.dataset.title || `Scene ${i + 1}`, vp: r.vp };
-          st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
+          st.innerHTML = r.cached ? `<i class="fas fa-bookmark text-violet-500" title="${t('tip.cached')}"></i>` : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
           ta.value = t('err.failed-prefix') + err.message;
           resultsByIdx[i] = null;
@@ -5178,7 +5194,7 @@ Rules:
           const r = await requestClipPrompt(i + 1);
           ta.value = r.vp;
           resultsByIdx[i] = { vp: r.vp };
-          st.innerHTML = r.cached ? '<i class="fas fa-bookmark text-violet-500" title="tersimpan"></i>' : '<i class="fas fa-check text-green-500"></i>';
+          st.innerHTML = r.cached ? `<i class="fas fa-bookmark text-violet-500" title="${t('tip.cached')}"></i>` : '<i class="fas fa-check text-green-500"></i>';
         } catch (err) {
           ta.value = t('err.failed-prefix') + err.message;
           resultsByIdx[i] = null;
