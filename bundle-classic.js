@@ -920,8 +920,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.3';
+  window.APP_VERSION = '3.7.4';
   window.CHANGELOG = [
+    { version: '3.7.4', date: '6 Nov 2026', changes: [
+      { id: 'Aplikasi tidak lagi makin berat setiap kali kamu membuka "Pilih dari Pustaka Model" atau Pustaka Produk: foto yang sudah ditutup kini benar-benar dilepas dari memori. Sebelumnya tiap kali daftar model dibuka, fotonya tetap tertahan — dipakai lama di HP, halaman bisa jadi lambat atau tertutup sendiri',
+        en: 'The app no longer gets heavier each time you open "Pick from Model Library" or the Product Library: photos you have closed are now really released from memory. Before, every time the list was opened its photos stayed held — on a phone, after a long session the page could turn slow or close itself',
+        ms: 'Aplikasi tidak lagi menjadi berat setiap kali anda membuka "Pilih dari Pustaka Model" atau Pustaka Produk: foto yang sudah ditutup kini benar-benar dilepaskan daripada memori. Sebelum ini setiap kali senarai dibuka, fotonya tetap tertahan — digunakan lama di telefon, halaman boleh menjadi perlahan atau tertutup sendiri' },
+    ] },
     { version: '3.7.3', date: '5 Nov 2026', changes: [
       { id: 'Kalau semua foto gagal dibuat, pesannya kini jujur: bisa karena koneksi internet terputus, bukan selalu jatah akun Google habis — jadi kamu tidak buru-buru ganti akun padahal cuma sinyal',
         en: 'When none of the photos can be created, the message is now honest: it may be your internet connection, not always a Google account running out of quota — so you do not switch accounts when it was only the signal',
@@ -1615,6 +1620,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Blob URL thumbnail/preview menahan foto di memori sampai di-revoke — lepas saat elemennya dibuang/diganti
+  window.freeBlobImgs = function (root) {
+    if (!root) return;
+    root.querySelectorAll('img[src^="blob:"]').forEach(im => { try { URL.revokeObjectURL(im.src); } catch (e) {} });
+  };
+  window.setImgSrc = function (img, src) {
+    if (!img) return;
+    const old = img.getAttribute('src');
+    img.src = src;
+    if (old && old !== src && old.slice(0, 5) === 'blob:') { try { URL.revokeObjectURL(old); } catch (e) {} }
+  };
+
   // === STORYBOARD SHEET (gabung semua scene + prompt jadi 1 foto) ===
   window.loadImg = window.loadImg || function (src) {
     return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => rej(new Error('img load failed')); im.src = src; });
@@ -2238,6 +2255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     async function renderLibrary() {
+      window.freeBlobImgs(libGrid);
       let list = [];
       try { list = await window.modelDB.list(); }
       catch (err) { console.error('modelDB list failed:', err); libGrid.innerHTML = '<p class="text-sm text-gray-400 col-span-full">' + t('warn.storage-short') + '</p>'; return; }
@@ -2327,7 +2345,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
     function showChoiceModal(title, choices) {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
         <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-choices></div>
@@ -2354,7 +2372,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
     const modelPreview = document.getElementById('dailyphoto-model-image-preview');
     function setModel(b64, mime, srcUrl) {
       dpModelB64 = b64; dpModelMime = mime;
-      modelPreview.src = srcUrl;
+      window.setImgSrc(modelPreview, srcUrl);
       modelUploadArea.classList.add('hidden');
       modelPreviewContainer.classList.remove('hidden');
     }
@@ -2818,7 +2836,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
     function showChoiceModal(title, choices) {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
         <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-choices></div>
@@ -2866,7 +2884,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       modelInput.addEventListener('change', (e) => {
         const file = e.target.files[0]; if (!file) return;
         window.compressImage(file).then(({ base64, mimeType, dataUrl }) => {
-          modelBase64 = base64; modelMime = mimeType; modelPreview.src = dataUrl;
+          modelBase64 = base64; modelMime = mimeType; window.setImgSrc(modelPreview, dataUrl);
           modelUploadArea.classList.add('hidden'); modelPreviewContainer.classList.remove('hidden');
         });
       });
@@ -2890,7 +2908,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
           onPick: async () => {
             modelBase64 = await window.blobToB64(m.blob);
             modelMime = m.mime;
-            modelPreview.src = URL.createObjectURL(m.blob);
+            window.setImgSrc(modelPreview, URL.createObjectURL(m.blob));
             modelUploadArea.classList.add('hidden');
             modelPreviewContainer.classList.remove('hidden');
           }
@@ -4502,7 +4520,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
     function showChoiceModal(title, choices) {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
         <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-choices></div>
@@ -6011,7 +6029,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     const modelPreview = document.getElementById(`${p}-model-image-preview`);
     function setModel(b64, mime, srcUrl) {
       modelBase64 = b64; modelMime = mime;
-      modelPreview.src = srcUrl;
+      window.setImgSrc(modelPreview, srcUrl);
       modelUploadArea.classList.add('hidden');
       modelPreviewContainer.classList.remove('hidden');
     }
@@ -6051,7 +6069,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     const hostPreview = document.getElementById(`${p}-host-image-preview`);
     function setHost(b64, mime, srcUrl) {
       hostBase64 = b64; hostMime = mime;
-      hostPreview.src = srcUrl;
+      window.setImgSrc(hostPreview, srcUrl);
       hostUploadArea.classList.add('hidden');
       hostPreviewContainer.classList.remove('hidden');
     }
@@ -6175,7 +6193,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
     function showProductLibraryModal(list) {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
         <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${t('btn.pick-product-library')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-rows></div>
@@ -6521,7 +6539,7 @@ Rules:
     function showChoiceModal(title, choices) {
       const modal = document.createElement('div');
       modal.className = 'image-preview-modal';
-      const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
+      const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
         <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-choices></div>
