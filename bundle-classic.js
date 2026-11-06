@@ -920,8 +920,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.4';
+  window.APP_VERSION = '3.7.5';
   window.CHANGELOG = [
+    { version: '3.7.5', date: '6 Nov 2026', changes: [
+      { id: 'Penyempurnaan internal: perapian kode di belakang layar. Tidak ada perubahan pada cara pakai maupun hasil generate',
+        en: 'Internal refinements: behind-the-scenes code tidy-up. Nothing changes in how you use the app or in the generated results',
+        ms: 'Penambahbaikan dalaman: perapian kod di belakang tabir. Tiada perubahan pada cara guna mahupun hasil penjanaan' },
+    ] },
     { version: '3.7.4', date: '6 Nov 2026', changes: [
       { id: 'Aplikasi tidak lagi makin berat setiap kali kamu membuka "Pilih dari Pustaka Model" atau Pustaka Produk: foto yang sudah ditutup kini benar-benar dilepas dari memori. Sebelumnya tiap kali daftar model dibuka, fotonya tetap tertahan — dipakai lama di HP, halaman bisa jadi lambat atau tertutup sendiri',
         en: 'The app no longer gets heavier each time you open "Pick from Model Library" or the Product Library: photos you have closed are now really released from memory. Before, every time the list was opened its photos stayed held — on a phone, after a long session the page could turn slow or close itself',
@@ -7150,4 +7155,238 @@ OUTPUT: generate ONLY the actual scene — the person from the reference photo s
 
   applyLanguage();
   switchTab('product-review');
+
+  // === RELAY UNGGAH (pribadi Arul — Ctrl+Alt+Shift+U) ===
+  (function () {
+      const APP_ID = 'storyboard-studio-pro';
+      const KUNCI = 'relay_unggah_' + APP_ID;
+      const JEDA = 2000;
+      const ZONA = '[data-relay-drop]';
+      const PEMBUNGKUS = 'label, .upload-box, .ref-slot, button, .card, [data-relay-drop]';
+
+      function cfg() {
+          try {
+              const c = JSON.parse(localStorage.getItem(KUNCI) || 'null');
+              return (c && c.url && c.token) ? c : null;
+          } catch (e) { return null; }
+      }
+
+      function kabar(pesan) {
+          let el = document.getElementById('relay-kabar');
+          if (!el) {
+              el = document.createElement('div');
+              el.id = 'relay-kabar';
+              el.setAttribute('role', 'status');
+              el.style.cssText = 'position:fixed;left:1rem;bottom:3.5rem;z-index:10003;max-width:min(22rem,80vw);'
+                  + 'padding:.5rem .75rem;border-radius:.5rem;background:#111827;color:#f9fafb;'
+                  + 'font:500 .8rem/1.35 system-ui,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.35);transition:opacity .3s';
+              document.body.appendChild(el);
+          }
+          el.textContent = pesan;
+          el.style.opacity = '1';
+          clearTimeout(el._t);
+          el._t = setTimeout(() => { el.style.opacity = '0'; }, 4000);
+      }
+
+      let sasaran = null;
+      document.addEventListener('click', (e) => {
+          const el = e.target;
+          if (!el || !el.closest) return;
+          if (el.matches('input[type="file"]')) { sasaran = el; return; }
+          const kotak = el.closest(PEMBUNGKUS);
+          if (!kotak) return;
+          const inp = kotak.querySelector('input[type="file"]');
+          if (inp) sasaran = inp;
+          else if (kotak.matches(ZONA)) sasaran = kotak;
+      }, true);
+
+      function terlihat(el) {
+          if (!el || !el.isConnected) return false;
+          if (el.offsetParent) return true;
+          const r = el.getBoundingClientRect();
+          return !!(r.width || r.height);
+      }
+
+      function cariSasaran() {
+          if (sasaran && sasaran.isConnected) return sasaran;
+          sasaran = null;
+          const calon = [].slice.call(document.querySelectorAll('input[type="file"], ' + ZONA)).filter(terlihat);
+          return calon.length === 1 ? calon[0] : null;
+      }
+
+      function suntik(tujuan, berkas) {
+          const dt = new DataTransfer();
+          for (const f of berkas) dt.items.add(f);
+          if (tujuan.matches('input[type="file"]')) {
+              try { tujuan.files = dt.files; } catch (e) { return false; }
+              tujuan.dispatchEvent(new Event('input', { bubbles: true }));
+              tujuan.dispatchEvent(new Event('change', { bubbles: true }));
+              return true;
+          }
+          try {
+              tujuan.dispatchEvent(new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: dt }));
+              tujuan.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: dt }));
+              return true;
+          } catch (e) { return false; }
+      }
+
+      async function ambilBerkas(c, it) {
+          const r = await fetch(c.url + '/unduh?key=' + encodeURIComponent(it.key), { headers: { 'X-Relay-Token': c.token } });
+          if (!r.ok) throw new Error('unduh');
+          const blob = await r.blob();
+          return new File([blob], it.nama || ('relay-' + Date.now()), { type: it.tipe || blob.type || 'application/octet-stream' });
+      }
+
+      function buang(c, keys) {
+          for (const k of keys) {
+              fetch(c.url + '/hapus?key=' + encodeURIComponent(k), { method: 'DELETE', headers: { 'X-Relay-Token': c.token } }).catch(() => {});
+          }
+      }
+
+      let sibuk = false, diamkan = 0;
+      async function putar() {
+          const c = cfg();
+          if (!c || sibuk || document.visibilityState !== 'visible') return;
+          sibuk = true;
+          try {
+              const r = await fetch(c.url + '/kotak?app=' + encodeURIComponent(c.app || APP_ID), { headers: { 'X-Relay-Token': c.token } });
+              if (!r.ok) return;
+              const daftar = (await r.json()).items || [];
+              if (!daftar.length) { diamkan = 0; return; }
+              const tujuan = cariSasaran();
+              if (!tujuan) {
+                  if (Date.now() > diamkan) {
+                      kabar(daftar.length + ' file menunggu — klik kotak upload tujuannya dulu.');
+                      diamkan = Date.now() + 15000;
+                  }
+                  return;
+              }
+              const banyak = tujuan.matches('input[type="file"]') ? tujuan.multiple : true;
+              const antre = banyak ? daftar : daftar.slice(0, 1);
+              const berkas = [];
+              const keys = [];
+              for (const it of antre) {
+                  try { berkas.push(await ambilBerkas(c, it)); keys.push(it.key); } catch (e) { /* putaran berikut */ }
+              }
+              if (!berkas.length) return;
+              if (!suntik(tujuan, berkas)) { kabar('Gagal memasukkan file ke kotak upload.'); return; }
+              buang(c, keys);
+              kabar('Masuk: ' + berkas.map((f) => f.name).join(', '));
+          } catch (e) {
+              /* jaringan sesaat: diam, coba lagi putaran berikut */
+          } finally { sibuk = false; }
+      }
+
+      let jam = 0;
+      function hidupkan() {
+          if (jam || !cfg()) return;
+          jam = setInterval(putar, JEDA);
+      }
+      function matikan() {
+          if (jam) { clearInterval(jam); jam = 0; }
+      }
+
+      let chip = null;
+      function segarkanChip() {
+          const c = cfg();
+          if (!c) {
+              if (chip) { chip.remove(); chip = null; }
+              matikan();
+              return;
+          }
+          if (!chip) {
+              chip = document.createElement('button');
+              chip.id = 'relay-chip';
+              chip.type = 'button';
+              chip.style.cssText = 'position:fixed;left:1rem;bottom:1rem;z-index:10002;padding:.35rem .7rem;'
+                  + 'border:0;border-radius:999px;background:#1f2937;color:#e5e7eb;cursor:pointer;'
+                  + 'font:600 .75rem/1 system-ui,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,.3)';
+              chip.addEventListener('click', buka);
+              document.body.appendChild(chip);
+          }
+          chip.textContent = '⇩ Relay';
+          chip.title = 'Relay unggah aktif (' + (c.app || APP_ID) + ')';
+          hidupkan();
+      }
+
+      function buka() {
+          if (document.getElementById('relay-panel')) return;
+          const c = cfg() || {};
+          const gayaField = 'width:100%;padding:.4rem;border-radius:.35rem;border:1px solid #374151;background:#1f2937;color:#f9fafb';
+          const gayaChip = 'padding:.35rem .7rem;border:0;border-radius:.35rem;background:#374151;color:#e5e7eb;cursor:pointer';
+          const ov = document.createElement('div');
+          ov.id = 'relay-panel';
+          ov.style.cssText = 'position:fixed;inset:0;z-index:10004;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);padding:1rem';
+          ov.innerHTML = '<div style="background:#111827;color:#f9fafb;border-radius:.75rem;padding:1rem;width:min(26rem,100%);font:400 .85rem/1.4 system-ui,sans-serif">'
+              + '<h3 style="margin:0 0 .6rem;font-size:.95rem">Relay unggah (pribadi)</h3>'
+              + '<label style="display:block;margin:.4rem 0 .15rem">URL relay</label>'
+              + '<input id="relay-url" autocomplete="off" spellcheck="false" style="' + gayaField + '">'
+              + '<label style="display:block;margin:.5rem 0 .15rem">Token</label>'
+              + '<input id="relay-token" type="password" autocomplete="off" style="' + gayaField + '">'
+              + '<p id="relay-msg" style="min-height:1.4em;margin:.5rem 0;color:#fbbf24;word-break:break-word"></p>'
+              + '<div style="display:flex;gap:.4rem;justify-content:flex-end;flex-wrap:wrap">'
+              + '<button id="relay-off" type="button" style="' + gayaChip + '">Matikan</button>'
+              + '<button id="relay-cancel" type="button" style="' + gayaChip + '">Tutup</button>'
+              + '<button id="relay-pair" type="button" style="' + gayaChip + '">Pasangkan</button>'
+              + '<button id="relay-save" type="button" style="padding:.35rem .7rem;border:0;border-radius:.35rem;background:#2563eb;color:#fff;cursor:pointer">Simpan &amp; uji</button>'
+              + '</div></div>';
+          const url = ov.querySelector('#relay-url'), tok = ov.querySelector('#relay-token'), msg = ov.querySelector('#relay-msg');
+          url.value = c.url || '';
+          tok.value = c.token || '';
+          let pasangId = 0;
+          const tutup = () => { pasangId++; ov.remove(); segarkanChip(); };
+          const alamat = () => url.value.trim().replace(/\/+$/, '');
+          async function simpan() {
+              const baru = { url: alamat(), token: tok.value.trim(), app: APP_ID };
+              msg.textContent = 'menguji...';
+              try {
+                  const r = await fetch(baru.url + '/ping', { headers: { 'X-Relay-Token': baru.token } });
+                  const j = await r.json();
+                  if (r.ok && j.ok) {
+                      localStorage.setItem(KUNCI, JSON.stringify(baru));
+                      tutup();
+                      kabar('⇩ Relay unggah AKTIF (' + APP_ID + ')');
+                      return;
+                  }
+              } catch (e) { /* ditangani di bawah */ }
+              msg.textContent = 'Relay tidak terjangkau atau token salah.';
+          }
+          ov.querySelector('#relay-cancel').addEventListener('click', tutup);
+          ov.querySelector('#relay-off').addEventListener('click', () => {
+              localStorage.removeItem(KUNCI);
+              tutup();
+              kabar('Relay unggah dimatikan.');
+          });
+          ov.querySelector('#relay-save').addEventListener('click', simpan);
+          ov.querySelector('#relay-pair').addEventListener('click', async () => {
+              const punyaku = ++pasangId;
+              msg.textContent = 'meminta kode...';
+              try {
+                  const r = await fetch(alamat() + '/pasang/mulai', { method: 'POST' });
+                  const j = await r.json();
+                  if (!(r.ok && j.ok)) throw new Error('mulai');
+                  msg.textContent = 'Kode: ' + j.code + ' — di PC jalankan: node scripts/penarik-relay.mjs --pasang ' + j.code;
+                  for (let i = 0; i < 150 && punyaku === pasangId; i++) {
+                      await new Promise((res) => setTimeout(res, 2000));
+                      if (punyaku !== pasangId) return;
+                      const k = await fetch(alamat() + '/pasang/cek?id=' + encodeURIComponent(j.id)).then((x) => x.json()).catch(() => ({}));
+                      if (k.siap && k.token) { tok.value = k.token; await simpan(); return; }
+                  }
+                  if (punyaku === pasangId) msg.textContent = 'Pemasangan kedaluwarsa, minta kode baru.';
+              } catch (e) {
+                  if (punyaku === pasangId) msg.textContent = 'Relay tidak terjangkau.';
+              }
+          });
+          ov.addEventListener('click', (e) => { if (e.target === ov) tutup(); });
+          document.body.appendChild(ov);
+          url.focus();
+      }
+
+      document.addEventListener('keydown', (e) => {
+          if (e.ctrlKey && e.altKey && e.shiftKey && e.code === 'KeyU') { e.preventDefault(); buka(); }
+      });
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') putar(); });
+      segarkanChip();
+  })();
+  // === END RELAY UNGGAH ===
 });
