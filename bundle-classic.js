@@ -920,8 +920,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.5';
+  window.APP_VERSION = '3.7.6';
   window.CHANGELOG = [
+    { version: '3.7.6', date: '6 Nov 2026', changes: [
+      { id: 'Penyempurnaan internal lanjutan. Tidak ada perubahan pada cara pakai maupun hasil generate',
+        en: 'Further internal refinements. Nothing changes in how you use the app or in the generated results',
+        ms: 'Penambahbaikan dalaman lanjutan. Tiada perubahan pada cara guna mahupun hasil penjanaan' },
+    ] },
     { version: '3.7.5', date: '6 Nov 2026', changes: [
       { id: 'Penyempurnaan internal: perapian kode di belakang layar. Tidak ada perubahan pada cara pakai maupun hasil generate',
         en: 'Internal refinements: behind-the-scenes code tidy-up. Nothing changes in how you use the app or in the generated results',
@@ -7195,7 +7200,7 @@ OUTPUT: generate ONLY the actual scene — the person from the reference photo s
           if (el.matches('input[type="file"]')) { sasaran = el; return; }
           const kotak = el.closest(PEMBUNGKUS);
           if (!kotak) return;
-          const inp = kotak.querySelector('input[type="file"]');
+          const inp = inputDari(kotak);
           if (inp) sasaran = inp;
           else if (kotak.matches(ZONA)) sasaran = kotak;
       }, true);
@@ -7207,10 +7212,27 @@ OUTPUT: generate ONLY the actual scene — the person from the reference photo s
           return !!(r.width || r.height);
       }
 
+      function inputDari(kotak) {
+          if (!kotak) return null;
+          const anak = kotak.querySelectorAll && kotak.querySelectorAll('input[type="file"]');
+          if (anak && anak.length > 1) return null; // pembungkus memuat >1 kotak: jangan menebak
+          if (anak && anak.length === 1) return anak[0];
+          if (kotak.htmlFor) { const t = document.getElementById(kotak.htmlFor); if (t) return t; }
+          const induk = kotak.parentElement;
+          return (induk && induk.querySelector) ? induk.querySelector('input[type="file"]') : null;
+      }
+
+      function wakil(inp) {
+          if (terlihat(inp)) return inp;
+          if (inp.id) { const lab = document.querySelector('label[for="' + inp.id + '"]'); if (terlihat(lab)) return lab; }
+          return terlihat(inp.parentElement) ? inp.parentElement : null;
+      }
+
       function cariSasaran() {
           if (sasaran && sasaran.isConnected) return sasaran;
           sasaran = null;
-          const calon = [].slice.call(document.querySelectorAll('input[type="file"], ' + ZONA)).filter(terlihat);
+          const calon = [].slice.call(document.querySelectorAll('input[type="file"], ' + ZONA))
+              .filter((el) => (el.matches('input[type="file"]') ? !!wakil(el) : terlihat(el)));
           return calon.length === 1 ? calon[0] : null;
       }
 
