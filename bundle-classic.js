@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.editprompt': 'Edit Prompt',
       'title.video': 'Buat Prompt Video',
       'title.download': 'Unduh',
+      'title.preview': 'Lihat besar', 'title.remove-photo': 'Hapus foto', 'title.show-menu': 'Tampilkan menu', 'title.hide-menu': 'Sembunyikan menu', 'title.open-menu': 'Buka menu', 'title.tutorial-app': 'Tutorial aplikasi', 'title.contact-admin': 'Hubungi Admin WhatsApp',
       'loading.visual': 'Membuat Visual...',
       'loading.story': 'Menyusun cerita...', 'btn.generate.viral': 'Buat Storyboard Viral',
       'loading.analyzing': 'Menganalisa...', 'loading.read-photo': 'Membaca foto...',
@@ -427,6 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.editprompt': 'Edit Prompt',
       'title.video': 'Make Video Prompt',
       'title.download': 'Download',
+      'title.preview': 'View larger', 'title.remove-photo': 'Remove photo', 'title.show-menu': 'Show menu', 'title.hide-menu': 'Hide menu', 'title.open-menu': 'Open menu', 'title.tutorial-app': 'App tutorial', 'title.contact-admin': 'Contact Admin on WhatsApp',
       'loading.visual': 'Creating visuals...',
       'loading.story': 'Building the story...', 'btn.generate.viral': 'Create Viral Storyboard',
       'loading.analyzing': 'Analyzing...', 'loading.read-photo': 'Reading photo...',
@@ -702,6 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'title.editprompt': 'Edit Prompt',
       'title.video': 'Jana Prompt Video',
       'title.download': 'Muat Turun',
+      'title.preview': 'Lihat besar', 'title.remove-photo': 'Buang foto', 'title.show-menu': 'Tunjuk menu', 'title.hide-menu': 'Sembunyikan menu', 'title.open-menu': 'Buka menu', 'title.tutorial-app': 'Tutorial aplikasi', 'title.contact-admin': 'Hubungi Admin WhatsApp',
       'loading.visual': 'Menjana visual...',
       'loading.story': 'Menyusun cerita...', 'btn.generate.viral': 'Jana Storyboard Viral',
       'loading.analyzing': 'Menganalisis...', 'loading.read-photo': 'Membaca foto...',
@@ -860,6 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-i18n]').forEach(el => { const v = tr(lang, el.getAttribute('data-i18n')); if (v != null) el.textContent = v; });
     document.querySelectorAll('[data-i18n-html]').forEach(el => { const v = tr(lang, el.getAttribute('data-i18n-html')); if (v != null) el.innerHTML = v; });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const v = tr(lang, el.getAttribute('data-i18n-placeholder')); if (v != null) el.setAttribute('placeholder', v); });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => { const v = tr(lang, el.getAttribute('data-i18n-title')); if (v != null) { el.setAttribute('title', v); el.setAttribute('aria-label', v); } });
     applyChipLabels(lang);
     applyDynLabels(lang);
     const sw = document.getElementById('lang-switcher');
@@ -920,8 +924,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.6';
+  window.APP_VERSION = '3.7.7';
   window.CHANGELOG = [
+    { version: '3.7.7', date: '11 Nov 2026', changes: [
+      { id: 'Tombol berikon kini punya keterangan: arahkan kursor ke tombol (mis. Unduh, Lihat besar, Hapus foto, Tutup) untuk melihat fungsinya. Keterangan ikut bahasa aplikasi dan terbaca pembaca layar',
+        en: 'Icon buttons now have labels: hover over a button (e.g. Download, View larger, Remove photo, Close) to see what it does. Labels follow the app language and work with screen readers',
+        ms: 'Butang berikon kini ada keterangan: halakan kursor ke butang (cth. Muat Turun, Lihat besar, Buang foto, Tutup) untuk melihat fungsinya. Keterangan ikut bahasa aplikasi dan boleh dibaca pembaca skrin' },
+    ] },
     { version: '3.7.6', date: '6 Nov 2026', changes: [
       { id: 'Penyempurnaan internal lanjutan. Tidak ada perubahan pada cara pakai maupun hasil generate',
         en: 'Further internal refinements. Nothing changes in how you use the app or in the generated results',
@@ -1084,7 +1093,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.className = 'image-preview-modal';
     const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
     modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-md w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-gift text-violet-500 mr-2"></i>${t('whatsnew.title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+      <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-gift text-violet-500 mr-2"></i>${t('whatsnew.title')}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
       ${body}
       <button data-close class="w-full btn-secondary py-2 rounded-lg font-semibold mt-2">${t('modal.close')}</button>
     </div>`;
@@ -1375,7 +1384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.className = 'image-preview-modal';
     const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
     modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full" onclick="event.stopPropagation()">
-      <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${t('tut.title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+      <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${t('tut.title')}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
       <div class="space-y-2" data-choices></div>
     </div>`;
     modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -2084,7 +2093,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="flex flex-wrap gap-2 mt-2">
               <button type="button" data-hv class="btn-primary text-xs font-semibold px-3 py-1.5 rounded-lg"><i class="fas fa-eye mr-1"></i>${t('hist.view')}</button>
               <button type="button" data-hd class="btn-secondary text-xs font-semibold px-3 py-1.5 rounded-lg"><i class="fas fa-download mr-1"></i>${t('hist.download-all')}</button>
-              <button type="button" data-hx class="text-xs font-semibold px-3 py-1.5 rounded-lg" style="color:#dc2626;border:1px solid #fecaca;background:#fff;" title="${t('btn.delete')}"><i class="fas fa-trash"></i></button>
+              <button type="button" data-hx class="text-xs font-semibold px-3 py-1.5 rounded-lg" style="color:#dc2626;border:1px solid #fecaca;background:#fff;" title="${t('btn.delete')}" aria-label="${t('btn.delete')}" data-i18n-title="btn.delete"><i class="fas fa-trash"></i></button>
             </div>
           </div>`;
         if (rec.items[0]) el.querySelector('img').src = mkUrl(rec.items[0].blob);
@@ -2105,7 +2114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const own = [];
       const close = () => { modal.classList.remove('show'); setTimeout(() => { modal.remove(); own.forEach(u => URL.revokeObjectURL(u)); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-4 sm:p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-4 gap-3"><h3 class="text-base font-bold" style="color:var(--ink);" data-title></h3><button type="button" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-4 gap-3"><h3 class="text-base font-bold" style="color:var(--ink);" data-title></h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" type="button" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" data-items></div>
       </div>`;
       modal.querySelector('[data-title]').textContent = `${tabName(rec.tab)} · ${fmtDate(rec.updatedAt)}`;
@@ -2118,7 +2127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         box.innerHTML = `<img alt="" class="w-full rounded-md object-contain bg-gray-100" style="max-height:260px;">
           <div class="text-xs font-semibold" style="color:#334155;"></div>
           <div class="flex flex-wrap gap-1.5">
-            <button type="button" data-dl class="bg-cyan-600 text-white text-[11px] font-semibold px-2 py-1 rounded-md"><i class="fas fa-download"></i></button>
+            <button title="${t('title.download')}" aria-label="${t('title.download')}" data-i18n-title="title.download" type="button" data-dl class="bg-cyan-600 text-white text-[11px] font-semibold px-2 py-1 rounded-md"><i class="fas fa-download"></i></button>
             ${it.prompt ? `<button type="button" data-cp class="btn-secondary text-[11px] font-semibold px-2 py-1 rounded-md">${t('hist.copy-prompt')}</button>` : ''}
             ${it.video ? `<button type="button" data-cv class="btn-secondary text-[11px] font-semibold px-2 py-1 rounded-md">${t('hist.copy-video')}</button>` : ''}
             ${it.note ? `<button type="button" data-cn class="btn-secondary text-[11px] font-semibold px-2 py-1 rounded-md">${t('hist.copy-script')}</button>` : ''}
@@ -2281,8 +2290,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="text-sm font-semibold text-gray-800 truncate">${window.escHtml(m.name)}</p>
             <p class="text-[11px] text-gray-400">${new Date(m.createdAt).toLocaleDateString('id-ID')}</p>
             <div class="flex gap-1 mt-2">
-              <button type="button" data-dl class="flex-1 btn-secondary text-xs font-semibold py-1.5 rounded-lg text-center"><i class="fas fa-download pointer-events-none"></i></button>
-              <button type="button" data-del="${m.id}" class="flex-1 text-xs font-semibold py-1.5 rounded-lg" style="color:#dc2626;border:1px solid rgba(220,38,38,.3);"><i class="fas fa-trash pointer-events-none"></i></button>
+              <button title="${t('title.download')}" aria-label="${t('title.download')}" data-i18n-title="title.download" type="button" data-dl class="flex-1 btn-secondary text-xs font-semibold py-1.5 rounded-lg text-center"><i class="fas fa-download pointer-events-none"></i></button>
+              <button title="${t('btn.delete')}" aria-label="${t('btn.delete')}" data-i18n-title="btn.delete" type="button" data-del="${m.id}" class="flex-1 text-xs font-semibold py-1.5 rounded-lg" style="color:#dc2626;border:1px solid rgba(220,38,38,.3);"><i class="fas fa-trash pointer-events-none"></i></button>
             </div>
           </div>`;
         card.querySelector('[data-dl]').addEventListener('click', () => {
@@ -2357,7 +2366,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-choices></div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -2445,7 +2454,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       prodSlots.innerHTML = dpProducts.map((pr, i) => `
         <div class="relative rounded-xl border-2 border-gray-100 overflow-hidden bg-white">
           <img src="data:${pr.mime};base64,${pr.b64}" class="w-full aspect-square object-cover" alt="${window.escHtml(pr.name || 'Produk')}">
-          <button type="button" data-prod-remove="${i}" class="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full text-xs"><i class="fas fa-times pointer-events-none"></i></button>
+          <button title="${t('title.remove-photo')}" aria-label="${t('title.remove-photo')}" data-i18n-title="title.remove-photo" type="button" data-prod-remove="${i}" class="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full text-xs"><i class="fas fa-times pointer-events-none"></i></button>
         </div>`).join('');
       prodAddBtn.classList.toggle('hidden', dpProducts.length >= DP_PRODUCT_MAX);
     }
@@ -2848,7 +2857,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-choices></div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -2877,7 +2886,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
           images.push({ base64, mimeType, id });
           const wrap = document.createElement('div');
           wrap.className = 'relative group';
-          wrap.innerHTML = `<img src="${dataUrl}" class="rounded-lg w-full h-24 object-cover"><button class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"><i class="fas fa-times text-xs pointer-events-none"></i></button>`;
+          wrap.innerHTML = `<img src="${dataUrl}" class="rounded-lg w-full h-24 object-cover"><button title="${t('title.remove-photo')}" aria-label="${t('title.remove-photo')}" data-i18n-title="title.remove-photo" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"><i class="fas fa-times text-xs pointer-events-none"></i></button>`;
           previewContainer.appendChild(wrap);
           wrap.querySelector('button').addEventListener('click', () => {
             images = images.filter(x => x.id !== id);
@@ -3040,11 +3049,11 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
           out.innerHTML = `<div class="relative w-full h-full group">
             <img src="${imageUrl}" class="w-full h-full object-cover rounded-md" alt="Scene">
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 flex flex-wrap gap-2 justify-end opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition">
-              <button data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
-              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}"><i class="fas fa-sync-alt pointer-events-none"></i></button>
-              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}"><i class="fas fa-pen pointer-events-none"></i></button>
-              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}"><i class="fas fa-film pointer-events-none"></i></button>
-              <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
+              <button title="${t('title.preview')}" aria-label="${t('title.preview')}" data-i18n-title="title.preview" data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
+              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}" aria-label="${t('title.regenerate')}" data-i18n-title="title.regenerate"><i class="fas fa-sync-alt pointer-events-none"></i></button>
+              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}" aria-label="${t('title.editprompt')}" data-i18n-title="title.editprompt"><i class="fas fa-pen pointer-events-none"></i></button>
+              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}" aria-label="${t('title.video')}" data-i18n-title="title.video"><i class="fas fa-film pointer-events-none"></i></button>
+              <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}" aria-label="${t('title.download')}" data-i18n-title="title.download"><i class="fas fa-download pointer-events-none"></i></button>
             </div>
           </div>`;
           window.historyTouch(p, grid);
@@ -3168,7 +3177,7 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-2">${t('edit.hint')}</p>
         <textarea data-editp rows="7" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm font-mono resize-none focus:border-violet-500 transition">${window.escHtml(card.dataset.prompt || '')}</textarea>
         <div class="flex gap-2 mt-4"><button data-save class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-floppy-disk mr-1"></i>${t('btn.save')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">${t('btn.cancel')}</button></div>
@@ -3335,7 +3344,7 @@ Rules:
               <textarea data-cap="${i}" rows="${s.key === 'hashtag' ? 3 : 5}" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm resize-none">${window.escHtml(s.body)}</textarea>
             </div>`).join('');
           modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>${t('modal.caption-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>${t('modal.caption-title')}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
             ${blocks}
             <div class="flex gap-2">
               <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}</button>
@@ -3390,7 +3399,7 @@ Rules:
           const plan = window.clipPlan(durState.platform, durState.duration);
           const thumbs = cards.map(c => `<img src="${c.querySelector('img').src}" class="h-16 rounded object-cover">`).join('');
           modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.clip-title-prefix')} ${clipIdx} (${cards.length} ${t('unit.photos')} · ${plan.clipSec} ${t('unit.sec')})</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.clip-title-prefix')} ${clipIdx} (${cards.length} ${t('unit.photos')} · ${plan.clipSec} ${t('unit.sec')})</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
             <div class="flex gap-2 mb-3 overflow-x-auto">${thumbs}</div>
             <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
               <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${t('vp.one-clip-prompt')} (${cards.length} ${t('unit.keyframe')}):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
@@ -3432,7 +3441,7 @@ Rules:
         try {
         const { sceneNum, total, title, vp, imageUrl } = await requestVideoPrompt(card);
         modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-          <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${t('vp.title-prefix')} ${sceneNum}/${total}: ${window.escHtml(title)}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+          <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${t('vp.title-prefix')} ${sceneNum}/${total}: ${window.escHtml(title)}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
           <img src="${imageUrl}" class="w-full rounded-lg mb-3 max-h-56 object-contain bg-gray-100">
           <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
             <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${t('vp.section-label')} (Scene ${sceneNum}/${total}):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
@@ -3475,7 +3484,7 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `${t('vp.per-scene')} — ${t('unit.clip-title')} ${clipIdx}` : t('btn.all-video-prompt')} (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `${t('vp.per-scene')} — ${t('unit.clip-title')} ${clipIdx}` : t('btn.all-video-prompt')} (${total} scene)</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-3" data-progress>${t('progress.preparing')} 0/${total}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
@@ -3560,7 +3569,7 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.all-clip-prompts')} (${totalClips} ${t('unit.clips')} · ${plan.clipSec} ${t('unit.sec-per-clip')})</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.all-clip-prompts')} (${totalClips} ${t('unit.clips')} · ${plan.clipSec} ${t('unit.sec-per-clip')})</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-3" data-progress>${t('progress.preparing')} 0/${totalClips}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
@@ -4532,7 +4541,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-choices></div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -4622,11 +4631,11 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           out.innerHTML = `<div class="relative w-full h-full group">
             <img src="${imageUrl}" class="w-full h-full object-cover rounded-md" alt="Scene">
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 flex flex-wrap gap-2 justify-end opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition">
-              <button data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
-              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}"><i class="fas fa-sync-alt pointer-events-none"></i></button>
-              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}"><i class="fas fa-pen pointer-events-none"></i></button>
-              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}"><i class="fas fa-film pointer-events-none"></i></button>
-              <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
+              <button title="${t('title.preview')}" aria-label="${t('title.preview')}" data-i18n-title="title.preview" data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
+              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}" aria-label="${t('title.regenerate')}" data-i18n-title="title.regenerate"><i class="fas fa-sync-alt pointer-events-none"></i></button>
+              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}" aria-label="${t('title.editprompt')}" data-i18n-title="title.editprompt"><i class="fas fa-pen pointer-events-none"></i></button>
+              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}" aria-label="${t('title.video')}" data-i18n-title="title.video"><i class="fas fa-film pointer-events-none"></i></button>
+              <button data-action="${p}-download" data-scene-id="${id}" data-filename="${cfg.filenamePrefix}_${id}_${safe}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}" aria-label="${t('title.download')}" data-i18n-title="title.download"><i class="fas fa-download pointer-events-none"></i></button>
             </div>
           </div>`;
           window.historyTouch(p, grid);
@@ -4783,7 +4792,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-2">${t('edit.hint')}</p>
         <textarea data-editp rows="7" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm font-mono resize-none focus:border-violet-500 transition">${window.escHtml(card.dataset.prompt || '')}</textarea>
         <div class="flex gap-2 mt-4"><button data-save class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-floppy-disk mr-1"></i>${t('btn.save')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">${t('btn.cancel')}</button></div>
@@ -4952,7 +4961,7 @@ Rules:
               <textarea data-cap="${i}" rows="${s.key === 'hashtag' ? 3 : 5}" readonly class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-sm resize-none">${window.escHtml(s.body)}</textarea>
             </div>`).join('');
           modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>${t('modal.caption-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-hashtag text-cyan-500 mr-2"></i>${t('modal.caption-title')}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
             ${blocks}
             <div class="flex gap-2">
               <button data-copyall class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>${t('btn.copy-all')}</button>
@@ -5007,7 +5016,7 @@ Rules:
           const plan = window.clipPlan(durState.platform, durState.duration);
           const thumbs = cards.map(c => `<img src="${c.querySelector('img').src}" class="h-16 rounded object-cover">`).join('');
           modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.clip-title-prefix')} ${clipIdx} (${cards.length} ${t('unit.photos')} · ${plan.clipSec} ${t('unit.sec')})</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.clip-title-prefix')} ${clipIdx} (${cards.length} ${t('unit.photos')} · ${plan.clipSec} ${t('unit.sec')})</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
             <div class="flex gap-2 mb-3 overflow-x-auto">${thumbs}</div>
             <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
               <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${t('vp.one-clip-prompt')} (${cards.length} ${t('unit.keyframe')}):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
@@ -5049,7 +5058,7 @@ Rules:
         try {
         const { sceneNum, total, title, vp, imageUrl } = await requestVideoPrompt(card);
         modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-          <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${t('vp.title-prefix')} ${sceneNum}/${total}: ${window.escHtml(title)}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+          <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${t('vp.title-prefix')} ${sceneNum}/${total}: ${window.escHtml(title)}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
           <img src="${imageUrl}" class="w-full rounded-lg mb-3 max-h-56 object-contain bg-gray-100">
           <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 mb-3">
             <div class="flex items-center justify-between mb-2"><span class="text-sm font-semibold text-gray-700">${t('vp.section-label')} (Scene ${sceneNum}/${total}):</span><button data-copy class="text-xs bg-fuchsia-500 hover:bg-fuchsia-600 text-white px-3 py-1 rounded-full"><i class="fas fa-copy mr-1 pointer-events-none"></i>${t('btn.copy')}</button></div>
@@ -5092,7 +5101,7 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `${t('vp.per-scene')} — ${t('unit.clip-title')} ${clipIdx}` : t('btn.all-video-prompt')} (${total} scene)</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>${clipIdx ? `${t('vp.per-scene')} — ${t('unit.clip-title')} ${clipIdx}` : t('btn.all-video-prompt')} (${total} scene)</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-3" data-progress>${t('progress.preparing')} 0/${total}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
@@ -5177,7 +5186,7 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[88vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.all-clip-prompts')} (${totalClips} ${t('unit.clips')} · ${plan.clipSec} ${t('unit.sec-per-clip')})</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-clapperboard text-fuchsia-500 mr-2"></i>${t('vp.all-clip-prompts')} (${totalClips} ${t('unit.clips')} · ${plan.clipSec} ${t('unit.sec-per-clip')})</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-3" data-progress>${t('progress.preparing')} 0/${totalClips}...</p>
         <div data-list class="space-y-3"></div>
         <div class="flex gap-2 mt-4">
@@ -5720,7 +5729,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
               </div>
               <div id="${p}-model-image-preview-container" class="hidden mt-2 relative">
                 <img id="${p}-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                <button id="${p}-model-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
+                <button title="${t('title.remove-photo')}" aria-label="${t('title.remove-photo')}" data-i18n-title="title.remove-photo" id="${p}-model-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
               </div>
               <button type="button" id="${p}-library-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden"><i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span></button>
               <p id="${p}-model-role-hint" class="hidden text-xs text-violet-600 mt-2" data-i18n="talk.model-role-hint">Ini narasumber yang menjawab.</p>
@@ -5734,7 +5743,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
                 </div>
                 <div id="${p}-host-image-preview-container" class="hidden mt-2 relative">
                   <img id="${p}-host-image-preview" src="#" alt="Host" class="rounded-xl w-full h-auto object-contain">
-                  <button id="${p}-host-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
+                  <button title="${t('title.remove-photo')}" aria-label="${t('title.remove-photo')}" data-i18n-title="title.remove-photo" id="${p}-host-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
                 </div>
                 <button type="button" id="${p}-host-library-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden"><i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span></button>
               </div>
@@ -5758,7 +5767,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
               </div>
               <div id="${p}-brand-preview-container" class="hidden mt-2 relative">
                 <img id="${p}-brand-preview" src="#" alt="Brand" class="rounded-xl w-full h-auto object-contain max-h-40 bg-white border-2 border-gray-100">
-                <button id="${p}-brand-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
+                <button title="${t('title.remove-photo')}" aria-label="${t('title.remove-photo')}" data-i18n-title="title.remove-photo" id="${p}-brand-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
               </div>
             </div>
             <div class="card p-6">
@@ -6139,7 +6148,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       prodSlots.innerHTML = products.map((pr, i) => `
         <div class="relative rounded-xl border-2 border-gray-100 overflow-hidden bg-white">
           <img src="data:${pr.mime};base64,${pr.b64}" class="w-full aspect-square object-cover" alt="${window.escHtml(pr.name || 'Produk')}">
-          <button type="button" data-prod-remove="${i}" class="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full text-xs"><i class="fas fa-times pointer-events-none"></i></button>
+          <button title="${t('title.remove-photo')}" aria-label="${t('title.remove-photo')}" data-i18n-title="title.remove-photo" type="button" data-prod-remove="${i}" class="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full text-xs"><i class="fas fa-times pointer-events-none"></i></button>
           ${pr.cloudId
             ? `<span class="absolute bottom-1 left-1 right-1 text-center text-[10px] font-semibold text-white bg-violet-600/80 rounded-md py-0.5"><i class="fas fa-cloud mr-1"></i>${t('badge.product-saved')}</span>`
             : `<button type="button" data-prod-save="${i}" class="absolute bottom-1 left-1 right-1 text-[10px] font-semibold text-white bg-gray-800/70 rounded-md py-0.5"><i class="fas fa-cloud-arrow-up mr-1 pointer-events-none"></i><span class="pointer-events-none">${t('btn.save-product')}</span></button>`}
@@ -6169,7 +6178,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <input type="text" data-name maxlength="60" class="w-full p-3 bg-white border-2 border-gray-200 rounded-xl text-sm focus:border-violet-500 transition">
         <button type="button" data-ok class="w-full btn-primary font-bold py-2.5 px-4 rounded-xl mt-3">OK</button>
       </div>`;
@@ -6205,7 +6214,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${t('btn.pick-product-library')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${t('btn.pick-product-library')}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-rows></div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -6217,7 +6226,7 @@ ON-SCREEN TEXT: none — do NOT add captions or new text (text already in the ba
         const objUrl = URL.createObjectURL(m.blob);
         row.innerHTML = `
           <button type="button" data-use class="flex-1 btn-secondary py-2 px-3 rounded-lg font-semibold text-sm text-left"><span class="flex items-center gap-3"><img src="${objUrl}" class="w-12 h-12 rounded-lg object-cover shrink-0">${window.escHtml(m.name)}</span></button>
-          <button type="button" data-del class="text-xs font-semibold py-2.5 px-3 rounded-lg" style="color:#dc2626;border:1px solid rgba(220,38,38,.3);"><i class="fas fa-trash pointer-events-none"></i></button>`;
+          <button title="${t('btn.delete')}" aria-label="${t('btn.delete')}" data-i18n-title="btn.delete" type="button" data-del class="text-xs font-semibold py-2.5 px-3 rounded-lg" style="color:#dc2626;border:1px solid rgba(220,38,38,.3);"><i class="fas fa-trash pointer-events-none"></i></button>`;
         row.querySelector('[data-use]').addEventListener('click', async () => {
           if (products.length >= PRODUCT_MAX) { window.uiNotify(t('warn.product-limit')); return; }
           close();
@@ -6551,7 +6560,7 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => { window.freeBlobImgs(modal); modal.remove(); }, 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-4"><h3 class="text-base font-bold text-gray-800">${title}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <div class="space-y-2" data-choices></div>
       </div>`;
       modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
@@ -6686,11 +6695,11 @@ Rules:
           out.innerHTML = `<div class="relative w-full h-full group">
             <img src="data:image/png;base64,${b64}" class="w-full h-full object-cover rounded-md" alt="Klip ${id}">
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 flex flex-wrap gap-2 justify-end opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition">
-              <button data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
-              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}"><i class="fas fa-sync-alt pointer-events-none"></i></button>
-              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}"><i class="fas fa-pen pointer-events-none"></i></button>
-              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}"><i class="fas fa-film pointer-events-none"></i></button>
-              <button data-action="${p}-download" data-scene-id="${id}" data-filename="talker_klip${id}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}"><i class="fas fa-download pointer-events-none"></i></button>
+              <button title="${t('title.preview')}" aria-label="${t('title.preview')}" data-i18n-title="title.preview" data-action="${p}-preview" data-scene-id="${id}" class="action-btn bg-violet-600 text-white px-3 py-2 rounded-lg"><i class="fas fa-search-plus pointer-events-none"></i></button>
+              <button data-action="${p}-regenerate" data-scene-id="${id}" class="action-btn bg-green-500 text-white px-3 py-2 rounded-lg" title="${t('title.regenerate')}" aria-label="${t('title.regenerate')}" data-i18n-title="title.regenerate"><i class="fas fa-sync-alt pointer-events-none"></i></button>
+              <button data-action="${p}-editprompt" data-scene-id="${id}" class="action-btn bg-amber-500 text-white px-3 py-2 rounded-lg" title="${t('title.editprompt')}" aria-label="${t('title.editprompt')}" data-i18n-title="title.editprompt"><i class="fas fa-pen pointer-events-none"></i></button>
+              <button data-action="${p}-video" data-scene-id="${id}" class="action-btn bg-fuchsia-500 text-white px-3 py-2 rounded-lg" title="${t('title.video')}" aria-label="${t('title.video')}" data-i18n-title="title.video"><i class="fas fa-film pointer-events-none"></i></button>
+              <button data-action="${p}-download" data-scene-id="${id}" data-filename="talker_klip${id}.png" class="action-btn bg-cyan-600 text-white px-3 py-2 rounded-lg" title="${t('title.download')}" aria-label="${t('title.download')}" data-i18n-title="title.download"><i class="fas fa-download pointer-events-none"></i></button>
             </div>
           </div>`;
           window.historyTouch(p, grid);
@@ -6753,7 +6762,7 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-pen text-amber-500 mr-2"></i>${t('modal.edit-prompt-title')}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-2">${t('edit.hint')}</p>
         <textarea data-editp rows="7" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm font-mono resize-none focus:border-violet-500 transition">${window.escHtml(card.dataset.prompt || '')}</textarea>
         <div class="flex gap-2 mt-4"><button data-save class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-floppy-disk mr-1"></i>${t('btn.save')}</button><button data-close class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">${t('btn.cancel')}</button></div>
@@ -6774,7 +6783,7 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Prompt Video — Klip ${id}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i>Prompt Video — Klip ${id}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <textarea readonly rows="12" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm font-mono resize-none">${window.escHtml(vp)}</textarea>
         <button data-copy class="w-full btn-primary py-2 rounded-lg font-semibold text-sm mt-3"><i class="fas fa-copy mr-1"></i>${t('talk.btn-copy')}</button>
       </div>`;
@@ -6812,7 +6821,7 @@ Rules:
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i><span data-i18n="btn.all-video-prompt">Semua Prompt Video</span></h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-bold text-gray-800"><i class="fas fa-film text-fuchsia-500 mr-2"></i><span data-i18n="btn.all-video-prompt">Semua Prompt Video</span></h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <textarea readonly rows="16" class="w-full p-3 border-2 border-gray-200 rounded-lg text-xs font-mono resize-none">${window.escHtml(text)}</textarea>
         <div class="flex gap-2 mt-3">
           <button data-copy class="flex-1 btn-primary py-2 rounded-lg font-semibold text-sm"><i class="fas fa-copy mr-1"></i>${t('talk.btn-copy')}</button>
@@ -6880,7 +6889,7 @@ OUTPUT: generate ONLY the actual scene — the person from the reference photo s
       modal.className = 'image-preview-modal';
       const close = () => { modal.classList.remove('show'); setTimeout(() => modal.remove(), 200); };
       modal.innerHTML = `<div class="bg-white rounded-xl p-6 max-w-sm w-full max-h-[80vh] overflow-y-auto" onclick="event.stopPropagation()">
-        <div class="flex items-center justify-between mb-2"><h3 class="text-base font-bold text-gray-800">${title}</h3><button data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
+        <div class="flex items-center justify-between mb-2"><h3 class="text-base font-bold text-gray-800">${title}</h3><button title="${t('modal.close')}" aria-label="${t('modal.close')}" data-i18n-title="modal.close" data-close class="text-gray-400 hover:text-gray-700"><i class="fas fa-times text-xl pointer-events-none"></i></button></div>
         <p class="text-xs text-gray-500 mb-3">${t('talk.flow-hint')}</p>
         <div class="space-y-2" data-choices></div>
       </div>`;

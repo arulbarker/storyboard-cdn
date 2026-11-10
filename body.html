@@ -1,14 +1,14 @@
 
   <div class="flex min-h-screen">
     <!-- FLOATING SHOW-MENU (desktop saat sidebar disembunyikan) -->
-    <button id="nav-show" aria-label="Tampilkan menu"><i class="fas fa-bars"></i></button>
+    <button id="nav-show" aria-label="Tampilkan menu" data-i18n-title="title.show-menu"><i class="fas fa-bars"></i></button>
     <!-- MOBILE TOPBAR -->
     <header class="topbar">
-      <button id="menu-toggle" class="hamburger" aria-label="Buka menu"><i class="fas fa-bars"></i></button>
+      <button id="menu-toggle" class="hamburger" aria-label="Buka menu" data-i18n-title="title.open-menu"><i class="fas fa-bars"></i></button>
       <div class="sidebar-logo" style="width:30px;height:30px;border-radius:9px;font-size:.75rem;">SSP</div>
       <span class="font-display text-[15px] truncate min-w-0">Storyboard Studio Pro</span>
-      <a id="tutorial-link-top" href="https://youtu.be/UaSsRKmJDdg" target="_blank" rel="noopener" class="ml-auto" aria-label="Tutorial aplikasi" style="color:#ff0033;font-size:1.45rem;line-height:1;"><i class="fab fa-youtube"></i></a>
-      <a id="cs-link-top" href="https://wa.me/6285157914468" target="_blank" rel="noopener" class="ml-3" aria-label="Hubungi Admin WhatsApp" style="color:#25d366;font-size:1.45rem;line-height:1;"><i class="fab fa-whatsapp"></i></a>
+      <a id="tutorial-link-top" href="https://youtu.be/UaSsRKmJDdg" target="_blank" rel="noopener" class="ml-auto" aria-label="Tutorial aplikasi" data-i18n-title="title.tutorial-app" style="color:#ff0033;font-size:1.45rem;line-height:1;"><i class="fab fa-youtube"></i></a>
+      <a id="cs-link-top" href="https://wa.me/6285157914468" target="_blank" rel="noopener" class="ml-3" aria-label="Hubungi Admin WhatsApp" data-i18n-title="title.contact-admin" style="color:#25d366;font-size:1.45rem;line-height:1;"><i class="fab fa-whatsapp"></i></a>
     </header>
     <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
@@ -21,7 +21,7 @@
           <div class="text-[11px]" style="color:#7c8bab;">AI Storyboard Photo Studio</div>
           <button id="version-badge" type="button" class="mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold" style="background:rgba(124,139,171,.18);color:#a5b4fc;border:1px solid rgba(165,180,252,.28);cursor:pointer;"><i class="fas fa-gift" style="font-size:.62rem;"></i><span id="version-badge-label">v0.0</span><span id="version-badge-dot" class="hidden" style="width:6px;height:6px;border-radius:9999px;background:#f43f5e;display:inline-block;box-shadow:0 0 0 2px rgba(244,63,94,.25);"></span></button>
         </div>
-        <button id="nav-hide" class="nav-toggle-btn" aria-label="Sembunyikan menu"><i class="fas fa-angles-left"></i></button>
+        <button id="nav-hide" class="nav-toggle-btn" aria-label="Sembunyikan menu" data-i18n-title="title.hide-menu"><i class="fas fa-angles-left"></i></button>
       </div>
       <nav class="sidebar-nav">
         <div class="nav-section" data-i18n="menu.guide">⭐ Mulai Di Sini</div>
@@ -120,7 +120,7 @@
                 </div>
                 <div id="review-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="review-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="review-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="review-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -227,7 +227,7 @@
                 </div>
                 <div id="skincare-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="skincare-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="skincare-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="skincare-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -331,7 +331,7 @@
                 </div>
                 <div id="ads-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="ads-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="ads-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="ads-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -433,7 +433,7 @@
                 </div>
                 <div id="fashion-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="fashion-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="fashion-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="fashion-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -537,7 +537,7 @@
                 </div>
                 <div id="unboxing-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="unboxing-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="unboxing-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="unboxing-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -642,7 +642,7 @@
                 </div>
                 <div id="food-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="food-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="food-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="food-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -747,7 +747,7 @@
                 </div>
                 <div id="tutorial-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="tutorial-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="tutorial-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="tutorial-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -853,7 +853,7 @@
                 </div>
                 <div id="daily-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="daily-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="daily-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="daily-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -958,7 +958,7 @@
                 </div>
                 <div id="testi-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="testi-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="testi-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="testi-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -1064,7 +1064,7 @@
                 </div>
                 <div id="grwm-model-image-preview-container" class="hidden mt-4 relative">
                   <img id="grwm-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="grwm-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="grwm-remove-model-image-btn" class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div class="card p-6">
@@ -1249,7 +1249,7 @@
                 </div>
                 <div id="dailyphoto-model-image-preview-container" class="hidden mt-2 relative">
                   <img id="dailyphoto-model-image-preview" src="#" alt="Model" class="rounded-xl w-full h-auto object-contain">
-                  <button id="dailyphoto-model-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="dailyphoto-model-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
                 </div>
                 <button type="button" id="dailyphoto-library-btn" class="btn-secondary w-full text-sm font-semibold py-2 px-3 rounded-lg mt-3 hidden"><i class="fas fa-user-astronaut mr-1"></i><span data-i18n="btn.pick-model-library">Pilih dari Pustaka Model</span></button>
               </div>
@@ -1274,7 +1274,7 @@
                 </div>
                 <div id="dailyphoto-bg-preview-container" class="hidden mt-2 relative">
                   <img id="dailyphoto-bg-preview" src="#" alt="Background" class="rounded-xl w-full h-auto object-contain">
-                  <button id="dailyphoto-bg-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
+                  <button data-i18n-title="title.remove-photo" id="dailyphoto-bg-remove-btn" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full"><i class="fas fa-times pointer-events-none"></i></button>
                 </div>
               </div>
               <div class="card p-6">
