@@ -271,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'vp.tips': '<strong>Tips:</strong> pakai tombol <strong>Semua Prompt Video</strong> untuk ambil semua scene sekaligus. Copy tiap prompt ke platform image-to-video (Runway, Pika, Kling, Veo) dengan gambar scene-nya, gabung berurutan → satu cerita utuh.',
       'clip.howto': '<strong>Cara pakai:</strong> unggah %C foto klip ini BERURUTAN ke platform image-to-video (%P) + paste prompt ini → 1 klip %S dtk. Gabungkan semua klip berurutan di CapCut/editor → satu story utuh.',
       'err.continue-story': 'Gagal melanjutkan cerita: ', 'err.delete-server': 'Gagal menghapus di server — cek koneksi lalu coba lagi.', 'err.read-photo': 'Gagal membaca foto: ', 'ok.features-extracted': 'Ciri karakter berhasil diambil dari foto — silakan edit kalau perlu.', 'warn.storage-unavailable': 'Penyimpanan browser tidak tersedia (mode private/incognito?). Model tidak tersimpan — kamu tetap bisa klik kanan foto untuk menyimpannya manual.', 'warn.storage-short': 'Penyimpanan browser tidak tersedia di sesi ini.', 'ph.group-custom': 'Tulis %L versimu sendiri...',
+      'audio.ugc': '🎤 Model bicara ke kamera (UGC)', 'audio.ugc_music': '🎤🎶 Model bicara + musik', 'audio.voiceover': '🗣️ Voiceover narasi (model diam)', 'audio.asmr': '🔊 ASMR + musik', 'audio.cinematic': '🎬 Sinematik musik', 'audio.timelapse': '⏩ Timelapse (tanpa narasi)',
       'lib.empty': 'Belum ada model — racik di atas lalu Simpan.', 'ios.save-hint': 'Tekan dan <b>tahan</b> foto di bawah, lalu pilih <b>"Simpan ke Foto"</b> atau <b>"Tambahkan ke Foto"</b>.',
       'whatsnew.title': 'Yang Baru', 'whatsnew.empty': 'Belum ada catatan perubahan.',
       'btn.delete': 'Hapus', 'confirm.delete-model': 'Hapus model "%N"?',
@@ -547,6 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'vp.tips': '<strong>Tips:</strong> use the <strong>All Video Prompts</strong> button to grab all scenes at once. Copy each prompt into an image-to-video platform (Runway, Pika, Kling, Veo) with its scene image, join them in order → one complete story.',
       'clip.howto': '<strong>How to use:</strong> upload these %C clip photos IN ORDER to an image-to-video platform (%P) + paste this prompt → one %S-sec clip. Join all clips in order in CapCut/your editor → one complete story.',
       'err.continue-story': 'Failed to continue the story: ', 'err.delete-server': 'Failed to delete on the server — check your connection and try again.', 'err.read-photo': 'Failed to read the photo: ', 'ok.features-extracted': 'Character features extracted from the photo — edit if needed.', 'warn.storage-unavailable': 'Browser storage is unavailable (private/incognito mode?). The model was not saved — you can still right-click the photo to save it manually.', 'warn.storage-short': 'Browser storage is unavailable in this session.', 'ph.group-custom': 'Write your own %L...',
+      'audio.ugc': '🎤 Model talks to camera (UGC)', 'audio.ugc_music': '🎤🎶 Model talks + music', 'audio.voiceover': '🗣️ Narration voiceover (model silent)', 'audio.asmr': '🔊 ASMR + music', 'audio.cinematic': '🎬 Cinematic music', 'audio.timelapse': '⏩ Timelapse (no narration)',
       'lib.empty': 'No models yet — create one above then Save.', 'ios.save-hint': 'Press and <b>hold</b> the photo below, then choose <b>"Save to Photos"</b> or <b>"Add to Photos"</b>.',
       'whatsnew.title': "What's New", 'whatsnew.empty': 'No changelog yet.',
       'btn.delete': 'Delete', 'confirm.delete-model': 'Delete model "%N"?',
@@ -823,6 +825,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'vp.tips': '<strong>Petua:</strong> guna butang <strong>Semua Prompt Video</strong> untuk ambil semua babak sekaligus. Salin setiap prompt ke platform image-to-video (Runway, Pika, Kling, Veo) dengan imej babaknya, gabung ikut turutan → satu cerita penuh.',
       'clip.howto': '<strong>Cara guna:</strong> muat naik %C foto klip ini MENGIKUT TURUTAN ke platform image-to-video (%P) + tampal prompt ini → 1 klip %S saat. Gabungkan semua klip ikut turutan di CapCut/editor → satu cerita penuh.',
       'err.continue-story': 'Gagal menyambung cerita: ', 'err.delete-server': 'Gagal padam di pelayan — semak sambungan dan cuba lagi.', 'err.read-photo': 'Gagal membaca foto: ', 'ok.features-extracted': 'Ciri watak berjaya diambil dari foto — sunting jika perlu.', 'warn.storage-unavailable': 'Storan pelayar tidak tersedia (mod peribadi/incognito?). Model tidak disimpan — anda masih boleh klik kanan foto untuk simpan secara manual.', 'warn.storage-short': 'Storan pelayar tidak tersedia dalam sesi ini.', 'ph.group-custom': 'Tulis %L versi anda...',
+      'audio.ugc': '🎤 Model bercakap ke kamera (UGC)', 'audio.ugc_music': '🎤🎶 Model bercakap + muzik', 'audio.voiceover': '🗣️ Suara latar naratif (model diam)', 'audio.asmr': '🔊 ASMR + muzik', 'audio.cinematic': '🎬 Muzik sinematik', 'audio.timelapse': '⏩ Timelapse (tanpa naratif)',
       'lib.empty': 'Belum ada model — cipta di atas kemudian Simpan.', 'ios.save-hint': 'Tekan dan <b>tahan</b> foto di bawah, kemudian pilih <b>"Simpan ke Foto"</b> atau <b>"Tambah ke Foto"</b>.',
       'whatsnew.title': 'Apa yang Baru', 'whatsnew.empty': 'Belum ada catatan perubahan.',
       'btn.delete': 'Padam', 'confirm.delete-model': 'Padam model "%N"?',
@@ -884,6 +887,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!el.dataset.i18nIdPh) el.dataset.i18nIdPh = el.getAttribute('placeholder') || '';
       el.setAttribute('placeholder', dynTr(lang, el.dataset.i18nIdPh));
     });
+    document.querySelectorAll('[data-ph-group]').forEach(el => {
+      const tpl = tr(lang, 'ph.group-custom');
+      if (tpl) el.setAttribute('placeholder', tpl.replace('%L', dynTr(lang, el.getAttribute('data-ph-group')).toLowerCase()));
+    });
   }
 
   function applyChipLabels(lang) {
@@ -924,8 +931,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.7';
+  window.APP_VERSION = '3.7.8';
   window.CHANGELOG = [
+    { version: '3.7.8', date: '18 Nov 2026', changes: [
+      { id: 'Pilihan Gaya Audio di hasil (mis. Model bicara ke kamera, Sinematik musik, Timelapse), kotak isian Custom di menu Video Viral, dan pesan Pustaka Model kosong kini ikut bahasa aplikasi (English/Melayu)',
+        en: 'The Audio Style choices on results (e.g. Model talks to camera, Cinematic music, Timelapse), the Custom text boxes in Viral Video menus, and the empty Model Library message now follow the app language',
+        ms: 'Pilihan Gaya Audio pada hasil (cth. Model bercakap ke kamera, Muzik sinematik, Timelapse), kotak isian Custom dalam menu Video Viral, dan mesej Pustaka Model kosong kini ikut bahasa aplikasi' },
+    ] },
     { version: '3.7.7', date: '11 Nov 2026', changes: [
       { id: 'Tombol berikon kini punya keterangan: arahkan kursor ke tombol (mis. Unduh, Lihat besar, Hapus foto, Tutup) untuk melihat fungsinya. Keterangan ikut bahasa aplikasi dan terbaca pembaca layar',
         en: 'Icon buttons now have labels: hover over a button (e.g. Download, View larger, Remove photo, Close) to see what it does. Labels follow the app language and work with screen readers',
@@ -2321,6 +2333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     renderLibrary();
     document.addEventListener('ssp-models-changed', renderLibrary);
+    document.addEventListener('ssp-lang-changed', renderLibrary);
   })();
   // === END INFLUENCER STUDIO ===
 
@@ -2695,6 +2708,9 @@ Absolutely no text, no words, no letters, no watermark anywhere in the image. ${
       audioStyleSel.id = `${p}-audio-style`;
       audioStyleSel.className = 'btn-secondary text-sm font-semibold py-2 px-3 rounded-lg hidden';
       audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara ke kamera (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi (model diam)</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option><option value="timelapse">⏩ Timelapse (tanpa narasi)</option>';
+      const labelAudio = () => audioStyleSel.querySelectorAll('option').forEach(o => { o.textContent = t('audio.' + o.value); });
+      labelAudio();
+      document.addEventListener('ssp-lang-changed', labelAudio);
       audioStyleSel.value = audioStyle;
       audioStyleSel.addEventListener('change', () => { audioStyle = audioStyleSel.value; });
 
@@ -4160,7 +4176,7 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
           ${g.options.map(o => `<button type="button" data-val="${window.escHtml(o)}" class="theme-chip">${window.escHtml(o)}</button>`).join('')}
           <button type="button" data-val="__custom__" class="theme-chip"><i class="fas fa-pen"></i>Custom</button>
         </div>
-        <input type="text" id="${p}-group-${g.key}-custom" class="hidden w-full mt-2 p-3 bg-white border-2 border-violet-300 rounded-xl text-sm focus:border-violet-500 transition" placeholder="${t('ph.group-custom').replace('%L', window.escHtml(g.label.toLowerCase()))}">
+        <input type="text" id="${p}-group-${g.key}-custom" data-ph-group="${window.escHtml(g.label)}" class="hidden w-full mt-2 p-3 bg-white border-2 border-violet-300 rounded-xl text-sm focus:border-violet-500 transition" placeholder="${t('ph.group-custom').replace('%L', window.escHtml(g.label.toLowerCase()))}">
       </div>`).join('');
 
     const customHtml = cfg.custom ? `
@@ -4405,6 +4421,9 @@ Respond ONLY with a valid JSON array of ${count} objects with keys "title" and "
       audioStyleSel.id = `${p}-audio-style`;
       audioStyleSel.className = 'btn-secondary text-sm font-semibold py-2 px-3 rounded-lg hidden';
       audioStyleSel.innerHTML = '<option value="ugc">🎤 Model bicara ke kamera (UGC)</option><option value="ugc_music">🎤🎶 Model bicara + musik</option><option value="voiceover">🗣️ Voiceover narasi (model diam)</option><option value="asmr">🔊 ASMR + musik</option><option value="cinematic">🎬 Sinematik musik</option><option value="timelapse">⏩ Timelapse (tanpa narasi)</option>';
+      const labelAudio = () => audioStyleSel.querySelectorAll('option').forEach(o => { o.textContent = t('audio.' + o.value); });
+      labelAudio();
+      document.addEventListener('ssp-lang-changed', labelAudio);
       audioStyleSel.value = audioStyle;
       audioStyleSel.addEventListener('change', () => { audioStyle = audioStyleSel.value; });
 
