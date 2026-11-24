@@ -931,8 +931,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // === end i18n engine ===
 
   // === VERSION & WHAT'S NEW ===
-  window.APP_VERSION = '3.7.8';
+  window.APP_VERSION = '3.7.9';
   window.CHANGELOG = [
+    { version: '3.7.9', date: '25 Nov 2026', changes: [
+      { id: 'Di laptop/PC, jendela pop-up (pilih model, edit prompt, caption, konfirmasi hapus, lihat foto besar, dll) kini bisa ditutup cepat dengan tombol Esc di keyboard — sama seperti klik di luar jendela',
+        en: 'On laptop/PC, pop-up windows (pick model, edit prompt, caption, delete confirmation, large photo view, etc.) can now be closed quickly with the Esc key — same as clicking outside the window',
+        ms: 'Di komputer riba/PC, tetingkap pop-up (pilih model, edit prompt, kapsyen, pengesahan padam, lihat foto besar, dll) kini boleh ditutup pantas dengan kekunci Esc — sama seperti klik di luar tetingkap' },
+    ] },
     { version: '3.7.8', date: '18 Nov 2026', changes: [
       { id: 'Pilihan Gaya Audio di hasil (mis. Model bicara ke kamera, Sinematik musik, Timelapse), kotak isian Custom di menu Video Viral, dan pesan Pustaka Model kosong kini ikut bahasa aplikasi (English/Melayu)',
         en: 'The Audio Style choices on results (e.g. Model talks to camera, Cinematic music, Timelapse), the Custom text boxes in Viral Video menus, and the empty Model Library message now follow the app language',
@@ -1982,6 +1987,16 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.addEventListener('click', (e) => { if (e.target === modal) done(false); });
     });
   };
+  window.closeTopModal = function () {
+    const open = document.querySelectorAll('.image-preview-modal.show');
+    if (!open.length) return false;
+    open[open.length - 1].dispatchEvent(new MouseEvent('click', { bubbles: false }));
+    return true;
+  };
+  document.addEventListener('keydown', (e) => {
+    if ((e.key !== 'Escape' && e.key !== 'Esc') || e.isComposing) return;
+    if (window.closeTopModal()) e.preventDefault();
+  });
   // === END UI DIALOGS ===
 
   // === RIWAYAT HASIL (auto-save hasil generate ke IndexedDB perangkat) ===
